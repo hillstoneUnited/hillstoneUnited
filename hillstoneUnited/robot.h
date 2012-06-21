@@ -20,6 +20,8 @@ class Robot{
     return "(scene rsg/agent/nao/nao.rsg)";
   }
 
+  std::string Init2(); // send teamname
+
   std::string getNextAngle(std::string &msg);
 
  protected:
