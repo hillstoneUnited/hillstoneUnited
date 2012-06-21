@@ -38,9 +38,16 @@ int main(int argc, char* argv[]){
   //make socket
   rcss3dSocket soc(port, host); // no notification when unable to connect server!
 
+
   //make robot and initializing
   Robot robo(teamname);
-  soc.PutMessage(robo.Init());
+  soc.PutMessage(robo.Init()); // send server "use nao model"
+  {
+    std::string temp;
+    soc.GetMessage(temp); // throw away message
+  }
+  soc.PutMessage(robo.Init2()); // send server "I'm team foobar"
+
 
   //Running loop
   while(1){ // use signal (or something) to stop running
