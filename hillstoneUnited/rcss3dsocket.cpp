@@ -100,6 +100,11 @@ bool rcss3dSocket::GetMessage(std::string &msg){
   return true;
 }
 
+void rcss3dSocket::Done(){
+  soc.close();
+  std::cout << "closed connection to " << host << ":" << port << std::endl;
+}
+
 bool rcss3dSocket::SelectInput(){
   fd_set readfds;
   struct timeval tv = {60, 0};
