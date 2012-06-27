@@ -19,6 +19,8 @@ class rcss3dSocket
   void PutMessage(const std::string &msg); // send argument message to server
   bool GetMessage(std::string &msg); // copy message from server in argument string.
 
+  void Done();
+
  private:
   rcss::net::TCPSocket soc;
   int port;
