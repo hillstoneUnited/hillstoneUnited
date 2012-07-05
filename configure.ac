@@ -41,6 +41,8 @@ AC_TYPE_SIGNAL
 AC_CHECK_FUNCS([select strerror])
 
 AC_CONFIG_FILES([Makefile
-	hillstoneUnited/Makefile])
+	hillstoneUnited/Makefile
+  hillstoneUnited/movement/Makefile])
 
+AC_PROG_RANLIB
 AC_OUTPUT
