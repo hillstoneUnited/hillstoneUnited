@@ -8,6 +8,6 @@ hillstoneUnited_SOURCES = main.cpp \
 			util.h
 #			$(mSources)
 
-LDADD = ${RCSS3D_LDFLAGS} -lrcssnet3D\
+LDADD = ${RCSS3D_LDFLAGS} -lrcssnet3D \
 	${BOOST_REGEX_LIB} \
 	movement/libmovement.a
