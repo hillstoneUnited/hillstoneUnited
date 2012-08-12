@@ -10,6 +10,10 @@ Robot::~Robot(){}
 std::string Robot::getNextAngle(std::string &msg){
 
 
+  world.update(msg);
+  world.dump();
+
+
   return "";
 }
 
