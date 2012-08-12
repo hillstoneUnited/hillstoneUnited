@@ -6,6 +6,7 @@ MovementManager::MovementManager(){
   ticktackMovement = new TicktackMovement();
   kickMovement = new KickMovement;
   standupMovement = new StandupMovement();
+  ffMovement = new FFMovement();
 }
 
 MovementManager::~MovementManager(){}

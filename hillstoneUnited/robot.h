@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "world.h"
+#include "movementmanager.h"
 
 /*
   This class is interface to main function.
@@ -26,6 +27,7 @@ class Robot{
 
  protected:
   World world;
+  MovementManager mm;
 
 };
 

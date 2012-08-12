@@ -4,7 +4,8 @@ libmovement_a_SOURCES = movementbase.h movementbase.cpp \
 	posemovement.h posemovement.cpp \
 	ticktackmovement.h ticktackmovement.cpp \
 	kickmovement.h kickmovement.cpp \
-	standupmovement.h standupmovement.cpp
+	standupmovement.h standupmovement.cpp \
+	ffmovement.h ffmovement.cpp
 
 # mSources = movementbase.h movementbase.cpp \
 # 	posemovement.h posemovement.cpp

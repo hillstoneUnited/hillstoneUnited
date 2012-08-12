@@ -9,6 +9,7 @@
 #include "movement/ticktackmovement.h"
 #include "movement/kickmovement.h"
 #include "movement/standupmovement.h"
+#include "movement/ffmovement.h"
 
   class MovementManager{
     
@@ -24,5 +25,6 @@
       TicktackMovement* ticktackMovement;
       KickMovement* kickMovement;
       StandupMovement* standupMovement;
+      FFMovement* ffMovement;
   };
 #endif
