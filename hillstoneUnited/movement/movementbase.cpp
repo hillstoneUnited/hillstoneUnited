@@ -6,6 +6,22 @@ MovementBase::MovementBase(){
 
 MovementBase::~MovementBase(){}
 
+bool MovementBase::set(World& w, jointID id, 
+    double angle, double gain){
+  const double EPS = 0.2;
+  double current = 0.0;
+
+  // current = w.getAngle(id);
+  current = 0.0;
+  if(fabs(current - angle) > EPS){
+    angleMap[id] = gain * (angle - current);
+    return true;
+  }
+
+  angleMap[id] = 0.0;
+  return false;
+}
+
 std::string MovementBase::angleToString(){
   std::string jointName[] = {
     "he1", "he2",

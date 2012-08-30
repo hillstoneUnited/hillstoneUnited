@@ -2,15 +2,16 @@
 
 Robot::Robot(std::string teamname){
   world.setTeamname(teamname);
-
 }
 
 Robot::~Robot(){}
 
 std::string Robot::getNextAngle(std::string &msg){
+  
+  Action act;
 
+  return mm.nextStr(act, world);
 
-  return "";
 }
 
 std::string Robot::Init2(){
