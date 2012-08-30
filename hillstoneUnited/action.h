@@ -8,7 +8,7 @@
  */
 class Action{
  public:
-  Action();
+  Action(ActionName _name=DUMMY, int _count=0);
   ~Action();
 
   void setName(ActionName _name);

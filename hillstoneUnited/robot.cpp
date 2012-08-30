@@ -9,8 +9,9 @@ Robot::~Robot(){}
 std::string Robot::getNextAngle(std::string &msg){
   
   Action act;
+  Action act2(DUMMY);
 
-  return mm.nextStr(act, world);
+  return mm.nextStr(act2, world);
 
 }
 
