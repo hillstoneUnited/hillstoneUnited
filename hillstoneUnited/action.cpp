@@ -1,8 +1,8 @@
 #include "action.h"
 
-Action::Action(){
-  name = DUMMY;
-  count = 0;
+Action::Action(ActionName _name, int _count){
+  name = _name;
+  count = _count;
   lock = false;
   priority = 0;
 }
