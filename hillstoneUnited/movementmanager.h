@@ -6,6 +6,10 @@
 #include "util.h"
 #include "movement/posemovement.h"
 #include "movement/gamovement.h"
+#include "movement/ticktackmovement.h"
+#include "movement/kickmovement.h"
+#include "movement/standupmovement.h"
+#include "movement/ffmovement.h"
 
   class MovementManager{
     
@@ -13,11 +17,14 @@
       MovementManager();
       ~MovementManager();
 
-      // std::string nextStr(Action act, &World, w);
+      std::string nextStr(Action& act, World& w);
 
     private:
-      GAMovement* gam;
-      PoseMovement* pm;
-    
+      GAMovement* gaMovement;
+      PoseMovement* poseMovement;
+      TicktackMovement* ticktackMovement;
+      KickMovement* kickMovement;
+      StandupMovement* standupMovement;
+      FFMovement* ffMovement;
   };
 #endif
