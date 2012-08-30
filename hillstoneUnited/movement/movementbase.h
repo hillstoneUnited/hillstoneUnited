@@ -7,6 +7,7 @@
 #include <math.h>
 #include "../util.h"
 #include "../world.h"
+#include "../action.h"
 
   class MovementBase{
 

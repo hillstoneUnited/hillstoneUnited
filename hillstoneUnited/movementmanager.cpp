@@ -12,8 +12,8 @@ MovementManager::MovementManager(){
 MovementManager::~MovementManager(){}
 
 
-std::string MovementManager::nextStr(Action act, World& w){
-  switch(act.name){
+std::string MovementManager::nextStr(Action& act, World& w){
+  switch(act.getName()){
     case DUMMY:
       //case FLEFT:
       //case FRIGHT:

@@ -17,7 +17,7 @@
       MovementManager();
       ~MovementManager();
 
-      std::string nextStr(Action act, World& w);
+      std::string nextStr(Action& act, World& w);
 
     private:
       GAMovement* gaMovement;

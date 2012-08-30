@@ -1,7 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-enum Action{
+enum ActionName{
   STOP,
   FORWARD,
   SLOW_FORWARD,
@@ -34,6 +34,7 @@ enum Action{
   STANDUP,
 };
 
+/*
 struct Decision{
   Action act;
   int count;
@@ -49,6 +50,7 @@ struct Decision{
 
   }
 };
+*/
 
 enum Side{
   UNKNOWN,

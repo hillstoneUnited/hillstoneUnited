@@ -9,7 +9,7 @@ PoseMovement::~PoseMovement(){}
 
 std::string PoseMovement::getNextAngle(Action act, World& w){
   
-  switch(act.name){
+  switch(act.getName()){
     case DUMMY:
 
       set(w, raj1, -100.0);
