@@ -10,6 +10,10 @@
 
 using namespace rcss::net;
 
+rcss3dSocket::rcss3dSocket(){
+  //  std::cout << "make socket class(not connected)" << std::endl;
+}
+
 rcss3dSocket::rcss3dSocket(int port_arg, std::string host_arg): port(port_arg), host(host_arg){
   std::cout << "connect to TCP " << host << ":" << port << std::endl;
 
@@ -103,6 +107,35 @@ bool rcss3dSocket::GetMessage(std::string &msg){
 void rcss3dSocket::Done(){
   soc.close();
   std::cout << "closed connection to " << host << ":" << port << std::endl;
+}
+
+bool rcss3dSocket::Connect(int port_arg, std::string host_arg){
+  host = host_arg;
+  port = port_arg;
+
+  std::cout << "connect to TCP " << host << ":" << port << std::endl;
+
+  try{
+    Addr local(INADDR_ANY, INADDR_ANY);
+    soc.bind(local);
+  }catch(BindErr error){
+    std::cerr << "failed to bind socket with '" << error.what() << "'" << std::endl;
+
+    soc.close();
+    return false;
+  }
+
+  try{
+    Addr server(port, host);
+    soc.connect(server);
+  }catch(ConnectErr error){
+    std::cerr << "connection failed with: '" << error.what() << "'" << std::endl;
+
+    soc.close();
+    return false;
+  }
+
+  return true;
 }
 
 bool rcss3dSocket::SelectInput(){
