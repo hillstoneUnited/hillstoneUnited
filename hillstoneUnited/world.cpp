@@ -188,6 +188,10 @@ void World::dump(){
   // 	    << getENEMY(1)[1] << ", "
   // 	    << getENEMY(1)[2] << std::endl;
 
+  // std::cout << getACC_Sum(10)[0] << ", "
+  // 	    << getACC_Sum(10)[1] << ", "
+  // 	    << getACC_Sum(10)[2] << std::endl;
+
   //  std::cout << unum << std::endl;
   //  std::cout << side << std::endl;
   //  std::cout << playmode << std::endl;
@@ -1547,6 +1551,26 @@ double World::getBANGLE() const{
   }
 
   return sentinel[0];
+}
+
+double* World::getACC_Sum(int num) const{
+  int SIZE = deqPerception.size();
+  if(num > SIZE){
+    num = SIZE;
+  }
+
+  static double temp[3] = {0};
+  for(int i=0; i<3; i++)
+    temp[i] = 0;
+
+  for(int i=0; i<num; i++){
+    if(!isnan((*(deqPerception[SIZE-i-1])).ACC[0])){
+      temp[0] += ((*(deqPerception[SIZE-i-1])).ACC[0]);
+      temp[1] += ((*(deqPerception[SIZE-i-1])).ACC[1]);
+      temp[2] += ((*(deqPerception[SIZE-i-1])).ACC[2]);
+    }
+  }
+  return temp;
 }
 
 

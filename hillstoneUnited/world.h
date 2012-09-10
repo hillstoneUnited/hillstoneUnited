@@ -53,6 +53,8 @@ class World{
   double  getABSANGLE() const;
   double  getBANGLE  () const;
 
+  // getter for sum of parameter
+  double* getACC_Sum(int num) const;
 
   // check confidence(how old the memories are)
   int confMGL     () const;
