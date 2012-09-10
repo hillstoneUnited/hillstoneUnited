@@ -36,8 +36,11 @@ int main(int argc, char* argv[]){
   }
 
   //make socket
-  rcss3dSocket soc(port, host); // no notification when unable to connect server!
-
+  rcss3dSocket soc;
+  if(soc.Connect(port, host) == false){
+    std::cout << "main: connect failed. exit program" << std::endl;
+    exit(1);
+  }
 
   //make robot and initializing
   Robot robo(teamname);
