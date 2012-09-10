@@ -12,6 +12,7 @@
 class rcss3dSocket
 {
  public:
+  rcss3dSocket(); // only make instance. you should Connect() before use socket
   rcss3dSocket(int port_arg, std::string host_arg); // connect rcssserver3d in host_arg by port_arg
   ~rcss3dSocket();
 
@@ -20,6 +21,8 @@ class rcss3dSocket
   bool GetMessage(std::string &msg); // copy message from server in argument string.
 
   void Done();
+
+  bool Connect(int port_arg, std::string host_arg); // connect server. return true:succeed  false:failed
 
  private:
   rcss::net::TCPSocket soc;
