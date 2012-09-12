@@ -106,95 +106,95 @@ void World::dump(){
   // 	    << "rlj6 : " << getAngle("rlj6") << std::endl;
   // std::cout << std::endl;
 
-  // std::cout << "MGL[] : "
-  // 	    << getMGL()[0] << ", "
-  // 	    << getMGL()[1] << ", "
-  // 	    << getMGL()[2] << std::endl;
-  // std::cout << "MGR[] : "
-  // 	    << getMGR()[0] << ", "
-  // 	    << getMGR()[1] << ", "
-  // 	    << getMGR()[2] << std::endl;
-  // std::cout << "EGL[] : "
-  // 	    << getEGL()[0] << ", "
-  // 	    << getEGL()[1] << ", "
-  // 	    << getEGL()[2] << std::endl;
-  // std::cout << "EGR[] : "
-  // 	    << getEGR()[0] << ", "
-  // 	    << getEGR()[1] << ", "
-  // 	    << getEGR()[2] << std::endl;
-  // std::cout << "MFL[] : "
-  // 	    << getMFL()[0] << ", "
-  // 	    << getMFL()[1] << ", "
-  // 	    << getMFL()[2] << std::endl;
-  // std::cout << "MFR[] : "
-  // 	    << getMFR()[0] << ", "
-  // 	    << getMFR()[1] << ", "
-  // 	    << getMFR()[2] << std::endl;
-  // std::cout << "EFL[] : "
-  // 	    << getEFL()[0] << ", "
-  // 	    << getEFL()[1] << ", "
-  // 	    << getEFL()[2] << std::endl;
-  // std::cout << "EFR[] : "
-  // 	    << getEFR()[0] << ", "
-  // 	    << getEFR()[1] << ", "
-  // 	    << getEFR()[2] << std::endl;
-  // std::cout << "BAL[] : "
-  // 	    << getBAL()[0] << ", "
-  // 	    << getBAL()[1] << ", "
-  // 	    << getBAL()[2] << std::endl;
+  // std::cout << "MGL : "
+  // 	    << getMGL(0) << ", "
+  // 	    << getMGL(1) << ", "
+  // 	    << getMGL(2) << std::endl;
+  // std::cout << "MGR : "
+  // 	    << getMGR(0) << ", "
+  // 	    << getMGR(1) << ", "
+  // 	    << getMGR(2) << std::endl;
+  // std::cout << "EGL : "
+  // 	    << getEGL(0) << ", "
+  // 	    << getEGL(1) << ", "
+  // 	    << getEGL(2) << std::endl;
+  // std::cout << "EGR : "
+  // 	    << getEGR(0) << ", "
+  // 	    << getEGR(1) << ", "
+  // 	    << getEGR(2) << std::endl;
+  // std::cout << "MFL : "
+  // 	    << getMFL(0) << ", "
+  // 	    << getMFL(1) << ", "
+  // 	    << getMFL(2) << std::endl;
+  // std::cout << "MFR : "
+  // 	    << getMFR(0) << ", "
+  // 	    << getMFR(1) << ", "
+  // 	    << getMFR(2) << std::endl;
+  // std::cout << "EFL : "
+  // 	    << getEFL(0) << ", "
+  // 	    << getEFL(1) << ", "
+  // 	    << getEFL(2) << std::endl;
+  // std::cout << "EFR : "
+  // 	    << getEFR(0) << ", "
+  // 	    << getEFR(1) << ", "
+  // 	    << getEFR(2) << std::endl;
+  // std::cout << "BAL : "
+  // 	    << getBAL(0) << ", "
+  // 	    << getBAL(1) << ", "
+  // 	    << getBAL(2) << std::endl;
   // std::cout << std::endl;
 
-  // std::cout << "FRP_RC[] :"
-  // 	    << getFRP_RC()[0] << ", "
-  // 	    << getFRP_RC()[1] << ", "
-  // 	    << getFRP_RC()[2] << std::endl;
-  // std::cout << "FRP_RF[] :"
-  // 	    << getFRP_RF()[0] << ", "
-  // 	    << getFRP_RF()[1] << ", "
-  // 	    << getFRP_RF()[2] << std::endl;
-  // std::cout << "FRP_LC[] :"
-  // 	    << getFRP_LC()[0] << ", "
-  // 	    << getFRP_LC()[1] << ", "
-  // 	    << getFRP_LC()[2] << std::endl;
-  // std::cout << "FRP_LF[] :"
-  // 	    << getFRP_LF()[0] << ", "
-  // 	    << getFRP_LF()[1] << ", "
-  // 	    << getFRP_LF()[2] << std::endl;
+  // std::cout << "FRP_RC :"
+  // 	    << getFRP_RC(0) << ", "
+  // 	    << getFRP_RC(1) << ", "
+  // 	    << getFRP_RC(2) << std::endl;
+  // std::cout << "FRP_RF :"
+  // 	    << getFRP_RF(0) << ", "
+  // 	    << getFRP_RF(1) << ", "
+  // 	    << getFRP_RF(2) << std::endl;
+  // std::cout << "FRP_LC :"
+  // 	    << getFRP_LC(0) << ", "
+  // 	    << getFRP_LC(1) << ", "
+  // 	    << getFRP_LC(2) << std::endl;
+  // std::cout << "FRP_LF :"
+  // 	    << getFRP_LF(0) << ", "
+  // 	    << getFRP_LF(1) << ", "
+  // 	    << getFRP_LF(2) << std::endl;
 
-  // std::cout << "GYR[] :"
-  // 	    << getGYR()[0] << ", "
-  // 	    << getGYR()[1] << ", "
-  // 	    << getGYR()[2] << std::endl;
-  // std::cout << "ACC[] :"
-  // 	    << getACC()[0] << ", "
-  // 	    << getACC()[1] << ", "
-  // 	    << getACC()[2] << std::endl;
-  // std::cout << "MYPOS[] :"
-  // 	    << getMYPOS()[0] << ", "
-  // 	    << getMYPOS()[1] << ", "
-  // 	    << getMYPOS()[2] << std::endl;
+  // std::cout << "GYR :"
+  // 	    << getGYR(0) << ", "
+  // 	    << getGYR(1) << ", "
+  // 	    << getGYR(2) << std::endl;
+  // std::cout << "ACC :"
+  // 	    << getACC(0) << ", "
+  // 	    << getACC(1) << ", "
+  // 	    << getACC(2) << std::endl;
+  // std::cout << "MYPOS :"
+  // 	    << getMYPOS(0) << ", "
+  // 	    << getMYPOS(1) << ", "
+  // 	    << getMYPOS(2) << std::endl;
 
+  // std::cout << "BALLPOS :"
+  // 	    << getBALLPOS(0) << ", "
+  // 	    << getBALLPOS(1) << ", "
+  // 	    << getBALLPOS(2) << std::endl;
+  // std::cout << "FRIEND(1) :"
+  // 	    << getFRIEND(1,0) << ", "
+  // 	    << getFRIEND(1,1) << ", "
+  // 	    << getFRIEND(1,2) << std::endl;
+  // std::cout << "ENEMY(1) :"
+  // 	    << getENEMY(1,0) << ", "
+  // 	    << getENEMY(1,1) << ", "
+  // 	    << getENEMY(1,2) << std::endl;
 
-  // std::cout << "BALLPOS[] :"
-  // 	    << getBALLPOS()[0] << ", "
-  // 	    << getBALLPOS()[1] << ", "
-  // 	    << getBALLPOS()[2] << std::endl;
-  // std::cout << "FRIEND(1)[] :"
-  // 	    << getFRIEND(1)[0] << ", "
-  // 	    << getFRIEND(1)[1] << ", "
-  // 	    << getFRIEND(1)[2] << std::endl;
-  // std::cout << "ENEMY(1)[] :"
-  // 	    << getENEMY(1)[0] << ", "
-  // 	    << getENEMY(1)[1] << ", "
-  // 	    << getENEMY(1)[2] << std::endl;
+  // std::cout << "ACC_Sum :"
+  // 	    << getACC_Sum(0, 10) << ", "
+  // 	    << getACC_Sum(1, 10) << ", "
+  // 	    << getACC_Sum(2, 10) << std::endl;
 
-  // std::cout << getACC_Sum(10)[0] << ", "
-  // 	    << getACC_Sum(10)[1] << ", "
-  // 	    << getACC_Sum(10)[2] << std::endl;
-
-  //  std::cout << unum << std::endl;
-  //  std::cout << side << std::endl;
-  //  std::cout << playmode << std::endl;
+  // std::cout << unum << std::endl;
+  // std::cout << side << std::endl;
+  // std::cout << playmode << std::endl;
 
   // std::cout << std::endl;
 
@@ -1149,381 +1149,432 @@ double World::getAngle(std::string jointname) const{
   return (*(deqPerception.back())).jointValue[jointname];
 }
 
-double* World::getMGL() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getMGL(int index) const{
+  if(index > 3){
+    std::cout << "getMGL:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G1L[0])){
-	return ((*(deqPerception[SIZE-i-1])).G1L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G1L[index])){
+	return ((*(deqPerception[SIZE-i-1])).G1L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G2R[0])){
-	return ((*(deqPerception[SIZE-i-1])).G2R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G2R[index])){
+	return ((*(deqPerception[SIZE-i-1])).G2R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getMGL UNKNOWN SIDE!" << std::endl;
-
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getMGR() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getMGR(int index) const{
+  if(index > 3){
+    std::cout << "getMGR:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G2L[0])){
-	return ((*(deqPerception[SIZE-i-1])).G2L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G2L[index])){
+	return ((*(deqPerception[SIZE-i-1])).G2L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G1R[0])){
-	return ((*(deqPerception[SIZE-i-1])).G1R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G1R[index])){
+	return ((*(deqPerception[SIZE-i-1])).G1R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getMGR UNKNOWN SIDE!" << std::endl;
 
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getEGL() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getEGL(int index) const{
+  if(index > 3){
+    std::cout << "getEGL:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G1R[0])){
-	return ((*(deqPerception[SIZE-i-1])).G1R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G1R[index])){
+	return ((*(deqPerception[SIZE-i-1])).G1R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G2L[0])){
-	return ((*(deqPerception[SIZE-i-1])).G2L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G2L[index])){
+	return ((*(deqPerception[SIZE-i-1])).G2L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getEGL UNKNOWN SIDE!" << std::endl;
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getEGR() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getEGR(int index) const{
+  if(index > 3){
+    std::cout << "getEGR:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G2R[0])){
-	return ((*(deqPerception[SIZE-i-1])).G2R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G2R[index])){
+	return ((*(deqPerception[SIZE-i-1])).G2R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).G1L[0])){
-	return ((*(deqPerception[SIZE-i-1])).G1L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).G1L[index])){
+	return ((*(deqPerception[SIZE-i-1])).G1L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getEGR UNKNOWN SIDE!" << std::endl;
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getMFL() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getMFL(int index) const{
+  if(index > 3){
+    std::cout << "getMFL:: unexpected indexnumber : " << index << std::endl;;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F1L[0])){
-	return ((*(deqPerception[SIZE-i-1])).F1L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F1L[index])){
+	return ((*(deqPerception[SIZE-i-1])).F1L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F2R[0])){
-	return ((*(deqPerception[SIZE-i-1])).F2R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F2R[index])){
+	return ((*(deqPerception[SIZE-i-1])).F2R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getMFL UNKNOWN SIDE!" << std::endl;
 
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getMFR() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getMFR(int index) const{
+  if(index > 3){
+    std::cout << "getMFR:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F2L[0])){
-	return ((*(deqPerception[SIZE-i-1])).F2L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F2L[index])){
+	return ((*(deqPerception[SIZE-i-1])).F2L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F1R[0])){
-	return ((*(deqPerception[SIZE-i-1])).F1R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F1R[index])){
+	return ((*(deqPerception[SIZE-i-1])).F1R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getMFR UNKNOWN SIDE!" << std::endl;
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getEFL() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getEFL(int index) const{
+  if(index > 3){
+    std::cout << "getEFL:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F1R[0])){
-	return ((*(deqPerception[SIZE-i-1])).F1R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F1R[index])){
+	return ((*(deqPerception[SIZE-i-1])).F1R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F2L[0])){
-	return ((*(deqPerception[SIZE-i-1])).F2L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F2L[index])){
+	return ((*(deqPerception[SIZE-i-1])).F2L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getEFL UNKNOWN SIDE!" << std::endl;
 
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getEFR() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getEFR(int index) const{
+  if(index > 3){
+    std::cout << "getEFR:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
+  int SIZE = deqPerception.size();
   if(side == LEFT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F2R[0])){
-	return ((*(deqPerception[SIZE-i-1])).F2R);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F2R[index])){
+	return ((*(deqPerception[SIZE-i-1])).F2R[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
-      if(!isnan((*(deqPerception[SIZE-i-1])).F1L[0])){
-	return ((*(deqPerception[SIZE-i-1])).F1L);
+      if(!isnan((*(deqPerception[SIZE-i-1])).F1L[index])){
+	return ((*(deqPerception[SIZE-i-1])).F1L[index]);
       }
     }
-    return sentinel;
+    return 0.0;
   }else{
     std::cout << "World::Perception::getEFR UNKNOWN SIDE!" << std::endl;
 
-    return sentinel;
+    return 0.0;
   }
 }
 
-double* World::getBAL() const{
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
+double World::getBAL(int index) const{
 
+  if(index > 3){
+    std::cout << "getBAL:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
+
+  int SIZE = deqPerception.size();
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).BAL[0])){
-      return ((*(deqPerception[SIZE-i-1])).BAL);
+    if(!isnan((*(deqPerception[SIZE-i-1])).BAL[index])){
+      return ((*(deqPerception[SIZE-i-1])).BAL[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getFRP_RC() const{
+double World::getFRP_RC(int index) const{
+  if(index > 3){
+    std::cout << "getFRP_RC:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_RC[0])){
-      return ((*(deqPerception[SIZE-i-1])).FRP_RC);
+    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_RC[index])){
+      return ((*(deqPerception[SIZE-i-1])).FRP_RC[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getFRP_RF() const{
+double World::getFRP_RF(int index) const{
+  if(index > 3){
+    std::cout << "getFRP_RF:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_RF[0])){
-      return ((*(deqPerception[SIZE-i-1])).FRP_RF);
+    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_RF[index])){
+      return ((*(deqPerception[SIZE-i-1])).FRP_RF[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getFRP_LC() const{
+double World::getFRP_LC(int index) const{
+  if(index > 3){
+    std::cout << "getFRP_LC:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_LC[0])){
-      return ((*(deqPerception[SIZE-i-1])).FRP_LC);
+    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_LC[index])){
+      return ((*(deqPerception[SIZE-i-1])).FRP_LC[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getFRP_LF() const{
+double World::getFRP_LF(int index) const{
+  if(index > 3){
+    std::cout << "getFRP_LF:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_LF[0])){
-      return ((*(deqPerception[SIZE-i-1])).FRP_LF);
+    if(!isnan((*(deqPerception[SIZE-i-1])).FRP_LF[index])){
+      return ((*(deqPerception[SIZE-i-1])).FRP_LF[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getGYR() const{
+double World::getGYR(int index) const{
+  if(index > 3){
+    std::cout << "getGYR:: unexpected indexnumber : " << index << std::endl; 
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).GYR[0])){
-      return ((*(deqPerception[SIZE-i-1])).GYR);
+    if(!isnan((*(deqPerception[SIZE-i-1])).GYR[index])){
+      return ((*(deqPerception[SIZE-i-1])).GYR[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getACC() const{
+double World::getACC(int index) const{
+  if(index > 3){
+    std::cout << "getACC:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).ACC[0])){
-      return ((*(deqPerception[SIZE-i-1])).ACC);
+    if(!isnan((*(deqPerception[SIZE-i-1])).ACC[index])){
+      return ((*(deqPerception[SIZE-i-1])).ACC[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getMYPOS() const{
+double World::getMYPOS(int index) const{
+  if(index > 3){
+    std::cout << "getMYPOS:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).MYPOS[0])){
-      return ((*(deqPerception[SIZE-i-1])).MYPOS);
+    if(!isnan((*(deqPerception[SIZE-i-1])).MYPOS[index])){
+      return ((*(deqPerception[SIZE-i-1])).MYPOS[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
-double* World::getBALLPOS() const{
+double World::getBALLPOS(int index) const{
+  if(index > 3){
+    std::cout << "getBALLPOS:: unexpected indexnumber  : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).BALLPOS[0])){
-      return ((*(deqPerception[SIZE-i-1])).BALLPOS);
+    if(!isnan((*(deqPerception[SIZE-i-1])).BALLPOS[index])){
+      return ((*(deqPerception[SIZE-i-1])).BALLPOS[index]);
     }
   }
 
-  return sentinel;
-}
-
-double* World::getFRIEND(int unum) const{
-
-  int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
-  for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).FRIEND[unum][0])){
-      return ((*(deqPerception[SIZE-i-1])).FRIEND[unum]);
-    }
-  }
-
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getENEMY(int unum) const{
+double World::getFRIEND(int unum, int index) const{
+  if(index > 3){
+    std::cout << "getFRIEND:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).ENEMY[unum][0])){
-      return ((*(deqPerception[SIZE-i-1])).ENEMY[unum]);
+    if(!isnan((*(deqPerception[SIZE-i-1])).FRIEND[unum][index])){
+      return ((*(deqPerception[SIZE-i-1])).FRIEND[unum][index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getXY() const{
+double World::getENEMY(int unum, int index) const{
+  if(index > 3){
+    std::cout << "getENEMY:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).XY[0])){
-      return ((*(deqPerception[SIZE-i-1])).XY);
+    if(!isnan((*(deqPerception[SIZE-i-1])).ENEMY[unum][index])){
+      return ((*(deqPerception[SIZE-i-1])).ENEMY[unum][index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
 }
 
-double* World::getBXY() const{
+double World::getXY(int index) const{
+  if(index > 2){
+    std::cout << "getXY:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
 
   int SIZE = deqPerception.size();
-  static double sentinel[3] = {0};
-
   for(int i=0; i<SIZE; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).BXY[0])){
-      return ((*(deqPerception[SIZE-i-1])).BXY);
+    if(!isnan((*(deqPerception[SIZE-i-1])).XY[index])){
+      return ((*(deqPerception[SIZE-i-1])).XY[index]);
     }
   }
 
-  return sentinel;
+  return 0.0;
+}
+
+double World::getBXY(int index) const{
+  if(index > 2){
+    std::cout << "getBXY:: unexpected indexnumber : " << index << std::endl; 
+    return 0.0;
+  }
+
+  int SIZE = deqPerception.size();
+  for(int i=0; i<SIZE; i++){
+    if(!isnan((*(deqPerception[SIZE-i-1])).BXY[index])){
+      return ((*(deqPerception[SIZE-i-1])).BXY[index]);
+    }
+  }
+
+  return 0.0;
 }
 
 double World::getABSANGLE() const{
@@ -1553,21 +1604,22 @@ double World::getBANGLE() const{
   return sentinel[0];
 }
 
-double* World::getACC_Sum(int num) const{
+double World::getACC_Sum(int index, int num) const{
+
+  if(index > 3){
+    std::cout << "getACC_Sum:: unexpected indexnumber : " << index << std::endl;
+    return 0.0;
+  }
+
   int SIZE = deqPerception.size();
   if(num > SIZE){
     num = SIZE;
   }
 
-  static double temp[3] = {0};
-  for(int i=0; i<3; i++)
-    temp[i] = 0;
-
+  double temp = 0;
   for(int i=0; i<num; i++){
-    if(!isnan((*(deqPerception[SIZE-i-1])).ACC[0])){
-      temp[0] += ((*(deqPerception[SIZE-i-1])).ACC[0]);
-      temp[1] += ((*(deqPerception[SIZE-i-1])).ACC[1]);
-      temp[2] += ((*(deqPerception[SIZE-i-1])).ACC[2]);
+    if(!isnan((*(deqPerception[SIZE-i-1])).ACC[index])){
+      temp += ((*(deqPerception[SIZE-i-1])).ACC[index]);
     }
   }
   return temp;
