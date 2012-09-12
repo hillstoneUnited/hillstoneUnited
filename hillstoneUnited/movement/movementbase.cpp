@@ -1,11 +1,5 @@
 #include "movementbase.h"
 
-MovementBase::MovementBase(){
-  
-}
-
-MovementBase::~MovementBase(){}
-
 bool MovementBase::set(World& w, jointID id, 
     double angle, double gain){
   const double EPS = 0.2;

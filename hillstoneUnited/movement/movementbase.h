@@ -12,10 +12,10 @@
   class MovementBase{
 
     public:
-      MovementBase();
-      ~MovementBase();
+      MovementBase(){};
+      virtual ~MovementBase(){};
       
-      virtual std::string getNextAngle(Action act, World& w) = 0;
+      virtual std::string getNextAngle(Action act, World& w){};
         //return the next angle
 
     protected:
