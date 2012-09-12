@@ -26,6 +26,9 @@ FFWalk::~FFWalk(){}
 
 
 std::string FFWalk::getNextAngle(Action act, World& w){
+  
+  resetAngleMap();
+
   return angleToString();
 }
 

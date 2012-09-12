@@ -8,6 +8,9 @@ Standup::~Standup(){}
 
 
 std::string Standup::getNextAngle(Action act, World& w){
+
+  resetAngleMap();
+
   const int TH = 40;
   const int COUNTTH = 10;
   double ACC_Sum[2]; // average of ACC_Sum
@@ -311,4 +314,8 @@ std::string Standup::getNextAngle(Action act, World& w){
     }
     break;
   }
+
+  stepCount(act, w);
+
+  return angleToString();
 }
