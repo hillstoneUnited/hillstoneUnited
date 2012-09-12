@@ -11,8 +11,7 @@ bool MovementBase::set(World& w, jointID id,
   const double EPS = 0.2;
   double current = 0.0;
 
-  // current = w.getAngle(id);
-  current = 0.0;
+  current = w.getAngle(id);
   if(fabs(current - angle) > EPS){
     angleMap[id] = gain * (angle - current);
     return true;
