@@ -1,6 +1,6 @@
-#include "ffmovement.h"
+#include "ffwalk.h"
 
-FFMovement::FFMovement(){
+FFWalk::FFWalk(){
   for(int i=0; i<6; i++){
     for(int j=0; j<3; j++){
       joints[i].angle[j] = 0;
@@ -22,14 +22,14 @@ FFMovement::FFMovement(){
   }
 }
 
-FFMovement::~FFMovement(){}
+FFWalk::~FFWalk(){}
 
 
-std::string FFMovement::getNextAngle(Action act, World& w){
+std::string FFWalk::getNextAngle(Action act, World& w){
   return angleToString();
 }
 
-void FFMovement::inverseKinematics(){
+void FFWalk::inverseKinematics(){
   // to calculate P5
   double p5[] = {0,0,0};
   p5[0] = target.point[0] - l6 * target.yuganA[0];
