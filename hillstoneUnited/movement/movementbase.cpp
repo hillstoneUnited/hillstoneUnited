@@ -11,7 +11,34 @@ bool MovementBase::set(World& w, jointID id,
   const double EPS = 0.2;
   double current = 0.0;
 
-  current = w.getAngle(id);
+  switch(id){
+    case hj1: current = w.getAngle("hj1");break;
+    case hj2: current = w.getAngle("hj2");break;
+    case laj1: current = w.getAngle("laj1");break;
+    case raj1: current = w.getAngle("raj1");break;
+    case laj2: current = w.getAngle("laj2");break;
+    case raj2: current = w.getAngle("raj2");break;
+    case laj3: current = w.getAngle("laj3");break;
+    case raj3: current = w.getAngle("raj3");break;
+    case laj4: current = w.getAngle("laj4");break;
+    case raj4: current = w.getAngle("raj4");break;
+    case llj1: current = w.getAngle("llj1");break;
+    case rlj1: current = w.getAngle("rlj1");break;
+    case llj2: current = w.getAngle("llj2");break;
+    case rlj2: current = w.getAngle("rlj2");break;
+    case llj3: current = w.getAngle("llj3");break;
+    case rlj3: current = w.getAngle("rlj3");break;
+    case llj4: current = w.getAngle("llj4");break;
+    case rlj4: current = w.getAngle("rlj4");break;
+    case llj5: current = w.getAngle("llj5");break;
+    case rlj5: current = w.getAngle("rlj5");break;
+    case llj6: current = w.getAngle("llj6");break;
+    case rlj6: current = w.getAngle("rlj6");break;
+    default:
+      std::cout << "Cannot find ID : " << id << std::endl;
+      break;
+  }
+
   if(fabs(current - angle) > EPS){
     angleMap[id] = gain * (angle - current);
     return true;
