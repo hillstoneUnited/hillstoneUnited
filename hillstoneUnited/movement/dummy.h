@@ -1,13 +1,13 @@
-#ifndef POSEMOVEMENT_H
-#define POSEMOVEMENT_H
+#ifndef DUMMY_H
+#define DUMMY_H
 
 #include "movementbase.h"
 #include "../util.h"
 
-class PoseMovement : public MovementBase{
+class Dummy : public MovementBase{
   public:
-    PoseMovement();
-    ~PoseMovement();
+    Dummy();
+    ~Dummy();
 
     std::string getNextAngle(Action act, World& w);
     
