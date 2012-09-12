@@ -1,17 +1,20 @@
-#ifndef KICKMOVEMENT_H
-#define KICKMOVEMENT_H
+#ifndef STANDUP_H
+#define STANDUP_H
 
 #include "movementbase.h"
 #include "../util.h"
 
-class KickMovement : public MovementBase{
+class Standup : public MovementBase{
   public:
-    KickMovement();
-    ~KickMovement();
+    Standup();
+    ~Standup();
 
     std::string getNextAngle(Action act, World& w);
     
   private:
+
+    int ts;
+
 };
 
 #endif

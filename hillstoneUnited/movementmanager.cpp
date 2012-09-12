@@ -1,12 +1,6 @@
 #include "movementmanager.h"
 
 MovementManager::MovementManager(){
-  gaMovement = new GAMovement();
-  poseMovement = new PoseMovement();
-  ticktackMovement = new TicktackMovement();
-  kickMovement = new KickMovement;
-  standupMovement = new StandupMovement();
-  ffMovement = new FFMovement();
 }
 
 MovementManager::~MovementManager(){}
@@ -15,11 +9,9 @@ MovementManager::~MovementManager(){}
 std::string MovementManager::nextStr(Action& act, World& w){
   switch(act.getName()){
     case DUMMY:
-      //case FLEFT:
-      //case FRIGHT:
-    case FFORWARD:
-      return poseMovement -> getNextAngle(act, w);
+      return dummy.getNextAngle(act, w);
       break;
+    case FFORWARD:
     case STOP:
     case FORWARD:
     case SLOW_FORWARD:
@@ -37,14 +29,9 @@ std::string MovementManager::nextStr(Action& act, World& w){
     case SLEFT:
     case SRIGHT:
     case LAROUND:
-      //in ver2. ordinally FLEFT&FRIGHT are in poseAction
     case FLEFT:
     case FRIGHT:
-      return ticktackMovement -> getNextAngle(act, w);
-      break;
     case KICK:
-      return kickMovement -> getNextAngle(act, w);
-      break;
     case GA_FORWARD:
     case GA_BACK:
     case GA_L_DRIBBLE_SHARP:
@@ -52,14 +39,11 @@ std::string MovementManager::nextStr(Action& act, World& w){
     case GA_SLEFT:
     case GA_SRIGHT:
     case GAWALKING:
-      return gaMovement -> getNextAngle(act, w);
+    case FFWALK:
+      return ffWalk.getNextAngle(act, w);
       break;
-      // case LAROUND: // LAROUND defined ticktackAction
-      //   editorAction(decision.action, world);
-      //   decision.discount();
-      //   break;
     case STANDUP:
-      return standupMovement -> getNextAngle(act, w);
+      return standup.getNextAngle(act, w);
       break;
     default:
       std::cerr << "Walking::nextAngle : error" << std::endl;

@@ -1,13 +1,13 @@
-#ifndef FFMOVEMENT_H
-#define FFMOVEMENT_H
+#ifndef FFWALK_H
+#define FFWALK_H
 
 #include "movementbase.h"
 #include "../util.h"
 
-class FFMovement : public MovementBase{
+class FFWalk : public MovementBase{
   public:
-    FFMovement();
-    ~FFMovement();
+    FFWalk();
+    ~FFWalk();
 
     std::string getNextAngle(Action act, World& w);
     
