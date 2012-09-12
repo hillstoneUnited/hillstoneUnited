@@ -11,8 +11,8 @@ std::string Standup::getNextAngle(Action act, World& w){
   const int TH = 40;
   const int COUNTTH = 10;
   double ACC_Sum[2]; // average of ACC_Sum
-  ACC_Sum[0] = w.ACC_Sum(0, COUNTTH) / COUNTTH;
-  ACC_Sum[1] = w.ACC_Sum(1, COUNTTH) / COUNTTH;
+  ACC_Sum[0] = w.getACC_Sum(COUNTTH)[0] / COUNTTH;
+  ACC_Sum[1] = w.getACC_Sum(COUNTTH)[1] / COUNTTH;
   static int actiontype = -1; // -1:reset  0:standup 1:reverse standup
   enum behaviorState{
     READY,

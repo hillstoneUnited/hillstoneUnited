@@ -31,6 +31,7 @@ enum ActionName{
   GA_SLEFT,
   GA_SRIGHT,
   GAWALKING,
+  FFWALK,
   STANDUP,
 };
 
