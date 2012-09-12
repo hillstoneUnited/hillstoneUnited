@@ -9,6 +9,8 @@ Dummy::~Dummy(){}
 
 std::string Dummy::getNextAngle(Action act, World& w){
 
+  resetAngleMap();
+
   set(w, raj1, -100.0);
   set(w, laj1, -100.0);
   set(w, raj2, 0.0);
@@ -29,6 +31,8 @@ std::string Dummy::getNextAngle(Action act, World& w){
   set(w, llj5, 0.0, 0.02);
   set(w, rlj6, 0.0, 0.05);
   set(w, llj6, 0.0, 0.05);
+  
+  stepCount(act, w);
 
   return angleToString();
 }

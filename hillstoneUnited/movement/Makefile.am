@@ -1,5 +1,6 @@
 noinst_LIBRARIES = libmovement.a
 libmovement_a_SOURCES = movementbase.h movementbase.cpp \
+	ticktackbase.h ticktackbase.cpp \
 	dummy.h dummy.cpp \
 	standup.h standup.cpp \
 	ffwalk.h ffwalk.cpp

@@ -1,11 +1,5 @@
 #include "movementbase.h"
 
-MovementBase::MovementBase(){
-  
-}
-
-MovementBase::~MovementBase(){}
-
 bool MovementBase::set(World& w, jointID id, 
     double angle, double gain){
   const double EPS = 0.2;
@@ -99,4 +93,12 @@ void MovementBase::resetAngleMap(){
   angleMap[rlj5] = 0.0;
   angleMap[llj6] = 0.0;
   angleMap[rlj6] = 0.0;
+}
+
+void MovementBase::stepCount(Action& act, World& w){
+  act.setCount(act.getCount() - 1);
+  if(act.getCount() <= 0){
+    act.setCount(0);
+    act.setFinished(true);
+  }
 }

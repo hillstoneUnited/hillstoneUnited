@@ -3,6 +3,7 @@
 Action::Action(ActionName _name, int _count){
   name = _name;
   count = _count;
+  finished = false;
   lock = false;
   priority = 0;
 }
@@ -23,6 +24,14 @@ void Action::setCount(int _count){
 
 int Action::getCount(){
   return count;
+}
+
+void Action::setFinished(bool _finished){
+  finished = _finished;
+}
+
+bool Action::isFinished(){
+  return finished;
 }
 
 void Action::setLock(bool _lock){

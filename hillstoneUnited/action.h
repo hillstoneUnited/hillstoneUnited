@@ -8,7 +8,7 @@
  */
 class Action{
  public:
-  Action(ActionName _name=DUMMY, int _count=0);
+  Action(ActionName _name=DUMMY, int _count=30);
   ~Action();
 
   void setName(ActionName _name);
@@ -16,6 +16,9 @@ class Action{
 
   void setCount(int _count);
   int getCount();
+
+  void setFinished(bool _finished);
+  bool isFinished();
 
   void setLock(bool _lock);
   bool isLocked();
@@ -26,6 +29,7 @@ class Action{
  private:
   ActionName name;
   int count;
+  bool finished;
   bool lock;
   int priority;
 
