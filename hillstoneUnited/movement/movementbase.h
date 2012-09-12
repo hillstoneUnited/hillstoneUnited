@@ -15,7 +15,7 @@
       MovementBase(){};
       virtual ~MovementBase(){};
       
-      virtual std::string getNextAngle(Action act, World& w){};
+      virtual std::string getNextAngle(Action& act, World& w){};
         //return the next angle
 
     protected:
@@ -29,6 +29,8 @@
 
       void resetAngleMap();
         // put 0 into each angle map. It must be called every step
+
+      void stepCount(Action& act, World& w);
 
   };
 
