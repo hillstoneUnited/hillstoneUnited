@@ -25,36 +25,36 @@ class World{
 
 
   // getter for Perception parameters
-  double  getAngle(std::string jointname) const;
+  double getAngle(std::string jointname) const;
 
-  double* getMGL() const;
-  double* getMGR() const;
-  double* getEGL() const;
-  double* getEGR() const;
-  double* getMFL() const;
-  double* getMFR() const;
-  double* getEFL() const;
-  double* getEFR() const;
-  double* getBAL() const;
+  double getMGL(int index) const;
+  double getMGR(int index) const;
+  double getEGL(int index) const;
+  double getEGR(int index) const;
+  double getMFL(int index) const;
+  double getMFR(int index) const;
+  double getEFL(int index) const;
+  double getEFR(int index) const;
+  double getBAL(int index) const;
 
-  double* getFRP_RC  () const;
-  double* getFRP_RF  () const;
-  double* getFRP_LC  () const;
-  double* getFRP_LF  () const;
-  double* getGYR     () const;
-  double* getACC     () const;
-  double* getMYPOS   () const;
-  double* getBALLPOS () const;
-  double* getFRIEND  (int unum) const;
-  double* getENEMY   (int unum) const;
- 
-  double* getXY      () const;
-  double* getBXY     () const;
-  double  getABSANGLE() const;
-  double  getBANGLE  () const;
+  double getFRP_RC  (int index) const;
+  double getFRP_RF  (int index) const;
+  double getFRP_LC  (int index) const;
+  double getFRP_LF  (int index) const;
+  double getGYR     (int index) const;
+  double getACC     (int index) const;
+  double getMYPOS   (int index) const;
+  double getBALLPOS (int index) const;
+  double getFRIEND  (int unum, int index) const;
+  double getENEMY   (int unum, int index) const;
+
+  double getXY      (int index) const;
+  double getBXY     (int index) const;
+  double getABSANGLE() const;
+  double getBANGLE  () const;
 
   // getter for sum of parameter
-  double* getACC_Sum(int num) const;
+  double getACC_Sum(int index, int num) const;
 
   // check confidence(how old the memories are)
   int confMGL     () const;
