@@ -7,7 +7,7 @@ Dummy::Dummy(){
 Dummy::~Dummy(){}
 
 
-std::string Dummy::getNextAngle(Action act, World& w){
+std::string Dummy::getNextAngle(Action& act, World& w){
 
   resetAngleMap();
 
