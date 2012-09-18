@@ -19,12 +19,13 @@
       TicktackBase();
       virtual ~TicktackBase(){};
 
-      void renew();
-      virtual std::string getNextAngle(Action act, World& w){};
+      void renew(Action& act);
       void setAngle(Action& act, World& w);
 
+      virtual std::string getNextAngle(Action act, World& w){};
+
+
     protected:
-      int ts;
       double t;
       double m_rlj1, m_rlj2, m_rlj3, m_rlj4, m_rlj5, m_rlj6;
       double m_llj1, m_llj2, m_llj3, m_llj4, m_llj5, m_llj6;

@@ -315,7 +315,7 @@ std::string Standup::getNextAngle(Action act, World& w){
     break;
   }
 
-  stepCount(act, w);
+  stepCount(act);
 
   return angleToString();
 }
