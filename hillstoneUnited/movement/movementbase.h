@@ -30,7 +30,7 @@
       void resetAngleMap();
         // put 0 into each angle map. It must be called every step
 
-      void stepCount(Action& act, World& w);
+      void stepCount(Action& act);
 
   };
 
