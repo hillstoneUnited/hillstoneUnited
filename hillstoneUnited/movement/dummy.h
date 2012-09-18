@@ -9,7 +9,7 @@ class Dummy : public MovementBase{
     Dummy();
     ~Dummy();
 
-    std::string getNextAngle(Action act, World& w);
+    std::string getNextAngle(Action& act, World& w);
     
   private:
 };
