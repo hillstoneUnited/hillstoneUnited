@@ -16,8 +16,8 @@
 
   class TicktackBase : public MovementBase{
     public:
-      TicktackBase();
-      virtual ~TicktackBase(){};
+      TicktackBase(){};
+      ~TicktackBase(){};
 
       void renew(Action& act);
       void setAngle(Action& act, World& w);
