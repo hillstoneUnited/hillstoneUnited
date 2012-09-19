@@ -65,13 +65,30 @@ std::string MovementManager::nextStr(Action& act, World& w){
     case FLEFT:
     case FRIGHT:
     case KICK:
+      std::cout << "do nothing!" << std::endl;
+      return "hoge";
+      break;
     case GA_FORWARD:
+      return gaForward.getNextAngle(act, w);
+      break;
     case GA_BACK:
+      return gaBack.getNextAngle(act, w);
+      break;
     case GA_L_DRIBBLE_SHARP:
+      return galDribbleSharp.getNextAngle(act, w);
+      break;
     case GA_R_DRIBBLE_SHARP:
+      return garDribbleSharp.getNextAngle(act, w);
+      break;
     case GA_SLEFT:
+      return gasLeft.getNextAngle(act, w);
+      break;
     case GA_SRIGHT:
+      return gasRight.getNextAngle(act, w);
+      break;
     case GAWALKING:
+      std::cout << "don't use GAWalking!!!!" << std::endl;
+      break;
     case FFWALK:
       std::cout << "do nothing!" << std::endl;
       return "hoge";
