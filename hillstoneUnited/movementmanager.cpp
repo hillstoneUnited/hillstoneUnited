@@ -13,21 +13,54 @@ std::string MovementManager::nextStr(Action& act, World& w){
       break;
     case FFORWARD:
     case STOP:
+      std::cout << "do nothing!" << std::endl;
+      return "hoge";
+      break;
     case FORWARD:
+      return forward.getNextAngle(act, w);
+      break;
     case SLOW_FORWARD:
+      return slowForward.getNextAngle(act, w);
+      break;
     case DRIBBLE:
+      return dribble.getNextAngle(act, w);
+      break;
     case R_DRIBBLE:
+      return rDribble.getNextAngle(act, w);
+      break;
     case L_DRIBBLE:
+      return lDribble.getNextAngle(act, w);
+      break;
     case R_DRIBBLE_SHARP:
+      return rDribbleSharp.getNextAngle(act, w);
+      break;
     case L_DRIBBLE_SHARP:
+      return lDribbleSharp.getNextAngle(act, w);
+      break;
     case BACK:
+      return back.getNextAngle(act, w);
+      break;
     case SLOW_BACK:
+      return slowBack.getNextAngle(act, w);
+      break;
     case TLEFT:
+      return tLeft.getNextAngle(act, w);
+      break;
     case TRIGHT:
+      return tRight.getNextAngle(act, w);
+      break;
     case TLEFT_IN:
+      return tLeftIn.getNextAngle(act, w);
+      break;
     case TRIGHT_IN:
+      return tRightIn.getNextAngle(act, w);
+      break;
     case SLEFT:
+      return sLeft.getNextAngle(act, w);
+      break;
     case SRIGHT:
+      return sRight.getNextAngle(act, w);
+      break;
     case LAROUND:
     case FLEFT:
     case FRIGHT:
@@ -40,7 +73,8 @@ std::string MovementManager::nextStr(Action& act, World& w){
     case GA_SRIGHT:
     case GAWALKING:
     case FFWALK:
-      return ffWalk.getNextAngle(act, w);
+      std::cout << "do nothing!" << std::endl;
+      return "hoge";
       break;
     case STANDUP:
       return standup.getNextAngle(act, w);

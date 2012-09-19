@@ -16,6 +16,7 @@ libmovement_a_SOURCES = movementbase.h movementbase.cpp \
 	trightin.h trightin.cpp \
 	sleft.h sleft.cpp \
 	sright.h sright.cpp \
+	gabase.h gabase.cpp \
 	dummy.h dummy.cpp \
 	standup.h standup.cpp \
 	ffwalk.h ffwalk.cpp
