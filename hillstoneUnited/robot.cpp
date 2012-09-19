@@ -14,7 +14,9 @@ std::string Robot::getNextAngle(std::string &msg){
 
   //Action act;
   //Action act2(DUMMY);
-  Action act = bm.getAct(world);
+  bm.getAct(act, world);
+
+  //std::cout << "(in robot.cpp)" << act.getName() << std::endl;
 
   return mm.nextStr(act, world);
 

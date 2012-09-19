@@ -31,6 +31,7 @@ class Robot{
   World world;
   MovementManager mm;
   BrainManager bm;
+  Action act;
 
 };
 

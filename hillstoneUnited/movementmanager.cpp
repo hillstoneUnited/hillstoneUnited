@@ -7,6 +7,10 @@ MovementManager::~MovementManager(){}
 
 
 std::string MovementManager::nextStr(Action& act, World& w){
+
+	std::cout << "(in mm)" << act.getName() << std::endl;
+
+
   switch(act.getName()){
     case DUMMY:
       return dummy.getNextAngle(act, w);
