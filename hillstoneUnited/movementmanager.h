@@ -19,6 +19,12 @@
 #include "movement/trightin.h"
 #include "movement/sleft.h"
 #include "movement/sright.h"
+#include "movement/gaforward.h"
+#include "movement/gaback.h"
+#include "movement/galdribblesharp.h"
+#include "movement/gardribblesharp.h"
+#include "movement/gasleft.h"
+#include "movement/gasright.h"
 #include "movement/dummy.h"
 #include "movement/standup.h"
 #include "movement/ffwalk.h"
@@ -47,6 +53,12 @@
       TRightIn tRightIn;
       SLeft sLeft;
       SRight sRight;
+      GAForward gaForward;
+      GABack gaBack;
+      GALDribbleSharp galDribbleSharp;
+      GARDribbleSharp garDribbleSharp;
+      GASLeft gasLeft;
+      GASRight gasRight;
       Dummy dummy;
       Standup standup;
       FFWalk ffWalk;
