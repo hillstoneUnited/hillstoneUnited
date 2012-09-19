@@ -17,6 +17,12 @@ libmovement_a_SOURCES = movementbase.h movementbase.cpp \
 	sleft.h sleft.cpp \
 	sright.h sright.cpp \
 	gabase.h gabase.cpp \
+	gaforward.h gaforward.cpp \
+	gaback.h gaback.cpp \
+	galdribblesharp.h galdribblesharp.cpp \
+	gardribblesharp.h gardribblesharp.cpp \
+	gasleft.h gasleft.cpp \
+	gasright.h gasright.cpp \
 	dummy.h dummy.cpp \
 	standup.h standup.cpp \
 	ffwalk.h ffwalk.cpp

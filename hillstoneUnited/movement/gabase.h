@@ -8,8 +8,8 @@
 
   class GABase : public MovementBase{
     public:
-      GABase();
-      virtual ~GABase(){};
+      GABase(){};
+      ~GABase(){};
 
       void renew(Action& act);
       void updateAngle();
