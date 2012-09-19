@@ -22,6 +22,7 @@ class Action{
 
   void setLock(bool _lock);
   bool isLocked();
+  // this function will not use in future
 
   void setPriority(int _priority);
   int getPriority();
