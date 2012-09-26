@@ -2,7 +2,7 @@
 
 bool MovementBase::set(World& w, jointID id, 
     double angle, double gain){
-  const double EPS = 0.2;
+  const double EPS = 0.2; // just like margin of error
   double current = 0.0;
 
   switch(id){
@@ -45,10 +45,9 @@ bool MovementBase::set(World& w, jointID id,
 std::string MovementBase::angleToString(){
   std::string jointName[] = {
     "he1", "he2",
-    "lae1", "lae2", "lae3", "lae4",
-    "lle1", "lle2", "lle3", "lle4", "lle5", "lle6",
-    "rae1", "rae2", "rae3", "rae4",
-    "rle1", "rle2", "rle3", "rle4", "rle5", "rle6"
+    "lae1", "rae1", "lae2", "rae2", "lae3", "rae3", "lae4", "rae4",
+    "lle1", "rle1", "lle2", "rle2", "lle3", "rle3",
+    "lle4", "rle4", "lle5", "rle5", "lle6", "rle6"
   };
 
   tmpAngleMap::iterator i;

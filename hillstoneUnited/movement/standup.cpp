@@ -309,6 +309,7 @@ std::string Standup::getNextAngle(Action& act, World& w){
       std::cout << "I'm standed" << std::endl;
       // act.setLock(false);
       act.setFinished(true);
+      act.setCount(0);
       ts = -1;
       actiontype = -1;
       state = READY;
