@@ -12,10 +12,13 @@ std::string Robot::getNextAngle(std::string &msg){
   world.dump();
 
 
-  Action act;
-  Action act2(DUMMY);
+  //Action act;
+  //Action act2(DUMMY);
+  bm.getAct(act, world);
 
-  return mm.nextStr(act2, world);
+  //std::cout << "(in robot.cpp)" << act.getName() << std::endl;
+
+  return mm.nextStr(act, world);
 
 
 }
