@@ -38,6 +38,8 @@
       std::string nextStr(Action& act, World& w);
 
     private:
+      int ts; //this is the time stanp through the movements
+
       Forward forward;
       SlowForward slowForward;
       Dribble dribble;

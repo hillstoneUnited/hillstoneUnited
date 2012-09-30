@@ -1,6 +1,7 @@
 #include "movementmanager.h"
 
 MovementManager::MovementManager(){
+  ts = 0;
 }
 
 MovementManager::~MovementManager(){}
@@ -13,7 +14,7 @@ std::string MovementManager::nextStr(Action& act, World& w){
 
   switch(act.getName()){
     case DUMMY:
-      return dummy.getNextAngle(act, w);
+      return dummy.getNextAngle(act, w, ts);
       break;
     case FFORWARD:
     case STOP:
@@ -21,49 +22,49 @@ std::string MovementManager::nextStr(Action& act, World& w){
       return "hoge";
       break;
     case FORWARD:
-      return forward.getNextAngle(act, w);
+      return forward.getNextAngle(act, w, ts);
       break;
     case SLOW_FORWARD:
-      return slowForward.getNextAngle(act, w);
+      return slowForward.getNextAngle(act, w, ts);
       break;
     case DRIBBLE:
-      return dribble.getNextAngle(act, w);
+      return dribble.getNextAngle(act, w, ts);
       break;
     case R_DRIBBLE:
-      return rDribble.getNextAngle(act, w);
+      return rDribble.getNextAngle(act, w, ts);
       break;
     case L_DRIBBLE:
-      return lDribble.getNextAngle(act, w);
+      return lDribble.getNextAngle(act, w, ts);
       break;
     case R_DRIBBLE_SHARP:
-      return rDribbleSharp.getNextAngle(act, w);
+      return rDribbleSharp.getNextAngle(act, w, ts);
       break;
     case L_DRIBBLE_SHARP:
-      return lDribbleSharp.getNextAngle(act, w);
+      return lDribbleSharp.getNextAngle(act, w, ts);
       break;
     case BACK:
-      return back.getNextAngle(act, w);
+      return back.getNextAngle(act, w, ts);
       break;
     case SLOW_BACK:
-      return slowBack.getNextAngle(act, w);
+      return slowBack.getNextAngle(act, w, ts);
       break;
     case TLEFT:
-      return tLeft.getNextAngle(act, w);
+      return tLeft.getNextAngle(act, w, ts);
       break;
     case TRIGHT:
-      return tRight.getNextAngle(act, w);
+      return tRight.getNextAngle(act, w, ts);
       break;
     case TLEFT_IN:
-      return tLeftIn.getNextAngle(act, w);
+      return tLeftIn.getNextAngle(act, w, ts);
       break;
     case TRIGHT_IN:
-      return tRightIn.getNextAngle(act, w);
+      return tRightIn.getNextAngle(act, w, ts);
       break;
     case SLEFT:
-      return sLeft.getNextAngle(act, w);
+      return sLeft.getNextAngle(act, w, ts);
       break;
     case SRIGHT:
-      return sRight.getNextAngle(act, w);
+      return sRight.getNextAngle(act, w, ts);
       break;
     case LAROUND:
     case FLEFT:
@@ -73,22 +74,22 @@ std::string MovementManager::nextStr(Action& act, World& w){
       return "hoge";
       break;
     case GA_FORWARD:
-      return gaForward.getNextAngle(act, w);
+      return gaForward.getNextAngle(act, w, ts);
       break;
     case GA_BACK:
-      return gaBack.getNextAngle(act, w);
+      return gaBack.getNextAngle(act, w, ts);
       break;
     case GA_L_DRIBBLE_SHARP:
-      return galDribbleSharp.getNextAngle(act, w);
+      return galDribbleSharp.getNextAngle(act, w, ts);
       break;
     case GA_R_DRIBBLE_SHARP:
-      return garDribbleSharp.getNextAngle(act, w);
+      return garDribbleSharp.getNextAngle(act, w, ts);
       break;
     case GA_SLEFT:
-      return gasLeft.getNextAngle(act, w);
+      return gasLeft.getNextAngle(act, w, ts);
       break;
     case GA_SRIGHT:
-      return gasRight.getNextAngle(act, w);
+      return gasRight.getNextAngle(act, w, ts);
       break;
     case GAWALKING:
       std::cout << "don't use GAWalking!!!!" << std::endl;
@@ -98,7 +99,7 @@ std::string MovementManager::nextStr(Action& act, World& w){
       return "hoge";
       break;
     case STANDUP:
-      return standup.getNextAngle(act, w);
+      return standup.getNextAngle(act, w, ts);
       break;
     default:
       std::cerr << "Walking::nextAngle : error" << std::endl;

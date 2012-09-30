@@ -1,7 +1,7 @@
 #include "gabase.h"
 
-void GABase::renew(Action& act){
-  t = act.getCount() * M_PI / 180.0;
+void GABase::renew(int& ts){
+  t = ts * M_PI / 180.0;
   
   // Init
   for(int i=0; i<17; i++){

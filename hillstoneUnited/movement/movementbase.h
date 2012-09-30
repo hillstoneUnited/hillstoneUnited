@@ -15,7 +15,7 @@
       MovementBase(){};
       virtual ~MovementBase(){};
       
-      virtual std::string getNextAngle(Action& act, World& w){};
+      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
         //return the next angle
 
     protected:
