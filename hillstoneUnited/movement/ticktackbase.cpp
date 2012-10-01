@@ -8,8 +8,8 @@
 
 #include "ticktackbase.h"
 
-void TicktackBase::renew(Action& act){
-  t = act.getCount() * M_PI / 180.0;
+void TicktackBase::renew(int& ts){
+  t = ts * M_PI / 180.0;
   
   // Init
   m_rlj1 = 0.0; m_rlj2 = 0.0; m_rlj3 = 0.0;
@@ -35,7 +35,7 @@ void TicktackBase::renew(Action& act){
   current = -1;
 }
 
-void TicktackBase::setAngle(Action& act, World& w){
+void TicktackBase::setAngle(World& w){
   // Gravity
   lj26 = wX * sin(cycle * t);
   // Spring

@@ -19,10 +19,10 @@
       TicktackBase(){};
       ~TicktackBase(){};
 
-      void renew(Action& act);
-      void setAngle(Action& act, World& w);
+      void renew(int& ts);
+      void setAngle(World& w);
 
-      virtual std::string getNextAngle(Action& act, World& w){};
+      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
 
 
     protected:

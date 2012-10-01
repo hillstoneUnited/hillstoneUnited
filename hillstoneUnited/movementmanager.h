@@ -40,6 +40,8 @@
     private:
       int ts; //this is the time stanp through the movements
 
+      void stepCount(Action& act, int& ts);
+
       Forward forward;
       SlowForward slowForward;
       Dribble dribble;
