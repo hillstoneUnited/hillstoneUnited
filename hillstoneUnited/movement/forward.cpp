@@ -4,10 +4,10 @@ Forward::Forward(){};
 
 Forward::~Forward(){};
 
-std::string Forward::getNextAngle(Action& act, World& w){
+std::string Forward::getNextAngle(Action& act, World& w, int& ts){
   /** Init **/
   resetAngleMap();
-  renew(act);
+  renew(ts);
 
   /** calculation part **/
   r=0.905714;wX=0.314335;wY=1.819048;Threshold=2.381232;Gain=1.383409;
@@ -21,7 +21,7 @@ std::string Forward::getNextAngle(Action& act, World& w){
   m_llj5 -= L;
   // std::cout << "FORWARD" << std::endl;
   
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }

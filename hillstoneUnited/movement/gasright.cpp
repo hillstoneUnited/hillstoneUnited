@@ -4,10 +4,10 @@ GASRight::GASRight(){};
 
 GASRight::~GASRight(){};
 
-std::string GASRight::getNextAngle(Action& act, World& w){
+std::string GASRight::getNextAngle(Action& act, World& w, int& ts){
   /** Init **/
   resetAngleMap();
-  renew(act);
+  renew(ts);
 
   /** settring Parameters **/
   ga_W = 25.18;
@@ -40,7 +40,7 @@ std::string GASRight::getNextAngle(Action& act, World& w){
   
   /** Angle set & step count part **/
   updateAngle();
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }

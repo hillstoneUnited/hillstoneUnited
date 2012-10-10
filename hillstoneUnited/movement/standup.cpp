@@ -7,7 +7,7 @@ Standup::Standup(){
 Standup::~Standup(){}
 
 
-std::string Standup::getNextAngle(Action& act, World& w){
+std::string Standup::getNextAngle(Action& act, World& w, int& ts){
 
   resetAngleMap();
 

@@ -48,7 +48,7 @@ std::string GABack::getNextAngle(Action& act, World& w, int& ts){
 
   /** Angle set & step count part **/
   updateAngle();
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }
