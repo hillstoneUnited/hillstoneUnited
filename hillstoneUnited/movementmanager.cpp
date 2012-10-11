@@ -22,6 +22,9 @@ void MovementManager::stepCount(Action& act, int& ts){
       act.setFinished(true);
     }
   }
+
+  std::cout << "****** ts added!!!" << std::endl;
+  std::cout << "****** act.count: " << act.getCount() << std::endl;
 }
 
 std::string MovementManager::nextStr(Action& act, World& w){
