@@ -1,7 +1,7 @@
 #include "gabase.h"
 
-void GABase::renew(Action& act){
-  t = act.getCount() * M_PI / 180.0;
+void GABase::renew(int& ts){
+  t = ts * M_PI / 180.0;
   
   // Init
   for(int i=0; i<17; i++){
@@ -124,7 +124,7 @@ void GABase::updateAngle(){
 
 }
 
-void GABase::setAngle(Action& act, World& w){
+void GABase::setAngle(World& w){
   /** Head **/
   set(w, hj1, m_hj1, ga_Gain);
   set(w, hj2, m_hj2, ga_Gain);

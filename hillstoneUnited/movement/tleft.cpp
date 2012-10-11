@@ -4,10 +4,10 @@ TLeft::TLeft(){};
 
 TLeft::~TLeft(){};
 
-std::string TLeft::getNextAngle(Action& act, World& w){
+std::string TLeft::getNextAngle(Action& act, World& w, int& ts){
   /** Init **/
   resetAngleMap();
-  renew(act);
+  renew(ts);
 
   /** calculation part **/
   r=0.997143;wX=0.012308;wY=0.25;Threshold=0.0;Gain=0.0;// cycle 30
@@ -20,7 +20,7 @@ std::string TLeft::getNextAngle(Action& act, World& w){
   // std::cout << "TLEFT" << std::endl;
   
   /** Angle set & step count part **/
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }

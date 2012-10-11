@@ -8,7 +8,7 @@
       GASLeft();
       ~GASLeft();
 
-      std::string getNextAngle(Action& act, World& w);
+      std::string getNextAngle(Action& act, World& w, int& ts);
     private:
   };
 

@@ -11,11 +11,11 @@
       GABase(){};
       ~GABase(){};
 
-      void renew(Action& act);
+      void renew(int& ts);
       void updateAngle();
-      void setAngle(Action& act, World& w);
+      void setAngle(World& w);
 
-      virtual std::string getNextAngle(Action& act, World& w){};
+      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
 
 
     protected:

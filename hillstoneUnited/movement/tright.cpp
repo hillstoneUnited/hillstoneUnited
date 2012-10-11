@@ -4,10 +4,10 @@ TRight::TRight(){};
 
 TRight::~TRight(){};
 
-std::string TRight::getNextAngle(Action& act, World& w){
+std::string TRight::getNextAngle(Action& act, World& w, int& ts){
   /** Init **/
   resetAngleMap();
-  renew(act);
+  renew(ts);
 
   /** calculation part **/
   r=0.997143;wX=0.012308;wY=0.25;Threshold=0.0;Gain=0.0;// cycle 30
@@ -21,7 +21,7 @@ std::string TRight::getNextAngle(Action& act, World& w){
   // std::cout << "TRIGHT" << std::endl;
   
   /** Angle set & step count part **/
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }
