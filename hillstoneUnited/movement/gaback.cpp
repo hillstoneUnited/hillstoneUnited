@@ -4,10 +4,10 @@ GABack::GABack(){};
 
 GABack::~GABack(){};
 
-std::string GABack::getNextAngle(Action& act, World& w){
+std::string GABack::getNextAngle(Action& act, World& w, int& ts){
   /** Init **/
   resetAngleMap();
-  renew(act);
+  renew(ts);
 
   /** settring Parameters **/
   ga_W = 21.19;
@@ -48,7 +48,7 @@ std::string GABack::getNextAngle(Action& act, World& w){
 
   /** Angle set & step count part **/
   updateAngle();
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }

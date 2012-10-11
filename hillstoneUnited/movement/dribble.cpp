@@ -4,10 +4,10 @@ Dribble::Dribble(){};
 
 Dribble::~Dribble(){};
 
-std::string Dribble::getNextAngle(Action& act, World& w){
+std::string Dribble::getNextAngle(Action& act, World& w, int& ts){
   /** Init **/
   resetAngleMap();
-  renew(act);
+  renew(ts);
 
   /** calculation part **/
   r=0.586667;wX=0.013187;wY=0.666667;Threshold=1.175953;Gain=1.286168;
@@ -21,7 +21,7 @@ std::string Dribble::getNextAngle(Action& act, World& w){
   m_llj5 -= L;
   
   /** Angle set & step count part **/
-  setAngle(act, w);
-  stepCount(act);
+  setAngle(w);
+  // stepCount(act);
   return angleToString();
 }

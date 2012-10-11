@@ -94,6 +94,7 @@ void MovementBase::resetAngleMap(){
   angleMap[rlj6] = 0.0;
 }
 
+/*
 void MovementBase::stepCount(Action& act){
   act.setCount(act.getCount() - 1);
   if(act.getCount() <= 0){
@@ -101,3 +102,4 @@ void MovementBase::stepCount(Action& act){
     act.setFinished(true);
   }
 }
+*/
