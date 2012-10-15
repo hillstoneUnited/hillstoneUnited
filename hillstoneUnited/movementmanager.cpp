@@ -69,10 +69,12 @@ std::string MovementManager::nextStr(Action& act, World& w){
       std::cout << "don't use GAWalking!!!!" << std::endl;
       nowMovement = &dummy;
       break;
-    case FFWALK:
+    case FFWALK: nowMovement = &ffWalk; break;
+    /*
       std::cout << "do nothing!" << std::endl;
       nowMovement = &dummy;
       break;
+    */
     case STANDUP: nowMovement = &standup; break;
     default:
       std::cerr << "Walking::nextAngle : error" << std::endl;

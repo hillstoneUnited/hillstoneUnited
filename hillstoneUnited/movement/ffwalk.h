@@ -22,7 +22,7 @@ class FFWalk : public MovementBase{
      */
 
     struct Joint {
-      double angle[3];
+      double angle; // which we want to calculate
       double axis[3];
     };
 

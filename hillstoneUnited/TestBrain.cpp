@@ -18,7 +18,7 @@ void TestBrain::getActionList(World& w){
 	if( fdr.check(w) ){
 		actionList.push_front( fdr.responce(w) );
 	}
-	Action act = Action(TLEFT);
+	Action act = Action(FFWALK);
 	act.setCount(30);
 	actionList.push_back(act);
 }
