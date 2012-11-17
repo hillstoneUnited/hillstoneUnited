@@ -28,6 +28,7 @@
 #include "movement/dummy.h"
 #include "movement/standup.h"
 #include "movement/ffwalk.h"
+#include "movement/sequencemovement.h"
 
   class MovementManager{
     
@@ -66,5 +67,6 @@
       Dummy dummy;
       Standup standup;
       FFWalk ffWalk;
+      SequenceMovement sequenceMovement;
   };
 #endif

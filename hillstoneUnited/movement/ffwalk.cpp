@@ -4,17 +4,17 @@ FFWalk::FFWalk(){
   for(int i=0; i<6; i++){
     joints[i].angle = 0.0;
     for(int j=0; j<3; j++){
-      joints[i].axis[j] = 0.0;
+      joints[i].axis[j] = 0.0; // miss
     }
   }
   
-  l3 = 0;
-  l4 = 0;
-  l6 = 0;
+  l3 = 0.14;
+  l4 = 0.11;
+  l6 = 0.02;
 
   for(int i=0; i<3; i++){
-    yuganA[i] = 0;
-    yuganB[i] = 0;
+    yuganA[i] = 0; // miss
+    yuganB[i] = 0; // miss
 
     target.point[i] = 0;
     target.yuganA[i] = 0;
@@ -29,10 +29,16 @@ std::string FFWalk::getNextAngle(Action& act, World& w, int& ts){
   
   resetAngleMap();
 
+  inverseKinematics();
+
   return angleToString();
 }
 
 void FFWalk::inverseKinematics(){
+  target.point[0] = 1;
+  target.point[1] = 1;
+  target.point[2] = 1;
+
   // to calculate P5
   double p5[] = {0,0,0};
   p5[0] = target.point[0] - l6 * target.yuganA[0];
@@ -66,7 +72,19 @@ void FFWalk::inverseKinematics(){
     joints[3].angle - phi - alpha;
   
   // to calculate joints[5].angle(theta6), joints[1].angle(theta2)
-
+  joints[5].angle = atan2(sqrt(pow(p5[0],2.0) + pow(p5[1],2.0)), p5[2]) +
+    atan2(sqrt(pow((target.point[0]-p5[0]),2.0) +
+          pow((target.point[1]-p5[1]),2.0)), (target.point[2]-p5[2]));
   
+  joints[1].angle = M_PI_2 -
+    atan2(sqrt(pow(p5[0],2.0) + pow(p5[1],2.0)), p5[2]);
+
+  std::cout << "target.point: " << target.point[0] << "," <<
+    target.point[1] << "," <<
+    target.point[2] << std::endl;
+  for(int i=0; i<6; i++){
+    std::cout << "angle" << (i+1) << ": " << joints[i].angle * 57 << std::endl;
+  }
+
   // to set the angle with set()
 }

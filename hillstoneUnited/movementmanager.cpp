@@ -52,13 +52,10 @@ std::string MovementManager::nextStr(Action& act, World& w){
     case TRIGHT_IN: nowMovement = &tRightIn; break;
     case SLEFT: nowMovement = &sLeft; break;
     case SRIGHT: nowMovement = &sRight; break;
-    case LAROUND:
-    case FLEFT:
-    case FRIGHT:
-    case KICK:
-      std::cout << "do nothing!" << std::endl;
-      nowMovement = &dummy;
-      break;
+    case LAROUND: nowMovement = &sequenceMovement; break;
+    case FLEFT: nowMovement = &sequenceMovement; break;
+    case FRIGHT: nowMovement = &sequenceMovement; break;
+    case KICK: nowMovement = &sequenceMovement; break;
     case GA_FORWARD: nowMovement = &gaForward; break;
     case GA_BACK: nowMovement = &gaBack; break;
     case GA_L_DRIBBLE_SHARP: nowMovement = &galDribbleSharp; break;

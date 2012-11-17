@@ -25,7 +25,8 @@ libmovement_a_SOURCES = movementbase.h movementbase.cpp \
 	gasright.h gasright.cpp \
 	dummy.h dummy.cpp \
 	standup.h standup.cpp \
-	ffwalk.h ffwalk.cpp
+	ffwalk.h ffwalk.cpp \
+	sequencemovement.h sequencemovement.cpp
 
 # mSources = movementbase.h movementbase.cpp \
 # 	posemovement.h posemovement.cpp
