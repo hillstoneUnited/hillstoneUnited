@@ -22,7 +22,7 @@
       void renew(int& ts);
       void setAngle(World& w);
 
-      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
+      virtual std::string getNextAngle(World& w){};
 
 
     protected:

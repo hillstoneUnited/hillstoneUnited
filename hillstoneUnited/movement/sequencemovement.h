@@ -12,7 +12,7 @@
 
       void renew(int& ts);
       
-      std::string getNextAngle(Action& act, World& w, int& ts);
+      std::string getNextAngle(World& w);
 
       void setNewSequence(Sequence newSeq);
       void setNewSequence(std::string name);

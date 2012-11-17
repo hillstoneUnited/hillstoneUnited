@@ -10,7 +10,7 @@ SequenceMovement::~SequenceMovement(){};
 void SequenceMovement::renew(int& ts){
 }
 
-std::string SequenceMovement::getNextAngle(Action& act, World& w, int& ts){
+std::string SequenceMovement::getNextAngle(World& w){
 
 //    std::cout << "SequenceMovement::getNextAngle" << std::endl;
 
@@ -131,7 +131,7 @@ void SequenceMovement::setNewSequence(Sequence newSeq){
 }
 
 void SequenceMovement::setNewSequence(std::string name){
-  if(name == "laround"){
+  if(name == "LAROUND"){
 
     Pose laround1;
     laround1.setTarget(hj1, -120);
@@ -168,7 +168,7 @@ void SequenceMovement::setNewSequence(std::string name){
     laround.addPose(laround3);
 
     setNewSequence(laround); // <- over write member
-  } else if(name == "tleft"){
+  } else if(name == "TLEFT"){
     //    ~~~;
   } else {
     //

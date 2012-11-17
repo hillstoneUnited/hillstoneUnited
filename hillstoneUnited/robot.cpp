@@ -11,12 +11,9 @@ std::string Robot::getNextAngle(std::string &msg){
   world.update(msg);
   world.dump();
 
-  bm.getAct(act, world);
-
   //std::cout << "(in robot.cpp)" << act.getName() << std::endl;
-
-  return mm.nextStr(act, world);
-
+  brain.update(world);
+  return brain.getString(world);
 
 }
 

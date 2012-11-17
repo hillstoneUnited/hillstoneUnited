@@ -15,12 +15,16 @@
       MovementBase(){};
       virtual ~MovementBase(){};
       
-      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
+      virtual std::string getNextAngle(World& w){};
         //return the next angle
+      
+      bool isFinished();
 
     protected:
       typedef std::map<jointID, double> tmpAngleMap;
       tmpAngleMap angleMap;
+      
+      bool finish_flag;
 
       bool set(World& w, jointID id, double angle, double gain = 0.05);
 
@@ -29,9 +33,6 @@
 
       void resetAngleMap();
         // put 0 into each angle map. It must be called every step
-
-      // void stepCount(Action& act);
-      // this function will be erased.
 
   };
 
