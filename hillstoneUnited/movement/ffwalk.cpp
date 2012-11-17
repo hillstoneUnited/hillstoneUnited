@@ -79,12 +79,14 @@ void FFWalk::inverseKinematics(){
   joints[1].angle = M_PI_2 -
     atan2(sqrt(pow(p5[0],2.0) + pow(p5[1],2.0)), p5[2]);
 
+  /*
   std::cout << "target.point: " << target.point[0] << "," <<
     target.point[1] << "," <<
     target.point[2] << std::endl;
   for(int i=0; i<6; i++){
     std::cout << "angle" << (i+1) << ": " << joints[i].angle * 57 << std::endl;
   }
+  */
 
   // to set the angle with set()
 }

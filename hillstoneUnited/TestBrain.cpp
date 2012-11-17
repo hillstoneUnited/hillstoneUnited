@@ -45,7 +45,7 @@ void TestBrain::getAction(Action& act, World& w){
 			else{
 				std::cout << "ActionList is empty!! return DUMMY set Clear" << std::endl;
 				setClear(true);
-				act = Action(DUMMY);
+        act = Action(LAROUND);
 			}
 
 		}

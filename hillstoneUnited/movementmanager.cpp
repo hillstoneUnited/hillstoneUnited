@@ -16,15 +16,15 @@ void MovementManager::stepCount(Action& act, int& ts){
    */
     act.setCount(0);
   }else{
-    act.setCount((act.getCount() - 1));
+    // act.setCount((act.getCount() - 1));
     if(act.getCount() <= 0){
       act.setCount(0);
       act.setFinished(true);
     }
   }
 
-  std::cout << "****** ts added!!!" << std::endl;
-  std::cout << "****** act.count: " << act.getCount() << std::endl;
+  // std::cout << "****** ts added!!!" << std::endl;
+  // std::cout << "****** act.count: " << act.getCount() << std::endl;
 }
 
 std::string MovementManager::nextStr(Action& act, World& w){
@@ -52,7 +52,7 @@ std::string MovementManager::nextStr(Action& act, World& w){
     case TRIGHT_IN: nowMovement = &tRightIn; break;
     case SLEFT: nowMovement = &sLeft; break;
     case SRIGHT: nowMovement = &sRight; break;
-    case LAROUND: nowMovement = &sequenceMovement; break;
+    case LAROUND: nowMovement = &sequenceMovement; sequenceMovement.setNewSequence("laround"); break;
     case FLEFT: nowMovement = &sequenceMovement; break;
     case FRIGHT: nowMovement = &sequenceMovement; break;
     case KICK: nowMovement = &sequenceMovement; break;

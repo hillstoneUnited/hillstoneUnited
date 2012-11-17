@@ -30,8 +30,8 @@ void BrainManager::getAct(Action& act ,World& w){
 	}
 
 	nowBrain->getAction(act,w);
-	std::cout << "nowBrain is " << nowBrain->getName() << std::endl;
-	std::cout << "nowAction is " << act.getName() << std::endl;
+    // std::cout << "nowBrain is " << nowBrain->getName() << std::endl;
+    // std::cout << "nowAction is " << act.getName() << std::endl;
 
 }
 

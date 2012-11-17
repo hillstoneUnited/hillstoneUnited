@@ -39,6 +39,6 @@ bool FallDownResponce::check(World& w){
     return true; //yokomuki
   }
 
-  std::cout << "not FallDown" << std::endl;
+  // std::cout << "not FallDown" << std::endl;
   return false;
 }
