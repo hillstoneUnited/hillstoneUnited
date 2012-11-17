@@ -12,7 +12,7 @@
   class MovementBase{
 
     public:
-      MovementBase(){};
+      MovementBase(){ finish_flag = false; };
       virtual ~MovementBase(){};
       
       virtual std::string getNextAngle(World& w){};
