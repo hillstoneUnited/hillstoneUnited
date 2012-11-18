@@ -9,6 +9,7 @@
 #include "ticktackbase.h"
 
 TicktackBase::TicktackBase(std::string _name){
+	ts = 0; // it's wrong, but static int cannot be initialized in header file.
     t = ts * M_PI / 180.0;
     name = _name;
     
@@ -148,7 +149,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj3 += L * wY * 0.1;
         m_llj5 -= L * wY * 0.1;
         
-    }else if(name="R_DRIBBLE_SHARP"){
+    }else if(name=="R_DRIBBLE_SHARP"){
         r=0.586667;wX=0.013187;wY=0.666667;Threshold=1.175953;Gain=1.286168;
         //28,9 --> OK!
         //max_H = 3;
@@ -160,7 +161,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_rlj3 -= L * wY * 0.1;
         m_rlj5 += L * wY * 0.1; 
         
-    }else if(name="L_DRIBBLE_SHARP"){
+    }else if(name=="L_DRIBBLE_SHARP"){
         r=0.586667;wX=0.013187;wY=0.666667;Threshold=1.175953;Gain=1.286168;
         //max_H = 3;
         cycle = 20.0;
@@ -171,7 +172,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj3 += L * wY * 0.1;
         m_llj5 -= L * wY * 0.1;
         
-    }else if(name="BACK"){
+    }else if(name=="BACK"){
         r=0.771261;wX=0.072772;wY=0.998240;Threshold=3.560117;Gain=1.294408;
         // cycle 20
         cycle = 20.0;
@@ -182,7 +183,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj3 -= L;
         m_llj5 += L;
         
-    }else if(name="SLOW_BACK"){
+    }else if(name=="SLOW_BACK"){
         r=0.771261;wX=0.072772;wY=0.998240;Threshold=3.560117;Gain=1.294408;
         // cycle 20
         max_H = 2;
@@ -194,7 +195,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj3 -= L;
         m_llj5 += L;
         
-    }else if(name="TLEFT"){
+    }else if(name=="TLEFT"){
         r=0.997143;wX=0.012308;wY=0.25;Threshold=0.0;Gain=0.0;// cycle 30
         H = 0;
         cycle = 30.0;
@@ -204,7 +205,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj1 = -L;
         // std::cout << "TLEFT" << std::endl;
         
-    }else if(name="TRIGHT"){
+    }else if(name=="TRIGHT"){
         r=0.997143;wX=0.012308;wY=0.25;Threshold=0.0;Gain=0.0;// cycle 30
         H = 0;
         cycle = 30.0;
@@ -215,7 +216,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj1 = -L;
         // std::cout << "TRIGHT" << std::endl;
         
-    }else if(name="TLEFT_IN"){
+    }else if(name=="TLEFT_IN"){
         r=0.727619;wX=0.034286;wY=0.075;Threshold=0.0;Gain=0.35;// cycle 30
         H = 0;
         cycle = 30.0;
@@ -230,7 +231,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj3 -= L;
         m_llj5 += L;
         
-    }else if(name="TRIGHT_IN"){
+    }else if(name=="TRIGHT_IN"){
         r=0.727619;wX=0.034286;wY=0.075;Threshold=0.0;Gain=0.35;// cycle 30
         H = 0;
         cycle = 30.0;
@@ -245,7 +246,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj3 -= L;
         m_llj5 += L;
         
-    }else if(name="SLEFT"){
+    }else if(name=="SLEFT"){
         r=0.997143;wX=0.012308;wY=0.2;Threshold=0.0;Gain=0.0;// cycle 30
         H = 0;
         cycle = 30.0;
@@ -255,7 +256,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj2 += L;
         m_llj6 -= L;
         
-    }else if(name="SRIGHT"){
+    }else if(name=="SRIGHT"){
         r=0.997143;wX=0.012308;wY=0.2;Threshold=0.0;Gain=0.0;// cycle 30
         H = 0;
         cycle = 30.0;
@@ -272,12 +273,12 @@ std::string TicktackBase::getNextAngle(World& w){
     setAngle(w);
     
     /** step count **/
-    ts++;
-    t = ts * M_PI / 180.0;
     if(ts > cycle){
         finish_flag = true;
         ts = 0;
     }
+    ts++;
+    t = ts * M_PI / 180.0;
     
     return angleToString();
 }

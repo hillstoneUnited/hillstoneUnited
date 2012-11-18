@@ -25,7 +25,7 @@
 
 
     private:
-      static int ts = 0;
+      static int ts;
       std::string name;
       
       double t;

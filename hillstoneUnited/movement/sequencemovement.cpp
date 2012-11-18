@@ -1,14 +1,14 @@
 #include "sequencemovement.h"
 
-SequenceMovement::SequenceMovement(){
+SequenceMovement::SequenceMovement(std::string _name){
+  name = _name;
   timeStamp = 0;
+  
+  setNewSequence(name);
 }
 
 
 SequenceMovement::~SequenceMovement(){};
-
-void SequenceMovement::renew(int& ts){
-}
 
 std::string SequenceMovement::getNextAngle(World& w){
 
@@ -115,7 +115,7 @@ std::string SequenceMovement::getNextAngle(World& w){
 
     if(timeStamp >= seq.getNum()){ // after timeStamp (may) is added, robot want to check if action is finished in same cycle.
         // all action finished. reset
-        act.setFinished(true);
+		finish_flag = true;
         timeStamp = 0;
     }
     std::cout << "timeStamp: " << timeStamp << std::endl;
@@ -168,10 +168,61 @@ void SequenceMovement::setNewSequence(std::string name){
     laround.addPose(laround3);
 
     setNewSequence(laround); // <- over write member
+    
+  } else if(name == "DUMMY"){
+    Pose dummy1;
+    dummy1.setTarget(raj1, -100.0);
+    dummy1.setTarget(laj1, -100.0);
+    dummy1.setTarget(raj2, 0.0);
+    dummy1.setTarget(laj2, 0.0);
+    dummy1.setTarget(raj3, 90.0);
+    dummy1.setTarget(laj3, -90.0);
+    dummy1.setTarget(raj4, 90.0);
+    dummy1.setTarget(laj4, -90.0);
+    
+    //set gain?
+    dummy1.setTarget(rlj1, 0.0);
+    dummy1.setTarget(llj1, 0.0);
+    dummy1.setTarget(rlj2, 0.0);
+    dummy1.setTarget(llj2, 0.0);
+    dummy1.setTarget(rlj3, 0.0);
+    dummy1.setTarget(llj3, 0.0);
+    dummy1.setTarget(rlj4, 0.0);
+    dummy1.setTarget(llj4, 0.0);
+    dummy1.setTarget(rlj5, 0.0);
+    dummy1.setTarget(llj5, 0.0);
+    dummy1.setTarget(rlj6, 0.0);
+    dummy1.setTarget(llj6, 0.0);
+    
+    /*
+      set(w, rlj1, 0.0, 0.01);
+      set(w, llj1, 0.0, 0.01);
+      set(w, rlj2, 0.0, 0.05);
+      set(w, llj2, 0.0, 0.05);
+      set(w, rlj3, 0.0, 0.02);
+      set(w, llj3, 0.0, 0.02);
+      set(w, rlj4, 0.0, 0.02);
+      set(w, llj4, 0.0, 0.02);
+      set(w, rlj5, 0.0, 0.02);
+      set(w, llj5, 0.0,     dummy.setTarget(rlj1, 0.0);
+    dummy.setTarget(llj1, 0.0);
+    dummy.setTarget(rlj2, 0.0);
+    dummy.setTarget(llj2, 0.0);0.02);
+      set(w, rlj6, 0.0, 0.05);
+      set(w, llj6, 0.0, 0.05);
+     */
+    
+    Sequence dummy;
+    dummy.addPose(dummy1);
+    
+    setNewSequence(dummy);
+    
   } else if(name == "TLEFT"){
     //    ~~~;
-  } else {
+  } else if(name == "TRIGHT"){
     //
+  } else {
+      std::cout << "BAD argument in: new SequenceMovement(BAD)" << std::endl;
   }
 
 }

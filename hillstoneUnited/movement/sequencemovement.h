@@ -7,10 +7,8 @@
 
   class SequenceMovement : public MovementBase{
     public:
-      SequenceMovement();
+      SequenceMovement(std::string _name);
       ~SequenceMovement();
-
-      void renew(int& ts);
       
       std::string getNextAngle(World& w);
 
@@ -18,6 +16,7 @@
       void setNewSequence(std::string name);
 
     private:
+      std::string name;
       int timeStamp;
       Sequence seq;
   };
