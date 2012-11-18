@@ -8,8 +8,9 @@
 
 #include "ticktackbase.h"
 
+int TicktackBase::ts = 0;
+
 TicktackBase::TicktackBase(std::string _name){
-	ts = 0; // it's wrong, but static int cannot be initialized in header file.
     t = ts * M_PI / 180.0;
     name = _name;
     
@@ -89,6 +90,12 @@ std::string TicktackBase::getNextAngle(World& w){
     /** Init **/
     resetAngleMap();
     
+    m_rlj1 = 0.0; m_rlj2 = 0.0; m_rlj3 = 0.0;
+    m_rlj4 = 0.0; m_rlj5 = 0.0; m_rlj6 = 0.0;
+  
+    m_llj1 = 0.0; m_llj2 = 0.0; m_llj3 = 0.0;
+    m_llj4 = 0.0; m_llj5 = 0.0; m_llj6 = 0.0;
+    
     /** calculation part **/
     if(name=="FORWARD"){  
         r=0.905714;wX=0.314335;wY=1.819048;Threshold=2.381232;Gain=1.383409;
@@ -115,7 +122,7 @@ std::string TicktackBase::getNextAngle(World& w){
         m_llj5 -= L;
         
     }else if(name=="DRIBBLE"){
-        r=0.586667;wX=0.013187;wY=0.666667;Threshold=1.175953;Gain=1.286168;
+        r=0.586667;wX=0.0131187;wY=0.666667;Threshold=1.175953;Gain=1.286168;
         //max_H = 3;
         cycle = 20.0;
         S = wY * 1.0 / (1.0 + exp((-1.0)*(double)H*Gain + Threshold));
@@ -273,12 +280,12 @@ std::string TicktackBase::getNextAngle(World& w){
     setAngle(w);
     
     /** step count **/
-    if(ts > cycle){
+    if(ts > cycle*100){
         finish_flag = true;
-        ts = 0;
+        // ts = 0;
     }
     ts++;
     t = ts * M_PI / 180.0;
-    
+    std::cout << "t:" << t << std::endl;
     return angleToString();
 }

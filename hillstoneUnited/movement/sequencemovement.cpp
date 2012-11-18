@@ -135,6 +135,7 @@ void SequenceMovement::setNewSequence(std::string name){
 
     Pose laround1;
     laround1.setTarget(hj1, -120);
+    laround1.setTarget(hj2, -30);
     laround1.setTarget(laj1, -90);
     laround1.setTarget(raj1, -90);
     laround1.setTarget(laj3, -90);
@@ -144,6 +145,7 @@ void SequenceMovement::setNewSequence(std::string name){
     laround1.setGain(0.2);
     Pose laround2;
     laround2.setTarget(hj1, 120);
+    laround2.setTarget(hj2, -30);
     laround2.setTarget(laj1, -90);
     laround2.setTarget(raj1, -90);
     laround2.setTarget(laj3, -90);
@@ -153,6 +155,7 @@ void SequenceMovement::setNewSequence(std::string name){
     laround2.setGain(0.2);
     Pose laround3;
     laround3.setTarget(hj1, 0);
+    laround3.setTarget(hj2, -30);
     laround3.setTarget(laj1, -90);
     laround3.setTarget(raj1, -90);
     laround3.setTarget(laj3, -90);
@@ -217,10 +220,80 @@ void SequenceMovement::setNewSequence(std::string name){
     
     setNewSequence(dummy);
     
-  } else if(name == "TLEFT"){
+  } else if(name == "FLEFT"){
+      /*
+      Pose fleft0;
+      fleft0.setTarget(laj1, -90);
+      fleft0.setTarget(raj1, -90);
+      fleft0.setTarget(laj3, -90);
+      fleft0.setTarget(raj3, 90);
+      fleft0.setTarget(laj4, -90);
+      fleft0.setTarget(raj4, 90);
+      */
+      Pose fleft1;
+      fleft1.setTarget(laj1, 90);
+      fleft1.setTarget(raj1, -90);
+      fleft1.setTarget(laj3, -90);
+      fleft1.setTarget(raj3, 90);
+      fleft1.setTarget(raj4, 90);
+      fleft1.setTarget(llj2, -10);
+      fleft1.setTarget(rlj2, -10);
+      fleft1.setTarget(llj6, 25);
+      fleft1.setTarget(rlj6, 45);
+      Pose fleft2;
+      fleft2.setTarget(laj1, -90);
+      fleft2.setTarget(raj1, -90);
+      fleft2.setTarget(laj3, -90);
+      fleft2.setTarget(raj3, 90);
+      fleft2.setTarget(llj2, -10);
+      fleft2.setTarget(rlj2, -10);
+      fleft2.setTarget(llj6, 25);
+      fleft2.setTarget(rlj6, 45);
+      fleft2.setGain(0.5);
+      Sequence fleft;
+      //    fleft.addPose(fleft0);
+      fleft.addPose(fleft1);
+      fleft.addPose(fleft2);
+  
+      setNewSequence(fleft);
     //    ~~~;
-  } else if(name == "TRIGHT"){
-    //
+  }else if(name == "FRIGHT"){
+    /*
+    Pose fright0;
+    fright0.setTarget(laj1, -90);
+    fright0.setTarget(raj1, -90);
+    fright0.setTarget(laj3, -90);
+    fright0.setTarget(raj3, 90);
+    fright0.setTarget(laj4, -90);
+    fright0.setTarget(raj4, 90);
+    */
+    Pose fright1;
+    fright1.setTarget(laj1, -90);
+    fright1.setTarget(raj1, 90);
+    fright1.setTarget(laj3, -90);
+    fright1.setTarget(raj3, 90);
+    fright1.setTarget(laj4, -90);
+    fright1.setTarget(llj2, 10);
+    fright1.setTarget(rlj2, 10);
+    fright1.setTarget(llj6, -45);
+    fright1.setTarget(rlj6, -25);
+    Pose fright2;
+    fright2.setTarget(laj1, -90);
+    fright2.setTarget(raj1, -90);
+    fright2.setTarget(laj3, -90);
+    fright2.setTarget(raj3, 90);
+    fright2.setTarget(laj4, -90);
+    fright2.setTarget(llj2, 10);
+    fright2.setTarget(rlj2, 10);
+    fright2.setTarget(llj6, -45);
+    fright2.setTarget(rlj6, -25);
+    fright2.setGain(0.5);
+    Sequence fright;
+    //    fright.addPose(fright0);
+    fright.addPose(fright1);
+    fright.addPose(fright2);
+
+    setNewSequence(fright);
   } else {
       std::cout << "BAD argument in: new SequenceMovement(BAD)" << std::endl;
   }

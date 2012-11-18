@@ -1,7 +1,8 @@
 #include "gabase.h"
 
+int GABase::ts = 0;
+
 GABase::GABase(std::string _name){
-	ts = 0; // it's wrong, but static int cannot be initialized in header file.
     name = _name;
     
     t = ts * M_PI / 180.0;
