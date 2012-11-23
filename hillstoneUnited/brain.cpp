@@ -10,43 +10,66 @@ void Brain::think(World& w){
         movementList.push_back(mb);
         mb = new GABase("GA_FORWARD");
         movementList.push_back(mb);
-        std::cout << "LAROUND is called!" << std::endl;
         // ....
     } else if(false){
         MovementBase* mb = new TicktackBase("DRIBBLE");
         movementList.push_back(mb);
-        std::cout << "DRIBBLE!" << std::endl;
     } else{
         // ....
     }
 }
 
 std::string Brain::getString(World& w){
-    if(movementList.empty()){
-        std::cout << "emp!!" << std::endl;
-        return "hoge";
-    }
-    return movementList.front()->getNextAngle(w);
-}
-
-void Brain::update(World& w){
-    // check fall down
-    if(isFallen(w)){
-        MovementBase* mb = new Standup();
-        movementList.clear();
-        movementList.push_back(mb);
-    }
-    
-    if(!movementList.empty()){
-        if(movementList.front()->isFinished()){
-            movementList.pop_front();
+    if(!responseList.empty()){
+        return responseList.front()->getNextAngle(w);
+    }else{
+        if(movementList.empty()){
+            std::cout << "emp!!" << std::endl;
+            return "hoge";
         }else{
-            // movement hasn't finished.
+            return movementList.front()->getNextAngle(w);
         }
     }
+}
+
+void Brain::checkResponse(World &w){
+    if(isFallen(w)){
+        if(responseList.empty()){
+            MovementBase* mb = new Standup();
+            movementList.clear();
+            responseList.push_back(mb);
+            std::cout << "Standup pushed!" << std::endl;
+        }else{
+            // continue the response movement
+        }
+    }else{
+        // is not fallen
+    }
+}
+
+void Brain::updateList(){
+    if(!responseList.empty() && !movementList.empty()){
+        std::cout << "Warning: Both movementList and responseList are filled." << std::endl;
+        std::cout << "You have to fix the code." << std::endl;
+    }
     
-    if(movementList.empty()){
-        think(w);
+    if(!responseList.empty()){
+        if(responseList.front()->isFinished()){
+            responseList.pop_front();
+        }else{
+            // continue
+        }
+    }else{
+        if(!movementList.empty()){
+            if(movementList.front()->isFinished()){
+                movementList.pop_front();
+            }else{
+                // continue
+            }
+        }else{
+            // movementList is empty. This agent will think()
+            std::cout << "all lists are empty" << std::endl;
+        }
     }
 }
 
@@ -58,12 +81,14 @@ bool Brain::isFallen(World &w){
 	ACC_Sum[1] = w.getACC_Sum(1,limen);
 
   if((fabs(ACC_Sum[1]) > 9.0 * limen) && (fabs(ACC_Sum[1]) < 15 * limen)){
-  	std::cout << "I'm utsubuse!" << std::endl;
     return true; //utsubuse or aomuki
   } else if((fabs(ACC_Sum[0]) > 9.0 * limen) && (fabs(ACC_Sum[0]) < 15 * limen)){
-  	std::cout << "I'm yokomuki" << std::endl;
     return true; //yokomuki
   } else{
     return false;
   }
+}
+
+bool Brain::allListEmpty(){
+    return (responseList.empty() && movementList.empty());
 }

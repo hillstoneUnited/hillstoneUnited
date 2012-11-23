@@ -16,11 +16,15 @@ class Brain {
 
     std::string getString(World& w);
     
-    void update(World& w);
+    void checkResponse(World& w);
+    void updateList();
+    
     bool isFallen(World& w);
+    bool allListEmpty();
 
   private:
     std::deque<MovementBase*> movementList;
+    std::deque<MovementBase*> responseList;
 };
 
 #endif
