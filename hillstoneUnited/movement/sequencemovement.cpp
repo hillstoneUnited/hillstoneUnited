@@ -118,11 +118,9 @@ std::string SequenceMovement::getNextAngle(World& w){
 		finish_flag = true;
         timeStamp = 0;
     }
-    std::cout << "timeStamp: " << timeStamp << std::endl;
+    // std::cout << "timeStamp: " << timeStamp << std::endl;
 
 //    std::cout << "angleToString() : " << angleToString() << std::endl;
-    // act.setFinished(true);
-    // act.setCount(0);
     return angleToString();
 }
 
