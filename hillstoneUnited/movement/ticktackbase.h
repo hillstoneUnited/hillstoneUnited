@@ -16,16 +16,18 @@
 
   class TicktackBase : public MovementBase{
     public:
-      TicktackBase(){};
+      TicktackBase(std::string _name);
       ~TicktackBase(){};
 
-      void renew(int& ts);
       void setAngle(World& w);
 
-      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
+      std::string getNextAngle(World& w);
 
-
-    protected:
+    private:
+      static int ts;
+      
+      std::string name;
+      
       double t;
       double m_rlj1, m_rlj2, m_rlj3, m_rlj4, m_rlj5, m_rlj6;
       double m_llj1, m_llj2, m_llj3, m_llj4, m_llj5, m_llj6;
