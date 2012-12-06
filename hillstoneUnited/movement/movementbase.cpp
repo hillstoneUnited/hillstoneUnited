@@ -1,4 +1,4 @@
-#include "movementbase.h"
+#include "movementbase.hpp"
 
 bool MovementBase::set(World& w, jointID id, 
     double angle, double gain){

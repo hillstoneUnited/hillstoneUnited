@@ -1,7 +1,7 @@
 #ifndef SEQUENCE_H
 #define SEQUENCE_H
 
-#include "pose.h"
+#include "pose.hpp"
 
 /*
   Sequence class.

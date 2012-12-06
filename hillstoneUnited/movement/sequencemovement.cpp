@@ -1,4 +1,4 @@
-#include "sequencemovement.h"
+#include "sequencemovement.hpp"
 
 SequenceMovement::SequenceMovement(std::string _name){
   name = _name;

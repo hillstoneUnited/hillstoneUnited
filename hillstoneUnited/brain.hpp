@@ -1,11 +1,11 @@
 #ifndef BRAIN_H
 #define BRAIN_H
 
-#include "movement/movementbase.h"
-#include "movement/sequencemovement.h"
-#include "movement/ticktackbase.h"
-#include "movement/gabase.h"
-#include "movement/standup.h"
+#include "movement/movementbase.hpp"
+#include "movement/sequencemovement.hpp"
+#include "movement/ticktackbase.hpp"
+#include "movement/gabase.hpp"
+#include "movement/standup.hpp"
 
 class Brain {
   public:
