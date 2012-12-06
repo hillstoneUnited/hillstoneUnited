@@ -9,11 +9,11 @@ class Standup : public MovementBase{
     Standup();
     ~Standup();
 
-    std::string getNextAngle(Action& act, World& w, int& ts);
+    std::string getNextAngle(World& w);
     
   private:
 
-    int ts;
+    static int ts;
 
 };
 

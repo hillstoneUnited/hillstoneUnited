@@ -8,17 +8,20 @@
 
   class GABase : public MovementBase{
     public:
-      GABase(){};
+      GABase(std::string _name);
       ~GABase(){};
 
-      void renew(int& ts);
       void updateAngle();
       void setAngle(World& w);
 
-      virtual std::string getNextAngle(Action& act, World& w, int& ts){};
+      std::string getNextAngle(World& w);
 
+      void setParam();
 
-    protected:
+    private:
+      static int ts;
+      std::string name;
+      
       /** Parameters **/
       double t;
       double ga_param[17][3];
