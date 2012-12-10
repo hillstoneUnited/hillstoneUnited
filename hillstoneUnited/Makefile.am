@@ -10,8 +10,10 @@ hillstoneUnited_MAIN = main.cpp \
 											 rcss3dsocket.hpp rcss3dsocket.cpp \
 											 robot.hpp robot.cpp \
 											 world.hpp world.cpp \
-											 brain.hpp brain.cpp \
+											 elementbase.hpp \
 											 util.hpp
+
+brain = brain/brainbase.hpp brain/brainbase.cpp
 
 movement = movement/movementbase.hpp movement/movementbase.cpp \
 					 movement/ticktackbase.hpp movement/ticktackbase.cpp \
@@ -31,4 +33,4 @@ MakeWalk = MakeWalk/makewalk.hpp MakeWalk/makewalk.cpp MakeWalk/update.cpp \
 					 MakeWalk/coordinateconverter.cpp MakeWalk/timeupdate.cpp \
 					 MakeWalk/angletrajectory.cpp MakeWalk/outputcommand.cpp
 
-hillstoneUnited_SOURCES = $(hillstoneUnited_MAIN) $(movement) $(MakeWalk)
+hillstoneUnited_SOURCES = $(hillstoneUnited_MAIN) $(brain) $(movement) $(MakeWalk)

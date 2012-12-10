@@ -93,7 +93,3 @@ void MovementBase::resetAngleMap(){
   angleMap[llj6] = 0.0;
   angleMap[rlj6] = 0.0;
 }
-
-bool MovementBase::isFinished(){
-    return finish_flag;
-}

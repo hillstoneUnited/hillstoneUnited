@@ -7,24 +7,21 @@
 #include <math.h>
 #include "../util.hpp"
 #include "../world.hpp"
+#include "../elementbase.hpp"
 
-  class MovementBase{
+  class MovementBase : public ElementBase{
 
     public:
-      MovementBase(){ finish_flag = false; };
+      MovementBase(){};
       virtual ~MovementBase(){};
       
       virtual std::string getNextAngle(World& w){};
         //return the next angle
       
-      bool isFinished();
-
     protected:
       typedef std::map<jointID, double> tmpAngleMap;
       tmpAngleMap angleMap;
       
-      bool finish_flag;
-
       bool set(World& w, jointID id, double angle, double gain = 0.05);
 
       std::string angleToString();
