@@ -15,6 +15,8 @@
       MovementBase(){};
       virtual ~MovementBase(){};
       
+      bool isFinished();
+
       virtual std::string getNextAngle(World& w){};
         //return the next angle
       

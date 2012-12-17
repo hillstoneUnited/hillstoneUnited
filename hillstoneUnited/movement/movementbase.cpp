@@ -1,5 +1,10 @@
 #include "movementbase.hpp"
 
+bool MovementBase::isFinished(){
+  return finish_flag;
+}
+
+
 bool MovementBase::set(World& w, jointID id, 
     double angle, double gain){
   const double EPS = 0.2; // just like margin of error

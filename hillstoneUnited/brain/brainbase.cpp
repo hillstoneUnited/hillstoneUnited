@@ -2,20 +2,29 @@
 
 BrainBase::~BrainBase(){
   while (!elementList.empty()) {
-    ElementBase* tmp = elementList.pop_front();
-    delete tmp;
+    elementList.pop_front();
   }
 }
 
 
-std::string BrainBase::getNextString(World& w){
+std::string BrainBase::getNextAngle(World& w){
   if (!elementList.empty()) {
-    if (!elementList.front()->isFinished()) {
-      std::string returnAngle = elementList.front()->getNextString(World& w);
-      return returnAngle;
+    /*** cheking part ***/
+    if (!elementList.front()->isFinished())
+    {
+      std::string rtnAngle = elementList.front()->getNextAngle(w);
+      return rtnAngle;
     }else{
-      ElementBase* tmp = elementList.pop_front();
-      delete tmp;
+      elementList.pop_front();
+
+      if (!elementList.front()->isFinished())
+      {
+        std::string rtnAngle = elementList.front()->getNextAngle(w);
+        return rtnAngle;
+      }else{
+        /*** thinking yourself!! ***/
+        return "hogehoge in brainbase";
+      }
     }
   }else{
     std::cout << "elementList is empty!!" << std::endl;

@@ -3,14 +3,17 @@
 
 #include <iostream>
 #include <deque>
-#include "../elementbase.h"
+#include "../elementbase.hpp"
 
 class BrainBase : public ElementBase {
   public:
     BrainBase();
     ~BrainBase();
 
-    std::string getNextString(World& w);
+    virtual bool isFinished(){};
+    bool checkFinished();
+
+    std::string getNextAngle(World& w);
 
   protected:
     std::deque<ElementBase*> elementList;

@@ -12,12 +12,16 @@ std::string Robot::getNextAngle(std::string &msg){
   world.dump();
 
   //std::cout << "(in robot.cpp)" << act.getName() << std::endl;
+
+  /**
   brain.checkResponse(world);
   brain.updateList();
   if(brain.allListEmpty()){
       brain.think(world);
   }
   return brain.getString(world);
+  **/
+  return "hogehoge in robot"; // I'll change it
 
 }
 
