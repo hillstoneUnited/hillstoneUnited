@@ -2,6 +2,8 @@
 
 BrainBase::~BrainBase(){
   while (!elementList.empty()) {
+    ElementBase* tmp = elementList.front();
+    delete tmp;
     elementList.pop_front();
   }
 }
@@ -15,6 +17,8 @@ std::string BrainBase::getNextAngle(World& w){
       std::string rtnAngle = elementList.front()->getNextAngle(w);
       return rtnAngle;
     }else{
+      ElementBase* tmp = elementList.front();
+      delete tmp;
       elementList.pop_front();
 
       if (!elementList.front()->isFinished())

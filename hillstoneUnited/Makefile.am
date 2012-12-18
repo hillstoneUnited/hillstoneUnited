@@ -13,7 +13,8 @@ hillstoneUnited_MAIN = main.cpp \
 											 elementbase.hpp \
 											 util.hpp
 
-brain = brain/brainbase.hpp brain/brainbase.cpp
+brain = brain/brainbase.hpp brain/brainbase.cpp \
+		brain/runtoball.hpp brain/runtoball.cpp
 
 movement = movement/movementbase.hpp movement/movementbase.cpp \
 					 movement/ticktackbase.hpp movement/ticktackbase.cpp \
@@ -21,7 +22,8 @@ movement = movement/movementbase.hpp movement/movementbase.cpp \
 					 movement/pose.hpp movement/pose.cpp \
 					 movement/sequence.hpp movement/sequence.cpp \
 					 movement/sequencemovement.hpp movement/sequencemovement.cpp \
-					 movement/standup.hpp movement/standup.cpp
+					 movement/standup.hpp movement/standup.cpp \
+					 movement/odenswalk.hpp movement/odenswalk.cpp
 
 MakeWalk = MakeWalk/makewalk.hpp MakeWalk/makewalk.cpp MakeWalk/update.cpp \
 					 MakeWalk/makewalk-set.cpp MakeWalk/inversekinematics.cpp \

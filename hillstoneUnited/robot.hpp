@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "world.hpp"
+#include "brain/runtoball.hpp"
 
 /*
   This class is interface to main function.
@@ -26,6 +27,8 @@ class Robot{
 
  protected:
   World world;
+  RunToBall* samplebrain;
+  bool virgin;
 
 };
 

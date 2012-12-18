@@ -7,11 +7,10 @@
 
 class BrainBase : public ElementBase {
   public:
-    BrainBase();
+    BrainBase(){};
     ~BrainBase();
 
     virtual bool isFinished(){};
-    bool checkFinished();
 
     std::string getNextAngle(World& w);
 

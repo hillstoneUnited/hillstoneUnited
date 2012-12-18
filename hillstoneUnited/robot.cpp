@@ -2,6 +2,7 @@
 
 Robot::Robot(std::string teamname){
   world.setTeamname(teamname);
+  virgin = true;
 }
 
 Robot::~Robot(){}
@@ -21,7 +22,23 @@ std::string Robot::getNextAngle(std::string &msg){
   }
   return brain.getString(world);
   **/
-  return "hogehoge in robot"; // I'll change it
+  //return "hogehoge in robot"; // I'll change it
+
+  if (virgin)
+  {
+    samplebrain = new RunToBall(world);
+    virgin = false;
+  }else{
+
+    if (samplebrain->isFinished(world))
+    {
+      delete samplebrain;
+      samplebrain = new RunToBall(world);
+    }
+
+  }
+  return samplebrain->getNextAngle(world);
+
 
 }
 

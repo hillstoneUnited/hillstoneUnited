@@ -17,3 +17,15 @@ bool MakeWalk::WalkControl(double joint[],double velocity[], double walkx, doubl
 	(this)->update(joint, velocity,walkx,walky,rotation, act);
 	return 1;
 }
+
+
+bool MakeWalk::WalkControl(double joint[], double walkx, double walky, double rotation, bool act)
+{
+    //停止信号
+    if(act == 0 && (t > nextstatetime) && (state == 4 || state == 1 || state == -2)){
+        return 0;
+    }
+    //歩容の更新
+    (this)->update(joint, walkx,walky,rotation, act);
+    return 1;
+}
