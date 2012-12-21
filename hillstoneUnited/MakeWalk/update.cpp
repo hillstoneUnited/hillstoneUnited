@@ -422,11 +422,11 @@ void MakeWalk::update(double joint[], double walkx, double walky,double rotation
 
 	for (int i = 0; i < 6; i++)
 	{
-		joint[i] = langle[i];
+		joint[i] = langle[i+1];
 	}
 	for (int i = 0; i < 6; i++)
 	{
-		joint[i+6] = rangle[i];
+		joint[i+6] = rangle[i+1];
 	}
 
 	//時間経過

@@ -1,6 +1,7 @@
 #include "odenswalk.hpp"
 
 OdensWalk::OdensWalk(double _dest[]){
+
     finish_flag = false;
     dest[0] = _dest[0];
     dest[1] = _dest[1];
@@ -70,19 +71,19 @@ std::string OdensWalk::getNextAngle(World& w){
     
     //現在の関節角度の取得
     //左脚第一関節から順番に定義されている
-    joint[0] = w.getAngle("llj1");
-    joint[1] = w.getAngle("llj2");
-    joint[2] = w.getAngle("llj3");
-    joint[3] = w.getAngle("llj4");
-    joint[4] = w.getAngle("llj5");
-    joint[5] = w.getAngle("llj6");
+    joint[0] = w.getAngle("llj1") * DEGTORAD;
+    joint[1] = w.getAngle("llj2") * DEGTORAD;
+    joint[2] = w.getAngle("llj3") * DEGTORAD;
+    joint[3] = w.getAngle("llj4") * DEGTORAD;
+    joint[4] = w.getAngle("llj5") * DEGTORAD;
+    joint[5] = w.getAngle("llj6") * DEGTORAD;
 
-    joint[6] = w.getAngle("rlj1");
-    joint[7] = w.getAngle("rlj2");
-    joint[8] = w.getAngle("rlj3");
-    joint[9] = w.getAngle("rlj4");
-    joint[10] = w.getAngle("rlj5");
-    joint[11] = w.getAngle("rlj6");
+    joint[6] = w.getAngle("rlj1") * DEGTORAD;
+    joint[7] = w.getAngle("rlj2") * DEGTORAD;
+    joint[8] = w.getAngle("rlj3") * DEGTORAD;
+    joint[9] = w.getAngle("rlj4") * DEGTORAD;
+    joint[10] = w.getAngle("rlj5") * DEGTORAD;
+    joint[11] = w.getAngle("rlj6") * DEGTORAD;
 
     //MakeWalkを用いて、関節動作を決定する
     //計算結果はvelocityに代入される
@@ -105,22 +106,61 @@ std::string OdensWalk::getNextAngle(World& w){
 
 void OdensWalk::setAngle(World& w, double joint[]){
 
-  /** Left **/
-  //Legs
-  set(w, llj1, joint[0]);
-  set(w, llj2, joint[1]);
-  set(w, llj3, joint[2]);
-  set(w, llj4, joint[3]);
-  set(w, llj5, joint[4]);
-  set(w, llj6, joint[5]);
+    double joint_set[12] = {};
 
-  /** Right **/
-  //Legs
-  set(w, rlj1, joint[6]);
-  set(w, rlj2, joint[7]);
-  set(w, rlj3, joint[8]);
-  set(w, rlj4, joint[9]);
-  set(w, rlj5, joint[10]);
-  set(w, rlj6, joint[11]);
+    for (int i = 0; i < 12; i++)
+    {
+        joint_set[i] = joint[i];
+    }
+
+    
+    // Left
+    // Legs
+    set(w, llj1, joint_set[0]);
+    set(w, llj2, joint_set[1]);
+    set(w, llj3, joint_set[2]);
+    set(w, llj4, joint_set[3]);
+    set(w, llj5, joint_set[4]);
+    set(w, llj6, joint_set[5]);
+
+    // Right
+    // Legs
+    set(w, rlj1, joint_set[6]);
+    set(w, rlj2, joint_set[7]);
+    set(w, rlj3, joint_set[8]);
+    set(w, rlj4, joint_set[9]);
+    set(w, rlj5, joint_set[10]);
+    set(w, rlj6, joint_set[11]);
+    
+
+    /*
+    set(w, llj1, joint_set[0]);
+    set(w, llj2, joint_set[2]);
+    set(w, llj3, -joint_set[4]);
+    set(w, llj4, -joint_set[6]);
+    set(w, llj5, -joint_set[8]);
+    set(w, llj6, joint_set[10]);
+
+    set(w, rlj1, joint_set[1]);
+    set(w, rlj2, joint_set[3]);
+    set(w, rlj3, -joint_set[5]);
+    set(w, rlj4, -joint_set[7]);
+    set(w, rlj5, -joint_set[9]);
+    set(w, rlj6, joint_set[11]);
+    */
+
+    std::cout << "joint: " << joint[0] << std::endl;
+    std::cout << "joint: " << joint[1] << std::endl;
+    std::cout << "joint: " << joint[2] << std::endl;
+    std::cout << "joint: " << joint[3] << std::endl;
+    std::cout << "joint: " << joint[4] << std::endl;
+    std::cout << "joint: " << joint[5] << std::endl;
+    std::cout << "joint: " << joint[6] << std::endl;
+    std::cout << "joint: " << joint[7] << std::endl;
+    std::cout << "joint: " << joint[8] << std::endl;
+    std::cout << "joint: " << joint[9] << std::endl;
+    std::cout << "joint: " << joint[10] << std::endl;
+    std::cout << "joint: " << joint[11] << std::endl;
+    // std::cout << "set: " << joint_set[0] << std::endl;
 
 }

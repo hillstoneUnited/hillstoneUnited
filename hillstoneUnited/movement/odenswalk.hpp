@@ -14,6 +14,8 @@ public:
 
     std::string getNextAngle(World& w);
 private:
+    static const double DEGTORAD = M_PI/180.0;
+    static const double RADTODEG = 180.0/M_PI;
     MakeWalk mw;
     double dest[2];
     double joint[12];
