@@ -202,6 +202,16 @@ void MakeWalk::update(double joint[], double velocity[], double walkx, double wa
 		AngleTrajectory(Tsup/2+STATEDIFF-(nextstatetime-t),Tsup/2+STATEDIFF, brangle, rangle);
 	}
 /**/
+
+	for (int i = 0; i < 6; i++)
+	{
+		joint[i] = langle[i+1];
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		joint[i+6] = rangle[i+1];
+	}
+
 	//逆運動学により求められた角度から
 	//指令値を作成
 	const bool VelocityCheck = true;

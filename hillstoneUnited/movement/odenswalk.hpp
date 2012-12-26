@@ -10,7 +10,11 @@ public:
     OdensWalk(double _dest[]);
     ~OdensWalk();
 
+    bool set(jointID id, double velocity);
+    bool set(World& w, jointID id, double angle, double gain = 0.05);
+    
     void setAngle(World& w, double joint[]);
+    void setAngle(World& w, double joint[], double velocity[]);
 
     std::string getNextAngle(World& w);
 private:

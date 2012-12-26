@@ -38,7 +38,7 @@ std::string OdensWalk::getNextAngle(World& w){
     {
         mypos[i] = w.getMYPOS(i);
     }
-    rotation = atan2(dest[0]-mypos[0], dest[1]-mypos[1]) - w.getABSANGLE();
+    rotation = atan2(dest[1]-mypos[1], dest[0]-mypos[0]) - w.getABSANGLE();
     
     //最大値を超えないようにする
     if(rotation > MAX_STEP_R){
@@ -54,8 +54,8 @@ std::string OdensWalk::getNextAngle(World& w){
         step_y = 0;
     }else{
         //ODENSの座標系に合わせて計算
-        step_x = dest[0];
-        step_y = dest[1];
+        step_x = dest[0] - mypos[0];
+        step_y = dest[1] - mypos[1];
         //最大値を超えないようにする
         if(step_x > MAX_STEP_X){
             step_x = MAX_STEP_X;
@@ -85,9 +85,11 @@ std::string OdensWalk::getNextAngle(World& w){
     joint[10] = w.getAngle("rlj5") * DEGTORAD;
     joint[11] = w.getAngle("rlj6") * DEGTORAD;
 
+
+    double velocity[12] = {};
     //MakeWalkを用いて、関節動作を決定する
     //計算結果はvelocityに代入される
-    isWalking = mw.WalkControl(joint, step_x, step_y, rotation, act);
+    isWalking = mw.WalkControl(joint, velocity, step_x, step_y, rotation, act);
     //resultがtrueの時、歩行動作中である
     if(isWalking){
         std::cout << "Walking!\n";
@@ -97,10 +99,66 @@ std::string OdensWalk::getNextAngle(World& w){
         finish_flag = true;
     }
 
-    setAngle(w, joint);
+    setAngle(w, joint, velocity);
+    // setAngle(w, joint);
+
+    /**for debagging**/
+    std::cout << "runto:" << dest[0] << "," << dest[1] << std::endl;
+    std::cout << "mypos:" << mypos[0] << "," << mypos[1] << std::endl;
 
     return angleToString();
 
+}
+
+
+bool OdensWalk::set(jointID id, double velocity){
+  const double EPS = 0.2; // just like margin of error
+  double current = 0.0;
+
+  angleMap[id] = velocity;
+  return true;
+}
+
+bool OdensWalk::set(World& w, jointID id, 
+    double angle, double gain){
+  const double EPS = 0.2; // just like margin of error
+  double current = 0.0;
+
+  switch(id){
+    case hj1: current = w.getAngle("hj1");break;
+    case hj2: current = w.getAngle("hj2");break;
+    case laj1: current = w.getAngle("laj1");break;
+    case raj1: current = w.getAngle("raj1");break;
+    case laj2: current = w.getAngle("laj2");break;
+    case raj2: current = w.getAngle("raj2");break;
+    case laj3: current = w.getAngle("laj3");break;
+    case raj3: current = w.getAngle("raj3");break;
+    case laj4: current = w.getAngle("laj4");break;
+    case raj4: current = w.getAngle("raj4");break;
+    case llj1: current = w.getAngle("llj1");break;
+    case rlj1: current = w.getAngle("rlj1");break;
+    case llj2: current = w.getAngle("llj2");break;
+    case rlj2: current = w.getAngle("rlj2");break;
+    case llj3: current = w.getAngle("llj3");break;
+    case rlj3: current = w.getAngle("rlj3");break;
+    case llj4: current = w.getAngle("llj4");break;
+    case rlj4: current = w.getAngle("rlj4");break;
+    case llj5: current = w.getAngle("llj5");break;
+    case rlj5: current = w.getAngle("rlj5");break;
+    case llj6: current = w.getAngle("llj6");break;
+    case rlj6: current = w.getAngle("rlj6");break;
+    default:
+      std::cout << "Cannot find ID : " << id << std::endl;
+      break;
+  }
+
+  if(fabs(current - angle) > EPS){
+    angleMap[id] = gain * (angle - current);
+    return true;
+  }
+
+  angleMap[id] = 0.0;
+  return false;
 }
 
 
@@ -113,41 +171,25 @@ void OdensWalk::setAngle(World& w, double joint[]){
         joint_set[i] = joint[i];
     }
 
+    double gain = 0.5;
     
     // Left
     // Legs
-    set(w, llj1, joint_set[0]);
-    set(w, llj2, joint_set[1]);
-    set(w, llj3, joint_set[2]);
-    set(w, llj4, joint_set[3]);
-    set(w, llj5, joint_set[4]);
-    set(w, llj6, joint_set[5]);
+    set(w, llj1, joint_set[0], gain);
+    set(w, llj2, joint_set[1], gain);
+    set(w, llj3, joint_set[2], gain);
+    set(w, llj4, joint_set[3], gain);
+    set(w, llj5, joint_set[4], gain);
+    set(w, llj6, joint_set[5], gain);
 
     // Right
     // Legs
-    set(w, rlj1, joint_set[6]);
-    set(w, rlj2, joint_set[7]);
-    set(w, rlj3, joint_set[8]);
-    set(w, rlj4, joint_set[9]);
-    set(w, rlj5, joint_set[10]);
-    set(w, rlj6, joint_set[11]);
-    
-
-    /*
-    set(w, llj1, joint_set[0]);
-    set(w, llj2, joint_set[2]);
-    set(w, llj3, -joint_set[4]);
-    set(w, llj4, -joint_set[6]);
-    set(w, llj5, -joint_set[8]);
-    set(w, llj6, joint_set[10]);
-
-    set(w, rlj1, joint_set[1]);
-    set(w, rlj2, joint_set[3]);
-    set(w, rlj3, -joint_set[5]);
-    set(w, rlj4, -joint_set[7]);
-    set(w, rlj5, -joint_set[9]);
-    set(w, rlj6, joint_set[11]);
-    */
+    set(w, rlj1, joint_set[6], gain);
+    set(w, rlj2, joint_set[7], gain);
+    set(w, rlj3, joint_set[8], gain);
+    set(w, rlj4, joint_set[9], gain);
+    set(w, rlj5, joint_set[10], gain);
+    set(w, rlj6, joint_set[11], gain);
 
     std::cout << "joint: " << joint[0] << std::endl;
     std::cout << "joint: " << joint[1] << std::endl;
@@ -163,4 +205,40 @@ void OdensWalk::setAngle(World& w, double joint[]){
     std::cout << "joint: " << joint[11] << std::endl;
     // std::cout << "set: " << joint_set[0] << std::endl;
 
+}
+
+
+void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
+
+    double gain = 100;
+    double joint_set[12] = {};
+
+    for (int i = 0; i < 12; i++)
+    {
+        joint_set[i] = joint[i];
+    }
+
+    // Left
+    // Legs
+    set(llj1, velocity[0] * gain);
+    set(llj2, velocity[1] * gain);
+    set(llj3, -velocity[2] * gain);
+    set(llj4, -velocity[3] * gain);
+    set(llj5, -velocity[4] * gain);
+    set(llj6, velocity[5] * gain);
+
+    // Right
+    // Legs
+    set(rlj1, velocity[6] * gain);
+    set(rlj2, velocity[7] * gain);
+    set(rlj3, -velocity[8] * gain);
+    set(rlj4, -velocity[9] * gain);
+    set(rlj5, -velocity[10] * gain);
+    set(rlj6, velocity[11] * gain); 
+    
+
+    for (int i = 0; i < 12; i++)
+    {
+        std::cout << "joint" << i << ": " << joint_set[i] << ", " << velocity[i] << std::endl;
+    }
 }
