@@ -786,7 +786,7 @@ void World::Perception::calcuratePerception(World& world){
     remain_side = goal_length;
     cos_temp = (mgl[0]*mgl[0] + remain_side*remain_side - mgr[0]*mgr[0])
       / (2*mgl[0]*remain_side);
-    xy[0] = (-field_length_x/2) + mgl[0]*(sqrt(1-cos_temp*cos_temp));
+    xy[0] = -(field_length_x/2) + mgl[0]*(sqrt(1-cos_temp*cos_temp));
     xy[1] = (goal_length/2) - mgl[0]*cos_temp;
     absangle = 180.0 - (mgl[1] + (90.0 - (acos(cos_temp))*180.0/M_PI));
     if(confBAL(world) == 0){
@@ -815,7 +815,7 @@ void World::Perception::calcuratePerception(World& world){
     remain_side = (field_length_y - goal_length) / 2;
     cos_temp = (mgl[0]*mgl[0] + remain_side*remain_side - mfl[0]*mfl[0])
       / (2 * mgl[0] * remain_side);
-    xy[0] = (- field_length_x/2) + mgl[0]*(sqrt(1-cos_temp*cos_temp));
+    xy[0] = - (field_length_x/2) + mgl[0]*(sqrt(1-cos_temp*cos_temp));
     xy[1] = (goal_length/2) + mgl[0]*cos_temp;
     cos_temp = (mfl[0]*mfl[0] + remain_side*remain_side - mgl[0]*mgl[0])
       / (2 * mfl[0] * remain_side);
@@ -846,8 +846,8 @@ void World::Perception::calcuratePerception(World& world){
     remain_side = (field_length_y - goal_length) / 2;
     cos_temp = (mgr[0]*mgr[0] + remain_side*remain_side - mfr[0]*mfr[0])
       / (2 * mgr[0] * remain_side);
-    xy[0] = (- field_length_x/2) + mgr[0]*(sqrt(1-cos_temp*cos_temp));
-    xy[1] = (- goal_length/2) - mgr[0]*cos_temp;
+    xy[0] = - (field_length_x/2) + mgr[0]*(sqrt(1-cos_temp*cos_temp));
+    xy[1] = - (goal_length/2) - mgr[0]*cos_temp;
     absangle = 180.0 - (mgr[1] + (90.0 - (acos(cos_temp))*(180.0/M_PI)));
     if(confBAL(world) == 0){
       double *ball = BAL;
@@ -880,7 +880,7 @@ void World::Perception::calcuratePerception(World& world){
     absangle = -(egl[1] - (90.0 - (acos(cos_temp)) * 180.0/M_PI));
     if(confBAL(world) == 0){
       double *ball = BAL;
-      bangle - absangle + ball[1];
+      bangle = absangle + ball[1];
       bxy[0] = xy[0] + ball[0] * cos(bangle*M_PI/180);
       bxy[1] = xy[1] + ball[1] * cos(bangle*M_PI/180);
     }
@@ -936,7 +936,7 @@ void World::Perception::calcuratePerception(World& world){
     cos_temp = (egr[0]*egr[0] + remain_side*remain_side - efr[0]*efr[0])
       / (2 * egr[0] * remain_side);
     xy[0] = (field_length_x/2) - egr[0]*(sqrt(1-cos_temp*cos_temp));
-    xy[1] = (-goal_length/2) - egr[0]*cos_temp;
+    xy[1] = -(goal_length/2) - egr[0]*cos_temp;
     absangle = -(egr[1] - (90.0 - (acos(cos_temp)) * 180.0/M_PI));
     if(confBAL(world) == 0){
       double *ball = BAL;
