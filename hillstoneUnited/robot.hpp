@@ -5,6 +5,7 @@
 #include "world.hpp"
 #include "elementbase.hpp"
 #include "brain/runtoball.hpp"
+#include "brain/defend.hpp"
 
 /*
   This class is interface to main function.
@@ -28,7 +29,8 @@ class Robot{
 
  protected:
   World world;
-  RunToBall* samplebrain;
+  //  RunToBall* samplebrain;
+  Defend* samplebrain;
   bool virgin;
 
 };
