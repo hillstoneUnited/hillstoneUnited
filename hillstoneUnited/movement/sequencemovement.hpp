@@ -1,9 +1,9 @@
 #ifndef SEQUENCEMOVEMENT_H
 #define SEQUENCEMOVEMENT_H
 
-#include "../util.h"
-#include "movementbase.h"
-#include "sequence.h"
+#include "../util.hpp"
+#include "movementbase.hpp"
+#include "sequence.hpp"
 
   class SequenceMovement : public MovementBase{
     public:

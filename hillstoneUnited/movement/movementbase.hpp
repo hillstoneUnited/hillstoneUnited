@@ -5,26 +5,25 @@
 #include <map>
 #include <sstream>
 #include <math.h>
-#include "../util.h"
-#include "../world.h"
+#include "../util.hpp"
+#include "../world.hpp"
+#include "../elementbase.hpp"
 
-  class MovementBase{
+  class MovementBase : public ElementBase{
 
     public:
-      MovementBase(){ finish_flag = false; };
-      virtual ~MovementBase(){};
-      
-      virtual std::string getNextAngle(World& w){};
-        //return the next angle
+      MovementBase(){};
+      ~MovementBase(){};
       
       bool isFinished();
 
+      virtual std::string getNextAngle(World& w){};
+        //return the next angle
+      
     protected:
       typedef std::map<jointID, double> tmpAngleMap;
       tmpAngleMap angleMap;
       
-      bool finish_flag;
-
       bool set(World& w, jointID id, double angle, double gain = 0.05);
 
       std::string angleToString();

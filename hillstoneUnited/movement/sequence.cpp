@@ -1,4 +1,4 @@
-#include "sequence.h"
+#include "sequence.hpp"
 #include <iostream>
 
 Sequence::Sequence()

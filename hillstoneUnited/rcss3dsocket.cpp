@@ -1,4 +1,4 @@
-#include "rcss3dsocket.h"
+#include "rcss3dsocket.hpp"
 #include <rcssnet/exception.hpp>
 
 #include <string.h>

@@ -11,8 +11,8 @@
 
 #include <math.h>
 
-#include "../util.h"
-#include "movementbase.h"
+#include "../util.hpp"
+#include "movementbase.hpp"
 
   class TicktackBase : public MovementBase{
     public:

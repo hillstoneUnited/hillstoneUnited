@@ -27,11 +27,7 @@ configure
 COPYING
 depcomp
 install-sh
-Makefile
-Makefile.in
 *.Makefile
 *.Makefile.in
-*.*.Makefile
-*.*.Makefile.in
 missing
 stamp-h1

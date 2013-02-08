@@ -1,4 +1,9 @@
-#include "movementbase.h"
+#include "movementbase.hpp"
+
+bool MovementBase::isFinished(){
+  return finish_flag;
+}
+
 
 bool MovementBase::set(World& w, jointID id, 
     double angle, double gain){
@@ -92,8 +97,4 @@ void MovementBase::resetAngleMap(){
   angleMap[rlj5] = 0.0;
   angleMap[llj6] = 0.0;
   angleMap[rlj6] = 0.0;
-}
-
-bool MovementBase::isFinished(){
-    return finish_flag;
 }
