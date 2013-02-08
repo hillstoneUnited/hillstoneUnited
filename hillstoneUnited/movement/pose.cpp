@@ -1,4 +1,4 @@
-#include "pose.h"
+#include "pose.hpp"
 #include <iostream>
 
 Pose::Pose()

@@ -2,8 +2,8 @@
 #define ROBOT_H
 
 #include <iostream>
-#include "world.h"
-#include "brain.h"
+#include "world.hpp"
+#include "brain/runtoball.hpp"
 
 /*
   This class is interface to main function.
@@ -27,7 +27,8 @@ class Robot{
 
  protected:
   World world;
-  Brain brain;
+  RunToBall* samplebrain;
+  bool virgin;
 
 };
 

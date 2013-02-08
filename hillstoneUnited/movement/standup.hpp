@@ -1,8 +1,8 @@
 #ifndef STANDUP_H
 #define STANDUP_H
 
-#include "movementbase.h"
-#include "../util.h"
+#include "movementbase.hpp"
+#include "../util.hpp"
 
 class Standup : public MovementBase{
   public:

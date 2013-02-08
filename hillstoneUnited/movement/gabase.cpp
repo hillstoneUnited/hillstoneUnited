@@ -1,4 +1,4 @@
-#include "gabase.h"
+#include "gabase.hpp"
 
 int GABase::ts = 0;
 
