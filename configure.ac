@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.67])
 AC_INIT(hillstoneUnited/main.cpp)
-AM_INIT_AUTOMAKE(hillstoneUnited, 0.2)
+AM_INIT_AUTOMAKE(hillstoneUnited, 0.5)
 AC_CONFIG_SRCDIR([hillstoneUnited/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 
@@ -41,8 +41,7 @@ AC_TYPE_SIGNAL
 AC_CHECK_FUNCS([select strerror])
 
 AC_CONFIG_FILES([Makefile
-	hillstoneUnited/Makefile
-  hillstoneUnited/movement/Makefile])
+	hillstoneUnited/Makefile])
 
 AC_PROG_RANLIB
 AC_OUTPUT

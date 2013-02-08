@@ -1,13 +1,14 @@
-#include "standup.h"
+#include "standup.hpp"
+
+int Standup::ts = 0;
 
 Standup::Standup(){
-  ts = 0;
 }
 
 Standup::~Standup(){}
 
 
-std::string Standup::getNextAngle(Action& act, World& w, int& ts){
+std::string Standup::getNextAngle(World& w){
 
   resetAngleMap();
 
@@ -307,10 +308,8 @@ std::string Standup::getNextAngle(Action& act, World& w, int& ts){
 
     }else{  // standed
       std::cout << "I'm standed" << std::endl;
-      // act.setLock(false);
-      act.setFinished(true);
-      act.setCount(0);
-      ts = -1;
+      finish_flag = true;
+      ts = 0;
       actiontype = -1;
       state = READY;
     }
