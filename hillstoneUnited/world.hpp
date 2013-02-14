@@ -179,7 +179,7 @@ class World{
 
   };
   std::deque<Perception*> deqPerception;
-  static const int DEQUE_SIZE = 300;
+  static const unsigned int DEQUE_SIZE = 300;
 
 
 };

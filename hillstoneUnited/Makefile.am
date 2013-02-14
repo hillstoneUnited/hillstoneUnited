@@ -11,7 +11,8 @@ hillstoneUnited_MAIN = main.cpp \
 											 robot.hpp robot.cpp \
 											 world.hpp world.cpp \
 											 elementbase.hpp \
-											 util.hpp
+											 util.hpp \
+											 drawing.hpp drawing.cpp
 
 brain = brain/brainbase.hpp brain/brainbase.cpp \
 		brain/runtoball.hpp brain/runtoball.cpp

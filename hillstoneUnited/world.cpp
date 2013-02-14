@@ -435,7 +435,7 @@ void World::Perception::parsePlayer(std::string message, std::string id, double 
   static string enemyname;
   string::size_type find_id, from, until;
   string team_id, data[11][4];
-  int i, s, j, player_num, player_count;
+  int i, s, j, player_num;
 
   string msg(message);
 
@@ -768,16 +768,20 @@ void World::Perception::calcuratePerception(World& world){
 
   if(confMGL(world) == 0 && confMGR(world) == 0){
 
-    double *mgl;
-    double *mgr;
+    double mgl[3];
+    double mgr[3];
     switch(world.side){
     case LEFT:
-      mgl = G1L;
-      mgr = G2L;
+      for(int i=0;i<3;i++){
+	mgl[i] = G1L[i];
+	mgr[i] = G2L[i];
+      }
       break;
     case RIGHT:
-      mgl = G2R;
-      mgr = G1R;
+      for(int i=0; i<3; i++){
+	mgl[i] = G2R[i];
+	mgr[i] = G1R[i];
+      }
       break;
     default:
       std::cout << "UNKNOWN SIDE!" << std::endl;
@@ -797,16 +801,20 @@ void World::Perception::calcuratePerception(World& world){
     }
   }else if(confMGL(world) == 0 && confMFL(world) == 0){
 
-    double *mgl;
-    double *mfl;
+    double mgl[3];
+    double mfl[3];
     switch(world.side){
     case LEFT:
-      mgl = G1L;
-      mfl = F1L;
+      for(int i=0; i<3; i++){
+	mgl[i] = G1L[i];
+	mfl[i] = F1L[i];
+      }
       break;
     case RIGHT:
-      mgl = G2R;
-      mfl = F2R;
+      for(int i=0; i<3; i++){
+	mgl[i] = G2R[i];
+	mfl[i] = F2R[i];
+      }
       break;
     default:
       std::cout << "UNKNOWN SIDE!" << std::endl;
@@ -828,16 +836,20 @@ void World::Perception::calcuratePerception(World& world){
     }
   }else if(confMGR(world) == 0 && confMFR(world) == 0){
 
-    double *mgr;
-    double *mfr;
+    double mgr[3];
+    double mfr[3];
     switch(world.side){
     case LEFT:
-      mgr = G2L;
-      mfr = F2L;
+      for(int i=0; i<3; i++){
+	mgr[i] = G2L[i];
+	mfr[i] = F2L[i];
+      }
       break;
     case RIGHT:
-      mgr = G1R;
-      mfr = F1R;
+      for(int i=0; i<3; i++){
+	mgr[i] = G1R[i];
+	mfr[i] = F1R[i];
+      }
       break;
     default:
       std::cout << "UNKNOWN SIDE!" << std::endl;
@@ -857,16 +869,20 @@ void World::Perception::calcuratePerception(World& world){
     }
   }else if(confEGL(world) == 0 && confEGR(world) == 0){
 
-    double *egl;
-    double *egr;
+    double egl[3];
+    double egr[3];
     switch(world.side){
     case LEFT:
-      egl = G1R;
-      egr = G2R;
+      for(int i=0; i<3; i++){
+	egl[i] = G1R[i];
+	egr[i] = G2R[i];
+      }
       break;
     case RIGHT:
-      egl = G2L;
-      egr = G1L;
+      for(int i=0; i<3; i++){
+	egl[i] = G2L[i];
+	egr[i] = G1L[i];
+      }
       break;
     default:
       std::cout << "UNKNOWN SIDE!" << std::endl;
@@ -886,16 +902,20 @@ void World::Perception::calcuratePerception(World& world){
     }
   }else if(confEGL(world) == 0 && confEFL(world) == 0){
 
-    double *egl;
-    double *efl;
+    double egl[3];
+    double efl[3];
     switch(world.side){
     case LEFT:
-      egl = G1R;
-      efl = F1R;
+      for(int i=0; i<3; i++){
+	egl[i] = G1R[i];
+	efl[i] = F1R[i];
+      }
       break;
     case RIGHT:
-      egl = G2L;
-      efl = F2L;
+      for(int i=0; i<3; i++){
+	egl[i] = G2L[i];
+	efl[i] = F2L[i];
+      }
       break;
     default:
       std::cout << "UNKNOWN SIDE!" << std::endl;
@@ -917,16 +937,20 @@ void World::Perception::calcuratePerception(World& world){
     }
   }else if(confEGR(world) == 0 && confEFR(world) == 0){
 
-    double *egr;
-    double *efr;
+    double egr[3];
+    double efr[3];
     switch(world.side){
     case LEFT:
-      egr = G2R;
-      efr = F2R;
+      for(int i=0; i<3; i++){
+	egr[i] = G2R[i];
+	efr[i] = F2R[i];
+      }
       break;
     case RIGHT:
-      egr = G1L;
-      efr = F1L;
+      for(int i=0; i<3; i++){
+	egr[i] = G1L[i];
+	efr[i] = F1L[i];
+      }
       break;
     default:
       std::cout << "UNKNOWN SIDE!" << std::endl;
