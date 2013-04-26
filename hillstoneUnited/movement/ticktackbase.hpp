@@ -16,7 +16,7 @@
 
   class TicktackBase : public MovementBase{
     public:
-      TicktackBase(std::string _name);
+      TicktackBase(std::string _name, int _count);
       ~TicktackBase(){};
 
       void setAngle(World& w);
@@ -34,6 +34,7 @@
       double lj26;
       double m_hj1, m_hj2, headSpeed;
       double L, S, cycle;
+      int count;
 
       // Walking parameter
       double wX, wY, r;
