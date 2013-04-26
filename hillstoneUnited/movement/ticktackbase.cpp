@@ -10,7 +10,7 @@
 
 int TicktackBase::ts = 0;
 
-TicktackBase::TicktackBase(std::string _name){
+TicktackBase::TicktackBase(std::string _name, int _count){
     t = ts * M_PI / 180.0;
     name = _name;
     
@@ -36,6 +36,8 @@ TicktackBase::TicktackBase(std::string _name){
     start = false;
   
     current = -1;
+
+    count = _count;
 }
 
 void TicktackBase::setAngle(World& w){
@@ -280,7 +282,7 @@ std::string TicktackBase::getNextAngle(World& w){
     setAngle(w);
     
     /** step count **/
-    if(ts > cycle*100){
+    if(ts > cycle*count){
         finish_flag = true;
         // ts = 0;
     }
