@@ -4,6 +4,7 @@
 #include "brainbase.hpp"
 #include "../world.hpp"
 #include "../movement/odenswalk.hpp"
+#include "../movement/gabase.hpp"
 
 class RunToBall : public BrainBase
 {
