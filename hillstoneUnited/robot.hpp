@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "world.hpp"
+#include "elementbase.hpp"
 #include "brain/runtoball.hpp"
 
 /*

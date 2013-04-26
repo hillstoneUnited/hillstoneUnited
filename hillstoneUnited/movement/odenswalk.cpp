@@ -1,4 +1,5 @@
 #include "odenswalk.hpp"
+#include <stdio.h>
 
 OdensWalk::OdensWalk(double _dest[]){
 
@@ -191,20 +192,6 @@ void OdensWalk::setAngle(World& w, double joint[]){
     set(w, rlj5, joint_set[10], gain);
     set(w, rlj6, joint_set[11], gain);
 
-    std::cout << "joint: " << joint[0] << std::endl;
-    std::cout << "joint: " << joint[1] << std::endl;
-    std::cout << "joint: " << joint[2] << std::endl;
-    std::cout << "joint: " << joint[3] << std::endl;
-    std::cout << "joint: " << joint[4] << std::endl;
-    std::cout << "joint: " << joint[5] << std::endl;
-    std::cout << "joint: " << joint[6] << std::endl;
-    std::cout << "joint: " << joint[7] << std::endl;
-    std::cout << "joint: " << joint[8] << std::endl;
-    std::cout << "joint: " << joint[9] << std::endl;
-    std::cout << "joint: " << joint[10] << std::endl;
-    std::cout << "joint: " << joint[11] << std::endl;
-    // std::cout << "set: " << joint_set[0] << std::endl;
-
 }
 
 
@@ -236,9 +223,4 @@ void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
     set(rlj5, -velocity[10] * gain);
     set(rlj6, velocity[11] * gain); 
     
-
-    for (int i = 0; i < 12; i++)
-    {
-        std::cout << "joint" << i << ": " << joint_set[i] << ", " << velocity[i] << std::endl;
-    }
 }
