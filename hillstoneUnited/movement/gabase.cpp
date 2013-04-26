@@ -4,7 +4,7 @@ int GABase::ts = 0;
 
 GABase::GABase(std::string _name, int _count){
     name = _name;
-    count = _count;
+    count = _count; // number of frame
     
     t = ts * M_PI / 180.0;
     
@@ -170,7 +170,7 @@ std::string GABase::getNextAngle(World& w){
     setAngle(w);
     
     /** step count **/
-    if(ts > (360/M_PI) * count){
+    if(ts > count){
         finish_flag = true;
         ts = 0;
     }
