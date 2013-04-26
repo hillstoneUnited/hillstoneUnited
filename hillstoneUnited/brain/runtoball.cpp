@@ -11,8 +11,8 @@ RunToBall::RunToBall(World& w){
     //ballpos[0] = 5;
     ballpos[0] = 3;
     ballpos[1] = 5;
-    // elementList.push_back(new OdensWalk(ballpos));
-    elementList.push_back(new GABase("GA_FORWARD", 100));
+    elementList.push_back(new OdensWalk(ballpos));
+    // elementList.push_back(new GABase("GA_FORWARD", 100));
 }
 
 bool RunToBall::isFinished(World& w){
