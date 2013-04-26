@@ -8,7 +8,7 @@
 
   class GABase : public MovementBase{
     public:
-      GABase(std::string _name);
+      GABase(std::string _name, int _count);
       ~GABase(){};
 
       void updateAngle();
@@ -21,6 +21,7 @@
     private:
       static int ts;
       std::string name;
+      int count;
       
       /** Parameters **/
       double t;
