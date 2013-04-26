@@ -1,7 +1,7 @@
 ##hillstoneUnited readme  
 hillstoneUnited is agent program of "Robocup 3D Simulation".  
 Our purpose is studying. so robots might not be good soccer player.  
-We develop this code in Ubuntu (12.04 is majority now).
+We develop this code in Ubuntu (12.04 is majority now).  
 Our webpage is here. <http://hillstoneunited.github.com/hillstoneUnited>
 
 ##compiling  
