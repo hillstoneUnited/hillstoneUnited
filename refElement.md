@@ -13,7 +13,7 @@ title: Element/Brain/Movement Class
 
 継承関係などのクラス図は以下のようになっています：  
 
-![クラス図](images/130427_element.pdf "Elementクラス図")
+![クラス図](images/130427_element.png "Elementクラス図")
 
 最も抽象的なElementBase、
 それを継承するBrainBaseとMovementBaseという二つのクラスが存在します。
