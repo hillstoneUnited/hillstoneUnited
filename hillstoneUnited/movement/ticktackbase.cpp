@@ -12,6 +12,7 @@ int TicktackBase::ts = 0;
 
 TicktackBase::TicktackBase(std::string _name, int _count){
     finish_flag = false;
+    ts = 0;
     t = ts * M_PI / 180.0;
     name = _name;
     
@@ -282,6 +283,6 @@ std::string TicktackBase::getNextAngle(World& w){
     }
     ts++;
     t = ts * M_PI / 180.0;
-    std::cout << "t:" << t << std::endl;
+    // std::cout << "t:" << t << std::endl;
     return angleToString();
 }

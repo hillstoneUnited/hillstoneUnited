@@ -16,7 +16,7 @@ hillstoneUnited_MAIN = main.cpp \
 
 brain = brain/brainbase.hpp brain/brainbase.cpp \
 		brain/runtoball.hpp brain/runtoball.cpp \
-		brain/defend.hpp brain/defend.cpp
+		brain/attack.hpp brain/attack.cpp
 
 movement = movement/movementbase.hpp movement/movementbase.cpp \
 					 movement/ticktackbase.hpp movement/ticktackbase.cpp \
