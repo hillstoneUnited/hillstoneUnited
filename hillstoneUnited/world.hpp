@@ -101,8 +101,10 @@ class World{
  private:
 
   static const double goal_length    =  2.1;
-  static const double field_length_x = 21.0;
-  static const double field_length_y = 14.0;
+  // static const double field_length_x = 21.0;
+  // static const double field_length_y = 14.0;
+  static const double field_length_x = 30.0;
+  static const double field_length_y = 20.0;
 
 
   int         unum;
