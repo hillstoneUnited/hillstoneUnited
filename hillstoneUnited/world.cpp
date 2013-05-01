@@ -2010,3 +2010,20 @@ double World::getFieldLengthX() const{
 double World::getFieldLengthY() const{
   return field_length_y;
 }
+
+bool World::isFalling() {
+  const int TH = 10;
+  double ACC_Sum[2];
+  ACC_Sum[0] = getACC_Sum(0, TH);
+  ACC_Sum[1] = getACC_Sum(1, TH);
+
+  if((fabs(ACC_Sum[1]) > 9.0 * TH) && (fabs(ACC_Sum[1]) < 15.0 *TH)){
+    std::cout << "utsubuse or aomuke!" << std::endl;
+    return true;
+  }
+  if((fabs(ACC_Sum[0]) > 9.0 * TH) && (fabs(ACC_Sum[0]) < 15.0 *TH)){
+    std::cout << "yokomuki!" << std::endl;
+    return true;
+  }
+  return false;
+}

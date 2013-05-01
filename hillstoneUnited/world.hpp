@@ -23,6 +23,9 @@ class World{
   void update(const std::string& msg);
   void dump  ();
 
+  // judge wheter falling or not
+  bool isFalling();
+
 
   // getter for Perception parameters
   double getAngle(std::string jointname) const;
