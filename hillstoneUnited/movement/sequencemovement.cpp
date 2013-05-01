@@ -1,6 +1,7 @@
 #include "sequencemovement.hpp"
 
 SequenceMovement::SequenceMovement(std::string _name){
+  finish_flag = false;
   name = _name;
   timeStamp = 0;
   
