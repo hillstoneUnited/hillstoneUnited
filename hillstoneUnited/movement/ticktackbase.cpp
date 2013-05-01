@@ -11,6 +11,7 @@
 int TicktackBase::ts = 0;
 
 TicktackBase::TicktackBase(std::string _name, int _count){
+    finish_flag = false;
     t = ts * M_PI / 180.0;
     name = _name;
     
@@ -51,14 +52,7 @@ void TicktackBase::setAngle(World& w){
       m_rlj5 += L;
   }else{
       m_llj3 += L;
-      m_llj4 += L * (-2.0);  r=0.997143;wX=0.012308;wY=0.2;Threshold=0.0;Gain=0.0;// cycle 30
-      H = 0;
-      cycle = 30.0;
-      L = (1.0 - cos(cycle * t)) * wY;
-      m_llj2 += L;
-      m_llj6 -= L;
-      m_rlj2 -= L;
-      m_rlj6 += L;  
+      m_llj4 += L * (-2.0);  
       m_llj5 += L;
   }
   if(m_rlj4 >= 0.0) m_rlj4 = 0.0;
