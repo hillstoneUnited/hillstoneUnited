@@ -5,6 +5,7 @@ Attack::Attack(World& w, double _initpos[]) {
     initpos[0] = _initpos[0];
     initpos[1] = _initpos[1];
     judgement(w);
+    standup = new Standup();
 }
 
 bool Attack::isFinished() {
@@ -12,6 +13,18 @@ bool Attack::isFinished() {
 }
 
 std::string Attack::getNextAngle(World& w) {
+    if (w.isFalling())
+    {
+        if (standup->isFinished())
+        {
+            elementList.clear();
+            delete standup;
+            standup = new Standup();
+        }
+
+        return standup->getNextAngle(w);
+    }
+
     if (!elementList.empty())
     {
         if (!elementList.front()->isFinished())
@@ -40,8 +53,10 @@ void Attack::judgement(World& w) {
     if (tmpflag)
     {
         elementList.push_back(new TicktackBase("TLEFT", 10));
+        tmpflag = false;
     } else {
         elementList.push_back(new TicktackBase("FORWARD", 10));
+        tmpflag = true;
     }
     std::cout << "judgement desu no!!" << std::endl;
     std::cout << "next: " << typeid(*elementList.front()).name() << std::endl;

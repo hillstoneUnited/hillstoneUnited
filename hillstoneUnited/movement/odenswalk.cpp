@@ -37,7 +37,7 @@ std::string OdensWalk::getNextAngle(World& w){
     double mypos[2] = {};
     for (int i = 0; i < 2; i++)
     {
-        mypos[i] = w.getMYPOS(i);
+        mypos[i] = w.getXY(i);
     }
     rotation = atan2(dest[1]-mypos[1], dest[0]-mypos[0]) - w.getABSANGLE();
     
