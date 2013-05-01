@@ -1,5 +1,5 @@
 #include "elementbase.hpp"
 
-ElementBase;;ElementBase(){
+ElementBase::ElementBase(){
   finish_flag = false;
 }

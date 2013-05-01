@@ -26,14 +26,16 @@ std::string Robot::getNextAngle(std::string &msg){
 
   if (virgin)
   {
-    samplebrain = new RunToBall(world);
+    //    samplebrain = new RunToBall(world);
+    samplebrain = new Defend(world);
     virgin = false;
   }else{
 
     if (samplebrain->isFinished(world))
     {
       delete samplebrain;
-      samplebrain = new RunToBall(world);
+      //      samplebrain = new RunToBall(world);
+      samplebrain = new Defend(world);
     }
 
   }
