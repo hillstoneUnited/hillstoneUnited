@@ -1,6 +1,8 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 
+#include <typeinfo>
+
 #include "brainbase.hpp"
 #include "../world.hpp"
 #include "../movement/odenswalk.hpp"

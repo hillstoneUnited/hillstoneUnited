@@ -44,4 +44,5 @@ void Attack::judgement(World& w) {
         elementList.push_back(new TicktackBase("FORWARD", 10));
     }
     std::cout << "judgement desu no!!" << std::endl;
+    std::cout << "next: " << typeid(*elementList.front()).name() << std::endl;
 }
