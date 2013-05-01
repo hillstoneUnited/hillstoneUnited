@@ -3,6 +3,7 @@
 int Standup::ts = 0;
 
 Standup::Standup(){
+  finish_flag = false;
 }
 
 Standup::~Standup(){}

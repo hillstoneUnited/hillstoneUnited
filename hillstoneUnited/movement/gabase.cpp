@@ -3,9 +3,11 @@
 int GABase::ts = 0;
 
 GABase::GABase(std::string _name, int _count){
+    finish_flag = false;
     name = _name;
     count = _count; // number of frame
-    
+
+    ts = 0;
     t = ts * M_PI / 180.0;
     
     // Init
