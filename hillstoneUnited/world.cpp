@@ -2018,7 +2018,7 @@ bool World::isFalling() {
   ACC_Sum[1] = getACC_Sum(1, TH);
 
   if((fabs(ACC_Sum[1]) > 9.0 * TH) && (fabs(ACC_Sum[1]) < 15.0 *TH)){
-    std::cout << "utsubuse or aomuke!" << std::endl;
+    // std::cout << "utsubuse or aomuke!" << std::endl;
     return true;
   }
   if((fabs(ACC_Sum[0]) > 9.0 * TH) && (fabs(ACC_Sum[0]) < 15.0 *TH)){
