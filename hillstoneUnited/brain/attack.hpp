@@ -5,6 +5,7 @@
 
 #include "brainbase.hpp"
 #include "../world.hpp"
+#include "../movement/standup.hpp"
 #include "../movement/odenswalk.hpp"
 #include "../movement/gabase.hpp"
 #include "../movement/ticktackbase.hpp"
@@ -19,6 +20,7 @@ public:
     std::string getNextAngle(World& w);
 
 private:
+    Standup* standup;
     double initpos[2];
     bool tmpflag;
 
