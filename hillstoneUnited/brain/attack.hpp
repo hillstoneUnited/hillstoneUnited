@@ -5,6 +5,7 @@
 #include "../world.hpp"
 #include "../movement/odenswalk.hpp"
 #include "../movement/gabase.hpp"
+#include "../movement/ticktackbase.hpp"
 
 class Attack : public BrainBase
 {
@@ -17,6 +18,9 @@ public:
 
 private:
     double initpos[2];
+    bool tmpflag;
+
+    void judgement(World& w);
 };
 
 #endif
