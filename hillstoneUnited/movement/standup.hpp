@@ -13,7 +13,7 @@ class Standup : public MovementBase{
     
   private:
 
-    static int ts;
+    int ts;
 
 };
 
