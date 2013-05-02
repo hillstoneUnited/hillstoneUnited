@@ -20,7 +20,6 @@ public:
     std::string getNextAngle(World& w);
 
 private:
-    Standup* standup;
     double initpos[2];
     bool tmpflag;
     bool pushStand;

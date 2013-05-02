@@ -5,7 +5,6 @@ Attack::Attack(World& w, double _initpos[]) {
     initpos[0] = _initpos[0];
     initpos[1] = _initpos[1];
     judgement(w);
-    standup = new Standup();
 }
 
 bool Attack::isFinished() {
@@ -15,15 +14,6 @@ bool Attack::isFinished() {
 std::string Attack::getNextAngle(World& w) {
     if (w.isFalling())
     {
-        // if (standup->isFinished())
-        // {
-        //     elementList.clear();
-        //     delete standup;
-        //     standup = new Standup();
-        //     std::cout << "new standup" << std::endl;
-        // }
-        // std::cout << "standup->get" << std::endl;
-        // return standup->getNextAngle(w);
         if (!pushStand)
         {
             elementList.push_front(new Standup());
