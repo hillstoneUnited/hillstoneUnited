@@ -23,6 +23,7 @@ private:
     Standup* standup;
     double initpos[2];
     bool tmpflag;
+    bool pushStand;
 
     void judgement(World& w);
 };

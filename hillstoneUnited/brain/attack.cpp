@@ -15,15 +15,35 @@ bool Attack::isFinished() {
 std::string Attack::getNextAngle(World& w) {
     if (w.isFalling())
     {
-        if (standup->isFinished())
+        // if (standup->isFinished())
+        // {
+        //     elementList.clear();
+        //     delete standup;
+        //     standup = new Standup();
+        //     std::cout << "new standup" << std::endl;
+        // }
+        // std::cout << "standup->get" << std::endl;
+        // return standup->getNextAngle(w);
+        if (!pushStand)
         {
-            elementList.clear();
-            delete standup;
-            standup = new Standup();
-        }
+            elementList.push_front(new Standup());
+            pushStand = true;
+        } else {
+            if (elementList.front()->isFinished())
+            {
+                ElementBase* tmp = elementList.front();
+                delete tmp;
+                elementList.pop_front();
+                elementList.push_front(new Standup());
+                pushStand = true;
+            } else {
 
-        return standup->getNextAngle(w);
+            }
+        }
+        return elementList.front()->getNextAngle(w);
     }
+
+    pushStand = false;
 
     if (!elementList.empty())
     {
