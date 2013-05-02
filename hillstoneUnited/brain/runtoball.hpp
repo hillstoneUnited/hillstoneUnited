@@ -15,7 +15,8 @@ public:
     RunToBall(World& w);
     ~RunToBall(){};
 
-    bool isFinished(World& w);
+    // bool isFinished();
+    // std::string getNextAngle(World& w);
 
 private:
   double ballpos[2];
@@ -26,6 +27,9 @@ private:
   double conf_XY;
   double temp_abs;
   int t_count;
+
+  void judgement(World& w);
+  void updateFinishFlag(World& w);
 
 };
 

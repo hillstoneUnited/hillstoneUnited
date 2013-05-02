@@ -10,12 +10,17 @@ class BrainBase : public ElementBase {
     BrainBase(){};
     ~BrainBase();
 
-    virtual bool isFinished(){};
+    bool isFinished();
 
     std::string getNextAngle(World& w);
 
   protected:
     std::deque<ElementBase*> elementList;
+    bool pushStand;
+    std::string rtn;
+
+    virtual void judgement(World& w){};
+    virtual void updateFinishFlag(World& w){};
 };
 
 #endif
