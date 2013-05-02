@@ -35,10 +35,9 @@ std::string OdensWalk::getNextAngle(World& w){
     //now set x as zengo
     //calculate rotation from mypos and goal
     double mypos[2] = {};
-    for (int i = 0; i < 2; i++)
-    {
-        mypos[i] = w.getXY(i);
-    }
+    mypos[0] = w.getXY(0);
+    mypos[1] = w.getXY(1);
+
     rotation = atan2(dest[1]-mypos[1], dest[0]-mypos[0]) - w.getABSANGLE();
     
     //最大値を超えないようにする
