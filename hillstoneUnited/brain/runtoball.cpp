@@ -22,7 +22,7 @@ RunToBall::RunToBall(World& w){
     elementList.push_back(new SequenceMovement("LAROUND"));
 }
 
-bool RunToBall::isFinished(World& w){
+std::string RunToBall::getNextAngle(World& w){
     for(int i=0; i<2; i++){
       ballpos[i] = w.getBXY(i);
       bal[i] = w.getBAL(i);
@@ -56,105 +56,92 @@ bool RunToBall::isFinished(World& w){
                 abs(ballpos[1] - y) < 0.8)
             {
 
-                return true;
+                finish_flag = true;
+                return elementList.front()->getNextAngle(w);
             
             }else{
 
-	      if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
-		elementList.push_back(new TicktackBase("TLEFT", 2));
-		elementList.push_back(new SequenceMovement("LAROUND"));
-		return false;
-	      }
-	      else{
-		if(w.getABSANGLE() > 180){
-		  temp_abs = w.getABSANGLE();
-		}
-		else{
-		  temp_abs = w.getABSANGLE();
-		}
-	      }
-	      
-	      if(bal[0] > 6){
-		if(bal[1] > 20){
-		  elementList.push_back(new TicktackBase("TLEFT", t_count));
-		}
-		else if(bal[1] > -20){
-		  elementList.push_back(new GABase("GA_FORWARD", 200));
-		}
-		else{
-		  elementList.push_back(new TicktackBase("TRIGHT", t_count));
-		}
-	      }
-	      else if(bal[0] > 3){
-		if(bal[1] > 10){
-		  elementList.push_back(new TicktackBase("TLEFT", t_count));
-		}
-		else if(bal[1] > -10){
-		  elementList.push_back(new GABase("GA_FORWARD", 100));
-		}
-		else{
-		  elementList.push_back(new TicktackBase("TRIGHT", t_count));
-		}
-	      }
-	      else{
-		elementList.push_back(new OdensWalk(ballpos));
-	      }
-	      return false;
+                if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
+                    elementList.push_back(new TicktackBase("TLEFT", 2));
+                    elementList.push_back(new SequenceMovement("LAROUND"));
+                    finish_flag = false;
+                    return elementList.front()->getNextAngle(w);
+                } else {
+                    if(w.getABSANGLE() > 180){
+                        temp_abs = w.getABSANGLE();
+                    } else {
+                        temp_abs = w.getABSANGLE();
+                    }
+                }
 
+                if(bal[0] > 6){
+                    if(bal[1] > 20){
+                        elementList.push_back(new TicktackBase("TLEFT", t_count));
+                    } else if(bal[1] > -20){
+                        elementList.push_back(new GABase("GA_FORWARD", 200));
+                    } else {
+                        elementList.push_back(new TicktackBase("TRIGHT", t_count));
+                    }
+                }else if(bal[0] > 3){
+                    if(bal[1] > 10){
+                        elementList.push_back(new TicktackBase("TLEFT", t_count));
+                    }else if(bal[1] > -10){
+                        elementList.push_back(new GABase("GA_FORWARD", 100));
+                    }else{
+                        elementList.push_back(new TicktackBase("TRIGHT", t_count));
+                    }
+                }else{
+                    elementList.push_back(new OdensWalk(ballpos));
+                }
+                finish_flag = false;
+                return elementList.front()->getNextAngle(w);
             }
         }else{
 
-            return false;
+            finish_flag = false;
+            return elementList.front()->getNextAngle(w);
 
         }
     }else{
-
-      if(abs(ballpos[0] - x) < 0.8 &&
-	 abs(ballpos[1] - y) < 0.8)
+        if(abs(ballpos[0] - x) < 0.8 &&
+           abs(ballpos[1] - y) < 0.8)
         {
-            return true;
+            finish_flag = true;
+            return elementList.front()->getNextAngle(w);
         }else{
-
-	      if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
-		elementList.push_back(new TicktackBase("TLEFT", 2));
-		elementList.push_back(new SequenceMovement("LAROUND"));
-		return false;
-	      }
-	      else{
-		if(w.getABSANGLE() > 180){
-		  temp_abs = w.getABSANGLE();
-		}
-		else{
-		  temp_abs = w.getABSANGLE();
-		}
-	      }
-	      
-	      if(bal[0] > 6){
-		if(bal[1] > 20){
-		  elementList.push_back(new TicktackBase("TLEFT", t_count));
-		}
-		else if(bal[1] > -20){
-		  elementList.push_back(new GABase("GA_FORWARD", 200));
-		}
-		else{
-		  elementList.push_back(new TicktackBase("TRIGHT", t_count));
-		}
-	      }
-	      else if(bal[0] > 3){
-		if(bal[1] > 10){
-		  elementList.push_back(new TicktackBase("TLEFT", t_count));
-		}
-		else if(bal[1] > -10){
-		  elementList.push_back(new GABase("GA_FORWARD", 100));
-		}
-		else{
-		  elementList.push_back(new TicktackBase("TRIGHT", t_count));
-		}
-	      }
-	      else{
-		elementList.push_back(new OdensWalk(ballpos));
-	      }
-	      return false;
+            if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
+                elementList.push_back(new TicktackBase("TLEFT", 2));
+                elementList.push_back(new SequenceMovement("LAROUND"));
+                finish_flag = false;
+                return elementList.front()->getNextAngle(w);
+            }else{
+                if(w.getABSANGLE() > 180){
+                    temp_abs = w.getABSANGLE();
+                }else{
+                    temp_abs = w.getABSANGLE();
+                }
+            }
+            if(bal[0] > 6){
+                if(bal[1] > 20){
+                    elementList.push_back(new TicktackBase("TLEFT", t_count));
+                }else if(bal[1] > -20){
+                    elementList.push_back(new GABase("GA_FORWARD", 200));
+                }else{
+                    elementList.push_back(new TicktackBase("TRIGHT", t_count));
+                }
+            }else if(bal[0] > 3){
+                if(bal[1] > 10){
+                    elementList.push_back(new TicktackBase("TLEFT", t_count));
+                }else if(bal[1] > -10){
+                    elementList.push_back(new GABase("GA_FORWARD", 100));
+                }else{
+                    elementList.push_back(new TicktackBase("TRIGHT", t_count));
+                }
+            }else{
+                elementList.push_back(new OdensWalk(ballpos));
+            }
+            finish_flag = false;
+            return elementList.front()->getNextAngle(w);
 
         }
 

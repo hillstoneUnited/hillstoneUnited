@@ -15,7 +15,8 @@ public:
     RunToBall(World& w);
     ~RunToBall(){};
 
-    bool isFinished(World& w);
+    // bool isFinished();
+    // std::string getNextAngle(World& w);
 
 private:
   double ballpos[2];

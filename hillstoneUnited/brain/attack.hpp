@@ -9,6 +9,7 @@
 #include "../movement/odenswalk.hpp"
 #include "../movement/gabase.hpp"
 #include "../movement/ticktackbase.hpp"
+#include "runtoball.hpp"
 
 class Attack : public BrainBase
 {
@@ -16,8 +17,8 @@ public:
     Attack(World& w, double _initpos[]);
     ~Attack(){};
 
-    bool isFinished();
-    std::string getNextAngle(World& w);
+    // bool isFinished();
+    // std::string getNextAngle(World& w);
 
 private:
     double initpos[2];

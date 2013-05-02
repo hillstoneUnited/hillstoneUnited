@@ -1,4 +1,5 @@
 #include "brainbase.hpp"
+#include "../movement/standup.hpp"
 
 BrainBase::~BrainBase(){
   while (!elementList.empty()) {
@@ -6,31 +7,57 @@ BrainBase::~BrainBase(){
     delete tmp;
     elementList.pop_front();
   }
+  pushStand = false;
 }
 
+bool BrainBase::isFinished(){
+  return finish_flag;
+}
 
-std::string BrainBase::getNextAngle(World& w){
-  if (!elementList.empty()) {
-    /*** cheking part ***/
-    if (!elementList.front()->isFinished())
+std::string BrainBase::getNextAngle(World& w) {
+    if (w.isFalling())
     {
-      std::string rtnAngle = elementList.front()->getNextAngle(w);
-      return rtnAngle;
-    }else{
-      ElementBase* tmp = elementList.front();
-      delete tmp;
-      elementList.pop_front();
+        if (!pushStand)
+        {
+            elementList.push_front(new Standup());
+            pushStand = true;
+        } else {
+            if (elementList.front()->isFinished())
+            {
+                ElementBase* tmp = elementList.front();
+                delete tmp;
+                elementList.pop_front();
+                elementList.push_front(new Standup());
+                pushStand = true;
+            } else {
 
-      if (!elementList.front()->isFinished())
-      {
-        std::string rtnAngle = elementList.front()->getNextAngle(w);
-        return rtnAngle;
-      }else{
-        /*** thinking yourself!! ***/
-        return "hogehoge in brainbase";
-      }
+            }
+        }
+        return elementList.front()->getNextAngle(w);
     }
-  }else{
-    std::cout << "elementList is empty!!" << std::endl;
-  }
+
+    pushStand = false;
+
+    if (!elementList.empty())
+    {
+        if (!elementList.front()->isFinished())
+        {
+            return elementList.front()->getNextAngle(w);
+        } else {
+            ElementBase* tmp = elementList.front();
+            delete tmp;
+            elementList.pop_front();
+
+            if (!elementList.empty())
+            {
+                return elementList.front()->getNextAngle(w);
+            } else {
+                judgement(w);
+                return elementList.front()->getNextAngle(w);
+            }
+        }
+    } else {
+        judgement(w);
+        return elementList.front()->getNextAngle(w);
+    }
 }
