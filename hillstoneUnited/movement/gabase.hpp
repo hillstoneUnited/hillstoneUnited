@@ -19,7 +19,7 @@
       void setParam();
 
     private:
-      static int ts;
+      int ts;
       std::string name;
       int count;
       
