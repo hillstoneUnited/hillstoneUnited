@@ -28,6 +28,9 @@ private:
   double temp_abs;
   int t_count;
 
+  void judgement(World& w);
+  void updateFinishFlag(World& w);
+
 };
 
 #endif

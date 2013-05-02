@@ -72,3 +72,7 @@ void Attack::judgement(World& w) {
     std::cout << "judgement desu no!!" << std::endl;
     std::cout << "next: " << typeid(*elementList.front()).name() << std::endl;
 }
+
+void Attack::updateFinishFlag(World& w) {
+    finish_flag = false;
+}

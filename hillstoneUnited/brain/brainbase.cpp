@@ -8,6 +8,7 @@ BrainBase::~BrainBase(){
     elementList.pop_front();
   }
   pushStand = false;
+  rtn = "";
 }
 
 bool BrainBase::isFinished(){
@@ -33,7 +34,9 @@ std::string BrainBase::getNextAngle(World& w) {
 
             }
         }
-        return elementList.front()->getNextAngle(w);
+        rtn = elementList.front()->getNextAngle(w);
+        updateFinishFlag(w);
+        return rtn;
     }
 
     pushStand = false;
@@ -50,14 +53,17 @@ std::string BrainBase::getNextAngle(World& w) {
 
             if (!elementList.empty())
             {
-                return elementList.front()->getNextAngle(w);
             } else {
                 judgement(w);
-                return elementList.front()->getNextAngle(w);
             }
+            rtn = elementList.front()->getNextAngle(w);
+            updateFinishFlag(w);
+            return rtn;
         }
     } else {
         judgement(w);
-        return elementList.front()->getNextAngle(w);
+        rtn = elementList.front()->getNextAngle(w);
+        updateFinishFlag(w);
+        return rtn;
     }
 }

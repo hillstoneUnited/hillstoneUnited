@@ -17,8 +17,10 @@ class BrainBase : public ElementBase {
   protected:
     std::deque<ElementBase*> elementList;
     bool pushStand;
+    std::string rtn;
 
     virtual void judgement(World& w){};
+    virtual void updateFinishFlag(World& w){};
 };
 
 #endif

@@ -26,6 +26,7 @@ private:
     bool pushStand;
 
     void judgement(World& w);
+    void updateFinishFlag(World& w);
 };
 
 #endif
