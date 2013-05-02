@@ -9,6 +9,7 @@
 #include "../movement/odenswalk.hpp"
 #include "../movement/gabase.hpp"
 #include "../movement/ticktackbase.hpp"
+#include "../movement/sequencemovement.hpp"
 #include "runtoball.hpp"
 
 class Attack : public BrainBase
@@ -27,6 +28,8 @@ private:
 
     void judgement(World& w);
     void updateFinishFlag(World& w);
+
+    void testJudge(World& w);
 };
 
 #endif

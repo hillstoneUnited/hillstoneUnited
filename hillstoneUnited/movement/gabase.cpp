@@ -1,7 +1,5 @@
 #include "gabase.hpp"
 
-int GABase::ts = 0;
-
 GABase::GABase(std::string _name, int _count){
     finish_flag = false;
     name = _name;

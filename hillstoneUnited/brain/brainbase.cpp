@@ -20,6 +20,7 @@ std::string BrainBase::getNextAngle(World& w) {
     {
         if (!pushStand)
         {
+            elementList.clear();
             elementList.push_front(new Standup());
             pushStand = true;
         } else {
