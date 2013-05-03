@@ -44,6 +44,7 @@ std::string Robot::getNextAngle(std::string &msg){
       mainbrain = new Defend(world, initpos3);
       break;
     }
+
     virgin = false;
 
   }else{
@@ -64,6 +65,7 @@ std::string Robot::getNextAngle(std::string &msg){
 	mainbrain = new Defend(world, initpos3);
 	break;
       }
+
       std::cout << "finish!!" << std::endl;
     }
 

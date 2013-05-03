@@ -17,7 +17,8 @@ public:
 private:
     void updateFinishFlag(World& w);
     void judgement(World& w);
-
+    void restore_position(World& w);
+    int null_anglecount;
 };
 
 #endif

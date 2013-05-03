@@ -48,14 +48,18 @@ void KickTo::judgement(World& w){
 					count+=1;
 				}
 
-				if(ballangle>0 && count>1){
-					elementList.push_back(new SequenceMovement("DUMMY"));
-					elementList.push_back(new TicktackBase("TLEFT",count));
-				}
-				else if(count>1){
-					elementList.push_back(new SequenceMovement("DUMMY"));
-					elementList.push_back(new TicktackBase("TRIGHT",count));
-				}
+				if(ballangle !=0){
+
+
+						if(ballangle>0 && count>1){
+							elementList.push_back(new SequenceMovement("DUMMY"));
+							elementList.push_back(new TicktackBase("TLEFT",count));
+						}
+						else if(count>1){
+							elementList.push_back(new SequenceMovement("DUMMY"));
+							elementList.push_back(new TicktackBase("TRIGHT",count));
+						}
+
 
 				if(true){
 					//std::cout << "KickTo::kick!!" << std::endl;
@@ -63,11 +67,13 @@ void KickTo::judgement(World& w){
 					elementList.push_back(new TicktackBase("FORWARD",2));
 					elementList.push_back(new GABase("GA_FORWARD",100));
 					is_kicked = true;
+
 				}
 		}
 		else{
 				turn(w);
 		}
+}
 }
 
 
