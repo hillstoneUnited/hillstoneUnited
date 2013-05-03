@@ -36,7 +36,10 @@ std::string BrainBase::getNextAngle(World& w) {
             }
         }
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+            updateFinishFlag(w);
+        }
         return rtn;
     }
 

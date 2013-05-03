@@ -32,14 +32,19 @@ private:
     double angle;
     double egr[3];
     double egl[3];
+    double friends[11][3];
 
     int field_x;
     int field_y;
 
     int balposconf;
     int myposconf;
+    int egrconf;
+    int eglconf;
+    int friendsconf[11];
 
     double kickAngle;
+    int passTo;
 
     bool tmpflag;
 
@@ -47,6 +52,8 @@ private:
     void updateFinishFlag(World& w);
 
     void testJudge(World& w);
+
+    void updateFriends(World& w);
 
     bool inTerritory();
     bool atHome();

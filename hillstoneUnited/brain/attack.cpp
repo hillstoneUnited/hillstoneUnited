@@ -12,17 +12,21 @@ Attack::Attack(World& w, double _initpos[]) {
     mypos[1] = 0.0;
     balposconf = w.confBAL();
     myposconf = w.confXY();
+    egrconf = w.confEGR();
+    eglconf = w.confEGL();
     angle = w.getABSANGLE();
     for (int i = 0; i < 3; i++)
     {
         egr[i] = w.getEGR(i);
         egl[i] = w.getEGL(i);
     }
+    updateFriends(w);
 
     field_x = w.getFieldLengthX();
     field_y = w.getFieldLengthY();
 
     kickAngle = 0.0;
+    passTo = 0;
 
     initpos[0] = _initpos[0];
     initpos[1] = _initpos[1];
@@ -42,36 +46,43 @@ void Attack::judgement(World& w) {
     mypos[1] = w.getXY(1);
     balposconf = w.confBAL();
     myposconf = w.confXY();
+    egrconf = w.confEGR();
+    eglconf = w.confEGL();
     angle = w.getABSANGLE();
     for (int i = 0; i < 3; i++)
     {
         egr[i] = w.getEGR(i);
         egl[i] = w.getEGL(i);
     }
+    updateFriends(w);
 
     kickAngle = 0.0;
+    passTo = 0;
 
     std::cout << egr[0] << std::endl;
     std::cout << egr[1] << std::endl;
 
 
-    if (hasBal())
+    if (true)
     {
         if (close2Goal())
         {
             // shoot
-            std::cout << "shoot!!" <<std::endl;
             kickAngle = (egr[1]+egl[1])/2 + angle;
+            std::cout << "shoot!! to " << kickAngle <<std::endl;
 
         } else {
+            std::cout << "pass?" << ableToPass() << std::endl;
             if (ableToPass())
             {
                 // pass
-                kickAngle = 0; // hogehoge
+                kickAngle = friends[passTo][1] + angle; // hogehoge
+                std::cout << "pass to " << kickAngle <<std::endl;
             } else {
 
                 // dribble
                 kickAngle = 0; // hogehoge
+                std::cout << "dribble to " << kickAngle << std::endl;
             }
         }
 
@@ -80,11 +91,26 @@ void Attack::judgement(World& w) {
         // hogehoge
         elementList.push_back(new RunTo(w, initpos));
     }
+
+    // testJudge(w);
 }
 
 
 void Attack::updateFinishFlag(World& w) {
     finish_flag = false;
+}
+
+void Attack::updateFriends(World& w) {
+    for (int i = 0; i < 11; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            friends[i][j] = w.getFRIEND(i, j);
+            std::cout << friends[i][j] << ", ";
+        }
+        friendsconf[i] = w.confFRIEND(i);
+        std::cout << friendsconf[i] << ", " << std::endl;
+    }
 }
 
 
@@ -125,7 +151,8 @@ bool Attack::hasBal() {
 }
 
 bool Attack::close2Goal() {
-    if (((egr[0]+egl[0]) / 2) <= 7)
+    if (((egr[0]+egl[0]) / 2) <= 7 &&
+        egrconf <= 250 && eglconf <= 250)
     {
         return true;
     } else {
@@ -134,7 +161,24 @@ bool Attack::close2Goal() {
 }
 
 bool Attack::ableToPass() {
-    return true;
+
+    double distanceToFriend = 10000.0;
+    bool pass_flag = false;
+
+    for (int i = 0; i < 11; i++)
+    {
+        if (friendsconf[i] <= 100 &&
+            abs(angle + friends[i][1]) <= 45 &&
+            friends[i][0] >= 2.5 &&
+            friends[i][0] <= distanceToFriend)
+        {
+            passTo = i;
+            distanceToFriend = friends[i][0];
+            pass_flag = true;
+        }
+    }
+
+    return pass_flag;
 }
 
 void Attack::testJudge(World& w) {
@@ -163,6 +207,7 @@ void Attack::testJudge(World& w) {
 
     // elementList.push_back(new TicktackBase("SLEFT", 10)); // migi ni mawarikomi
 
+    elementList.clear();
     kickAngle = (egr[1]+egl[1])/2 + angle;
     std::cout << "kick to" << kickAngle << std::endl;
     elementList.push_back(new KickTo(w, kickAngle));
