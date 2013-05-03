@@ -8,7 +8,7 @@
 class BrainBase : public ElementBase {
   public:
     BrainBase(){};
-    ~BrainBase();
+    virtual ~BrainBase();
 
     bool isFinished();
 
@@ -18,6 +18,8 @@ class BrainBase : public ElementBase {
     std::deque<ElementBase*> elementList;
     bool pushStand;
     std::string rtn;
+
+    bool finishAllChild(World& w);
 
     virtual void judgement(World& w){};
     virtual void updateFinishFlag(World& w){};

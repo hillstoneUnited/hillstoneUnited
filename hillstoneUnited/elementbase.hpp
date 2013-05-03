@@ -7,7 +7,7 @@
 class ElementBase {
   public:
     ElementBase(){};
-    ~ElementBase(){};
+    virtual ~ElementBase(){};
 
     virtual bool isFinished(){};
 

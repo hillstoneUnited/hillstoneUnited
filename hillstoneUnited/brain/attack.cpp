@@ -103,7 +103,7 @@ void Attack::judgement(World& w) {
             } else {
                 if (close2Bal() || inTerritory())
                 {
-                    if (bal[0] < 3)
+                    if (bal[0] < 1.5)
                     {
                         elementList.push_back(new AdjustToBall(w));
                         std::cout << "#attack: adjusting" << std::endl;
@@ -123,7 +123,7 @@ void Attack::judgement(World& w) {
 
 
 void Attack::updateFinishFlag(World& w) {
-    finish_flag = false;
+    judgement(w);
 }
 
 void Attack::updateFandE(World& w) {
@@ -183,12 +183,12 @@ bool Attack::close2Bal(){
 bool Attack::hasBal() {
 
     std::cout << "bal[0]: " << bal[0] <<
-    "\tabs(angle): " << abs(angle) <<
+    "\tabs(bal[1]): " << abs(bal[1]) <<
     "\tbalposconf: " << balposconf << std::endl;
 
-    if (bal[0] < 1 &&
-        abs(angle) <= 10 &&
-        balposconf <= 100)
+    if (bal[0] < 2 &&
+        abs(bal[1]) <= 10 &&
+        balposconf <= 150)
     {
         return true;
     } else {
@@ -279,92 +279,43 @@ void Attack::testJudge(World& w) {
 
 
 std::string Attack::getNextAngle(World& w) {
-  std::stringstream ss;
-  if(w.getPlaymode()=="BeforeKickOff"&&w.getUnum()>0){
-    beam_flag = true;
-    ss << "(beam " << initpos[0] << " "
-       << initpos[1] << " " << initpos[2]
-       << ")";
-    //    std::cout << ss.str() << std::endl;
-  }
+    std::stringstream ss;
+    if(w.getPlaymode()=="BeforeKickOff"&&w.getUnum()>0){
+        beam_flag = true;
+        ss << "(beam " << initpos[0] << " "
+                << initpos[1] << " " << initpos[2]
+                << ")";
+        // std::cout << ss.str() << std::endl;
+    }
 
     if (w.isFalling())
     {
-        if (!pushStand)
+        if (pushStand)
         {
+            /* code */
+        } else {
             elementList.clear();
             elementList.push_front(new Standup());
             pushStand = true;
-        } else {
-            if (elementList.front()->isFinished())
-            {
-                ElementBase* tmp = elementList.front();
-                delete tmp;
-                elementList.pop_front();
-                elementList.push_front(new Standup());
-                pushStand = true;
-            } else {
-
-            }
-        }
-        rtn = elementList.front()->getNextAngle(w);
-        if (elementList.empty())
-        {
-            updateFinishFlag(w);
-        }
-        
-        if(beam_flag){
-          rtn += ss.str();
-          beam_flag = false;
-        }
-
-        return rtn;
-    }
-
-    pushStand = false;
-
-    if (!elementList.empty())
-    {
-        if (!elementList.front()->isFinished())
-        {
-            rtn = elementList.front()->getNextAngle(w);
-            if(beam_flag){
-                rtn += ss.str();
-                beam_flag = false;
-            }
-            return rtn;
-        } else {
-            ElementBase* tmp = elementList.front();
-            delete tmp;
-            elementList.pop_front();
-
-            if (!elementList.empty())
-            {
-            } else {
-                judgement(w);
-            }
-            rtn = elementList.front()->getNextAngle(w);
-            if (elementList.empty())
-            {
-                updateFinishFlag(w);
-            }
-        if(beam_flag){
-          rtn += ss.str();
-          beam_flag = false;
-        }
-            return rtn;
         }
     } else {
-        judgement(w);
-        rtn = elementList.front()->getNextAngle(w);
-        if (elementList.empty())
-        {
-            updateFinishFlag(w);
-        }
-        if(beam_flag){
-            rtn += ss.str();
-            beam_flag = false;
-        }
-        return rtn;
+        pushStand = false;
     }
+
+    rtn = elementList.front()->getNextAngle(w);
+    if(beam_flag){
+        rtn += ss.str();
+        beam_flag = false;
+    }
+    if (elementList.front()->isFinished())
+    {
+        ElementBase* tmp = elementList.front();
+        delete tmp;
+        elementList.pop_front();
+    }
+    if (finishAllChild(w))
+    {
+        updateFinishFlag(w);
+    }
+    return rtn;
 }
