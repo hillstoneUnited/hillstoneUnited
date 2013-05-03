@@ -8,7 +8,7 @@
 
 #include "ticktackbase.hpp"
 
-int TicktackBase::ts = 0;
+// int TicktackBase::ts = 0;
 
 TicktackBase::TicktackBase(std::string _name, int _count){
     finish_flag = false;

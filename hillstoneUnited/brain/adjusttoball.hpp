@@ -1,22 +1,18 @@
-#ifndef RUNTOBALL_H
-#define RUNTOBALL_H
+#ifndef ADJUSTTOBALL_H
+#define ADJUSTTOBALL_H
 
 #include "brainbase.hpp"
 #include "../world.hpp"
 #include "../movement/odenswalk.hpp"
-#include "../movement/gabase.hpp"
 #include "../movement/ticktackbase.hpp"
 #include "../movement/sequencemovement.hpp"
 #include "../movement/standup.hpp"
 
-class RunToBall : public BrainBase
+class AdjustToBall : public BrainBase
 {
 public:
-    RunToBall(World& w);
-    ~RunToBall(){};
-
-    // bool isFinished();
-    // std::string getNextAngle(World& w);
+    AdjustToBall(World& w);
+    ~AdjustToBall(){};
 
 private:
   double ballpos[2];

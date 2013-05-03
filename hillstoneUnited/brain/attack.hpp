@@ -11,6 +11,8 @@
 #include "../movement/ticktackbase.hpp"
 #include "../movement/sequencemovement.hpp"
 #include "runtoball.hpp"
+#include "adjusttoball.hpp"
+#include "kickto.hpp"
 
 class Attack : public BrainBase
 {

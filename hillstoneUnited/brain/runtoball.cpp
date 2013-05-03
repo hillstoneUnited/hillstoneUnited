@@ -43,11 +43,6 @@ void RunToBall::judgement(World& w){
         elementList.push_back(new TicktackBase("TLEFT", 2));
         elementList.push_back(new SequenceMovement("LAROUND"));
     } else {
-        if(w.getABSANGLE() > 180){
-            temp_abs = w.getABSANGLE();
-        } else {
-            temp_abs = w.getABSANGLE();
-        }
 
         if(bal[0] > 6){
             if(bal[1] > 20){
@@ -85,9 +80,8 @@ void RunToBall::judgement(World& w){
 
 void RunToBall::updateFinishFlag(World& w)
 {
-    if (abs(w.getBXY(0) - w.getXY(0)) < 0.8 &&
-        abs(w.getBXY(1) - w.getXY(1)) < 0.8 &&
-        w.confXY() <= 150 && w.confBXY() <= 150)
+    if (abs(w.getBAL(0)) < 2 &&
+        w.confBAL() <= 150)
     {
         finish_flag = true;
     } else {

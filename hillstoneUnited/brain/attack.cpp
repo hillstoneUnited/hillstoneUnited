@@ -31,6 +31,8 @@ void Attack::testJudge(World& w) {
         }
     } else {
         std::cout << "finish!!" << std::endl;
+        elementList.push_back(new AdjustToBall(w));
+        elementList.push_back(new KickTo(w, 0));
         elementList.push_back(new SequenceMovement("DUMMY"));
     }
 
