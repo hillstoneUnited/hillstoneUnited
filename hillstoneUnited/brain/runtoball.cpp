@@ -86,5 +86,6 @@ void RunToBall::updateFinishFlag(World& w)
         finish_flag = true;
     } else {
         finish_flag = false;
+        judgement(w);
     }
 }

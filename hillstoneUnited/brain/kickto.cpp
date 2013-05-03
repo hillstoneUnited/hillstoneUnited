@@ -84,5 +84,6 @@ void KickTo::updateFinishFlag(World& w)
 		}
 		else{
 			finish_flag = false;
+            judgement(w);
 		}
 }

@@ -19,6 +19,8 @@ class BrainBase : public ElementBase {
     bool pushStand;
     std::string rtn;
 
+    bool finishAllChild(World& w);
+
     virtual void judgement(World& w){};
     virtual void updateFinishFlag(World& w){};
 };

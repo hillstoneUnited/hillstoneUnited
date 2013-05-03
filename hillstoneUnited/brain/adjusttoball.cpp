@@ -65,7 +65,7 @@ void AdjustToBall::updateFinishFlag(World& w)
     std::cout << "##adjust update##\tbal[0]: " << w.getBAL(0) <<
     "\tconfBAL: " << w.confBAL() <<
     "\tabs(w.getBAL): " << abs(w.getBAL(1)) << std::endl;
-    if (w.getBAL(0) < 2 &&
+    if (w.getBAL(0) < 1.5 &&
         w.confBAL() <= 150 &&
         abs(w.getBAL(1)) <= 10 &&
         !w.isFalling())
@@ -73,5 +73,6 @@ void AdjustToBall::updateFinishFlag(World& w)
         finish_flag = true;
     } else {
         finish_flag = false;
+        judgement(w);
     }
 }
