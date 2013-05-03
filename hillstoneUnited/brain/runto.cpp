@@ -44,10 +44,6 @@ void RunTo::judgement(World& w){
     if(u < 0 && v >= 0){ angle +=  180;}
     else if(u < 0 && v < 0){ angle += -180;}
 
-    std::cout << "I want to go (" << point[0] << ", " << point[1] << ")" << std::endl;
-    std::cout << "angle = " << angle << std::endl;
-    std::cout << "my_angle = " << my_angle << std::endl;
-
     t_count = abs(15 * angle / 360);
     if(t_count == 0){
       t_count = 1;
@@ -67,8 +63,8 @@ void RunTo::judgement(World& w){
 	}
 	else{
 	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new TicktackBase("FORWARD", 30));
-	  elementList.push_back(new GABase("GA_FORWARD", 100));
+	  elementList.push_back(new TicktackBase("FORWARD", 3));
+	  elementList.push_back(new GABase("GA_FORWARD", 10));
 	}
       }
       else{
@@ -79,8 +75,8 @@ void RunTo::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-	  elementList.push_back(new TicktackBase("FORWARD", 10));
-	  elementList.push_back(new TicktackBase("DRIBBLE", 50));
+	  elementList.push_back(new TicktackBase("FORWARD", 5));
+	  elementList.push_back(new TicktackBase("DRIBBLE", 10));
 	}
       }
     }
