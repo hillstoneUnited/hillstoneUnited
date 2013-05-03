@@ -48,8 +48,8 @@ void RunToBall::judgement(World& w){
             if(bal[1] > 20){
                 elementList.push_back(new TicktackBase("TLEFT", t_count));
             } else if(bal[1] > -20){
-                elementList.push_back(new SequenceMovement("DUMMY"));
-                elementList.push_back(new TicktackBase("FORWARD", 10));
+                elementList.push_back(new SequenceMovement("READY"));
+                elementList.push_back(new TicktackBase("FORWARD", 1));
                 elementList.push_back(new GABase("GA_FORWARD", bal[0] * 10)); // 200
             } else {
                 elementList.push_back(new TicktackBase("TRIGHT", t_count));
@@ -58,8 +58,8 @@ void RunToBall::judgement(World& w){
             if(bal[1] > 10){
                 elementList.push_back(new TicktackBase("TLEFT", t_count));
             }else if(bal[1] > -10){
-                elementList.push_back(new SequenceMovement("DUMMY"));
-                elementList.push_back(new TicktackBase("FORWARD", 3));
+                elementList.push_back(new SequenceMovement("READY"));
+                elementList.push_back(new TicktackBase("FORWARD", 1));
                 elementList.push_back(new GABase("GA_FORWARD", 100)); // 100
             }else{
                 elementList.push_back(new TicktackBase("TRIGHT", t_count));

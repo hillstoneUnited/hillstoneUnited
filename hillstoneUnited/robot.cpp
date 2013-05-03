@@ -41,7 +41,7 @@ std::string Robot::getNextAngle(std::string &msg){
       mainbrain = new Attack(world, initpos2);
       break;
     default:
-      mainbrain = new Defend(world, initpos3);
+      mainbrain = new Attack(world, initpos3);
       break;
     }
 
