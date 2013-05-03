@@ -6,6 +6,7 @@
 #include "elementbase.hpp"
 #include "brain/brainbase.hpp"
 #include "brain/attack.hpp"
+#include "brain/defend.hpp"
 
 /*
   This class is interface to main function.
