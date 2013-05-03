@@ -57,12 +57,15 @@ void AdjustToBall::judgement(World& w){
     }
 
     std::cout << w.getBAL(0) << std::endl;
-    std::cout << "adjusting" << std::endl;
+    std::cout << "adjusting\tnextangle" << std::endl;
 }
 
 void AdjustToBall::updateFinishFlag(World& w)
-{
-    if (w.getBAL(0) < 0.73 &&
+{ // 0.73
+    std::cout << "##adjust update##\tbal[0]: " << w.getBAL(0) <<
+    "\tconfBAL: " << w.confBAL() <<
+    "\tabs(w.getBAL): " << abs(w.getBAL(1)) << std::endl;
+    if (w.getBAL(0) < 2 &&
         w.confBAL() <= 150 &&
         abs(w.getBAL(1)) <= 10 &&
         !w.isFalling())

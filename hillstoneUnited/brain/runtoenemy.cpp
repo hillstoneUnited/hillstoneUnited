@@ -38,6 +38,7 @@ void RunToEnemy::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TLEFT", t_count));
 	}
 	else if(enemy[1] > -15){
+    elementList.push_back(new TicktackBase("FORWARD", 5));
 	  elementList.push_back(new GABase("GA_FORWARD", 200));
 	}
 	else{
@@ -49,6 +50,7 @@ void RunToEnemy::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TLEFT", t_count));
 	}
 	else if(enemy[1] > -10){
+    elementList.push_back(new TicktackBase("FORWARD", 5));
 	  elementList.push_back(new GABase("GA_FORWARD", 100));
 	}
 	else{
@@ -60,6 +62,7 @@ void RunToEnemy::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TLEFT", t_count));
 	}
 	else if(enemy[1] > -3){
+    elementList.push_back(new TicktackBase("FORWARD", 5));
 	  elementList.push_back(new GABase("GA_FORWARD", 100));
 	}
 	else{
