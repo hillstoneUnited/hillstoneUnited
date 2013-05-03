@@ -48,8 +48,8 @@ void AdjustToBall::judgement(World& w){
             elementList.push_back(new TicktackBase("TLEFT", t_count));
         }else if(bal[1] > -10){
             elementList.push_back(new SequenceMovement("DUMMY"));
-            elementList.push_back(new TicktackBase("SLOW_FORWARD", 3));
-            elementList.push_back(new TicktackBase("DRIBBLE", 4));
+            elementList.push_back(new TicktackBase("FORWARD", 3));
+            elementList.push_back(new TicktackBase("SLOW_FORWARD", 4));
             elementList.push_back(new SequenceMovement("LAROUND"));
         }else{
             elementList.push_back(new TicktackBase("TRIGHT", t_count));
@@ -62,8 +62,9 @@ void AdjustToBall::judgement(World& w){
 
 void AdjustToBall::updateFinishFlag(World& w)
 {
-    if (w.getBAL(0) < 0.8 &&
+    if (w.getBAL(0) < 0.73 &&
         w.confBAL() <= 150 &&
+        abs(w.getBAL(1)) <= 10 &&
         !w.isFalling())
     {
         finish_flag = true;

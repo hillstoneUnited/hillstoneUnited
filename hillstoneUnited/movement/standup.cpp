@@ -40,18 +40,18 @@ std::string Standup::getNextAngle(World& w){
 
     if(ACC_Sum[1] > 9.0 && ACC_Sum[1] < 15){
       // aomuki ?
-      std::cout << "standupAction : I'm aomuki" << std::endl;
+      // std::cout << "standupAction : I'm aomuki" << std::endl;
       actiontype = 1;
     }else if(ACC_Sum[1] < -9.0 && ACC_Sum[1] > -15){
-      std::cout << "standupAction : I'm utsubuse" << std::endl;
+      // std::cout << "standupAction : I'm utsubuse" << std::endl;
       actiontype = 0;
     }else if(fabs(ACC_Sum[0]) > 9.0 && fabs(ACC_Sum[0]) < 15){
       // yokomuki
-      std::cout << "standupAction : I'm yokomuki" << std::endl;
+      // std::cout << "standupAction : I'm yokomuki" << std::endl;
       actiontype = 1;
     }else{
-      std::cout << "standupAction : unknown falling?" << std::endl;
-      std::cout << "I'm not falling?" << std::endl;
+      // std::cout << "standupAction : unknown falling?" << std::endl;
+      // std::cout << "I'm not falling?" << std::endl;
       actiontype = -1;
       state = END;
     }
@@ -289,7 +289,7 @@ std::string Standup::getNextAngle(World& w){
 
   case END:
 
-    std::cout << "standupAction : END" << std::endl;
+    // std::cout << "standupAction : END" << std::endl;
     if((fabs(ACC_Sum[1]) > 9.0 && fabs(ACC_Sum[1]) < 15) ||
         (fabs(ACC_Sum[0]) > 9.0 && fabs(ACC_Sum[0]) < 15)){
       //falling
@@ -308,7 +308,7 @@ std::string Standup::getNextAngle(World& w){
       }
 
     }else{  // standed
-      std::cout << "I'm standed" << std::endl;
+      // std::cout << "I'm standed" << std::endl;
       finish_flag = true;
       ts = 0;
       actiontype = -1;
