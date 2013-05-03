@@ -527,24 +527,89 @@ void SequenceMovement::setNewSequence(std::string name){
     pose1.setTarget(raj3, 0);
     pose1.setTarget(laj4, 0);
     pose1.setTarget(raj4, 0);
-    pose1.setTarget(llj1, 0);
-    pose1.setTarget(rlj1, 0);
+    pose1.setTarget(llj1, -17);
+    pose1.setTarget(rlj1, -17);
     pose1.setTarget(llj2, 0);
     pose1.setTarget(rlj2, 0);
-    pose1.setTarget(llj3, 43);
-    pose1.setTarget(rlj3, 43);
-    pose1.setTarget(llj4, -33);
-    pose1.setTarget(rlj4, -33);
-    pose1.setTarget(llj5, 24);
-    pose1.setTarget(rlj5, 24);
+    pose1.setTarget(llj3, 35);
+    pose1.setTarget(rlj3, 35);
+    pose1.setTarget(llj4, -80);
+    pose1.setTarget(rlj4, -80);
+    pose1.setTarget(llj5, 50);
+    pose1.setTarget(rlj5, 50);
     pose1.setTarget(llj6, 0);
     pose1.setTarget(rlj6, 0);
     Sequence sequence;
     sequence.addPose(pose0);
     sequence.addPose(pose1);
     setNewSequence(sequence);
+  } if(name == "LAROUNDREADY"){
+
+    Pose laroundr1;
+    laroundr1.setTarget(hj1, -120);
+    laroundr1.setTarget(hj2, -40);
+    laroundr1.setTarget(laj1, -90);
+    laroundr1.setTarget(raj1, -90);
+    laroundr1.setTarget(laj3, -90);
+    laroundr1.setTarget(raj3, 90);
+    laroundr1.setTarget(laj4, -90);
+    laroundr1.setTarget(raj4, 90);
+    laroundr1.setTarget(llj1, -17);
+    laroundr1.setTarget(rlj1, -17);
+    laroundr1.setTarget(llj2, 0);
+    laroundr1.setTarget(rlj2, 0);
+    laroundr1.setTarget(llj3, 43);
+    laroundr1.setTarget(rlj3, 43);
+    laroundr1.setTarget(llj4, -33);
+    laroundr1.setTarget(rlj4, -33);
+    laroundr1.setGain(0.2);
+    Pose laroundr2;
+    laroundr2.setTarget(hj1, 120);
+    laroundr2.setTarget(hj2, 10);
+    laroundr2.setTarget(laj1, -90);
+    laroundr2.setTarget(raj1, -90);
+    laroundr2.setTarget(laj3, -90);
+    laroundr2.setTarget(raj3, 90);
+    laroundr2.setTarget(laj4, -90);
+    laroundr2.setTarget(raj4, 90);
+    laroundr2.setTarget(llj1, -17);
+    laroundr2.setTarget(rlj1, -17);
+    laroundr2.setTarget(llj2, 0);
+    laroundr2.setTarget(rlj2, 0);
+    laroundr2.setTarget(llj3, 43);
+    laroundr2.setTarget(rlj3, 43);
+    laroundr2.setTarget(llj4, -33);
+    laroundr2.setTarget(rlj4, -33);
+    laroundr2.setGain(0.2);
+    Pose laroundr3;
+    laroundr3.setTarget(hj1, 0);
+    laroundr3.setTarget(hj2, 0);
+    laroundr3.setTarget(laj1, -90);
+    laroundr3.setTarget(raj1, -90);
+    laroundr3.setTarget(laj3, -90);
+    laroundr3.setTarget(raj3, 90);
+    laroundr3.setTarget(laj4, -90);
+    laroundr3.setTarget(raj4, 90);
+    laroundr3.setTarget(llj1, -17);
+    laroundr3.setTarget(rlj1, -17);
+    laroundr3.setTarget(llj2, 0);
+    laroundr3.setTarget(rlj2, 0);
+    laroundr3.setTarget(llj3, 43);
+    laroundr3.setTarget(rlj3, 43);
+    laroundr3.setTarget(llj4, -33);
+    laroundr3.setTarget(rlj4, -33);
+    laroundr3.setGain(0.2);
+
+    Sequence laroundr;
+    //  laroundr.addPose(laroundr0);
+    laroundr.addPose(laroundr1);
+    laroundr.addPose(laroundr2);
+    laroundr.addPose(laroundr3);
+
+    setNewSequence(laroundr); // <- over write member
+    
   } else {
-      std::cout << "BAD argument in: new SequenceMovement(BAD)" << std::endl;
+      std::cout << "BAD argument in: new SequenceMovement(BAD): " << name << std::endl;
   }
 
 }
