@@ -25,9 +25,7 @@ std::string Robot::getNextAngle(std::string &msg){
   //return "hogehoge in robot"; // I'll change it
 
   //  static double initpos[3] = {-10.5, 0.0, 0.0};
-  static double initpos1[3] = {-10.5,-5.0, 0.0};
-  static double initpos2[3] = {-10.5, 5.0, 0.0};
-  static double initpos3[3] = {-3.5, 0.0, 0.0};
+  //  static double initpos[3] = {-10.5,0.0, 0.0};
 
   if (world.getUnum() > 0){
     if (virgin){
