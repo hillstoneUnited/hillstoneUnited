@@ -15,6 +15,7 @@
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
 #include "runto.hpp"
+#include "runtoenemy.hpp"
 
 class Attack : public BrainBase
 {
@@ -61,10 +62,12 @@ private:
 
     bool inTerritory();
     bool atHome();
+    bool farHome();
     bool close2Bal();
     bool hasBal();
     bool close2Goal();
     bool ableToPass();
+    int getInvader();
 };
 
 #endif

@@ -60,8 +60,8 @@ void Attack::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
-    std::cout << egr[0] << std::endl;
-    std::cout << egr[1] << std::endl;
+    // std::cout << egr[0] << std::endl;
+    // std::cout << egr[1] << std::endl;
 
 
     if (hasBal())
@@ -87,12 +87,37 @@ void Attack::judgement(World& w) {
             }
         }
 
+        elementList.push_back(new AdjustToBall(w));
         elementList.push_back(new KickTo(w, kickAngle));
     } else {
-        // hogehoge
-        elementList.push_back(new RunTo(w, initpos));
+        if (farHome())
+        {
+            elementList.push_back(new RunTo(w, initpos));
+            std::cout << "go home" << std::endl;
+        } else {
+            int invader = getInvader();
+            if (invader != -1)
+            {
+                elementList.push_back(new RunToEnemy(w, invader));
+                std::cout << "tuckle" << std::endl;
+            } else {
+                if (close2Bal() || inTerritory())
+                {
+                    if (bal[0] < 3)
+                    {
+                        elementList.push_back(new AdjustToBall(w));
+                        std::cout << "#attack: adjusting" << std::endl;
+                    } else {
+                        elementList.push_back(new RunToBall(w));
+                        std::cout << "ball!!" << std::endl;
+                    }
+                } else {
+                    elementList.push_back(new RunTo(w, initpos));
+                    std::cout << "go home(nothing)" << std::endl;
+                }
+            }
+        }
     }
-
     // testJudge(w);
 }
 
@@ -108,18 +133,19 @@ void Attack::updateFandE(World& w) {
         {
             friends[i][j] = w.getFRIEND(i, j);
             enemies[i][j] = w.getENEMY(i, j);
-            std::cout << friends[i][j] << ", ";
+            // std::cout << friends[i][j] << ", ";
         }
         friendsconf[i] = w.confFRIEND(i);
         enemiesconf[i] = w.confENEMY(i);
-        std::cout << friendsconf[i] << ", " << std::endl;
+        // std::cout << friendsconf[i] << ", " << std::endl;
     }
 }
 
 
 bool Attack::inTerritory(){
   if(abs(ballpos[0] - initpos[0]) < 6.0 &&
-     abs(ballpos[1] - initpos[1]) < 6.0){
+     abs(ballpos[1] - initpos[1]) < 6.0 &&
+     balposconf <= 250){
     return true;
   }else{
     return false;
@@ -127,16 +153,27 @@ bool Attack::inTerritory(){
 }
 
 bool Attack::atHome(){
-  if(abs(mypos[0] - initpos[0]) < 0.5 &&
-     abs(mypos[1] - initpos[1]) < 0.5){
+  if(abs(mypos[0] - initpos[0]) < 3 &&
+     abs(mypos[1] - initpos[1]) < 3){
     return true;
   }else{
     return false;
   }
 }
 
+bool Attack::farHome() {
+    if (sqrt(pow(mypos[0]-initpos[0], 2.0) +
+             pow(mypos[1]-initpos[1], 2.0)) >= 10 &&
+        myposconf <= 250)
+    {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 bool Attack::close2Bal(){
-  if(abs(bal[0]) < 3){
+  if(abs(bal[0]) < 4.5 && balposconf <= 150){
     return true;
   }else{
     return false;
@@ -144,8 +181,14 @@ bool Attack::close2Bal(){
 }
 
 bool Attack::hasBal() {
-    if (abs(bal[0] < 0.7 &&
-        abs(angle) <= 10))
+
+    std::cout << "bal[0]: " << bal[0] <<
+    "\tabs(angle): " << abs(angle) <<
+    "\tbalposconf: " << balposconf << std::endl;
+
+    if (bal[0] < 1 &&
+        abs(angle) <= 10 &&
+        balposconf <= 100)
     {
         return true;
     } else {
@@ -182,6 +225,21 @@ bool Attack::ableToPass() {
     }
 
     return pass_flag;
+}
+
+
+int Attack::getInvader(){
+    for (int i = 10; i >= 0; i--)
+    {
+        if (abs(enemies[i][0] - ballpos[0]) < 1.0 &&
+            abs(enemies[i][1] - ballpos[1]) < 10 &&
+            enemiesconf[i] <= 50)
+        {
+            return i;
+        }
+    }
+
+    return -1; // should not to tuckle
 }
 
 void Attack::testJudge(World& w) {
