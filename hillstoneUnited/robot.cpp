@@ -29,8 +29,8 @@ std::string Robot::getNextAngle(std::string &msg){
   if (virgin)
   {
     mainbrain = new Attack(world, initpos);
-    //    mainbrain = new Defend(world, initpos);
-    //mainbrain = new KickTo(world, 90);
+    //mainbrain = new Defend(world, initpos);
+    //mainbrain = new KickTo(world, 0);
     virgin = false;
   }else{
 
@@ -38,8 +38,8 @@ std::string Robot::getNextAngle(std::string &msg){
     {
       delete mainbrain;
       mainbrain = new Attack(world, initpos);
-      //      mainbrain = new Defend(world, initpos);
-      //mainbrain = new KickTo(world, 90);
+      //mainbrain = new Keeper(world);
+      //mainbrain = new Defend(world, initpos);
       std::cout << "finish!!" << std::endl;
     }
 

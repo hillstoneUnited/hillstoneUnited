@@ -7,15 +7,17 @@
 
 KickTo::KickTo(World& w ,double _target_angle){
 		// angle:count = 90:15
+		//std::cout << "KickTo constructed!!" << std::endl;
     finish_flag = false;
 
     is_kicked = false;
     target_angle = _target_angle;
+    judgement(w);
     updateFinishFlag(w);
 }
 
 void KickTo::turn(World& w){
-	std::cout << "KickTo::turning!" << std::endl;
+	//std::cout << "KickTo::turning!" << std::endl;
   double dp_angle = target_angle - w.getABSANGLE();
   if(dp_angle < -180){
   		dp_angle = 360 + dp_angle;
@@ -34,17 +36,38 @@ void KickTo::turn(World& w){
 }
 
 void KickTo::judgement(World& w){
-		std::cout << "judgement" << std::endl;
 		elementList.push_back(new SequenceMovement("LAROUND"));
-		if( fabs( fabs( target_angle )-fabs( w.getABSANGLE() ) ) < 10 && !is_kicked){
-				std::cout << "KickTo::kick!!" << std::endl;
-				elementList.push_back(new SequenceMovement("DUMMY"));
-				elementList.push_back(new TicktackBase("FORWARD",5));
-				elementList.push_back(new GABase("GA_FORWARD",100));
-				//is_kicked = true;
+
+		//kick
+		if( fabs( fabs( target_angle )-fabs( w.getABSANGLE() ) ) < 10){
+				//modify rellation(agent-ball) angle
+				double ballangle = w.getBAL(1);
+				//count:angle = 6:90
+				int count = int(6*fabs(ballangle)/90);
+				if(count<3){
+					count+=1;
+				}
+				std::cout << "count" << count << ",angle" << ballangle << std::endl;
+
+				if(ballangle>0 && count>1){
+					elementList.push_back(new SequenceMovement("DUMMY"));
+					elementList.push_back(new TicktackBase("TLEFT",count));
+				}
+				else if(count>1){
+					elementList.push_back(new SequenceMovement("DUMMY"));
+					elementList.push_back(new TicktackBase("TRIGHT",count));
+				}
+
+				if(true){
+					//std::cout << "KickTo::kick!!" << std::endl;
+					elementList.push_back(new SequenceMovement("DUMMY"));
+					elementList.push_back(new TicktackBase("FORWARD",5));
+					elementList.push_back(new GABase("GA_FORWARD",100));
+					is_kicked = true;
+				}
 		}
 		else{
-				std::cout << "modify my angle" <<std::endl;
+				//std::cout << "modify my angle" <<std::endl;
 				turn(w);
 		}
 }
@@ -52,8 +75,8 @@ void KickTo::judgement(World& w){
 
 void KickTo::updateFinishFlag(World& w)
 {
-	std::cout << "updateFinishFlag" << std::endl;
 		if(is_kicked){
+			std::cout << "finish_flag=True" << std::endl;
 			finish_flag = true;
 		}
 		else{

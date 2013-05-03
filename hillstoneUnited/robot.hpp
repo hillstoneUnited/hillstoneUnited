@@ -7,8 +7,9 @@
 #include "brain/brainbase.hpp"
 #include "brain/attack.hpp"
 #include "brain/defend.hpp"
-
+#include "brain/keeper.hpp"
 #include "brain/kickto.hpp"
+
 
 /*
   This class is interface to main function.
