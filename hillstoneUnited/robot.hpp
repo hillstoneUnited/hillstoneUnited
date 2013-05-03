@@ -8,6 +8,8 @@
 #include "brain/attack.hpp"
 #include "brain/defend.hpp"
 
+#include "brain/kickto.hpp"
+
 /*
   This class is interface to main function.
   This class receive string from server(include what the robot sensor observed).
