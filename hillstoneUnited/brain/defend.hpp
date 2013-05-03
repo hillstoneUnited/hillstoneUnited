@@ -1,9 +1,12 @@
 #ifndef DEFEND_H
 #define DEFEND_H
 
+#include <sstream>
+
 #include "brainbase.hpp"
 #include "../world.hpp"
 #include "runto.hpp"
+#include "kickto.hpp"
 #include "runtoball.hpp"
 #include "runtoenemy.hpp"
 #include "../movement/gabase.hpp"
@@ -20,7 +23,7 @@ public:
   ~Defend(){};
 
   //  bool isFinished();
-  //  std::string getNextAngle(World& w);
+  virtual std::string getNextAngle(World& w);
 
 private:
   //  bool beam_flag;
@@ -29,18 +32,26 @@ private:
   double mypos[2];
   double bal[3];
   double angle;
+  double dist;
 
   int field_x;
   int field_y;
 
   int balposconf;
   int myposconf;
+  int t_count;
+
+  double friends[11][4];
+  double enemy[11][4];
+
+  bool beam_flag;
 
   bool inTerritory();
   bool atHome();
   bool close2Bal();
   bool towardEnemy();
   bool inDanger();
+  int getInvader();
 
   void judgement(World& w);
   void updateFinishFlag(World& w);
