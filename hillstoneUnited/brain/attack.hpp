@@ -2,6 +2,7 @@
 #define ATTACK_H
 
 #include <typeinfo>
+#include <sstream>
 
 #include "brainbase.hpp"
 #include "../world.hpp"
@@ -22,7 +23,7 @@ public:
     ~Attack(){};
 
     // bool isFinished();
-    // std::string getNextAngle(World& w);
+    std::string getNextAngle(World& w);
 
 private:
     double initpos[3];
@@ -33,6 +34,7 @@ private:
     double egr[3];
     double egl[3];
     double friends[11][3];
+    double enemies[11][3];
 
     int field_x;
     int field_y;
@@ -42,10 +44,12 @@ private:
     int egrconf;
     int eglconf;
     int friendsconf[11];
+    int enemiesconf[11];
 
     double kickAngle;
     int passTo;
 
+    bool beam_flag;
     bool tmpflag;
 
     void judgement(World& w);
@@ -53,7 +57,7 @@ private:
 
     void testJudge(World& w);
 
-    void updateFriends(World& w);
+    void updateFandE(World& w);
 
     bool inTerritory();
     bool atHome();

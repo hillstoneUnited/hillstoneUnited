@@ -261,7 +261,11 @@ std::string Defend::getNextAngle(World& w) {
             }
         }
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+          updateFinishFlag(w);
+        }
+
 	if(beam_flag){
 	  rtn += ss.str();
 	  beam_flag = false;
@@ -293,7 +297,11 @@ std::string Defend::getNextAngle(World& w) {
                 judgement(w);
             }
             rtn = elementList.front()->getNextAngle(w);
-            updateFinishFlag(w);
+            if (elementList.empty())
+            {
+              updateFinishFlag(w);
+            }
+
 	    if(beam_flag){
 	      rtn += ss.str();
 	      beam_flag = false;
@@ -303,7 +311,10 @@ std::string Defend::getNextAngle(World& w) {
     } else {
         judgement(w);
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+          updateFinishFlag(w);
+        }
 	if(beam_flag){
 	  rtn += ss.str();
 	  beam_flag = false;

@@ -2,6 +2,7 @@
 
 Attack::Attack(World& w, double _initpos[]) {
     finish_flag = false;
+    beam_flag = false;
 
     ballpos[0] = 0.0;
     ballpos[1] = 0.0;
@@ -20,7 +21,7 @@ Attack::Attack(World& w, double _initpos[]) {
         egr[i] = w.getEGR(i);
         egl[i] = w.getEGL(i);
     }
-    updateFriends(w);
+    updateFandE(w);
 
     field_x = w.getFieldLengthX();
     field_y = w.getFieldLengthY();
@@ -54,7 +55,7 @@ void Attack::judgement(World& w) {
         egr[i] = w.getEGR(i);
         egl[i] = w.getEGL(i);
     }
-    updateFriends(w);
+    updateFandE(w);
 
     kickAngle = 0.0;
     passTo = 0;
@@ -100,15 +101,17 @@ void Attack::updateFinishFlag(World& w) {
     finish_flag = false;
 }
 
-void Attack::updateFriends(World& w) {
+void Attack::updateFandE(World& w) {
     for (int i = 0; i < 11; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             friends[i][j] = w.getFRIEND(i, j);
+            enemies[i][j] = w.getENEMY(i, j);
             std::cout << friends[i][j] << ", ";
         }
         friendsconf[i] = w.confFRIEND(i);
+        enemiesconf[i] = w.confENEMY(i);
         std::cout << friendsconf[i] << ", " << std::endl;
     }
 }
@@ -214,4 +217,96 @@ void Attack::testJudge(World& w) {
 
     // std::cout << "judgement desu no!!" << std::endl;
     // std::cout << "next: " << typeid(*elementList.front()).name() << std::endl;
+}
+
+
+std::string Attack::getNextAngle(World& w) {
+  std::stringstream ss;
+  if(w.getPlaymode()=="BeforeKickOff"&&w.getUnum()>0){
+    beam_flag = true;
+    ss << "(beam " << initpos[0] << " "
+       << initpos[1] << " " << initpos[2]
+       << ")";
+    //    std::cout << ss.str() << std::endl;
+  }
+
+    if (w.isFalling())
+    {
+        if (!pushStand)
+        {
+            elementList.clear();
+            elementList.push_front(new Standup());
+            pushStand = true;
+        } else {
+            if (elementList.front()->isFinished())
+            {
+                ElementBase* tmp = elementList.front();
+                delete tmp;
+                elementList.pop_front();
+                elementList.push_front(new Standup());
+                pushStand = true;
+            } else {
+
+            }
+        }
+        rtn = elementList.front()->getNextAngle(w);
+        if (elementList.empty())
+        {
+            updateFinishFlag(w);
+        }
+        
+        if(beam_flag){
+          rtn += ss.str();
+          beam_flag = false;
+        }
+
+        return rtn;
+    }
+
+    pushStand = false;
+
+    if (!elementList.empty())
+    {
+        if (!elementList.front()->isFinished())
+        {
+            rtn = elementList.front()->getNextAngle(w);
+            if(beam_flag){
+                rtn += ss.str();
+                beam_flag = false;
+            }
+            return rtn;
+        } else {
+            ElementBase* tmp = elementList.front();
+            delete tmp;
+            elementList.pop_front();
+
+            if (!elementList.empty())
+            {
+            } else {
+                judgement(w);
+            }
+            rtn = elementList.front()->getNextAngle(w);
+            if (elementList.empty())
+            {
+                updateFinishFlag(w);
+            }
+        if(beam_flag){
+          rtn += ss.str();
+          beam_flag = false;
+        }
+            return rtn;
+        }
+    } else {
+        judgement(w);
+        rtn = elementList.front()->getNextAngle(w);
+        if (elementList.empty())
+        {
+            updateFinishFlag(w);
+        }
+        if(beam_flag){
+            rtn += ss.str();
+            beam_flag = false;
+        }
+        return rtn;
+    }
 }
