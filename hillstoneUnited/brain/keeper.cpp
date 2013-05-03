@@ -10,16 +10,23 @@ Keeper::Keeper(World& w){
     updateFinishFlag(w);
 }
 
-void KickTo::judgement(World& w){
+void Keeper::judgement(World& w){
 		double dis = w.getBAL(0);
 		double angle = w.getBAL(1);
 		std::cout << "BAL" << dis << ","<< angle << std::endl;
+		if(dis < 1.5 && dis > 0.8){
+				elementList.push_back( new TicktackBase("SLEFT",10));
+				elementList.push_back( new TicktackBase("SLEFT",10));
+		}
+		else if(dis <= 0.8){
 
+		}
 		elementList.push_back(new SequenceMovement("DUMMY"));
+
 }
 
 
-void KickTo::updateFinishFlag(World& w)
+void Keeper::updateFinishFlag(World& w)
 {
 		finish_flag = false;
 }

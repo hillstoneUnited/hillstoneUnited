@@ -36,6 +36,8 @@ void KickTo::turn(World& w){
 void KickTo::judgement(World& w){
 		std::cout << "judgement" << std::endl;
 		elementList.push_back(new SequenceMovement("LAROUND"));
+
+		//kick
 		if( fabs( fabs( target_angle )-fabs( w.getABSANGLE() ) ) < 10 && !is_kicked){
 				std::cout << "KickTo::kick!!" << std::endl;
 				elementList.push_back(new SequenceMovement("DUMMY"));

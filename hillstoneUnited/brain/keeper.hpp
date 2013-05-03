@@ -15,8 +15,8 @@ public:
 
 
 private:
-  void updateFinishFlag(World& w);
-  void judgement(World& w);
+    void updateFinishFlag(World& w);
+    void judgement(World& w);
 
 };
 
