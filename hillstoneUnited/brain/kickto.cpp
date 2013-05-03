@@ -47,7 +47,6 @@ void KickTo::judgement(World& w){
 				if(count<3){
 					count+=1;
 				}
-				std::cout << "count" << count << ",angle" << ballangle << std::endl;
 
 				if(ballangle>0 && count>1){
 					elementList.push_back(new SequenceMovement("DUMMY"));
@@ -61,7 +60,7 @@ void KickTo::judgement(World& w){
 				if(true){
 					//std::cout << "KickTo::kick!!" << std::endl;
 					elementList.push_back(new SequenceMovement("DUMMY"));
-					elementList.push_back(new TicktackBase("FORWARD",5));
+					elementList.push_back(new TicktackBase("FORWARD",2));
 					elementList.push_back(new GABase("GA_FORWARD",100));
 					is_kicked = true;
 				}
@@ -76,7 +75,6 @@ void KickTo::judgement(World& w){
 void KickTo::updateFinishFlag(World& w)
 {
 		if(is_kicked){
-			std::cout << "finish_flag=True" << std::endl;
 			finish_flag = true;
 		}
 		else{
