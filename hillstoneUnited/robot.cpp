@@ -30,6 +30,7 @@ std::string Robot::getNextAngle(std::string &msg){
   {
     mainbrain = new Attack(world, initpos);
     //    mainbrain = new Defend(world, initpos);
+    //mainbrain = new KickTo(world, 90);
     virgin = false;
   }else{
 
@@ -38,6 +39,7 @@ std::string Robot::getNextAngle(std::string &msg){
       delete mainbrain;
       mainbrain = new Attack(world, initpos);
       //      mainbrain = new Defend(world, initpos);
+      //mainbrain = new KickTo(world, 90);
       std::cout << "finish!!" << std::endl;
     }
 
