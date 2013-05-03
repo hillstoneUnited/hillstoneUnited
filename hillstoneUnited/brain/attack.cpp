@@ -63,7 +63,7 @@ void Attack::judgement(World& w) {
     std::cout << egr[1] << std::endl;
 
 
-    if (true)
+    if (hasBal())
     {
         if (close2Goal())
         {
