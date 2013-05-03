@@ -293,6 +293,131 @@ void SequenceMovement::setNewSequence(std::string name){
     fright.addPose(fright2);
 
     setNewSequence(fright);
+  } else if(name == "LSPREAD"){
+    	Pose pose0;
+	pose0.setTarget(hj1, 0);
+	pose0.setTarget(hj2, 0);
+	pose0.setTarget(laj1, 0);
+	pose0.setTarget(raj1, 0);
+	pose0.setTarget(laj2, 0);
+	pose0.setTarget(raj2, 0);
+	pose0.setTarget(laj3, 0);
+	pose0.setTarget(raj3, 0);
+	pose0.setTarget(laj4, 0);
+	pose0.setTarget(raj4, 0);
+	pose0.setTarget(llj1, 0);
+	pose0.setTarget(rlj1, 0);
+	pose0.setTarget(llj2, 0);
+	pose0.setTarget(rlj2, 0);
+	pose0.setTarget(llj3, 0);
+	pose0.setTarget(rlj3, 0);
+	pose0.setTarget(llj4, 0);
+	pose0.setTarget(rlj4, 0);
+	pose0.setTarget(llj5, 0);
+	pose0.setTarget(rlj5, 0);
+	pose0.setTarget(llj6, 0);
+	pose0.setTarget(rlj6, 0);
+
+	Pose pose1;
+	pose1.setTarget(llj1, -90);
+	pose1.setTarget(rlj1, -90);
+	pose1.setTarget(llj2, 45);
+	pose1.setTarget(rlj2, -45);
+	pose1.setTarget(llj3, 45);
+	pose1.setTarget(rlj3, 45);
+
+	Pose pose2;
+	pose2.setTarget(laj3, -120);
+	pose2.setTarget(raj3, 120);
+	pose2.setTarget(llj1, -90);
+	pose2.setTarget(rlj1, -90);
+	pose2.setTarget(llj2, 45);
+	pose2.setTarget(rlj2, -45);
+	pose2.setTarget(llj3, 45);
+	pose2.setTarget(rlj3, 45);
+
+	Pose pose3;
+	pose3.setTarget(laj3, 120);
+	pose3.setTarget(raj3, -120);
+	pose3.setTarget(llj1, -90);
+	pose3.setTarget(rlj1, -90);
+	pose3.setTarget(llj2, 45);
+	pose3.setTarget(rlj2, -45);
+	pose3.setTarget(llj3, 45);
+	pose3.setTarget(rlj3, 45);
+
+	Pose pose4;
+	pose4.setTarget(laj3, -120);
+	pose4.setTarget(raj3, 120);
+	pose4.setTarget(llj1, -90);
+	pose4.setTarget(rlj1, -90);
+	pose4.setTarget(llj2, 45);
+	pose4.setTarget(rlj2, -45);
+	pose4.setTarget(llj3, 45);
+	pose4.setTarget(rlj3, 45);
+
+	Pose pose5;
+	pose5.setTarget(laj3, 120);
+	pose5.setTarget(raj3, -120);
+	pose5.setTarget(llj1, -90);
+	pose5.setTarget(rlj1, -90);
+	pose5.setTarget(llj2, 45);
+	pose5.setTarget(rlj2, -45);
+	pose5.setTarget(llj3, 45);
+	pose5.setTarget(rlj3, 45);
+
+	Pose pose6;
+	pose6.setTarget(laj3, -120);
+	pose6.setTarget(raj3, 120);
+	pose6.setTarget(llj1, -90);
+	pose6.setTarget(rlj1, -90);
+	pose6.setTarget(llj2, 45);
+	pose6.setTarget(rlj2, -45);
+	pose6.setTarget(llj3, 45);
+	pose6.setTarget(rlj3, 45);
+
+	Pose pose7;
+	pose7.setTarget(llj1, -90);
+	pose7.setTarget(rlj1, -90);
+	pose7.setTarget(llj2, 45);
+	pose7.setTarget(rlj2, -45);
+	pose7.setTarget(llj3, 45);
+	pose7.setTarget(rlj3, 45);
+
+	Pose pose8;
+	pose8.setTarget(laj1, -28);
+	pose8.setTarget(raj1, -25);
+	pose8.setTarget(laj2, -1);
+	pose8.setTarget(llj1, 1);
+	pose8.setTarget(rlj1, 1);
+	pose8.setTarget(llj3, 100);
+	pose8.setTarget(rlj3, 100);
+	pose8.setTarget(llj4, -130);
+	pose8.setTarget(rlj4, -130);
+	pose8.setTarget(llj5, 75);
+	pose8.setTarget(rlj5, 75);
+
+	Pose pose9;
+	pose9.setTarget(laj1, -90);
+	pose9.setTarget(raj1, -90);
+	pose9.setTarget(laj3, -90);
+	pose9.setTarget(raj3, 90);
+	pose9.setTarget(laj4, -90);
+	pose9.setTarget(raj4, 90);
+
+	Sequence sequence;
+	sequence.addPose(pose0);
+	sequence.addPose(pose1);
+	sequence.addPose(pose2);
+	sequence.addPose(pose3);
+	sequence.addPose(pose4);
+	sequence.addPose(pose5);
+	sequence.addPose(pose6);
+	sequence.addPose(pose7);
+	sequence.addPose(pose8);
+	sequence.addPose(pose9);
+	setNewSequence(sequence);
+
   } else {
       std::cout << "BAD argument in: new SequenceMovement(BAD)" << std::endl;
   }
