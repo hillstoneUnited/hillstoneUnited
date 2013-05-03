@@ -74,6 +74,7 @@ void KickTo::judgement(World& w){
 				turn(w);
 		}
 }
+}
 
 
 void KickTo::updateFinishFlag(World& w)
