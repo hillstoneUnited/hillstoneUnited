@@ -17,7 +17,7 @@ KickTo::KickTo(World& w ,double _target_angle){
 }
 
 void KickTo::turn(World& w){
-	//std::cout << "KickTo::turning!" << std::endl;
+
   double dp_angle = target_angle - w.getABSANGLE();
   if(dp_angle < -180){
   		dp_angle = 360 + dp_angle;
@@ -66,7 +66,6 @@ void KickTo::judgement(World& w){
 				}
 		}
 		else{
-				//std::cout << "modify my angle" <<std::endl;
 				turn(w);
 		}
 }
