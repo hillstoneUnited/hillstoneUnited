@@ -31,6 +31,7 @@ std::string Robot::getNextAngle(std::string &msg){
 
   if (virgin)
   {
+<<<<<<< HEAD
     // // mainbrain = new Attack(world, initpos);
     //    mainbrain = new Defend(world, initpos);
     switch(world.getUnum()){
@@ -44,6 +45,7 @@ std::string Robot::getNextAngle(std::string &msg){
       mainbrain = new Defend(world, initpos3);
       break;
     }
+
     virgin = false;
 
   }else{
@@ -51,6 +53,7 @@ std::string Robot::getNextAngle(std::string &msg){
     if (mainbrain->isFinished())
     {
       delete mainbrain;
+<<<<<<< HEAD
       // mainbrain = new Attack(world, initpos);
       //      mainbrain = new Defend(world, initpos);
       switch(world.getUnum()){
@@ -64,6 +67,7 @@ std::string Robot::getNextAngle(std::string &msg){
 	mainbrain = new Defend(world, initpos3);
 	break;
       }
+
       std::cout << "finish!!" << std::endl;
     }
 
