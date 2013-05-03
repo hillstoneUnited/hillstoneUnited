@@ -24,7 +24,7 @@
       std::string getNextAngle(World& w);
 
     private:
-      static int ts;
+      int ts;
       
       std::string name;
       

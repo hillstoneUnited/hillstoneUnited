@@ -12,7 +12,7 @@ class BrainBase : public ElementBase {
 
     bool isFinished();
 
-    std::string getNextAngle(World& w);
+    virtual std::string getNextAngle(World& w);
 
   protected:
     std::deque<ElementBase*> elementList;
