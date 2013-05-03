@@ -2022,7 +2022,7 @@ bool World::isFalling() {
     return true;
   }
   if((fabs(ACC_Sum[0]) > 9.0 * TH) && (fabs(ACC_Sum[0]) < 15.0 *TH)){
-    std::cout << "yokomuki!" << std::endl;
+    //    std::cout << "yokomuki!" << std::endl;
     return true;
   }
   return false;

@@ -24,11 +24,12 @@ std::string Robot::getNextAngle(std::string &msg){
   **/
   //return "hogehoge in robot"; // I'll change it
 
-  double initpos[2] = {0.0, 0.0};
+  static double initpos[3] = {-10.5, 0.0, 0.0};
 
   if (virgin)
   {
     mainbrain = new Attack(world, initpos);
+    //    mainbrain = new Defend(world, initpos);
     virgin = false;
   }else{
 
@@ -36,6 +37,7 @@ std::string Robot::getNextAngle(std::string &msg){
     {
       delete mainbrain;
       mainbrain = new Attack(world, initpos);
+      //      mainbrain = new Defend(world, initpos);
       std::cout << "finish!!" << std::endl;
     }
 
