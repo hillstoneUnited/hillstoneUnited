@@ -74,61 +74,61 @@ void Defend::judgement(World& w){
     std::cout << "in my Territory." << std::endl;
     if(dist < 12.0){
       if(balposconf==300 && myposconf==300){
-	elementList.push_back(new TicktackBase("TLEFT", 2));
+        elementList.push_back(new TicktackBase("TLEFT", 2));
       }
       else if(balposconf==300){
-	elementList.push_back(new TicktackBase("TLEFT", t_count));
-	elementList.push_back(new SequenceMovement("LAROUND"));
+        elementList.push_back(new TicktackBase("TLEFT", t_count));
+        elementList.push_back(new SequenceMovement("LAROUND"));
       }
       else{
-	if(close2Bal() && towardEnemy()){
-	  std::cout << "close to ball" << std::endl;
-	  if(bal[0] > 10){
-	    elementList.push_back(new TicktackBase("TLEFT", t_count));
-	  }
-	  else if(bal[0] < -10){
-	    elementList.push_back(new TicktackBase("TRIGHT", t_count));
-	  }
-	  else{
-	    elementList.push_back(new SequenceMovement("DUMMY"));
-	    elementList.push_back(new TicktackBase("FORWARD", 2));
-	    elementList.push_back(new GABase("GA_FORWARD", 5));
-	  }
-	  //	  elementList.push_back(new KickTo(w, 0));
-	}else{
-	  if(getInvader()>0){
-	    std::cout << "invader, invader!" << std::endl;
-	    elementList.push_back(new RunToEnemy(w, getInvader()));
-	  }
-	  else{
-	    if(bal[0] < 2.0){
-	      std::cout << "chuuto hanpa" << std::endl;
-	      //	      elementList.push_back(new RunTo(w, ballpos));
-	      if(bal[1] < -20){
-		elementList.push_back(new TicktackBase("TRIGHT", t_count));
-	      }
-	      else if(bal[1] > 20){
-		elementList.push_back(new TicktackBase("TLEFT", t_count));
-	      }
-	      else{
-		elementList.push_back(new TicktackBase("DRIBBLE", 5));
-	      }
-	    }else{
-	      std::cout << "not close to ball" << std::endl;
-	      elementList.push_back(new RunToBall(w));
-	    }
-	  }
-	}
+        if(close2Bal() && towardEnemy()){
+          std::cout << "close to ball" << std::endl;
+          if(bal[0] > 10){
+            elementList.push_back(new TicktackBase("TLEFT", t_count));
+          }
+          else if(bal[0] < -10){
+            elementList.push_back(new TicktackBase("TRIGHT", t_count));
+          }
+          else{
+            elementList.push_back(new SequenceMovement("DUMMY"));
+            elementList.push_back(new TicktackBase("FORWARD", 2));
+            elementList.push_back(new GABase("GA_FORWARD", 5));
+          }
+          //	  elementList.push_back(new KickTo(w, 0));
+        }else{
+          if(getInvader()>0){
+            std::cout << "invader, invader!" << std::endl;
+            elementList.push_back(new RunToEnemy(w, getInvader()));
+          }
+          else{
+            if(bal[0] < 2.0){
+              std::cout << "chuuto hanpa" << std::endl;
+            // elementList.push_back(new RunTo(w, ballpos));
+              if(bal[1] < -20){
+                elementList.push_back(new TicktackBase("TRIGHT", t_count));
+              }
+              else if(bal[1] > 20){
+                elementList.push_back(new TicktackBase("TLEFT", t_count));
+              }
+              else{
+                elementList.push_back(new TicktackBase("DRIBBLE", 5));
+              }
+            }else{
+              std::cout << "not close to ball" << std::endl;
+              elementList.push_back(new RunToBall(w));
+            }
+          }
+        }
       }
     }
     else{
       std::cout << "not in my Territory." << std::endl;
       if(!close2Bal()){
-	double home[2];
-	for(int i=0; i<2; i++){
-	  home[i] = initpos[i];
-	}
-	elementList.push_back(new RunTo(w, home));
+        double home[2];
+        for(int i=0; i<2; i++){
+          home[i] = initpos[i];
+        }
+        elementList.push_back(new RunTo(w, home));
       }
     }
   }else{
@@ -139,28 +139,28 @@ void Defend::judgement(World& w){
     }
     else{
       if(atHome()){
-	if(balposconf==300 && myposconf==300){
-	  elementList.push_back(new TicktackBase("TLEFT", 2));
-	}
-	else if(myposconf==300){
-	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new SequenceMovement("LAROUND"));
-	}
-	else{
-	  if(bal[1] > 0){
-	    elementList.push_back(new TicktackBase("TLEFT", t_count));
-	  }
-	  else{
-	    elementList.push_back(new TicktackBase("TRIGHT", t_count));
-	  }
-	}
+        if(balposconf==300 && myposconf==300){
+          elementList.push_back(new TicktackBase("TLEFT", 2));
+        }
+        else if(myposconf==300){
+          elementList.push_back(new SequenceMovement("DUMMY"));
+          elementList.push_back(new SequenceMovement("LAROUND"));
+        }
+        else{
+          if(bal[1] > 0){
+            elementList.push_back(new TicktackBase("TLEFT", t_count));
+          }
+          else{
+            elementList.push_back(new TicktackBase("TRIGHT", t_count));
+          }
+        }
       }
       else{
-	double home[2];
-	for(int i=0; i<2; i++){
-	  home[i] = initpos[i];
-	}
-	elementList.push_back(new RunTo(w, home));
+        double home[2];
+        for(int i=0; i<2; i++){
+          home[i] = initpos[i];
+        }
+        elementList.push_back(new RunTo(w, home));
       }
     }
   }
@@ -261,7 +261,11 @@ std::string Defend::getNextAngle(World& w) {
             }
         }
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+          updateFinishFlag(w);
+        }
+
 	if(beam_flag){
 	  rtn += ss.str();
 	  beam_flag = false;
@@ -293,7 +297,11 @@ std::string Defend::getNextAngle(World& w) {
                 judgement(w);
             }
             rtn = elementList.front()->getNextAngle(w);
-            updateFinishFlag(w);
+            if (elementList.empty())
+            {
+              updateFinishFlag(w);
+            }
+
 	    if(beam_flag){
 	      rtn += ss.str();
 	      beam_flag = false;
@@ -303,7 +311,10 @@ std::string Defend::getNextAngle(World& w) {
     } else {
         judgement(w);
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+          updateFinishFlag(w);
+        }
 	if(beam_flag){
 	  rtn += ss.str();
 	  beam_flag = false;

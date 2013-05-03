@@ -36,7 +36,10 @@ std::string BrainBase::getNextAngle(World& w) {
             }
         }
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+            updateFinishFlag(w);
+        }
         return rtn;
     }
 
@@ -59,14 +62,17 @@ std::string BrainBase::getNextAngle(World& w) {
             }
             rtn = elementList.front()->getNextAngle(w);
             if(elementList.empty()){
-            		updateFinishFlag(w);
+            	updateFinishFlag(w);
             }
             return rtn;
         }
     } else {
         judgement(w);
         rtn = elementList.front()->getNextAngle(w);
-        updateFinishFlag(w);
+        if (elementList.empty())
+        {
+            updateFinishFlag(w);
+        }
         return rtn;
     }
 }

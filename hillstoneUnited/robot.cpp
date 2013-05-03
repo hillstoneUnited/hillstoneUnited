@@ -27,7 +27,7 @@ std::string Robot::getNextAngle(std::string &msg){
   //  static double initpos[3] = {-10.5, 0.0, 0.0};
   static double initpos1[3] = {-10.5,-5.0, 0.0};
   static double initpos2[3] = {-10.5, 5.0, 0.0};
-  static double initpos3[3] = {-10.5, 0.0, 0.0};
+  static double initpos3[3] = {-3.5, 0.0, 0.0};
 
   if (virgin)
   {
@@ -35,13 +35,13 @@ std::string Robot::getNextAngle(std::string &msg){
     //    mainbrain = new Defend(world, initpos);
     switch(world.getUnum()){
     case 1:
-      mainbrain = new Defend(world, initpos1);
+      mainbrain = new Attack(world, initpos1);
       break;
     case 2:
-      mainbrain = new Defend(world, initpos2);
+      mainbrain = new Attack(world, initpos2);
       break;
     default:
-      mainbrain = new Defend(world, initpos3);
+      mainbrain = new Attack(world, initpos3);
       break;
     }
 
@@ -56,13 +56,13 @@ std::string Robot::getNextAngle(std::string &msg){
       //      mainbrain = new Defend(world, initpos);
       switch(world.getUnum()){
       case 1:
-	mainbrain = new Defend(world, initpos1);
+	mainbrain = new Attack(world, initpos1);
 	break;
       case 2:
-	mainbrain = new Defend(world, initpos2);
+	mainbrain = new Attack(world, initpos2);
 	break;
       default:
-	mainbrain = new Defend(world, initpos3);
+	mainbrain = new Attack(world, initpos3);
 	break;
       }
 

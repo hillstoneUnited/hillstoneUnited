@@ -16,7 +16,7 @@ bool Sequence::addPose(Pose p){
 
     poses[num] = p;
 
-    num = num++;
+    num += 1;
 
     return true;
 }
