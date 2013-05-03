@@ -103,7 +103,7 @@ void Attack::judgement(World& w) {
             } else {
                 if (close2Bal() || inTerritory())
                 {
-                    if (bal[0] < 3)
+                    if (bal[0] < 1.5)
                     {
                         elementList.push_back(new AdjustToBall(w));
                         std::cout << "#attack: adjusting" << std::endl;
@@ -183,11 +183,11 @@ bool Attack::close2Bal(){
 bool Attack::hasBal() {
 
     std::cout << "bal[0]: " << bal[0] <<
-    "\tabs(angle): " << abs(angle) <<
+    "\tabs(bal[1]): " << abs(bal[1]) <<
     "\tbalposconf: " << balposconf << std::endl;
 
     if (bal[0] < 2 &&
-        abs(angle) <= 10 &&
+        abs(bal[1]) <= 10 &&
         balposconf <= 150)
     {
         return true;

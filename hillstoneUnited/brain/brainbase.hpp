@@ -8,7 +8,7 @@
 class BrainBase : public ElementBase {
   public:
     BrainBase(){};
-    ~BrainBase();
+    virtual ~BrainBase();
 
     bool isFinished();
 
