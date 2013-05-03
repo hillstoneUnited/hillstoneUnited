@@ -36,44 +36,43 @@ void KickTo::turn(World& w){
 }
 
 void KickTo::judgement(World& w){
-		elementList.push_back(new SequenceMovement("LAROUND"));
+	elementList.push_back(new SequenceMovement("LAROUND"));
 
-		//kick
-		if( fabs( fabs( target_angle )-fabs( w.getABSANGLE() ) ) < 10){
-				//modify rellation(agent-ball) angle
-				double ballangle = w.getBAL(1);
-				//count:angle = 6:90
-				int count = int(6*fabs(ballangle)/90);
-				if(count<3){
-					count+=1;
-				}
-
-				if(ballangle !=0){
-
-
-						if(ballangle>0 && count>1){
-							elementList.push_back(new SequenceMovement("DUMMY"));
-							elementList.push_back(new TicktackBase("TLEFT",count));
-						}
-						else if(count>1){
-							elementList.push_back(new SequenceMovement("DUMMY"));
-							elementList.push_back(new TicktackBase("TRIGHT",count));
-						}
-
-
-				if(true){
-					//std::cout << "KickTo::kick!!" << std::endl;
-					elementList.push_back(new SequenceMovement("DUMMY"));
-					elementList.push_back(new TicktackBase("FORWARD",2));
-					elementList.push_back(new GABase("GA_FORWARD",100));
-					is_kicked = true;
-
-				}
+	//kick
+	if( fabs( fabs( target_angle )-fabs( w.getABSANGLE() ) ) < 10){
+		//modify rellation(agent-ball) angle
+		double ballangle = w.getBAL(1);
+		//count:angle = 6:90
+		int count = int(6*fabs(ballangle)/90);
+		if(count<3){
+			count+=1;
 		}
-		else{
-				turn(w);
+
+		if(ballangle !=0){
+
+			if(ballangle>0 && count>1){
+				elementList.push_back(new SequenceMovement("DUMMY"));
+				elementList.push_back(new TicktackBase("TLEFT",count));
+			}
+			else if(count>1){
+				elementList.push_back(new SequenceMovement("DUMMY"));
+				elementList.push_back(new TicktackBase("TRIGHT",count));
+			}
+        }
+
+
+		if(true){
+			//std::cout << "KickTo::kick!!" << std::endl;
+			elementList.push_back(new SequenceMovement("DUMMY"));
+			elementList.push_back(new TicktackBase("FORWARD",2));
+			elementList.push_back(new GABase("GA_FORWARD",100));
+			is_kicked = true;
+
 		}
-}
+	}
+	else{
+		turn(w);
+    }
 }
 
 
@@ -84,5 +83,6 @@ void KickTo::updateFinishFlag(World& w)
 		}
 		else{
 			finish_flag = false;
+            judgement(w);
 		}
 }

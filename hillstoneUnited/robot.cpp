@@ -41,7 +41,7 @@ std::string Robot::getNextAngle(std::string &msg){
       mainbrain = new Attack(world, initpos2);
       break;
     default:
-      mainbrain = new Attack(world, initpos3);
+      mainbrain = new Defend(world, initpos3);
       break;
     }
 
@@ -56,14 +56,14 @@ std::string Robot::getNextAngle(std::string &msg){
       //      mainbrain = new Defend(world, initpos);
       switch(world.getUnum()){
       case 1:
-	mainbrain = new Attack(world, initpos1);
-	break;
+        mainbrain = new Attack(world, initpos1);
+        break;
       case 2:
-	mainbrain = new Attack(world, initpos2);
-	break;
+        mainbrain = new Attack(world, initpos2);
+        break;
       default:
-	mainbrain = new Attack(world, initpos3);
-	break;
+        mainbrain = new Attack(world, initpos3);
+        break;
       }
 
       std::cout << "finish!!" << std::endl;

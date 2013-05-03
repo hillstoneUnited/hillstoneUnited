@@ -14,7 +14,7 @@ if [ -e $team ]; then
 fi
 
 a=0
-while [ $a -ne 3 ]
+while [ $a -ne 11 ]
 do
     ./hillstoneUnited/hillstoneUnited --host=$host --team=$team &
     a=`expr $a + 1`

@@ -13,7 +13,7 @@
 
     public:
       MovementBase(){};
-      ~MovementBase(){};
+      virtual ~MovementBase(){};
       
       bool isFinished();
 
