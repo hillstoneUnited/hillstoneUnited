@@ -24,6 +24,7 @@ enum ActionName{
   FRIGHT,
   FFORWARD,
   LAROUND,
+  LSPREAD,
   GA_FORWARD,
   GA_BACK,
   GA_L_DRIBBLE_SHARP,
