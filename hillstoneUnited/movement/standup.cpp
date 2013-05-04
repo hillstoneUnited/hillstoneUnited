@@ -66,7 +66,7 @@ std::string Standup::getNextAngle(World& w){
       ts = -1;
       state = REVERSE0;
     }else{
-      std::cout << "standupAction : READY : not falling?" << std::endl;
+      // std::cout << "standupAction : READY : not falling?" << std::endl;
       ts = -1; // not to stop movement
       state = END;
     }
@@ -293,7 +293,7 @@ std::string Standup::getNextAngle(World& w){
     if((fabs(ACC_Sum[1]) > 9.0 && fabs(ACC_Sum[1]) < 15) ||
         (fabs(ACC_Sum[0]) > 9.0 && fabs(ACC_Sum[0]) < 15)){
       //falling
-      std::cout << "I'm still falling" << std::endl;
+      // std::cout << "I'm still falling" << std::endl;
 
       if(actiontype == 0){
       	actiontype = 1;
@@ -304,7 +304,7 @@ std::string Standup::getNextAngle(World& w){
 	      ts = -1;
 	      state = READY;
       }else{
-	      std::cout << "standupAction : END : unknown" << std::endl;
+	      // std::cout << "standupAction : END : unknown" << std::endl;
       }
 
     }else{  // standed

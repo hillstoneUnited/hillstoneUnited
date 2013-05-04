@@ -1,5 +1,4 @@
 #include "odenswalk.hpp"
-#include <stdio.h>
 
 // x: distance to ball (zengo soutai)
 // y: distance to ball (sayu soutai)
@@ -89,12 +88,12 @@ std::string OdensWalk::getNextAngle(World& w){
         } 
     }
 
-    std::cout << "step_x: " << step_x <<
-    "\tstep_y: " << step_y <<
-    "\tdestangle: " << destangle <<
-    "\tmyangle: " << myangle <<
-    "\tdistance: " << distance <<
-    "\tt: " << t << std::endl;
+    // std::cout << "step_x: " << step_x <<
+    // "\tstep_y: " << step_y <<
+    // "\tdestangle: " << destangle <<
+    // "\tmyangle: " << myangle <<
+    // "\tdistance: " << distance <<
+    // "\tt: " << t << std::endl;
     
     //現在の関節角度の取得
     //左脚第一関節から順番に定義されている
@@ -119,10 +118,8 @@ std::string OdensWalk::getNextAngle(World& w){
     isWalking = mw.WalkControl(joint, velocity, step_x, step_y, rotation, act);
     //resultがtrueの時、歩行動作中である
     if(isWalking){
-        std::cout << "Walking!\n";
         finish_flag = false;
     }else{
-        std::cout << "Stopping!\n";
         finish_flag = true;
     }
 
@@ -130,8 +127,8 @@ std::string OdensWalk::getNextAngle(World& w){
     // setAngle(w, joint);
 
     /**for debagging**/
-    std::cout << "runto:" << dest[0] << "," << dest[1] << std::endl;
-    std::cout << "mypos:" << mypos[0] << "," << mypos[1] << std::endl;
+    // std::cout << "runto:" << dest[0] << "," << dest[1] << std::endl;
+    // std::cout << "mypos:" << mypos[0] << "," << mypos[1] << std::endl;
 
     return angleToString();
 

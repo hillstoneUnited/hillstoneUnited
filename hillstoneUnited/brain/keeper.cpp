@@ -17,7 +17,6 @@ Keeper::Keeper(World& w, double _initpos[]){
 }
 
 void Keeper::restore_position(World& w){
-		std::cout << w.getABSANGLE() << std::endl;
 		if( w.getABSANGLE()==0 ){
 				null_anglecount+=1;
 		}
@@ -32,7 +31,6 @@ void Keeper::restore_position(World& w){
 		else if( fabs(w.getABSANGLE() )>15 ){
 				double angle = w.getABSANGLE();
 				int count = int( 6*fabs(angle)/90 );
-				std::cout <<"count" << count << std::endl;
 				if(0-angle<0){
 						elementList.push_back(new TicktackBase("TRIGHT",count));
 				}
@@ -46,13 +44,11 @@ void Keeper::judgement(World& w){
 		restore_position(w);
 		double dis = w.getBAL(0);
 		double angle = w.getBAL(1);
-		std::cout << "BAL" << dis << ","<< angle << std::endl;
 		if(dis < 1.5 && dis > 0.8){
 				elementList.push_back( new TicktackBase("SLEFT",2));
 				elementList.push_back( new TicktackBase("SRIGHT",2));
 		}
 		else if(dis <= 0.8 && dis != 0){
-				std::cout << "patari..." << std::endl;
 			  if(angle>0){
 			  		elementList.push_back(new SequenceMovement("FLEFT"));
 			  }

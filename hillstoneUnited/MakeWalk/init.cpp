@@ -9,7 +9,6 @@
 	//直立状態での初期化
 void MakeWalk::init()
 {
-	std::cout << "Walking Init()" << std::endl;
 	doublesupportflag = false;//両脚支持をするか
 	toestrike = true;//爪先離陸を行うか
 	t = 0;//歩行時間

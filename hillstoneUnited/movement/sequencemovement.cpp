@@ -5,7 +5,6 @@ SequenceMovement::SequenceMovement(std::string _name){
   name = _name;
   timeStamp = 0;
 
-  std::cout << "constructor : name = " << name << std::endl;
   setNewSequence(name);
 }
 
@@ -130,7 +129,6 @@ void SequenceMovement::setNewSequence(Sequence newSeq){
 }
 
 void SequenceMovement::setNewSequence(std::string name){
-  std::cout << "setnew : name = " << name << std::endl;
 
   if(name == "LAROUND"){
 
