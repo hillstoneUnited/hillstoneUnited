@@ -282,7 +282,9 @@ void Attack::testJudge(World& w) {
 
 std::string Attack::getNextAngle(World& w) {
     std::stringstream ss;
-    if(w.getPlaymode()=="BeforeKickOff"&&w.getUnum()>0){
+    if(w.getPlaymode()=="BeforeKickOff" ||
+       w.getPlaymode()=="Goal_Left" ||
+       w.getPlaymode()=="Goal_Right"){
         beam_flag = true;
         ss << "(beam " << initpos[0] << " "
                 << initpos[1] << " " << initpos[2]
