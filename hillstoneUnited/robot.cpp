@@ -29,52 +29,51 @@ std::string Robot::getNextAngle(std::string &msg){
   static double initpos2[3] = {-10.5, 5.0, 0.0};
   static double initpos3[3] = {-3.5, 0.0, 0.0};
 
-  if (virgin)
-  {
-    // // mainbrain = new Attack(world, initpos);
-    //    mainbrain = new Defend(world, initpos);
-    switch(world.getUnum()){
-    case 1:
-      mainbrain = new Attack(world, initpos1);
-      break;
-    case 2:
-      mainbrain = new Attack(world, initpos2);
-      break;
-    default:
-      mainbrain = new Attack(world, initpos3);
-      break;
-    }
-
-    virgin = false;
-
-  }else{
-
-    if (mainbrain->isFinished())
-    {
-      delete mainbrain;
-      // mainbrain = new Attack(world, initpos);
-      //      mainbrain = new Defend(world, initpos);
+  if (world.getUnum() > 0){
+    if (virgin){
+      // // mainbrain = new Attack(world, initpos);
+      //    mainbrain = new Defend(world, initpos);
       switch(world.getUnum()){
       case 1:
-        mainbrain = new Attack(world, initpos1);
-        break;
+	mainbrain = new Attack(world, initpos1);
+	break;
       case 2:
-        mainbrain = new Attack(world, initpos2);
-        break;
+	mainbrain = new Attack(world, initpos2);
+	break;
       default:
-        mainbrain = new Attack(world, initpos3);
-        break;
+	mainbrain = new Attack(world, initpos3);
+	break;
       }
-
-      std::cout << "finish!!" << std::endl;
+      
+      virgin = false;
+      
+    }else{
+      
+      if (mainbrain->isFinished()){
+	delete mainbrain;
+	// mainbrain = new Attack(world, initpos);
+	//      mainbrain = new Defend(world, initpos);
+	switch(world.getUnum()){
+	case 1:
+	  mainbrain = new Attack(world, initpos1);
+	  break;
+	case 2:
+	  mainbrain = new Attack(world, initpos2);
+	  break;
+	default:
+	  mainbrain = new Attack(world, initpos3);
+	  break;
+	}
+	
+	std::cout << "finish!!" << std::endl;
+      }
+      
     }
-
-  }
-  return mainbrain->getNextAngle(world);
-
-
+    return mainbrain->getNextAngle(world);
+  } 
+  return "";
 }
-
+  
 std::string Robot::Init2(){
   return "(init (unum 0)(teamname " + world.getTeamname() + "))";
 }
