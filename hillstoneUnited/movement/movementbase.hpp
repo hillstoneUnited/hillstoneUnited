@@ -24,7 +24,7 @@
       typedef std::map<jointID, double> tmpAngleMap;
       tmpAngleMap angleMap;
       
-      bool set(World& w, jointID id, double angle, double gain = 0.05);
+      virtual bool set(World& w, jointID id, double angle, double gain = 0.05);
 
       std::string angleToString();
         // transrate the own angle map to string

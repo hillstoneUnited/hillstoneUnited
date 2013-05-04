@@ -2,6 +2,7 @@
 
 
 Standup::Standup(){
+  std::cout << "stand constructed" << std::endl;
   finish_flag = false;
   ts = 0;
 }
@@ -59,6 +60,7 @@ std::string Standup::getNextAngle(World& w){
 
   switch(state){
   case READY:
+    std::cout << "READY in standup" << std::endl;
     if(actiontype == 0){
       ts = -1;
       state = STAND0;
@@ -253,6 +255,7 @@ std::string Standup::getNextAngle(World& w){
     break;
 
   case WAIT:
+    std::cout << "waito desu" << std::endl;
     // Head
     set(w, hj1, 0.0);
     set(w, hj2, 0.0);

@@ -1,6 +1,6 @@
-#include "attack.hpp"
+#include "testbrain.hpp"
 
-Attack::Attack(World& w, double _initpos[]) {
+TestBrain::TestBrain(World& w, double _initpos[]) {
     finish_flag = false;
     beam_flag = false;
 
@@ -35,8 +35,7 @@ Attack::Attack(World& w, double _initpos[]) {
     judgement(w);
 }
 
-void Attack::judgement(World& w) {
-
+void TestBrain::judgement(World& w) {
 
     ballpos[0] = w.getBXY(0);
     ballpos[1] = w.getBXY(1);
@@ -60,72 +59,21 @@ void Attack::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
-    // std::cout << egr[0] << std::endl;
-    // std::cout << egr[1] << std::endl;
-
-
-    if (hasBal())
+    if (close2Bal())
     {
-        if (close2Goal())
-        {
-            // shoot
-            kickAngle = (egr[1]+egl[1])/2 + angle;
-            // std::cout << "shoot!! to " << kickAngle <<std::endl;
-
-        } else {
-            // std::cout << "pass?" << ableToPass() << std::endl;
-            if (ableToPass())
-            {
-                // pass
-                kickAngle = friends[passTo][1] + angle; // hogehoge
-                // std::cout << "pass to " << kickAngle <<std::endl;
-            } else {
-
-                // dribble
-                kickAngle = 0; // hogehoge
-                // std::cout << "dribble to " << kickAngle << std::endl;
-            }
-        }
-
-        elementList.push_back(new AdjustToBall(w));
-        elementList.push_back(new KickTo(w, kickAngle));
+        elementList.push_back(new TicktackBase("FORWARD", 100));
     } else {
-        if (farHome())
-        {
-            elementList.push_back(new RunTo(w, initpos));
-            // std::cout << "go home" << std::endl;
-        } else {
-            int invader = getInvader();
-            if (invader != -1)
-            {
-                elementList.push_back(new RunToEnemy(w, invader));
-                // std::cout << "tuckle" << std::endl;
-            } else {
-                if (close2Bal() || inTerritory())
-                {
-                    if (bal[0] < 1.5)
-                    {
-                        elementList.push_back(new AdjustToBall(w));
-                        // std::cout << "#attack: adjusting" << std::endl;
-                    } else {
-                        elementList.push_back(new RunToBall(w));
-                        // std::cout << "ball!!" << std::endl;
-                    }
-                } else {
-                    elementList.push_back(new RunTo(w, initpos));
-                    // std::cout << "go home(nothing)" << std::endl;
-                }
-            }
-        }
+        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
     }
+
 }
 
 
-void Attack::updateFinishFlag(World& w) {
+void TestBrain::updateFinishFlag(World& w) {
     judgement(w);
 }
 
-void Attack::updateFandE(World& w) {
+void TestBrain::updateFandE(World& w) {
     for (int i = 0; i < 11; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -141,7 +89,7 @@ void Attack::updateFandE(World& w) {
 }
 
 
-bool Attack::inTerritory(){
+bool TestBrain::inTerritory(){
   if(abs(ballpos[0] - initpos[0]) < 6.0 &&
      abs(ballpos[1] - initpos[1]) < 6.0 &&
      balposconf <= 250){
@@ -151,7 +99,7 @@ bool Attack::inTerritory(){
   }
 }
 
-bool Attack::atHome(){
+bool TestBrain::atHome(){
   if(abs(mypos[0] - initpos[0]) < 3 &&
      abs(mypos[1] - initpos[1]) < 3){
     return true;
@@ -160,7 +108,7 @@ bool Attack::atHome(){
   }
 }
 
-bool Attack::farHome() {
+bool TestBrain::farHome() {
     if (sqrt(pow(mypos[0]-initpos[0], 2.0) +
              pow(mypos[1]-initpos[1], 2.0)) >= 10 &&
         myposconf <= 250)
@@ -171,7 +119,7 @@ bool Attack::farHome() {
     }
 }
 
-bool Attack::close2Bal(){
+bool TestBrain::close2Bal(){
   if(abs(bal[0]) < 4.5 && balposconf <= 150){
     return true;
   }else{
@@ -179,7 +127,7 @@ bool Attack::close2Bal(){
   }
 }
 
-bool Attack::hasBal() {
+bool TestBrain::hasBal() {
 
     if (bal[0] < 2 &&
         abs(bal[1]) <= 10 &&
@@ -191,7 +139,7 @@ bool Attack::hasBal() {
     }
 }
 
-bool Attack::close2Goal() {
+bool TestBrain::close2Goal() {
     if (((egr[0]+egl[0]) / 2) <= 7 &&
         egrconf <= 250 && eglconf <= 250)
     {
@@ -201,7 +149,7 @@ bool Attack::close2Goal() {
     }
 }
 
-bool Attack::ableToPass() {
+bool TestBrain::ableToPass() {
 
     double distanceToFriend = 10000.0;
     bool pass_flag = false;
@@ -223,7 +171,7 @@ bool Attack::ableToPass() {
 }
 
 
-int Attack::getInvader(){
+int TestBrain::getInvader(){
     for (int i = 10; i >= 0; i--)
     {
         if (abs(enemies[i][0] - ballpos[0]) < 1.0 &&
@@ -237,7 +185,7 @@ int Attack::getInvader(){
     return -1; // should not to tuckle
 }
 
-std::string Attack::getNextAngle(World& w) {
+std::string TestBrain::getNextAngle(World& w) {
     std::stringstream ss;
     if((w.getPlaymode()=="BeforeKickOff" ||
        w.getPlaymode()=="Goal_Left" ||
@@ -255,6 +203,7 @@ std::string Attack::getNextAngle(World& w) {
         {
             /* code */
         } else {
+            std::cout << "elementList clear" << std::endl;
             elementList.clear();
             elementList.push_front(new Standup());
             pushStand = true;
@@ -270,6 +219,7 @@ std::string Attack::getNextAngle(World& w) {
     }
     if (elementList.front()->isFinished())
     {
+        std::cout << "pop delete" << std::endl;
         ElementBase* tmp = elementList.front();
         delete tmp;
         elementList.pop_front();
