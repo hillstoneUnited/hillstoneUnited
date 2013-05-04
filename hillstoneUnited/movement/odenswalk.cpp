@@ -1,17 +1,21 @@
 #include "odenswalk.hpp"
 #include <stdio.h>
 
+// x: distance to ball (zengo soutai)
+// y: distance to ball (sayu soutai)
+
 OdensWalk::OdensWalk(double _dest[]){
 
     finish_flag = false;
-    dest[0] = _dest[0];
-    dest[1] = _dest[1];
+    dest[0] = _dest[0]; // x axis(goal to goal)
+    dest[1] = _dest[1]; // y axis(side by side)
 }
 
 OdensWalk::~OdensWalk(){}
 
 std::string OdensWalk::getNextAngle(World& w){
     resetAngleMap();
+
 
     //MakeWalkの戻り値を受け取る
     bool isWalking;
@@ -38,7 +42,19 @@ std::string OdensWalk::getNextAngle(World& w){
     mypos[0] = w.getXY(0);
     mypos[1] = w.getXY(1);
 
-    rotation = atan2(dest[1]-mypos[1], dest[0]-mypos[0]) - w.getABSANGLE();
+    double myangle = w.getABSANGLE()*M_PI/180;
+    double destangle = -atan2(dest[1]-mypos[1], dest[0]-mypos[0]);
+
+    double distance = sqrt(pow(dest[0]-mypos[0], 2.0) +
+                           pow(dest[1]-mypos[1], 2.0));
+
+    if (distance <= 0.5 || w.confXY() == 300)
+    {
+        finish_flag = true;
+    }
+
+    // compute rotation from abs point
+    rotation = - (destangle + myangle);
     
     //最大値を超えないようにする
     if(rotation > MAX_STEP_R){
@@ -54,8 +70,8 @@ std::string OdensWalk::getNextAngle(World& w){
         step_y = 0;
     }else{
         //ODENSの座標系に合わせて計算
-        step_x = dest[0] - mypos[0];
-        step_y = dest[1] - mypos[1];
+        step_x = fabs(distance * cos(rotation)); // soutai zengo
+        step_y = fabs(distance * sin(rotation)); // soutai sayuu
         //最大値を超えないようにする
         if(step_x > MAX_STEP_X){
             step_x = MAX_STEP_X;
@@ -68,6 +84,12 @@ std::string OdensWalk::getNextAngle(World& w){
             step_y = -MAX_STEP_Y;
         } 
     }
+
+    std::cout << "step_x: " << step_x <<
+    "\tstep_y: " << step_y <<
+    "\tdestangle: " << destangle <<
+    "\tmyangle: " << myangle <<
+    "\tdistance: " << distance << std::endl;
     
     //現在の関節角度の取得
     //左脚第一関節から順番に定義されている
