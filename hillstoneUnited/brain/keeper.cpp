@@ -5,10 +5,15 @@
 // pos[0]: zengo
 // pos[1]: sayuu
 
-Keeper::Keeper(World& w){
+Keeper::Keeper(World& w, double _initpos[]){
     finish_flag = false;
+    beam_flag = false;
     updateFinishFlag(w);
     null_anglecount = 0;
+
+    initpos[0] = _initpos[0];
+    initpos[1] = _initpos[1];
+    initpos[2] = _initpos[2];
 }
 
 void Keeper::restore_position(World& w){
@@ -65,4 +70,50 @@ void Keeper::judgement(World& w){
 void Keeper::updateFinishFlag(World& w)
 {
 		finish_flag = false;
+        judgement(w);
+}
+
+
+std::string Keeper::getNextAngle(World& w) {
+    std::stringstream ss;
+    if((w.getPlaymode()=="BeforeKickOff" ||
+       w.getPlaymode()=="Goal_Left" ||
+       w.getPlaymode()=="Goal_Right") && w.getUnum()>0){
+        beam_flag = true;
+        ss << "(beam " << initpos[0] << " "
+                << initpos[1] << " " << initpos[2]
+                << ")";
+        // std::cout << ss.str() << std::endl;
+    }
+
+    if (w.isFalling())
+    {
+        if (pushStand)
+        {
+            /* code */
+        } else {
+            elementList.clear();
+            elementList.push_front(new Standup());
+            pushStand = true;
+        }
+    } else {
+        pushStand = false;
+    }
+
+    rtn = elementList.front()->getNextAngle(w);
+    if(beam_flag){
+        rtn += ss.str();
+        beam_flag = false;
+    }
+    if (elementList.front()->isFinished())
+    {
+        ElementBase* tmp = elementList.front();
+        delete tmp;
+        elementList.pop_front();
+    }
+    if (finishAllChild(w))
+    {
+        updateFinishFlag(w);
+    }
+    return rtn;
 }
