@@ -19,14 +19,14 @@ class Defend : public BrainBase
 {
 public:
 
-  Defend(World& w, double _initpos[]);
+  //  Defend(World& w, double _initpos[]);
+  Defend(World& w);
   ~Defend(){};
 
   //  bool isFinished();
   virtual std::string getNextAngle(World& w);
 
 private:
-  //  bool beam_flag;
   double initpos[3];
   double ballpos[2];
   double mypos[2];
@@ -44,7 +44,9 @@ private:
   double friends[11][4];
   double enemy[11][4];
 
-  bool beam_flag;
+  //  bool beam_flag;
+  //  std::string beam_msg;
+  std::stringstream beam_msg;
 
   bool inTerritory();
   bool atHome();
