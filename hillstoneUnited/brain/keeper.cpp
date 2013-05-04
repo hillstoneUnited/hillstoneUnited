@@ -48,7 +48,8 @@ void Keeper::judgement(World& w){
 				elementList.push_back( new TicktackBase("SLEFT",2));
 				elementList.push_back( new TicktackBase("SRIGHT",2));
 		}
-		else if(dis <= 0.8 && dis != 0){
+		else if((dis <= 0.8 && dis != 0) || w.getXY(0)>w.getBXY(0)){
+				std::cout << "patari..." << std::endl;
 			  if(angle>0){
 			  		elementList.push_back(new SequenceMovement("FLEFT"));
 			  }
