@@ -484,8 +484,8 @@ void World::Perception::parsePlayer(std::string message, std::string id, double 
   while(find_id != string::npos){
     player_num++;
 
-    // player ID
-    from = msg.find("id", find_id);
+    // player ID 
+   from = msg.find("id", find_id);
     until = msg.find(")", from + strlen("id "));
     data[player_num - 1][3] = msg.substr(from + strlen("id "), until - (from + strlen("id ")));
 
