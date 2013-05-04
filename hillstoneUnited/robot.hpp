@@ -9,6 +9,7 @@
 #include "brain/defend.hpp"
 #include "brain/keeper.hpp"
 #include "brain/kickto.hpp"
+#include "brain/kicktofront.hpp"
 
 
 /*

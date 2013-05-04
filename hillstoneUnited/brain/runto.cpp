@@ -63,7 +63,7 @@ void RunTo::judgement(World& w){
 	}
 	else{
 	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new TicktackBase("FORWARD", 3));
+	  elementList.push_back(new TicktackBase("FORWARD", 10));
 	  elementList.push_back(new GABase("GA_FORWARD", 10));
 	}
       }

@@ -3,6 +3,9 @@
 
 #include "brainbase.hpp"
 #include "../world.hpp"
+
+#include "brain/runto.hpp"
+
 #include "../movement/gabase.hpp"
 #include "../movement/sequencemovement.hpp"
 #include "../movement/ticktackbase.hpp"
@@ -17,6 +20,7 @@ public:
 private:
   void updateFinishFlag(World& w);
   void judgement(World& w);
+  int modanglecount;
 
 };
 
