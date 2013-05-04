@@ -118,7 +118,7 @@ void Attack::judgement(World& w) {
             }
         }
     }
-    // testJudge(w);
+    testJudge(w);
 }
 
 
@@ -271,7 +271,9 @@ void Attack::testJudge(World& w) {
     elementList.clear();
     kickAngle = (egr[1]+egl[1])/2 + angle;
     std::cout << "kick to" << kickAngle << std::endl;
-    elementList.push_back(new KickTo(w, kickAngle));
+    elementList.push_back(new SequenceMovement("LAROUND"));
+    double dest[2] = {w.getBXY(0), w.getBXY(1)};
+    elementList.push_back(new OdensWalk(dest));
 
     // std::cout << "judgement desu no!!" << std::endl;
     // std::cout << "next: " << typeid(*elementList.front()).name() << std::endl;

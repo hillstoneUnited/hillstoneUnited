@@ -543,7 +543,7 @@ void SequenceMovement::setNewSequence(std::string name){
     sequence.addPose(pose0);
     sequence.addPose(pose1);
     setNewSequence(sequence);
-  } if(name == "LAROUNDREADY"){
+  } else if(name == "LAROUNDREADY"){
 
     Pose laroundr1;
     laroundr1.setTarget(hj1, -120);
