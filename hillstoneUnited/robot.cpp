@@ -51,8 +51,8 @@ std::string Robot::getNextAngle(std::string &msg){
     if (virgin){
 
 
-      int unum = world.getUnum();
-      double tmp[3] {tmpinit[unum][0], tmpinit[unum][1], tmpinit[unum][2]};
+      // int unum = world.getUnum();
+      // double tmp[3] {tmpinit[unum][0], tmpinit[unum][1], tmpinit[unum][2]};
       // mainbrain = new Attack(world, tmp);
 
       switch(world.getUnum()){
@@ -90,7 +90,6 @@ std::string Robot::getNextAngle(std::string &msg){
         mainbrain = new Attack(world, initpos10);
         break;
       default:
-        mainbrain = new Attack(world, initpos);
         break;
       }
       
@@ -101,8 +100,8 @@ std::string Robot::getNextAngle(std::string &msg){
       if (mainbrain->isFinished()){
       	delete mainbrain;
 
-        int unum = world.getUnum();
-        double tmp[3] {tmpinit[unum][0], tmpinit[unum][1], tmpinit[unum][2]};
+        // int unum = world.getUnum();
+        // double tmp[3] {tmpinit[unum][0], tmpinit[unum][1], tmpinit[unum][2]};
         // mainbrain = new Attack(world, tmp);
 
       switch(world.getUnum()){
@@ -140,7 +139,6 @@ std::string Robot::getNextAngle(std::string &msg){
         mainbrain = new Attack(world, initpos10);
         break;
       default:
-        mainbrain = new Attack(world, initpos);
         break;
       }
 	
