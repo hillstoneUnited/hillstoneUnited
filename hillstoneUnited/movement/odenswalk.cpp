@@ -4,11 +4,14 @@
 // x: distance to ball (zengo soutai)
 // y: distance to ball (sayu soutai)
 
-OdensWalk::OdensWalk(double _dest[]){
+OdensWalk::OdensWalk(double _dest[], int _uptime){
 
     finish_flag = false;
     dest[0] = _dest[0]; // x axis(goal to goal)
     dest[1] = _dest[1]; // y axis(side by side)
+
+    t = 0;
+    uptime = _uptime;
 }
 
 OdensWalk::~OdensWalk(){}
@@ -48,10 +51,11 @@ std::string OdensWalk::getNextAngle(World& w){
     double distance = sqrt(pow(dest[0]-mypos[0], 2.0) +
                            pow(dest[1]-mypos[1], 2.0));
 
-    if (distance <= 0.5 || w.confXY() == 300)
+    if (distance <= 0.5 || w.confXY() == 300 || t>uptime)
     {
-        finish_flag = true;
+        act = false;
     }
+    t+=1;
 
     // compute rotation from abs point
     rotation = - (destangle + myangle);
@@ -89,7 +93,8 @@ std::string OdensWalk::getNextAngle(World& w){
     "\tstep_y: " << step_y <<
     "\tdestangle: " << destangle <<
     "\tmyangle: " << myangle <<
-    "\tdistance: " << distance << std::endl;
+    "\tdistance: " << distance <<
+    "\tt: " << t << std::endl;
     
     //現在の関節角度の取得
     //左脚第一関節から順番に定義されている

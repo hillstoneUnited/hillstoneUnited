@@ -44,16 +44,20 @@ void AdjustToBall::judgement(World& w){
         elementList.push_back(new SequenceMovement("LAROUNDREADY"));
     } else {
 
-        if(bal[1] > 10){
-            elementList.push_back(new TicktackBase("TLEFT", t_count));
-        }else if(bal[1] > -10){
-            elementList.push_back(new SequenceMovement("READY"));
-            elementList.push_back(new TicktackBase("FORWARD", 5));
-            elementList.push_back(new SequenceMovement("READY"));
-            elementList.push_back(new SequenceMovement("LAROUND"));
-        }else{
-            elementList.push_back(new TicktackBase("TRIGHT", t_count));
-        }
+        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+        elementList.push_back(new OdensWalk(ballpos, 1000));
+        elementList.push_back(new SequenceMovement("READY"));
+
+        // if(bal[1] > 10){
+        //     elementList.push_back(new TicktackBase("TLEFT", t_count));
+        // }else if(bal[1] > -10){
+        //     elementList.push_back(new SequenceMovement("READY"));
+        //     elementList.push_back(new TicktackBase("FORWARD", 5));
+        //     elementList.push_back(new SequenceMovement("READY"));
+        //     elementList.push_back(new SequenceMovement("LAROUND"));
+        // }else{
+        //     elementList.push_back(new TicktackBase("TRIGHT", t_count));
+        // }
     }
 
     // std::cout << w.getBAL(0) << std::endl;
