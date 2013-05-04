@@ -38,6 +38,7 @@ Attack::Attack(World& w, double _initpos[]) {
 
 void Attack::judgement(World& w) {
 
+
     ballpos[0] = w.getBXY(0);
     ballpos[1] = w.getBXY(1);
     bal[0] = w.getBAL(0);

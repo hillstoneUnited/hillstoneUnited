@@ -92,7 +92,6 @@ std::string Robot::getNextAngle(std::string &msg){
       default:
         break;
       }
-      
       virgin = false;
       
     }else{
