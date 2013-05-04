@@ -1,10 +1,10 @@
-#include "runto.hpp"
+#include "runtoslowly.hpp"
 
 // pos[2]
 // pos[0]: zengo
 // pos[1]: sayuu
 
-RunTo::RunTo(World& w, double _point[]){
+RunToSlowly::RunToSlowly(World& w, double _point[]){
     finish_flag = false;
     point[0] = _point[0];
     point[1] = _point[1];
@@ -23,13 +23,13 @@ RunTo::RunTo(World& w, double _point[]){
     if(u < 0 && v >= 0){ angle +=  180;}
     else if(u < 0 && v < 0){ angle += -180;}
 
-    t_count = abs(15 * angle / 360);
+    t_count = int(6*fabs(angle)/90);
 
     elementList.push_back(new SequenceMovement("LAROUND"));
     updateFinishFlag(w);
 }
 
-void RunTo::judgement(World& w){
+void RunToSlowly::judgement(World& w){
     x = w.getXY(0);
     y = w.getXY(1);
     conf_XY = w.confXY();
@@ -44,13 +44,18 @@ void RunTo::judgement(World& w){
     if(u < 0 && v >= 0){ angle +=  180;}
     else if(u < 0 && v < 0){ angle += -180;}
 
-    t_count = abs(15 * angle / 360);
+    t_count = int(6*fabs(angle)/90);
     if(t_count == 0){
       t_count = 1;
     }
+    double dis = sqrt((point[0] - x)*(point[0] - x) + (point[1] - y)*(point[1] - y));
+    int dcount = int(dis*5);
+    if(dcount>10){
+    	dcount = 10;
+    }
 
     if(conf_XY == 300){
-      elementList.push_back(new TicktackBase("TLEFT", 2));
+      elementList.push_back(new TicktackBase("TLEFT", 3));
       elementList.push_back(new SequenceMovement("LAROUND"));
     }
     else{
@@ -62,35 +67,35 @@ void RunTo::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new TicktackBase("FORWARD", 5));
-	  elementList.push_back(new GABase("GA_FORWARD", 10));
+	  elementList.push_back(new SequenceMovement("READY"));
+	  elementList.push_back(new TicktackBase("FORWARD", dcount));
 	}
       }
       else{
-	if(angle > 10){
+	if(angle > 15){
 	  elementList.push_back(new TicktackBase("TLEFT", t_count));
 	}
-	else if(angle < -10){
+	else if(angle < -15){
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-	  elementList.push_back(new TicktackBase("FORWARD", 5));
-	  elementList.push_back(new TicktackBase("DRIBBLE", 10));
+		elementList.push_back(new SequenceMovement("READY"));
+	  elementList.push_back(new TicktackBase("FORWARD", dcount));
 	}
       }
     }
 
 }
 
-void RunTo::updateFinishFlag(World& w)
+void RunToSlowly::updateFinishFlag(World& w)
 {
-    if(abs(point[0] - w.getXY(0)) < 0.8 &&
-       abs(point[1] - w.getXY(1)) < 0.8)
+    if(abs(point[0] - w.getXY(0)) < 0.2 &&
+       abs(point[1] - w.getXY(1)) < 0.2)
     {
       finish_flag = true;
     } else {
       finish_flag = false;
       judgement(w);
     }
+
 }

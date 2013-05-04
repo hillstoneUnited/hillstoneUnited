@@ -14,8 +14,10 @@
 #include "runtoball.hpp"
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
+#include "kicktofront.hpp"
 #include "runto.hpp"
 #include "runtoenemy.hpp"
+
 
 class Attack : public BrainBase
 {

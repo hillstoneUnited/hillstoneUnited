@@ -36,6 +36,7 @@ void KickTo::turn(World& w){
 }
 
 void KickTo::judgement(World& w){
+
 	elementList.push_back(new SequenceMovement("LAROUND"));
 
 	//kick
