@@ -44,7 +44,7 @@ void KickToFront::judgement(World& w){
 				elementList.push_back(new SequenceMovement("LAROUND") );
 		}
 
-		if( w.getXY(0) < w.getBXY(0) && fabs( fabs(w.getXY(1))-fabs(w.getBXY(1)) ) <2){
+		if( w.getXY(0) < w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <2){
 				std::cout << "mod angle" << std::endl;
 				modanglecount+=1;
 				//modify rellation(agent-ball) angle
@@ -81,7 +81,7 @@ void KickToFront::judgement(World& w){
 		else{
 			std::cout << "hosei" << std::endl;
 				//ball no kage ni irutoki
-				if(w.getXY(0) > w.getBXY(0) && fabs( fabs(w.getXY(1))-fabs(w.getBXY(1)) ) <0.1){
+				if(w.getXY(0) > w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <0.1){
 						double tpos[2];
 						tpos[0] = w.getBXY(0)+0.5;
 						if(w.getXY(1)>w.getBXY(1)){
@@ -91,10 +91,10 @@ void KickToFront::judgement(World& w){
 								tpos[1] = w.getBXY(1)-0.5;
 						}
 						std::cout << "hosei1" << std::endl;
-						elementList.push_back(new RunTo(w,tpos));
+						elementList.push_back(new RunToSlowly(w,tpos));
 				}
 				double kpos[2] = {w.getBXY(0)-1,w.getBXY(1)};
-				elementList.push_back(new RunTo(w,kpos));
+				elementList.push_back(new RunToSlowly(w,kpos));
 		}
 }
 

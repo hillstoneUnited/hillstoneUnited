@@ -18,6 +18,7 @@ brain = brain/brainbase.hpp brain/brainbase.cpp \
 		brain/runtoball.hpp brain/runtoball.cpp \
 		brain/runtoenemy.hpp brain/runtoenemy.cpp \
 		brain/runto.hpp brain/runto.cpp \
+		brain/runtoslowly.hpp brain/runtoslowly.cpp \
 		brain/adjusttoball.hpp brain/adjusttoball.cpp \
 		brain/attack.hpp brain/attack.cpp \
 		brain/defend.hpp brain/defend.cpp \

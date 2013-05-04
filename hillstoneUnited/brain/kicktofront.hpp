@@ -5,6 +5,7 @@
 #include "../world.hpp"
 
 #include "brain/runto.hpp"
+#include "brain/runtoslowly.hpp"
 
 #include "../movement/gabase.hpp"
 #include "../movement/sequencemovement.hpp"
