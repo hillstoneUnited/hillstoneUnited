@@ -19,8 +19,7 @@ class Defend : public BrainBase
 {
 public:
 
-  //  Defend(World& w, double _initpos[]);
-  Defend(World& w);
+   Defend(World& w, double _initpos[]);
   ~Defend(){};
 
   //  bool isFinished();
@@ -44,7 +43,7 @@ private:
   double friends[11][4];
   double enemy[11][4];
 
-  //  bool beam_flag;
+   bool beam_flag;
   //  std::string beam_msg;
   std::stringstream beam_msg;
 

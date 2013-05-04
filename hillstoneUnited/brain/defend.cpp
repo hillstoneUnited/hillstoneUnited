@@ -1,9 +1,10 @@
 #include "defend.hpp"
 
-#define TEST
+//#define TEST
 
-Defend::Defend(World& w){
+Defend::Defend(World& w, double _initpos[]){
   finish_flag = false;
+  beam_flag = false;
 
   ballpos[0] = 0.0;
   ballpos[1] = 0.0;
@@ -27,13 +28,11 @@ Defend::Defend(World& w){
   field_x = w.getFieldLengthX();
   field_y = w.getFieldLengthY();
 
-  // initpos[0] = _initpos[0];
-  // initpos[1] = _initpos[1];
-  // initpos[2] = _initpos[2];
-  initpos[0] = 0.0;
-  initpos[1] = 0.0;
-  initpos[2] = 0.0;
-  elementList.push_back(new SequenceMovement("LAROUND"));
+  initpos[0] = _initpos[0];
+  initpos[1] = _initpos[1];
+  initpos[2] = _initpos[2];
+  //  elementList.push_back(new SequenceMovement("LAROUND"));
+  judgement(w);
 }
 
 void Defend::judgement(World& w){
@@ -65,8 +64,9 @@ void Defend::judgement(World& w){
 
 #ifndef TEST
 
+
   if(inTerritory()){
-    std::cout << "in my Territory." << std::endl;
+    //    std::cout << "in my Territory." << std::endl;
     if(dist < 10.0){
       if(balposconf==300 && myposconf==300){
         elementList.push_back(new TicktackBase("TLEFT", 2));
@@ -77,7 +77,7 @@ void Defend::judgement(World& w){
       }
       else{
         if(close2Bal() && towardEnemy()){
-          std::cout << "close to ball" << std::endl;
+	  //          std::cout << "close to ball" << std::endl;
           if(bal[0] > 10){
             elementList.push_back(new TicktackBase("TLEFT", t_count));
           }
@@ -92,12 +92,12 @@ void Defend::judgement(World& w){
           //	  elementList.push_back(new KickTo(w, 0));
         }else{
           if(getInvader()>0){
-            std::cout << "invader, invader!" << std::endl;
+	    //            std::cout << "invader, invader!" << std::endl;
             elementList.push_back(new RunToEnemy(w, getInvader()));
           }
           else{
             if(bal[0] < 2.0){
-              std::cout << "chuuto hanpa" << std::endl;
+	      //              std::cout << "chuuto hanpa" << std::endl;
             // elementList.push_back(new RunTo(w, ballpos));
               if(bal[1] < -15){
                 elementList.push_back(new TicktackBase("TRIGHT", t_count));
@@ -106,11 +106,12 @@ void Defend::judgement(World& w){
                 elementList.push_back(new TicktackBase("TLEFT", t_count));
               }
               else{
-		elementList.push_back(new SequenceMovement("DUMMY"));
-                elementList.push_back(new TicktackBase("DRIBBLE", 5));
+		//		elementList.push_back(new SequenceMovement("DUMMY"));
+		//                elementList.push_back(new TicktackBase("DRIBBLE", 5));
+		elementList.push_back(new OdensWalk(ballpos));
               }
             }else{
-              std::cout << "not close to ball" << std::endl;
+	      //              std::cout << "not close to ball" << std::endl;
               elementList.push_back(new RunToBall(w));
             }
           }
@@ -118,7 +119,7 @@ void Defend::judgement(World& w){
       }
     }
     else{
-      std::cout << "to far, I'll back" << std::endl;
+      //      std::cout << "to far, I'll back" << std::endl;
       if(!close2Bal()){
         double home[2];
         for(int i=0; i<2; i++){
@@ -128,7 +129,7 @@ void Defend::judgement(World& w){
       }
     }
   }else{
-    std::cout << "not in my Territory." << std::endl;
+    //    std::cout << "not in my Territory." << std::endl;
     if(balposconf==300 && myposconf==300){
       elementList.push_back(new SequenceMovement("DUMMY"));
       elementList.push_back(new SequenceMovement("LAROUND"));
@@ -157,7 +158,7 @@ void Defend::judgement(World& w){
         for(int i=0; i<2; i++){
           home[i] = initpos[i];
         }
-        elementList.push_back(new RunTo(w, home));
+        elementList.push_back(new OdensWalk(home));
       }
     }
   }
@@ -166,7 +167,11 @@ void Defend::judgement(World& w){
 
 #endif
 #ifdef TEST
-
+  double hoge[2] = {0.0, 0.0};
+  hoge[0] = initpos[0] + 1;
+  hoge[1] = initpos[1];
+  elementList.push_back(new OdensWalk(hoge));
+  elementList.push_back(new GABase("GA_FORWARD", 5));
 
 #endif
 }
@@ -245,31 +250,46 @@ int Defend::getInvader(){
 
 std::string Defend::getNextAngle(World& w) {
 
-  if (w.isFalling())
-    {
-      if (pushStand)
-        {
-	  /* code */
-        } else {
-	elementList.clear();
-	elementList.push_front(new Standup());
-	pushStand = true;
-      }
-    } else {
-    pushStand = false;
-  }
+    std::stringstream ss;
+    if(w.getPlaymode()=="BeforeKickOff" ||
+       w.getPlaymode()=="Goal_Left" ||
+       w.getPlaymode()=="Goal_Right"){
+        beam_flag = true;
+        ss << "(beam " << initpos[0] << " "
+                << initpos[1] << " " << initpos[2]
+                << ")";
+        // std::cout << ss.str() << std::endl;
+    }
 
-  rtn = elementList.front()->getNextAngle(w);
-  if (elementList.front()->isFinished())
+    if (w.isFalling())
     {
-      ElementBase* tmp = elementList.front();
-      delete tmp;
-      elementList.pop_front();
+        if (pushStand)
+        {
+            /* code */
+        } else {
+            elementList.clear();
+            elementList.push_front(new Standup());
+            pushStand = true;
+        }
+    } else {
+        pushStand = false;
     }
-  if (finishAllChild(w))
+
+    rtn = elementList.front()->getNextAngle(w);
+    if(beam_flag){
+        rtn += ss.str();
+        beam_flag = false;
+    }
+    if (elementList.front()->isFinished())
     {
-      updateFinishFlag(w);
+        ElementBase* tmp = elementList.front();
+        delete tmp;
+        elementList.pop_front();
     }
-  return rtn;
+    if (finishAllChild(w))
+    {
+        updateFinishFlag(w);
+    }
+    return rtn;
 }
 
