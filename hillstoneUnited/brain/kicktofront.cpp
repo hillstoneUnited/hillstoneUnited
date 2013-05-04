@@ -12,62 +12,74 @@ KickToFront::KickToFront(World& w){
     isKicked = false;
     judgement(w);
     updateFinishFlag(w);
+
+    modanglecount = 0;
+    not_seeBALLcount = 0;
 }
 
 
 void KickToFront::judgement(World& w){
-		elementList.push_back(new SequenceMovement("LAROUND"));
 		std::cout << "mypos" << w.getXY(0) << "," << w.getXY(1) << std::endl;
 		std::cout << "ballpos" << w.getBXY(0) << "," << w.getBXY(1) << std::endl;
 
 
-		if(w.getBXY(0)==0){
-				std::cout << "hoge" << std::endl;
-				elementList.push_back(new SequenceMovement("DUMMY"));
-				elementList.push_back(new SequenceMovement("LAROUND") );
+		if(w.confBAL()>200 || w.getBXY(0)==0){
+				std::cout << "LAROUND" << std::endl;
+				//elementList.push_back(new SequenceMovement("READY"));
+				elementList.push_back(new SequenceMovement("LAROUND"));
+				not_seeBALLcount +=1;
+				if(not_seeBALLcount>3){
+					elementList.push_back(new TicktackBase("TLEFT",3));
+				}
+				return;
 		}
-
-		if( w.getXY(0) < w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <2){
-				std::cout << "mod angle" << std::endl;
+		if( w.getXY(0) < w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <2 && w.getXY(0)+3 > w.getBXY(0)){
+				not_seeBALLcount = 0;
 				modanglecount+=1;
 				//modify rellation(agent-ball) angle
 				double ballangle = w.getBAL(1);
 				//count:angle = 6:90
 				int count = int(8*fabs(ballangle)/90);
-				int dcount = int(w.getBAL(0)*6);
+				int dcount = int(w.getBAL(0)*8);
 				if(dcount < 2){
 					dcount+=2;
 				}
-
-				if(ballangle !=0){
-						if(ballangle>0 && count>1){
-							elementList.push_back(new SequenceMovement("DUMMY"));
-							elementList.push_back(new TicktackBase("TLEFT",count));
-						}
-						else if(count>1){
-							elementList.push_back(new SequenceMovement("DUMMY"));
-							elementList.push_back(new TicktackBase("TRIGHT",count));
-						}
+				else if(dcount > 30){
+					dcount = 30;
 				}
+
+
+				std::cout << "mod angle" << count << std::endl;
+					if(ballangle>0){
+						//elementList.push_back(new SequenceMovement("READY"));
+						elementList.push_back(new TicktackBase("TLEFT",count));
+					}
+					else{
+						//elementList.push_back(new SequenceMovement("READY"));
+						elementList.push_back(new TicktackBase("TRIGHT",count));
+					}
+
 				if(modanglecount > 5){
-					std::cout << "kick" << std::endl;
+					std::cout << "kick" <<" dcount" <<dcount << std::endl;
 					modanglecount = 0;
-					elementList.push_back(new TicktackBase("FORWARD",8));
+					elementList.push_back(new SequenceMovement("READY"));
+					elementList.push_back(new TicktackBase("FORWARD",6));
 					isKicked = true;
 				}
-				if(fabs(ballangle)<5 && w.getBAL(0)<1){
-					std::cout << "cho kick" << std::endl;
+				if(fabs(ballangle)<5 && w.getBAL(0)<0.8){
+					std::cout << "cho kick" <<ballangle  << "dcount"<< dcount<<  std::endl;
 					modanglecount = 0;
-					elementList.push_back(new SequenceMovement("DUMMY"));
+					elementList.push_back(new SequenceMovement("READY"));
 					elementList.push_back(new TicktackBase("FORWARD",dcount));
 					isKicked = true;
 				}
 		}
 		else{
+				std::cout << "modify position" << std::endl;
 				//ball no kage ni irutoki
 				if(w.getXY(0) > w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <0.1){
 						double tpos[2];
-						tpos[0] = w.getBXY(0)+0.5;
+						tpos[0] = w.getBXY(0)+0.3;
 						if(w.getXY(1)>w.getBXY(1)){
 								tpos[1] = w.getBXY(1)+0.5;
 						}
@@ -77,7 +89,7 @@ void KickToFront::judgement(World& w){
 						std::cout << "hosei" << std::endl;
 						elementList.push_back(new RunToSlowly(w,tpos));
 				}
-				double kpos[2] = {w.getBXY(0)-1,w.getBXY(1)};
+				double kpos[2] = {w.getBXY(0)-0.8,w.getBXY(1)};
 				elementList.push_back(new RunToSlowly(w,kpos));
 		}
 }
@@ -85,5 +97,11 @@ void KickToFront::judgement(World& w){
 
 void KickToFront::updateFinishFlag(World& w)
 {
-			finish_flag = false;
+		if(isKicked and w.getBAL(0)>5){
+			finish_flag = true;
+		}
+		else{
+			judgement(w);
+		}
+
 }

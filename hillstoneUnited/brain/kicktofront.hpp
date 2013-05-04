@@ -22,6 +22,7 @@ private:
   void updateFinishFlag(World& w);
   void judgement(World& w);
   int modanglecount;
+  int not_seeBALLcount;
   bool isKicked;
 
 };
