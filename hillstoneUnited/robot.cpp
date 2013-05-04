@@ -12,6 +12,10 @@ std::string Robot::getNextAngle(std::string &msg){
   world.update(msg);
   world.dump();
 
+  if(world.confBXY() < 200 && !world.isFalling()){
+    Drawing drawing;
+    drawing.draw(world);
+  }
 
   static double initpos0[3] = {-13.5,0.0, 0.0}; // keeper
 

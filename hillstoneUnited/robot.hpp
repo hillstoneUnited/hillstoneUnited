@@ -12,6 +12,8 @@
 #include "brain/kicktofront.hpp"
 #include "brain/testbrain.hpp"
 
+#include "drawing.hpp"
+
 
 /*
   This class is interface to main function.
