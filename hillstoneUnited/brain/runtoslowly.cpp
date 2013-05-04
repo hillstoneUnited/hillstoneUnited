@@ -48,6 +48,8 @@ void RunToSlowly::judgement(World& w){
     if(t_count == 0){
       t_count = 1;
     }
+    double dis = sqrt((point[0] - x)*(point[0] - x) + (point[1] - y)*(point[1] - y));
+    int dcount = int(dis*6);
 
     if(conf_XY == 300){
       elementList.push_back(new TicktackBase("TLEFT", 3));
@@ -63,7 +65,7 @@ void RunToSlowly::judgement(World& w){
 	}
 	else{
 	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new TicktackBase("FORWARD", 5));
+	  elementList.push_back(new TicktackBase("FORWARD", dcount));
 	}
       }
       else{
@@ -74,7 +76,7 @@ void RunToSlowly::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-	  elementList.push_back(new TicktackBase("FORWARD", 5));
+	  elementList.push_back(new TicktackBase("FORWARD", dcount));
 	}
       }
     }
