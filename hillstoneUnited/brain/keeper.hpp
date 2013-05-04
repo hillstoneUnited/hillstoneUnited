@@ -13,6 +13,7 @@ public:
     Keeper(World& w);
     ~Keeper(){};
 
+    std::string getNextAngle(World& w);
 
 private:
     void updateFinishFlag(World& w);

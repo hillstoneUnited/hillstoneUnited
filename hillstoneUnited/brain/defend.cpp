@@ -249,18 +249,17 @@ int Defend::getInvader(){
 }
 
 std::string Defend::getNextAngle(World& w) {
-
     std::stringstream ss;
-    if(w.getPlaymode()=="BeforeKickOff" ||
+    if((w.getPlaymode()=="BeforeKickOff" ||
        w.getPlaymode()=="Goal_Left" ||
-       w.getPlaymode()=="Goal_Right"){
+       w.getPlaymode()=="Goal_Right") && w.getUnum()>0){
         beam_flag = true;
         ss << "(beam " << initpos[0] << " "
                 << initpos[1] << " " << initpos[2]
                 << ")";
         // std::cout << ss.str() << std::endl;
     }
-
+    
     if (w.isFalling())
     {
         if (pushStand)

@@ -118,7 +118,7 @@ void Attack::judgement(World& w) {
             }
         }
     }
-    testJudge(w);
+    // testJudge(w);
 }
 
 
@@ -271,9 +271,9 @@ void Attack::testJudge(World& w) {
     elementList.clear();
     kickAngle = (egr[1]+egl[1])/2 + angle;
     std::cout << "kick to" << kickAngle << std::endl;
-    elementList.push_back(new SequenceMovement("LAROUND"));
+    // elementList.push_back(new SequenceMovement("LAROUND"));
     double dest[2] = {w.getBXY(0), w.getBXY(1)};
-    elementList.push_back(new OdensWalk(dest));
+    elementList.push_back(new AdjustToBall(w));
 
     // std::cout << "judgement desu no!!" << std::endl;
     // std::cout << "next: " << typeid(*elementList.front()).name() << std::endl;
@@ -282,9 +282,9 @@ void Attack::testJudge(World& w) {
 
 std::string Attack::getNextAngle(World& w) {
     std::stringstream ss;
-    if(w.getPlaymode()=="BeforeKickOff" ||
+    if((w.getPlaymode()=="BeforeKickOff" ||
        w.getPlaymode()=="Goal_Left" ||
-       w.getPlaymode()=="Goal_Right"){
+       w.getPlaymode()=="Goal_Right") && w.getUnum()>0){
         beam_flag = true;
         ss << "(beam " << initpos[0] << " "
                 << initpos[1] << " " << initpos[2]
