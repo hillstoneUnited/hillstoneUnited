@@ -59,7 +59,7 @@ void TestBrain::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
-    if (hasBal())
+    if (true)
     {
         elementList.push_back(new OdensWalk(ballpos));
     } else {

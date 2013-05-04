@@ -97,19 +97,19 @@ std::string OdensWalk::getNextAngle(World& w){
     
     //現在の関節角度の取得
     //左脚第一関節から順番に定義されている
-    joint[0] = w.getAngle("llj1"); // * DEGTORAD;
-    joint[1] = w.getAngle("llj2"); // * DEGTORAD;
-    joint[2] = w.getAngle("llj3"); // * DEGTORAD;
-    joint[3] = w.getAngle("llj4"); // * DEGTORAD;
-    joint[4] = w.getAngle("llj5"); // * DEGTORAD;
-    joint[5] = w.getAngle("llj6"); // * DEGTORAD;
+    joint[0] = w.getAngle("llj1") * DEGTORAD;
+    joint[1] = w.getAngle("llj2") * DEGTORAD;
+    joint[2] = w.getAngle("llj3") * DEGTORAD;
+    joint[3] = w.getAngle("llj4") * DEGTORAD;
+    joint[4] = w.getAngle("llj5") * DEGTORAD;
+    joint[5] = w.getAngle("llj6") * DEGTORAD;
 
-    joint[6] = w.getAngle("rlj1"); // * DEGTORAD;
-    joint[7] = w.getAngle("rlj2"); // * DEGTORAD;
-    joint[8] = w.getAngle("rlj3"); // * DEGTORAD;
-    joint[9] = w.getAngle("rlj4"); // * DEGTORAD;
-    joint[10] = w.getAngle("rlj5"); // * DEGTORAD;
-    joint[11] = w.getAngle("rlj6"); // * DEGTORAD;
+    joint[6] = w.getAngle("rlj1") * DEGTORAD;
+    joint[7] = w.getAngle("rlj2") * DEGTORAD;
+    joint[8] = w.getAngle("rlj3") * DEGTORAD;
+    joint[9] = w.getAngle("rlj4") * DEGTORAD;
+    joint[10] = w.getAngle("rlj5") * DEGTORAD;
+    joint[11] = w.getAngle("rlj6") * DEGTORAD;
 
 
     double velocity[12] = {};
@@ -123,10 +123,10 @@ std::string OdensWalk::getNextAngle(World& w){
         finish_flag = true;
     }
 
-    for (int i = 0; i < 12; i++)
-    {
-        velocity[i] = velocity[i] * RADTODEG;
-    }
+    // for (int i = 0; i < 12; i++)
+    // {
+    //     velocity[i] = velocity[i] * RADTODEG;
+    // }
 
     setAngle(w, joint, velocity);
     // setAngle(w, joint);
@@ -225,7 +225,7 @@ bool OdensWalk::set(jointID id, double velocity){
 
 void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
 
-    double gain = 1;
+    double gain = 100;
     double joint_set[12] = {};
 
     for (int i = 0; i < 12; i++)
@@ -237,18 +237,18 @@ void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
     // Legs
     set(llj1, velocity[0] * gain);
     set(llj2, velocity[1] * gain);
-    set(llj3, velocity[2] * gain);
-    set(llj4, velocity[3] * gain);
-    set(llj5, velocity[4] * gain);
+    set(llj3, -velocity[2] * gain);
+    set(llj4, -velocity[3] * gain);
+    set(llj5, -velocity[4] * gain);
     set(llj6, velocity[5] * gain);
 
     // Right
     // Legs
     set(rlj1, velocity[6] * gain);
     set(rlj2, velocity[7] * gain);
-    set(rlj3, velocity[8] * gain);
-    set(rlj4, velocity[9] * gain);
-    set(rlj5, velocity[10] * gain);
+    set(rlj3, -velocity[8] * gain);
+    set(rlj4, -velocity[9] * gain);
+    set(rlj5, -velocity[10] * gain);
     set(rlj6, velocity[11] * gain); 
     
 }

@@ -6,8 +6,8 @@
 #include"makewalk.hpp"
 
 MakeWalk::MakeWalk(): 
-	// SIMGAIN(0.00030558), 
-	SIMGAIN(1), // for libbats
+	SIMGAIN(0.00030558), 
+	// SIMGAIN(1), // for libbats
 	UPPERLEG(sqrt(0.120*0.120+0.005*0.005)),
 	LOWERLEG(0.1),
 	ANCLEFOOT(sqrt(0.035*0.035+0.030*0.030)), 
