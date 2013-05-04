@@ -62,6 +62,8 @@ void Defend::judgement(World& w){
     }
   }
 
+  judgeStandup(w);
+
 #ifndef TEST
 
 

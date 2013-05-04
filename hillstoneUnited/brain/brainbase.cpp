@@ -7,8 +7,6 @@ BrainBase::~BrainBase(){
     delete tmp;
     elementList.pop_front();
   }
-  pushStand = false;
-  rtn = "";
 }
 
 bool BrainBase::isFinished(){
@@ -102,5 +100,12 @@ bool BrainBase::finishAllChild(World& w) {
             }
         }
         return true;
+    }
+}
+
+void BrainBase::judgeStandup(World& w) {
+    if (w.isFalling())
+    {
+        elementList.push_front(new Standup());
     }
 }

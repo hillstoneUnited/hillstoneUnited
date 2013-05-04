@@ -60,6 +60,8 @@ void Attack::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
+    judgeStandup(w);
+
     // std::cout << egr[0] << std::endl;
     // std::cout << egr[1] << std::endl;
 
@@ -255,7 +257,12 @@ std::string Attack::getNextAngle(World& w) {
         {
             /* code */
         } else {
-            elementList.clear();
+            while(!elementList.empty())
+            {
+                ElementBase* tmp = elementList.front();
+                delete tmp;
+                elementList.pop_front();
+            }
             elementList.push_front(new Standup());
             pushStand = true;
         }

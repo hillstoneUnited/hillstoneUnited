@@ -59,15 +59,17 @@ void TestBrain::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
-    if (close2Bal())
+    if (hasBal())
     {
-        elementList.push_back(new TicktackBase("FORWARD", 100));
+        elementList.push_back(new OdensWalk(ballpos));
     } else {
-        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+        elementList.push_back(new SequenceMovement("LAROUND"));
+        elementList.push_back(new RunToBall(w));
     }
 
-}
+    judgeStandup(w);
 
+}
 
 void TestBrain::updateFinishFlag(World& w) {
     judgement(w);
@@ -197,20 +199,24 @@ std::string TestBrain::getNextAngle(World& w) {
         // std::cout << ss.str() << std::endl;
     }
 
-    if (w.isFalling())
-    {
-        if (pushStand)
-        {
-            /* code */
-        } else {
-            std::cout << "elementList clear" << std::endl;
-            elementList.clear();
-            elementList.push_front(new Standup());
-            pushStand = true;
-        }
-    } else {
-        pushStand = false;
-    }
+    // if (w.isFalling())
+    // {
+    //     if (pushStand)
+    //     {
+    //         /* code */
+    //     } else {
+    //         std::cout << "elementList clear" << std::endl;
+    //         while(!elementList.empty()) {
+    //             ElementBase* tmp = elementList.front();
+    //             delete tmp;
+    //             elementList.pop_front();
+    //         }
+    //         elementList.push_front(new Standup());
+    //         pushStand = true;
+    //     }
+    // } else {
+    //     pushStand = false;
+    // }
 
     rtn = elementList.front()->getNextAngle(w);
     if(beam_flag){

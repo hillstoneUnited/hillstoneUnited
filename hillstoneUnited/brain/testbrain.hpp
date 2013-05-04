@@ -15,7 +15,7 @@
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
 #include "runto.hpp"
-#include "runtoball.hpp"
+#include "runtoenemy.hpp"
 
 class TestBrain : public BrainBase
 {

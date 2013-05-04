@@ -7,7 +7,9 @@ Standup::Standup(){
   ts = 0;
 }
 
-Standup::~Standup(){}
+Standup::~Standup(){
+  std::cout << "delete\tfinish: " << finish_flag << std::endl;
+}
 
 
 std::string Standup::getNextAngle(World& w){

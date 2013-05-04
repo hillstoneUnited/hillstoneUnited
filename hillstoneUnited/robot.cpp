@@ -35,10 +35,19 @@ std::string Robot::getNextAngle(std::string &msg){
     tmpinit[i][2] = 0;
   }
 
+  /*
+
   mainbrain = new TestBrain(world, initpos9);
+  if (mainbrain->isFinished())
+  {
+    delete mainbrain;
+    mainbrain = new TestBrain(world, initpos9);
+  }
   return mainbrain->getNextAngle(world);
 
-  /*
+  */
+
+  
   if (world.getUnum() > 0){
     if (virgin){
 
@@ -49,7 +58,7 @@ std::string Robot::getNextAngle(std::string &msg){
 
       switch(world.getUnum()){
       case 1:
-        mainbrain = new Keeper(world, initpos0);
+        mainbrain = new TestBrain(world, initpos0);
         break;
       case 2:
         mainbrain = new Defend(world, initpos1);
@@ -140,7 +149,7 @@ std::string Robot::getNextAngle(std::string &msg){
     return mainbrain->getNextAngle(world);
   } 
   return "";
-  */
+  
 }
   
 std::string Robot::Init2(){

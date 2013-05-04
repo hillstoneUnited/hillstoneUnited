@@ -62,6 +62,8 @@ void AdjustToBall::judgement(World& w){
 
     // std::cout << w.getBAL(0) << std::endl;
     // std::cout << "adjusting\tnextangle" << std::endl;
+
+    judgeStandup(w);
 }
 
 void AdjustToBall::updateFinishFlag(World& w)
