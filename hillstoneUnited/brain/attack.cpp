@@ -31,6 +31,7 @@ Attack::Attack(World& w, double _initpos[]) {
 
     kickAngle = 0.0;
     passTo = 0;
+    ROLE = "NONE";
 
     initpos[0] = _initpos[0];
     initpos[1] = _initpos[1];
@@ -68,65 +69,165 @@ void Attack::judgement(World& w) {
     // std::cout << egr[1] << std::endl;
 
 
-    if (hasBal())
-    {
-        if (close2Goal())
+    double offset[2] = {0.0,0.0};
+
+    // if (w.confXY() == 300 || w.confBXY() == 300)
+    // {
+    //     // elementList.push_back(new TicktackBase("TLEFT", 5));
+    //     elementList.push_back(new SequenceMovement("LAROUND"));
+    // }
+
+    // if (w.getPlaymode()=="BeforeKickOff")
+    // {
+    //     elementList.push_front(new SequenceMovement("DUMMY"));
+    // }
+
+    switch(w.getUnum()){
+        case 1:
+        offset[0] = 3.0;
+        offset[1] = 0.0;
+
+        if (fabs(w.getFRIEND(2, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(2, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(2) <= 200)
         {
-            // shoot
-            kickAngle = (egr[1]+egl[1])/2 + angle;
-            std::cout << "shoot!! to " << kickAngle <<std::endl;
-
+            ROLE = "FOLLOW";
+        } else if (fabs(w.getFRIEND(3, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(3, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(3) <= 200) {
+            ROLE = "FOLLOW";
         } else {
-             std::cout << "pass?" << ableToPass() << std::endl;
-            if (ableToPass())
-            {
-                // pass
-                kickAngle = friends[passTo][1] + angle; // hogehoge
-                // std::cout << "pass to " << kickAngle <<std::endl;
-            } else {
-
-                // dribble
-                kickAngle = 0; // hogehoge
-                 std::cout << "dribble to " << kickAngle << std::endl;
-            }
+            ROLE = "TOP";
         }
+        break;
 
-        //elementList.push_back(new AdjustToBall(w));
-        elementList.push_back(new KickToFront(w));
-    } else {
-        if (farHome())
+        case 2:
+        offset[0] = 2.0;
+        offset[1] = 2.0;
+
+        if (fabs(w.getFRIEND(1, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(1, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(1) <= 200)
         {
-            elementList.push_back(new RunToSlowly(w, initpos));
-             std::cout << "go home" << std::endl;
+            ROLE = "FOLLOW";
+        } else if (fabs(w.getFRIEND(3, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(3, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(3) <= 200) {
+            ROLE = "FOLLOW";
         } else {
-            int invader = getInvader();
-            if (invader != -1)
-            {
-                elementList.push_back(new RunToEnemy(w, invader));
-                 std::cout << "tuckle" << std::endl;
-            } else {
-                if (close2Bal() || inTerritory())
-                {
-                    if (bal[0] < 1.5)
-                    {
-                        elementList.push_back(new AdjustToBall(w));
-                         std::cout << "#attack: adjusting" << std::endl;
-                    } else {
-                        elementList.push_back(new KickToFront(w));
-                         std::cout << "ball!!" << std::endl;
-                    }
-                } else {
-                    elementList.push_back(new RunToSlowly(w, initpos));
-                     std::cout << "go home(nothing)" << std::endl;
-                }
-            }
+            ROLE = "TOP";
+        }
+        break;
+
+        case 3:
+        offset[0] = 3.0;
+        offset[1] = -1.0;
+
+        if (fabs(w.getFRIEND(2, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(2, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(2) <= 200)
+        {
+            ROLE = "FOLLOW";
+        } else if (fabs(w.getFRIEND(1, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(1, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(1) <= 200) {
+            ROLE = "FOLLOW";
+        } else {
+            ROLE = "TOP";
+        }
+        break;
+
+        case 4:
+
+        ROLE = "MF";
+
+        break;
+
+        case 5:
+
+        ROLE = "MF";
+
+        break;
+
+    }
+
+    if (ROLE=="TOP")
+    {
+        elementList.push_back(new AdjustToBall(w));
+        elementList.push_back(new TicktackBase("FORWARD", 3));
+        elementList.push_back(new GABase("GA_FORWARD", 100));   
+    } else if (ROLE=="FOLLOW") {
+        double send[2] = {ballpos[0]+offset[0], ballpos[1]+offset[1]};
+        elementList.push_back(new OdensWalk(offset));
+    } else if (ROLE=="MF") {
+        if (inTerritory() || hasBal() || close2Bal())
+        {
+            elementList.push_back(new AdjustToBall(w));
+            elementList.push_back(new TicktackBase("FORWARD", 3));
+            elementList.push_back(new GABase("GA_FORWARD", 70));
+        } else {
+            elementList.push_back(new RunTo(w, initpos));
         }
     }
+
+    // if (hasBal())
+    // {
+    //     if (close2Goal())
+    //     {
+    //         // shoot
+    //         kickAngle = (egr[1]+egl[1])/2 + angle;
+    //         std::cout << "shoot!! to " << kickAngle <<std::endl;
+
+    //     } else {
+    //          std::cout << "pass?" << ableToPass() << std::endl;
+    //         if (ableToPass())
+    //         {
+    //             // pass
+    //             kickAngle = friends[passTo][1] + angle; // hogehoge
+    //             // std::cout << "pass to " << kickAngle <<std::endl;
+    //         } else {
+
+    //             // dribble
+    //             kickAngle = 0; // hogehoge
+    //              std::cout << "dribble to " << kickAngle << std::endl;
+    //         }
+    //     }
+
+    //     //elementList.push_back(new AdjustToBall(w));
+    //     elementList.push_back(new KickToFront(w));
+    // } else {
+    //     if (farHome())
+    //     {
+    //         elementList.push_back(new RunToSlowly(w, initpos));
+    //          std::cout << "go home" << std::endl;
+    //     } else {
+    //         int invader = getInvader();
+    //         if (invader != -1)
+    //         {
+    //             elementList.push_back(new RunToEnemy(w, invader));
+    //              std::cout << "tuckle" << std::endl;
+    //         } else {
+    //             if (close2Bal() || inTerritory())
+    //             {
+    //                 if (bal[0] < 1.5)
+    //                 {
+    //                     elementList.push_back(new AdjustToBall(w));
+    //                      std::cout << "#attack: adjusting" << std::endl;
+    //                 } else {
+    //                     elementList.push_back(new KickToFront(w));
+    //                      std::cout << "ball!!" << std::endl;
+    //                 }
+    //             } else {
+    //                 elementList.push_back(new RunToSlowly(w, initpos));
+    //                  std::cout << "go home(nothing)" << std::endl;
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 
 void Attack::updateFinishFlag(World& w) {
-	std::cout << "updateFinishFlag" << std::endl;
     judgement(w);
     //d->draw(w);
 }
@@ -148,8 +249,8 @@ void Attack::updateFandE(World& w) {
 
 
 bool Attack::inTerritory(){
-  if(abs(ballpos[0] - initpos[0]) < 6.0 &&
-     abs(ballpos[1] - initpos[1]) < 6.0 &&
+  if(abs(ballpos[0] - initpos[0]) < 2.0 &&
+     abs(ballpos[1] - initpos[1]) < 2.0 &&
      balposconf <= 250){
     return true;
   }else{
@@ -178,7 +279,7 @@ bool Attack::farHome() {
 }
 
 bool Attack::close2Bal(){
-  if(abs(bal[0]) < 4.5 && balposconf <= 150){
+  if(abs(bal[0]) < 3.0 && balposconf <= 150){
     return true;
   }else{
     return false;
@@ -264,25 +365,6 @@ std::string Attack::getNextAngle(World& w) {
       kick_flag = false;
     }
     ///////////////////////////////////
-
-    if (w.isFalling())
-    {
-        if (pushStand)
-        {
-            /* code */
-        } else {
-            while(!elementList.empty())
-            {
-                ElementBase* tmp = elementList.front();
-                delete tmp;
-                elementList.pop_front();
-            }
-            elementList.push_front(new Standup());
-            pushStand = true;
-        }
-    } else {
-        pushStand = false;
-    }
 
     rtn = elementList.front()->getNextAngle(w);
     if(beam_flag){
