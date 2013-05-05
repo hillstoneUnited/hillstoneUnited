@@ -75,7 +75,7 @@ void TestBrain::judgement(World& w) {
     static bool kick_flag;
 
     switch(w.getUnum()){
-        case 1:
+        case 10:
         offset[0] = 3.0;
         offset[1] = 0.0;
         if(w.getPlaymode()=="BeforeKickOff"){
@@ -99,7 +99,7 @@ void TestBrain::judgement(World& w) {
         }
         break;
 
-        case 2:
+        case 9:
         offset[0] = 2.0;
         offset[1] = 2.0;
         if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
@@ -120,7 +120,7 @@ void TestBrain::judgement(World& w) {
         }
         break;
 
-        case 3:
+        case 11:
         offset[0] = 3.0;
         offset[1] = -1.0;
         if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
@@ -141,13 +141,13 @@ void TestBrain::judgement(World& w) {
         }
         break;
 
-        case 4:
+        case 7:
 
         ROLE = "MF";
 
         break;
 
-        case 5:
+        case 8:
 
         ROLE = "MF";
 

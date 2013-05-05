@@ -83,7 +83,7 @@ void Attack::judgement(World& w) {
     // }
 
     switch(w.getUnum()){
-        case 1:
+        case 10:
         offset[0] = 3.0;
         offset[1] = 0.0;
 
@@ -101,7 +101,7 @@ void Attack::judgement(World& w) {
         }
         break;
 
-        case 2:
+        case 9:
         offset[0] = 2.0;
         offset[1] = 2.0;
 
@@ -119,7 +119,7 @@ void Attack::judgement(World& w) {
         }
         break;
 
-        case 3:
+        case 11:
         offset[0] = 3.0;
         offset[1] = -1.0;
 
@@ -137,13 +137,13 @@ void Attack::judgement(World& w) {
         }
         break;
 
-        case 4:
+        case 7:
 
         ROLE = "MF";
 
         break;
 
-        case 5:
+        case 8:
 
         ROLE = "MF";
 
