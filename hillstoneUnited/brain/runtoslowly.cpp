@@ -27,6 +27,7 @@ RunToSlowly::RunToSlowly(World& w, double _point[]){
 
     //elementList.push_back(new SequenceMovement("LAROUND"));
     updateFinishFlag(w);
+    judgement(w);
 }
 
 void RunToSlowly::judgement(World& w){
@@ -58,7 +59,7 @@ void RunToSlowly::judgement(World& w){
 			dcount=1;
 		}
 		else if(dcount > dcount_limit){
-			dcount = dcount;
+			dcount = dcount_limit;
 		}
 		//dcount = 2;
 
@@ -96,8 +97,8 @@ void RunToSlowly::judgement(World& w){
 
 }
 
-void RunToSlowly::updateFinishFlag(World& w)
-{
+void RunToSlowly::updateFinishFlag(World& w){
+std::cout << "RunToSlowly::updateFinishFlag" << std::endl;
     if(abs(point[0] - w.getXY_AVE(0)) < 0.2 &&
        abs(point[1] - w.getXY_AVE(1)) < 0.2)
     {
