@@ -53,30 +53,35 @@ void RunTo::judgement(World& w){
 
     if(conf_XY == 300){
       elementList.push_back(new TicktackBase("TLEFT", 2));
-      elementList.push_back(new SequenceMovement("LAROUND"));
+      elementList.push_back(new SequenceMovement("LAROUNDREADY"));
     }
     else{
       if(dist > 2.0){
 	if(angle > 20){
+	  elementList.push_back(new SequenceMovement("READY"));
 	  elementList.push_back(new TicktackBase("TLEFT", t_count));
 	}
 	else if(angle < -20){
+	  elementList.push_back(new SequenceMovement("READY"));
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new TicktackBase("FORWARD", 5));
+	  elementList.push_back(new SequenceMovement("READY"));
+	  elementList.push_back(new TicktackBase("FORWARD", 3));
 	  elementList.push_back(new GABase("GA_FORWARD", 10));
 	}
       }
       else{
 	if(angle > 10){
+	  elementList.push_back(new SequenceMovement("READY"));
 	  elementList.push_back(new TicktackBase("TLEFT", t_count));
 	}
 	else if(angle < -10){
+	  elementList.push_back(new SequenceMovement("READY"));
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
+	  elementList.push_back(new SequenceMovement("READY"));
 	  elementList.push_back(new TicktackBase("FORWARD", 5));
 	  elementList.push_back(new TicktackBase("DRIBBLE", 10));
 	}

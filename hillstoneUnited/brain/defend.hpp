@@ -9,6 +9,7 @@
 #include "kickto.hpp"
 #include "runtoball.hpp"
 #include "runtoenemy.hpp"
+#include "adjusttoball.hpp"
 #include "../movement/gabase.hpp"
 #include "../movement/standup.hpp"
 #include "../movement/odenswalk.hpp"
