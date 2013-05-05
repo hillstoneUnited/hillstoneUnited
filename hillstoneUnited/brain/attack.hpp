@@ -11,6 +11,7 @@
 #include "../movement/gabase.hpp"
 #include "../movement/ticktackbase.hpp"
 #include "../movement/sequencemovement.hpp"
+#include "../movement/kick.hpp"
 #include "runtoball.hpp"
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
@@ -54,6 +55,8 @@ private:
     int passTo;
 
     bool beam_flag;
+    //kickoff_kick
+    bool kick_flag;
 
     void judgement(World& w);
     void updateFinishFlag(World& w);

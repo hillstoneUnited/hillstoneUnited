@@ -5,6 +5,7 @@ Attack::Attack(World& w, double _initpos[]) {
 		//d = new Drawing();
     finish_flag = false;
     beam_flag = false;
+    kick_flag = false;
 
     ballpos[0] = 0.0;
     ballpos[1] = 0.0;
@@ -253,6 +254,16 @@ std::string Attack::getNextAngle(World& w) {
                 << ")";
         // std::cout << ss.str() << std::endl;
     }
+
+    ///kickoff_kick////////////////////
+    if(w.getPlaymode()=="BeforeKickOff" && w.getUnum() == 10){
+      kick_flag = true;
+    }
+    if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
+      elementList.push_front(new Kick());
+      kick_flag = false;
+    }
+    ///////////////////////////////////
 
     if (w.isFalling())
     {
