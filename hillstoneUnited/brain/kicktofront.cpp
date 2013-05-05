@@ -51,7 +51,7 @@ void KickToFront::judgement(World& w){
 					dcount=1;
 				}
 				else if(dcount > dcount_limit){
-					dcount = dcount_limit;
+					dcount = dcount;
 				}
 
 

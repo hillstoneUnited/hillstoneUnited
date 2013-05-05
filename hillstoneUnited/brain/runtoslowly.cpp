@@ -58,7 +58,7 @@ void RunToSlowly::judgement(World& w){
 			dcount=1;
 		}
 		else if(dcount > dcount_limit){
-			dcount = dcount_limit;
+			dcount = dcount;
 		}
 
     if(conf_XY > 200 || w.confBXY()>200 || w.confBXY()==0){
