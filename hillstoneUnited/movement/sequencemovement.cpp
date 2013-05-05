@@ -325,6 +325,7 @@ void SequenceMovement::setNewSequence(std::string name){
     pose1.setTarget(rlj2, -45);
     pose1.setTarget(llj3, 45);
     pose1.setTarget(rlj3, 45);
+    pose1.setGain(0.04);
 
     Pose pose2;
     pose2.setTarget(laj3, -120);
