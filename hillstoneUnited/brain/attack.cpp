@@ -73,10 +73,10 @@ void Attack::judgement(World& w) {
         {
             // shoot
             kickAngle = (egr[1]+egl[1])/2 + angle;
-            // std::cout << "shoot!! to " << kickAngle <<std::endl;
+            std::cout << "shoot!! to " << kickAngle <<std::endl;
 
         } else {
-            // std::cout << "pass?" << ableToPass() << std::endl;
+             std::cout << "pass?" << ableToPass() << std::endl;
             if (ableToPass())
             {
                 // pass
@@ -86,7 +86,7 @@ void Attack::judgement(World& w) {
 
                 // dribble
                 kickAngle = 0; // hogehoge
-                // std::cout << "dribble to " << kickAngle << std::endl;
+                 std::cout << "dribble to " << kickAngle << std::endl;
             }
         }
 
@@ -96,27 +96,27 @@ void Attack::judgement(World& w) {
         if (farHome())
         {
             elementList.push_back(new RunToSlowly(w, initpos));
-            // std::cout << "go home" << std::endl;
+             std::cout << "go home" << std::endl;
         } else {
             int invader = getInvader();
             if (invader != -1)
             {
                 elementList.push_back(new RunToEnemy(w, invader));
-                // std::cout << "tuckle" << std::endl;
+                 std::cout << "tuckle" << std::endl;
             } else {
                 if (close2Bal() || inTerritory())
                 {
                     if (bal[0] < 1.5)
                     {
-                        elementList.push_back(new KickToFront(w));
-                        // std::cout << "#attack: adjusting" << std::endl;
+                        elementList.push_back(new AdjustToBall(w));
+                         std::cout << "#attack: adjusting" << std::endl;
                     } else {
                         elementList.push_back(new KickToFront(w));
-                        // std::cout << "ball!!" << std::endl;
+                         std::cout << "ball!!" << std::endl;
                     }
                 } else {
                     elementList.push_back(new RunToSlowly(w, initpos));
-                    // std::cout << "go home(nothing)" << std::endl;
+                     std::cout << "go home(nothing)" << std::endl;
                 }
             }
         }
@@ -125,6 +125,7 @@ void Attack::judgement(World& w) {
 
 
 void Attack::updateFinishFlag(World& w) {
+	std::cout << "updateFinishFlag" << std::endl;
     judgement(w);
     //d->draw(w);
 }
