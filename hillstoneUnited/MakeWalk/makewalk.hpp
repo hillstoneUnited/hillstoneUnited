@@ -186,9 +186,6 @@ class MakeWalk
 	void OldLegVelocity(double angle[], double velocity[]);
 	void LegTrajectory(double time,double time2, double dpos[],double npos[],double rpos[]);
 	void update(double joint[], double velocity[], double walkx, double walky, double rotation, bool act);
-
-	//angle version
-	void update(double joint[], double walkx, double walky, double rotation, bool act);	
 	public:
 	
 	void RightLegIK(double target_angle[], double target_point[], double yaw);
@@ -210,9 +207,6 @@ class MakeWalk
 	
 	bool WalkControl(double joint[], double velocity[],
 	double walkx, double walky, double rotation, bool act);
-
-	// angle version
-	bool WalkControl(double joint[], double walkx, double walky, double rotation, bool act);
 
 };
 

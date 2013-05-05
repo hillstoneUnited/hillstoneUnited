@@ -61,7 +61,9 @@ void TestBrain::judgement(World& w) {
 
     if (true)
     {
-        elementList.push_back(new OdensWalk(ballpos));
+        elementList.push_back(new SequenceMovement("LAROUND"));
+        elementList.push_back(new OdensWalk("BALL", 2.0, 360));
+        elementList.push_back(new SequenceMovement("DUMMY"));
     } else {
         elementList.push_back(new SequenceMovement("LAROUND"));
         elementList.push_back(new RunToBall(w));
@@ -225,7 +227,6 @@ std::string TestBrain::getNextAngle(World& w) {
     }
     if (elementList.front()->isFinished())
     {
-        std::cout << "pop delete" << std::endl;
         ElementBase* tmp = elementList.front();
         delete tmp;
         elementList.pop_front();
