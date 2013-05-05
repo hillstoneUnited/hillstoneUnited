@@ -28,6 +28,7 @@ TestBrain::TestBrain(World& w, double _initpos[]) {
 
     kickAngle = 0.0;
     passTo = 0;
+    ROLE = "NONE";
 
     initpos[0] = _initpos[0];
     initpos[1] = _initpos[1];
@@ -37,13 +38,13 @@ TestBrain::TestBrain(World& w, double _initpos[]) {
 
 void TestBrain::judgement(World& w) {
 
-    ballpos[0] = w.getBXY(0);
-    ballpos[1] = w.getBXY(1);
+    ballpos[0] = w.getBXY_AVE(0);
+    ballpos[1] = w.getBXY_AVE(1);
     bal[0] = w.getBAL(0);
     bal[1] = w.getBAL(1);
     bal[2] = w.getBAL(2);
-    mypos[0] = w.getXY(0);
-    mypos[1] = w.getXY(1);
+    mypos[0] = w.getXY_AVE(0);
+    mypos[1] = w.getXY_AVE(1);
     balposconf = w.confBAL();
     myposconf = w.confXY();
     egrconf = w.confEGR();
@@ -59,14 +60,118 @@ void TestBrain::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
-    if (true)
+    double offset[2] = {0.0,0.0};
+
+    if (w.confXY() == 300 || w.confBXY() == 300)
     {
+        // elementList.push_back(new TicktackBase("TLEFT", 5));
         elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new OdensWalk("BALL", 0, -2.0));
-        elementList.push_back(new SequenceMovement("DUMMY"));
-    } else {
-        elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new RunToBall(w));
+    }
+
+    if (w.getPlaymode()=="BeforeKickOff")
+    {
+        elementList.push_front(new SequenceMovement("DUMMY"));
+    }
+    static bool kick_flag;
+
+    switch(w.getUnum()){
+        case 10:
+        offset[0] = 3.0;
+        offset[1] = 0.0;
+        if(w.getPlaymode()=="BeforeKickOff"){
+          kick_flag = true;
+        }
+        if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
+          elementList.push_front(new GABase("GA_FORWARD", 100));
+          kick_flag = false;
+        }
+        if (fabs(w.getFRIEND(2, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(2, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(2) <= 200)
+        {
+            ROLE = "FOLLOW";
+        } else if (fabs(w.getFRIEND(3, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(3, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(3) <= 200) {
+            ROLE = "FOLLOW";
+        } else {
+            ROLE = "TOP";
+        }
+        break;
+
+        case 9:
+        offset[0] = 2.0;
+        offset[1] = 2.0;
+        if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
+          elementList.push_front(new Kick());
+          kick_flag = false;
+        }
+        if (fabs(w.getFRIEND(1, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(1, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(1) <= 200)
+        {
+            ROLE = "FOLLOW";
+        } else if (fabs(w.getFRIEND(3, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(3, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(3) <= 200) {
+            ROLE = "FOLLOW";
+        } else {
+            ROLE = "TOP";
+        }
+        break;
+
+        case 11:
+        offset[0] = 3.0;
+        offset[1] = -1.0;
+        if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
+          elementList.push_front(new Kick());
+          kick_flag = false;
+        }
+        if (fabs(w.getFRIEND(2, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(2, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(2) <= 200)
+        {
+            ROLE = "FOLLOW";
+        } else if (fabs(w.getFRIEND(1, 0) - bal[0]) <= bal[0] &&
+            fabs(w.getFRIEND(1, 1) - bal[1]) <= 50 &&
+            w.confFRIEND(1) <= 200) {
+            ROLE = "FOLLOW";
+        } else {
+            ROLE = "TOP";
+        }
+        break;
+
+        case 7:
+
+        ROLE = "MF";
+
+        break;
+
+        case 8:
+
+        ROLE = "MF";
+
+        break;
+
+    }
+
+    if (ROLE=="TOP")
+    {
+        elementList.push_back(new AdjustToBall(w));
+        elementList.push_back(new TicktackBase("FORWARD", 3));
+        elementList.push_back(new GABase("GA_FORWARD", 100));   
+    } else if (ROLE=="FOLLOW") {
+        double send[2] = {ballpos[0]+offset[0], ballpos[1]+offset[1]};
+        elementList.push_back(new OdensWalk(offset));
+    } else if (ROLE=="MF") {
+        if (inTerritory() || hasBal() || close2Bal())
+        {
+            elementList.push_back(new AdjustToBall(w));
+            elementList.push_back(new TicktackBase("FORWARD", 3));
+            elementList.push_back(new GABase("GA_FORWARD", 70));
+        } else {
+            elementList.push_back(new RunTo(w, initpos));
+        }
     }
 
     judgeStandup(w);
@@ -94,8 +199,8 @@ void TestBrain::updateFandE(World& w) {
 
 
 bool TestBrain::inTerritory(){
-  if(abs(ballpos[0] - initpos[0]) < 6.0 &&
-     abs(ballpos[1] - initpos[1]) < 6.0 &&
+  if(fabs(ballpos[0] - initpos[0]) < 2.0 &&
+     fabs(ballpos[1] - initpos[1]) < 2.0 &&
      balposconf <= 250){
     return true;
   }else{
@@ -124,7 +229,7 @@ bool TestBrain::farHome() {
 }
 
 bool TestBrain::close2Bal(){
-  if(abs(bal[0]) < 4.5 && balposconf <= 150){
+  if(abs(bal[0]) < 3 && balposconf <= 150){
     return true;
   }else{
     return false;

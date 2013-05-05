@@ -20,6 +20,7 @@ brain = brain/brainbase.hpp brain/brainbase.cpp \
 		brain/runto.hpp brain/runto.cpp \
 		brain/runtoslowly.hpp brain/runtoslowly.cpp \
 		brain/adjusttoball.hpp brain/adjusttoball.cpp \
+		brain/follow.hpp brain/follow.cpp \
 		brain/attack.hpp brain/attack.cpp \
 		brain/defend.hpp brain/defend.cpp \
 		brain/kickto.hpp brain/kickto.cpp \
