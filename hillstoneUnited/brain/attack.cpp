@@ -90,7 +90,7 @@ void Attack::judgement(World& w) {
             }
         }
 
-        elementList.push_back(new AdjustToBall(w));
+        //elementList.push_back(new AdjustToBall(w));
         elementList.push_back(new KickToFront(w));
     } else {
         if (farHome())
@@ -108,7 +108,7 @@ void Attack::judgement(World& w) {
                 {
                     if (bal[0] < 1.5)
                     {
-                        elementList.push_back(new AdjustToBall(w));
+                        elementList.push_back(new KickToFront(w));
                         // std::cout << "#attack: adjusting" << std::endl;
                     } else {
                         elementList.push_back(new KickToFront(w));

@@ -69,7 +69,7 @@ void KickToFront::judgement(World& w){
 					//std::cout << "kick" <<" dcount" <<dcount << std::endl;
 					modanglecount = 0;
 					elementList.push_back(new SequenceMovement("DUMMY"));
-					elementList.push_back(new TicktackBase("FORWARD",6));
+					elementList.push_back(new TicktackBase("FORWARD",dcount));
 					isKicked = true;
 				}
 				if(fabs(ballangle)<5 && w.getBAL(0)<0.8){
