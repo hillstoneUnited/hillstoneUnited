@@ -11,6 +11,8 @@ bool MakeWalk::WalkControl(double joint[],double velocity[], double walkx, doubl
 {
 	//停止信号
 	if(act == 0 && (t > nextstatetime) && (state == 4 || state == 1 || state == -2)){
+        //歩容の更新
+        (this)->update(joint, velocity,walkx,walky,rotation, act);
 		return 0;
 	}
 	//歩容の更新
