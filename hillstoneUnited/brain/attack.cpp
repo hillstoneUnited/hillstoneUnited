@@ -90,7 +90,7 @@ void Attack::judgement(World& w) {
         }
 
         elementList.push_back(new AdjustToBall(w));
-        elementList.push_back(new KickTo(w, kickAngle));
+        elementList.push_back(new KickToFront(w));
     } else {
         if (farHome())
         {
