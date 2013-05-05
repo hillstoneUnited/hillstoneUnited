@@ -71,32 +71,56 @@ void TestBrain::judgement(World& w) {
 
     if (w.confXY() == 300 || w.confBXY() == 300)
     {
-        elementList.push_back(new TicktackBase("TLEFT", 5));
+        // elementList.push_back(new TicktackBase("TLEFT", 5));
         elementList.push_back(new SequenceMovement("LAROUND"));
     }
 
     if (w.getPlaymode()=="BeforeKickOff")
     {
-        elementList.push_front(new SequenceMovement("LAROUND"));
+        elementList.push_front(new SequenceMovement("DUMMY"));
     }
+    static bool kick_flag;
 
     switch(w.getUnum()){
         case 1:
-            if (w.confBXY() >= 50)
-            {
-                elementList.push_back(new SequenceMovement("LVERTICAL"));
+            // if (w.confBXY() >= 50)
+            // {
+            //     elementList.push_back(new SequenceMovement("LVERTICAL"));
+            // }
+
+            if(w.getPlaymode()=="BeforeKickOff"){
+              kick_flag = true;
             }
-            elementList.push_back(new OdensWalk("BALL", -1.0, 0));
-            elementList.push_back(new OdensWalk("BALL", -0.5, 0));
-            elementList.push_back(new GABase("GA_FORWARD", 100));
+            if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
+              elementList.push_front(new Kick());
+              kick_flag = false;
+            }
+
+            elementList.push_back(new AdjustToBall(w));
+            // elementList.push_back(new TicktackBase("FORWARD", 3));
+            // elementList.push_back(new GABase("GA_FORWARD", 100));
             break;
         case 2:
-            elementList.push_back(new OdensWalk("BALL", -2.0, 2.0));
+            if (bal[1] >= 20)
+            {
+                elementList.push_back(new TicktackBase("TLEFT", 2));
+            } else if (bal[1] <= -20) {
+                elementList.push_back(new TicktackBase("TRIGHT", 2));
+            } else {
+            elementList.push_back(new OdensWalk("BALL", -2.0, 1.3));
             elementList.push_back(new SequenceMovement("DUMMY"));
+            }
             break;
         case 3:
-            elementList.push_back(new OdensWalk("BALL", -2.0, -2.0));
+            if (bal[1] >= 20)
+            {
+                elementList.push_back(new TicktackBase("TLEFT", 2));
+            } else if (bal[1] <= -20) {
+                elementList.push_back(new TicktackBase("TRIGHT", 2));
+            } else {
+            elementList.push_back(new OdensWalk("BALL", -2.0, -1.3));
             elementList.push_back(new SequenceMovement("DUMMY"));
+            }
             break;
         default:
             elementList.push_back(new GABase("GA_FORWARD", 1000));

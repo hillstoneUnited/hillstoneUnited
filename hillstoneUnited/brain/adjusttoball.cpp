@@ -44,9 +44,53 @@ void AdjustToBall::judgement(World& w){
         elementList.push_back(new SequenceMovement("LAROUND"));
     } else {
 
-        elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new OdensWalk("BALL", 0.5, 0));
-        elementList.push_back(new SequenceMovement("DUMMY"));
+        if ((x-ballpos[0]) >= 2)
+        {
+            if (w.getABSANGLE() >= 150)
+            {
+                elementList.push_back(new TicktackBase("FORWARD", 3));
+                elementList.push_back(new GABase("GA_FORWARD", bal[0]*15));
+            } else if (w.getABSANGLE() <= -150) {
+                elementList.push_back(new TicktackBase("FORWARD", 3));
+                elementList.push_back(new GABase("GA_FORWARD", 150));
+            } else if(w.getABSANGLE() >= 0){
+                elementList.push_back(new TicktackBase("TLEFT", 2));
+            } else {
+                elementList.push_back(new TicktackBase("TRIGHT", 2));
+            }
+
+        } else if (bal[0] >= 5)
+        {
+            if (bal[1] >= 20)
+            {
+                elementList.push_back(new TicktackBase("TLEFT", 2));
+            } else if (bal[1] <= -20) {
+                elementList.push_back(new TicktackBase("TRIGHT", 2));
+            } else {
+                elementList.push_back(new TicktackBase("FORWARD", 3));
+                elementList.push_back(new GABase("GA_FORWARD", bal[0]*15));
+            }
+        } else {
+
+            if (bal[1] >= 10)
+            {
+                elementList.push_back(new TicktackBase("TLEFT", 2));
+            } else if (bal[1] <= -10) {
+                elementList.push_back(new TicktackBase("TRIGHT", 2));
+            } else if ((ballpos[0]-w.getXY_AVE(0)) >= 0.4 ||
+                       (ballpos[1]-w.getXY_AVE(1)) >= 0.4){
+                double tmpx = ballpos[0] - 14.0;
+                double tmpy = ballpos[1];
+                double offx = sqrt(0.3) * tmpx / (pow(tmpx, 2.0)+pow(tmpy, 2.0));
+                double offy = sqrt(0.3) * tmpy / (pow(tmpx, 2.0)+pow(tmpy, 2.0));
+
+                elementList.push_back(new OdensWalk("BALL", offx, offy));
+            } else {
+                finish_flag = true;
+                elementList.push_back(new SequenceMovement("READY"));
+                // elementList.push_back(new TicktackBase("FORWARD", 3));
+            }
+        }
 
 
         // if(bal[1] > 10){
@@ -72,8 +116,8 @@ void AdjustToBall::updateFinishFlag(World& w)
     // std::cout << "##adjust update##\tbal[0]: " << w.getBAL(0) <<
     // "\tconfBAL: " << w.confBAL() <<
     // "\tabs(w.getBAL): " << abs(w.getBAL(1)) << std::endl;
-    if (w.getBAL(0) < 0.9 &&
-        w.confBAL() <= 150 &&
+    if (w.getBAL(0) < 0.7 &&
+        w.confBAL() <= 200 &&
         abs(w.getBAL(1)) <= 10 &&
         !w.isFalling())
     {

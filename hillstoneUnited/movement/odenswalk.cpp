@@ -151,10 +151,10 @@ std::string OdensWalk::getNextAngle(World& w){
     //計算結果はvelocityに代入される
     isWalking = mw.WalkControl(joint, velocity, step_x, step_y, rotation, act);
     //resultがtrueの時、歩行動作中である
-    if(isWalking || !w.isFalling()){
-        finish_flag = false;
-    }else{
+    if(!isWalking || w.isFalling()){
         finish_flag = true;
+    }else{
+        finish_flag = false;
     }
 
     setAngle(w, joint, velocity);
@@ -212,16 +212,16 @@ void OdensWalk::paramChangeByName(World& w) {
     {
         if (name == "BALL")
         {
-            dest[0] = w.getBXY(0) + offset[0];
-            dest[1] = w.getBXY(1) + offset[1];
+            dest[0] = w.getBXY_AVE(0) + offset[0];
+            dest[1] = w.getBXY_AVE(1) + offset[1];
             conf = w.confBXY();
         } else {
             conf++;
         }
 
         double mypos[2] = {};
-        mypos[0] = w.getXY(0);
-        mypos[1] = w.getXY(1);
+        mypos[0] = w.getXY_AVE(0);
+        mypos[1] = w.getXY_AVE(1);
 
         double destangle = atan2(dest[1]-mypos[1], dest[0]-mypos[0]);
 
@@ -259,7 +259,7 @@ void OdensWalk::paramChangeByName(World& w) {
 }
 
 bool OdensWalk::wannaWalk(World& w) {
-    if (conf >= 250 || distance <= 0.5 || w.confXY() >= 250 || w.isFalling())
+    if (conf >= 250 || distance <= 0.5 || w.confXY() >= 250)
     {
         return false;
     } else {

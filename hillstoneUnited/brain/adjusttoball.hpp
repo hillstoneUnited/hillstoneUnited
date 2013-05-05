@@ -7,6 +7,7 @@
 #include "../movement/ticktackbase.hpp"
 #include "../movement/sequencemovement.hpp"
 #include "../movement/standup.hpp"
+#include "../movement/gabase.hpp"
 
 class AdjustToBall : public BrainBase
 {
