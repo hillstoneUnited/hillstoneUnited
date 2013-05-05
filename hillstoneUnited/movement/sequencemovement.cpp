@@ -317,6 +317,7 @@ void SequenceMovement::setNewSequence(std::string name){
     pose0.setTarget(rlj5, 0);
     pose0.setTarget(llj6, 0);
     pose0.setTarget(rlj6, 0);
+    pose0.setGain(0.2);
 
     Pose pose1;
     pose1.setTarget(llj1, -90);
@@ -336,6 +337,7 @@ void SequenceMovement::setNewSequence(std::string name){
     pose2.setTarget(rlj2, -45);
     pose2.setTarget(llj3, 45);
     pose2.setTarget(rlj3, 45);
+    pose2.setGain(0.1);
 
     Pose pose3;
     pose3.setTarget(laj3, 120);
@@ -346,6 +348,7 @@ void SequenceMovement::setNewSequence(std::string name){
     pose3.setTarget(rlj2, -45);
     pose3.setTarget(llj3, 45);
     pose3.setTarget(rlj3, 45);
+    pose3.setGain(0.1);
 
     Pose pose4;
     pose4.setTarget(laj3, -120);
@@ -356,7 +359,8 @@ void SequenceMovement::setNewSequence(std::string name){
     pose4.setTarget(rlj2, -45);
     pose4.setTarget(llj3, 45);
     pose4.setTarget(rlj3, 45);
-
+    pose4.setGain(0.1);
+    
     Pose pose5;
     pose5.setTarget(laj3, 120);
     pose5.setTarget(raj3, -120);
@@ -368,43 +372,26 @@ void SequenceMovement::setNewSequence(std::string name){
     pose5.setTarget(rlj3, 45);
 
     Pose pose6;
-    pose6.setTarget(laj3, -120);
-    pose6.setTarget(raj3, 120);
-    pose6.setTarget(llj1, -90);
-    pose6.setTarget(rlj1, -90);
-    pose6.setTarget(llj2, 45);
-    pose6.setTarget(rlj2, -45);
-    pose6.setTarget(llj3, 45);
-    pose6.setTarget(rlj3, 45);
+    pose6.setTarget(laj1, -28);
+    pose6.setTarget(raj1, -25);
+    pose6.setTarget(laj2, -1);
+    pose6.setTarget(llj1, 1);
+    pose6.setTarget(rlj1, 1);
+    pose6.setTarget(llj3, 100);
+    pose6.setTarget(rlj3, 100);
+    pose6.setTarget(llj4, -130);
+    pose6.setTarget(rlj4, -130);
+    pose6.setTarget(llj5, 75);
+    pose6.setTarget(rlj5, 75);
+    pose6.setGain(0.1);
 
     Pose pose7;
-    pose7.setTarget(llj1, -90);
-    pose7.setTarget(rlj1, -90);
-    pose7.setTarget(llj2, 45);
-    pose7.setTarget(rlj2, -45);
-    pose7.setTarget(llj3, 45);
-    pose7.setTarget(rlj3, 45);
-
-    Pose pose8;
-    pose8.setTarget(laj1, -28);
-    pose8.setTarget(raj1, -25);
-    pose8.setTarget(laj2, -1);
-    pose8.setTarget(llj1, 1);
-    pose8.setTarget(rlj1, 1);
-    pose8.setTarget(llj3, 100);
-    pose8.setTarget(rlj3, 100);
-    pose8.setTarget(llj4, -130);
-    pose8.setTarget(rlj4, -130);
-    pose8.setTarget(llj5, 75);
-    pose8.setTarget(rlj5, 75);
-
-    Pose pose9;
-    pose9.setTarget(laj1, -90);
-    pose9.setTarget(raj1, -90);
-    pose9.setTarget(laj3, -90);
-    pose9.setTarget(raj3, 90);
-    pose9.setTarget(laj4, -90);
-    pose9.setTarget(raj4, 90);
+    pose7.setTarget(laj1, -90);
+    pose7.setTarget(raj1, -90);
+    pose7.setTarget(laj3, -90);
+    pose7.setTarget(raj3, 90);
+    pose7.setTarget(laj4, -90);
+    pose7.setTarget(raj4, 90);
 
     Sequence sequence;
     sequence.addPose(pose0);
@@ -415,8 +402,6 @@ void SequenceMovement::setNewSequence(std::string name){
     sequence.addPose(pose5);
     sequence.addPose(pose6);
     sequence.addPose(pose7);
-    sequence.addPose(pose8);
-    sequence.addPose(pose9);
     setNewSequence(sequence);
 
   } else if (name == "LVERTICAL") {
