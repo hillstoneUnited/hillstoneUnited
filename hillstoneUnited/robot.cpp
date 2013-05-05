@@ -29,11 +29,11 @@ std::string Robot::getNextAngle(std::string &msg){
   static double initpos4[3] = {-7.0,1.5, 0.0};
   static double initpos5[3] = {-7.0,-1.5, 0.0};
 
-  static double initpos6[3] = {-3.0,2.5, 0.0};
-  static double initpos7[3] = {-3.0,-2.5, 0.0};
-  static double initpos8[3] = {-2.5,1.0, 0.0};
+  static double initpos6[3] = {-8.0,1.5, 0.0};
+  static double initpos7[3] = {-6.0,-1.5, 0.0};
+  static double initpos8[3] = {-2.5,1.5, 0.0};
   static double initpos9[3] = {-0.2,0.03, -10.0};
-  static double initpos10[3] = {-2.5,-1.0, 0.0};
+  static double initpos10[3] = {-2.5,-1.5, 0.0};
 
   double tmpinit[11][3] = {0.0,0.0,0.0};
   for (int i = 0; i < 11; i++)
@@ -75,10 +75,10 @@ std::string Robot::getNextAngle(std::string &msg){
         mainbrain = new TestBrain(world, initpos10);
         break;
       case 4:
-        mainbrain = new Defend(world, initpos3);
+        mainbrain = new TestBrain(world, initpos6);
         break;
       case 5:
-        mainbrain = new Defend(world, initpos4);
+        mainbrain = new TestBrain(world, initpos7);
         break;
       case 6:
         mainbrain = new Defend(world, initpos5);
