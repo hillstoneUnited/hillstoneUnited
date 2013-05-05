@@ -15,6 +15,7 @@ KickToFront::KickToFront(World& w){
 
     modanglecount = 0;
     not_seeBALLcount = 0;
+    modmyposcount = 0;
 }
 
 
@@ -23,29 +24,34 @@ void KickToFront::judgement(World& w){
 		//std::cout << "ballpos" << w.getBXY(0) << "," << w.getBXY(1) << std::endl;
 
 
-		if(w.confBAL()>200 || w.getBXY(0)==0){
+		if(w.confBAL()>100 || w.getBXY(0)==0){
 				//std::cout << "LAROUND" << std::endl;
 				//elementList.push_back(new SequenceMovement("READY"));
 				elementList.push_back(new SequenceMovement("LAROUND"));
 				not_seeBALLcount +=1;
 				if(not_seeBALLcount>3){
-					elementList.push_back(new TicktackBase("TLEFT",3));
+					elementList.push_back(new TicktackBase("TRIGHT",3));
 				}
 				return;
 		}
 		if( w.getXY(0) < w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <2 && w.getXY(0)+3 > w.getBXY(0)){
 				not_seeBALLcount = 0;
+				modmyposcount = 0;
 				modanglecount+=1;
 				//modify rellation(agent-ball) angle
 				double ballangle = w.getBAL(1);
 				//count:angle = 6:90
 				int count = int(8*fabs(ballangle)/90);
-				int dcount = int(w.getBAL(0)*8);
-				if(dcount < 2){
-					dcount+=2;
+				int dcount = int(w.getBAL(0)*6);
+				int dcount_limit = 30;
+				if(w.getBAL(0)<3){
+					dcount_limit = 7;
 				}
-				else if(dcount > 30){
-					dcount = 30;
+				if(dcount < 2){
+					dcount=1;
+				}
+				else if(dcount > dcount_limit){
+					dcount = dcount_limit;
 				}
 
 
@@ -75,6 +81,10 @@ void KickToFront::judgement(World& w){
 				}
 		}
 		else{
+				modmyposcount += 1;
+				if(modmyposcount > 10){
+						elementList.push_back(new TicktackBase("FORWARD",5));
+				}
 				//std::cout << "modify position" << std::endl;
 				//ball no kage ni irutoki
 				if(w.getXY(0) > w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <0.1){

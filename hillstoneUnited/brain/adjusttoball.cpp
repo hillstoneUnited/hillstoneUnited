@@ -41,12 +41,12 @@ void AdjustToBall::judgement(World& w){
 
     if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
         elementList.push_back(new TicktackBase("TLEFT", 2));
-        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+        elementList.push_back(new SequenceMovement("LAROUND"));
     } else {
 
-        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+        elementList.push_back(new SequenceMovement("LAROUND"));
         elementList.push_back(new OdensWalk(ballpos, 1000));
-        elementList.push_back(new SequenceMovement("READY"));
+        elementList.push_back(new SequenceMovement("DUMMY"));
 
         // if(bal[1] > 10){
         //     elementList.push_back(new TicktackBase("TLEFT", t_count));

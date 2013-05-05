@@ -49,14 +49,22 @@ void RunToSlowly::judgement(World& w){
       t_count = 1;
     }
     double dis = sqrt((point[0] - x)*(point[0] - x) + (point[1] - y)*(point[1] - y));
-    int dcount = int(dis*5);
-    if(dcount>10){
-    	dcount = 10;
-    }
+    int dcount = int(dis*6);
+		int dcount_limit = 30;
+		if(w.getBAL(0)<3){
+			dcount_limit = 6;
+		}
+		if(dcount < 2){
+			dcount=1;
+		}
+		else if(dcount > dcount_limit){
+			dcount = dcount_limit;
+		}
 
-    if(conf_XY == 300){
+    if(conf_XY > 200 || w.confBXY()>200 || w.confBXY()==0){
       elementList.push_back(new TicktackBase("TLEFT", 3));
       elementList.push_back(new SequenceMovement("LAROUND"));
+      return;
     }
     else{
       if(dist > 2.0){

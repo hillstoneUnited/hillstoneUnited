@@ -23,6 +23,7 @@ private:
   void judgement(World& w);
   int modanglecount;
   int not_seeBALLcount;
+  int modmyposcount;
   bool isKicked;
 
 };

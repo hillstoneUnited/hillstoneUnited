@@ -3,12 +3,16 @@
 Robot::Robot(std::string teamname){
   world.setTeamname(teamname);
   virgin = true;
+  d = new Drawing();
 }
 
 Robot::~Robot(){}
 
 std::string Robot::getNextAngle(std::string &msg){
   
+	if(world.confBXY()<200 || !world.isFalling()){
+		d->draw(world);
+	}
   world.update(msg);
   world.dump();
 

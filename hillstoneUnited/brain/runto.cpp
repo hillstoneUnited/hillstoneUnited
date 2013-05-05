@@ -83,7 +83,7 @@ void RunTo::judgement(World& w){
 	else{
 	  elementList.push_back(new SequenceMovement("READY"));
 	  elementList.push_back(new TicktackBase("FORWARD", 5));
-	  elementList.push_back(new TicktackBase("DRIBBLE", 10));
+	  elementList.push_back(new GABase("GA_FORWARD", 50));
 	}
       }
     }
