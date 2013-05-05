@@ -10,6 +10,7 @@
 #include "brain/keeper.hpp"
 #include "brain/kickto.hpp"
 #include "brain/kicktofront.hpp"
+#include "brain/testbrain.hpp"
 
 
 /*

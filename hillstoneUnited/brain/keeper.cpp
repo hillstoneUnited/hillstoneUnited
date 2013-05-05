@@ -44,6 +44,9 @@ void Keeper::judgement(World& w){
 		restore_position(w);
 		double dis = w.getBAL(0);
 		double angle = w.getBAL(1);
+
+        judgeStandup(w);
+
 		if(dis < 1.5 && dis > 0.8){
 				elementList.push_back( new TicktackBase("SLEFT",2));
 				elementList.push_back( new TicktackBase("SRIGHT",2));

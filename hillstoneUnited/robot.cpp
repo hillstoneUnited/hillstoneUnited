@@ -12,19 +12,7 @@ std::string Robot::getNextAngle(std::string &msg){
   world.update(msg);
   world.dump();
 
-  //std::cout << "(in robot.cpp)" << act.getName() << std::endl;
 
-  /**
-  brain.checkResponse(world);
-  brain.updateList();
-  if(brain.allListEmpty()){
-      brain.think(world);
-  }
-  return brain.getString(world);
-  **/
-  //return "hogehoge in robot"; // I'll change it
-
-  //  static double initpos[3] = {-10.5, 0.0, 0.0};
   static double initpos0[3] = {-13.5,0.0, 0.0}; // keeper
 
   static double initpos1[3] = {-10.5,6.0, 0.0};
@@ -47,6 +35,19 @@ std::string Robot::getNextAngle(std::string &msg){
     tmpinit[i][2] = 0;
   }
 
+  /*
+
+  mainbrain = new TestBrain(world, initpos9);
+  if (mainbrain->isFinished())
+  {
+    delete mainbrain;
+    mainbrain = new TestBrain(world, initpos9);
+  }
+  return mainbrain->getNextAngle(world);
+
+  */
+
+  
   if (world.getUnum() > 0){
     if (virgin){
 
@@ -57,7 +58,7 @@ std::string Robot::getNextAngle(std::string &msg){
 
       switch(world.getUnum()){
       case 1:
-        mainbrain = new Keeper(world, initpos0);
+        mainbrain = new TestBrain(world, initpos0);
         break;
       case 2:
         mainbrain = new Defend(world, initpos1);
@@ -148,6 +149,7 @@ std::string Robot::getNextAngle(std::string &msg){
     return mainbrain->getNextAngle(world);
   } 
   return "";
+  
 }
   
 std::string Robot::Init2(){

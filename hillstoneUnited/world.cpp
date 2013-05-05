@@ -2012,7 +2012,7 @@ double World::getFieldLengthY() const{
 }
 
 bool World::isFalling() {
-  const int TH = 10;
+  const int TH = 36;
   double ACC_Sum[2];
   ACC_Sum[0] = getACC_Sum(0, TH);
   ACC_Sum[1] = getACC_Sum(1, TH);
