@@ -1,6 +1,8 @@
 #include "attack.hpp"
 
 Attack::Attack(World& w, double _initpos[]) {
+
+		//d = new Drawing();
     finish_flag = false;
     beam_flag = false;
 
@@ -37,14 +39,13 @@ Attack::Attack(World& w, double _initpos[]) {
 
 void Attack::judgement(World& w) {
 
-
-    ballpos[0] = w.getBXY(0);
-    ballpos[1] = w.getBXY(1);
+    ballpos[0] = w.getBXY_AVE(0);
+    ballpos[1] = w.getBXY_AVE(1);
     bal[0] = w.getBAL(0);
     bal[1] = w.getBAL(1);
     bal[2] = w.getBAL(2);
-    mypos[0] = w.getXY(0);
-    mypos[1] = w.getXY(1);
+    mypos[0] = w.getXY_AVE(0);
+    mypos[1] = w.getXY_AVE(1);
     balposconf = w.confBAL();
     myposconf = w.confXY();
     egrconf = w.confEGR();
@@ -89,12 +90,12 @@ void Attack::judgement(World& w) {
             }
         }
 
-        elementList.push_back(new AdjustToBall(w));
+        //elementList.push_back(new AdjustToBall(w));
         elementList.push_back(new KickToFront(w));
     } else {
         if (farHome())
         {
-            elementList.push_back(new RunTo(w, initpos));
+            elementList.push_back(new RunToSlowly(w, initpos));
             // std::cout << "go home" << std::endl;
         } else {
             int invader = getInvader();
@@ -107,14 +108,14 @@ void Attack::judgement(World& w) {
                 {
                     if (bal[0] < 1.5)
                     {
-                        elementList.push_back(new AdjustToBall(w));
+                        elementList.push_back(new KickToFront(w));
                         // std::cout << "#attack: adjusting" << std::endl;
                     } else {
-                        elementList.push_back(new RunToBall(w));
+                        elementList.push_back(new KickToFront(w));
                         // std::cout << "ball!!" << std::endl;
                     }
                 } else {
-                    elementList.push_back(new RunTo(w, initpos));
+                    elementList.push_back(new RunToSlowly(w, initpos));
                     // std::cout << "go home(nothing)" << std::endl;
                 }
             }
@@ -125,6 +126,7 @@ void Attack::judgement(World& w) {
 
 void Attack::updateFinishFlag(World& w) {
     judgement(w);
+    //d->draw(w);
 }
 
 void Attack::updateFandE(World& w) {

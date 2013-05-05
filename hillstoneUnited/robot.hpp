@@ -11,6 +11,7 @@
 #include "brain/kickto.hpp"
 #include "brain/kicktofront.hpp"
 #include "brain/testbrain.hpp"
+#include "drawing.hpp"
 
 #include "drawing.hpp"
 
@@ -38,6 +39,7 @@ class Robot{
  protected:
   World world;
   BrainBase* mainbrain;
+  Drawing* d;
   bool virgin;
 
 };

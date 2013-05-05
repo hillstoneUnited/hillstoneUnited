@@ -8,13 +8,13 @@ AdjustToBall::AdjustToBall(World& w){
     finish_flag = false;
     
     for(int i=0; i<2; i++){
-      ballpos[i] = w.getBXY(i);
+      ballpos[i] = w.getBXY_AVE(i);
       bal[i] = w.getBAL(i);
     }
     conf_ballpos = w.confBXY();
     conf_bal = w.confBAL();
-    x = w.getXY(0);
-    y = w.getXY(1);
+    x = w.getXY_AVE(0);
+    y = w.getXY_AVE(1);
     conf_XY = w.confXY();
 
     t_count = abs(15 * bal[1] / 360);
@@ -25,13 +25,13 @@ AdjustToBall::AdjustToBall(World& w){
 
 void AdjustToBall::judgement(World& w){
     for(int i=0; i<2; i++){
-      ballpos[i] = w.getBXY(i);
+      ballpos[i] = w.getBXY_AVE(i);
       bal[i] = w.getBAL(i);
     }
     conf_ballpos = w.confBXY();
     conf_bal = w.confBAL();
-    x = w.getXY(0);
-    y = w.getXY(1);
+    x = w.getXY_AVE(0);
+    y = w.getXY_AVE(1);
     conf_XY = w.confXY();
 
     t_count = abs(15 * bal[1] / 360);
@@ -41,12 +41,12 @@ void AdjustToBall::judgement(World& w){
 
     if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
         elementList.push_back(new TicktackBase("TLEFT", 2));
-        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+        elementList.push_back(new SequenceMovement("LAROUND"));
     } else {
 
-        elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+        elementList.push_back(new SequenceMovement("LAROUND"));
         elementList.push_back(new OdensWalk(ballpos, 1000));
-        elementList.push_back(new SequenceMovement("READY"));
+        elementList.push_back(new SequenceMovement("DUMMY"));
 
         // if(bal[1] > 10){
         //     elementList.push_back(new TicktackBase("TLEFT", t_count));

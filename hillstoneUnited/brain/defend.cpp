@@ -40,13 +40,13 @@ Defend::Defend(World& w, double _initpos[]){
 
 void Defend::judgement(World& w){
 
-  ballpos[0] = w.getBXY(0);
-  ballpos[1] = w.getBXY(1);
+  ballpos[0] = w.getBXY_AVE(0);
+  ballpos[1] = w.getBXY_AVE(1);
   bal[0] = w.getBAL(0);
   bal[1] = w.getBAL(1);
   bal[2] = w.getBAL(2);
-  mypos[0] = w.getXY(0);
-  mypos[1] = w.getXY(1);
+  mypos[0] = w.getXY_AVE(0);
+  mypos[1] = w.getXY_AVE(1);
   balposconf = w.confBAL();
   myposconf = w.confXY();
   angle = w.getABSANGLE();
