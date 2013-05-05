@@ -59,14 +59,47 @@ void TestBrain::judgement(World& w) {
     kickAngle = 0.0;
     passTo = 0;
 
-    if (true)
+    // if (true)
+    // {
+    //     elementList.push_back(new SequenceMovement("LAROUND"));
+    //     elementList.push_back(new OdensWalk("BALL", 0, -2.0));
+    //     elementList.push_back(new SequenceMovement("DUMMY"));
+    // } else {
+    //     elementList.push_back(new SequenceMovement("LAROUND"));
+    //     elementList.push_back(new RunToBall(w));
+    // }
+
+    if (w.confXY() == 300 || w.confBXY() == 300)
     {
+        elementList.push_back(new TicktackBase("TLEFT", 5));
         elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new OdensWalk("BALL", 0, -2.0));
-        elementList.push_back(new SequenceMovement("DUMMY"));
-    } else {
-        elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new RunToBall(w));
+    }
+
+    if (w.getPlaymode()=="BeforeKickOff")
+    {
+        elementList.push_front(new SequenceMovement("LAROUND"));
+    }
+
+    switch(w.getUnum()){
+        case 1:
+            if (w.confBXY() >= 50)
+            {
+                elementList.push_back(new SequenceMovement("LVERTICAL"));
+            }
+            elementList.push_back(new OdensWalk("BALL", -1.0, 0));
+            elementList.push_back(new OdensWalk("BALL", -0.5, 0));
+            elementList.push_back(new GABase("GA_FORWARD", 100));
+            break;
+        case 2:
+            elementList.push_back(new OdensWalk("BALL", -2.0, 2.0));
+            elementList.push_back(new SequenceMovement("DUMMY"));
+            break;
+        case 3:
+            elementList.push_back(new OdensWalk("BALL", -2.0, -2.0));
+            elementList.push_back(new SequenceMovement("DUMMY"));
+            break;
+        default:
+            elementList.push_back(new GABase("GA_FORWARD", 1000));
     }
 
     judgeStandup(w);

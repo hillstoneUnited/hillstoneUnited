@@ -151,7 +151,7 @@ std::string OdensWalk::getNextAngle(World& w){
     //計算結果はvelocityに代入される
     isWalking = mw.WalkControl(joint, velocity, step_x, step_y, rotation, act);
     //resultがtrueの時、歩行動作中である
-    if(isWalking){
+    if(isWalking || !w.isFalling()){
         finish_flag = false;
     }else{
         finish_flag = true;
