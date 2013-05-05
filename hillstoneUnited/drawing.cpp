@@ -89,6 +89,15 @@ void Drawing::renderAgentShapes(World& w){
    //  AgentPos << "A." << w.getUnum() <<  ".XYposition";
   const string cs_agentpos(AgentPos.str());
   drawCircle(my_x,my_y,0.2f,2,0,0,1,&cs_agentpos);
+
+  // the agent xy coordination(average)
+  double my_x_AVE = w.getXY_AVE(0), my_y_AVE = w.getXY_AVE(1);
+  std::stringstream AgentPos_AVE;
+  AgentPos_AVE << "Agent.no" << w.getUnum() <<  "-XY_AVEposition";
+   //  AgentPos << "A." << w.getUnum() <<  ".XYposition";
+  const string cs_agentpos_AVE(AgentPos_AVE.str());
+  drawCircle(my_x_AVE,my_y_AVE,0.2f,2,1,1,1,&cs_agentpos_AVE);
+
   // the agent xy coordination (mypos true)
   double mypos_x = w.getMYPOS(0), mypos_y = w.getMYPOS(1);
   std::stringstream AgentMYPos;
@@ -97,12 +106,23 @@ void Drawing::renderAgentShapes(World& w){
   const string cs_agentmypos(AgentMYPos.str());
   drawCircle(mypos_x,mypos_y,0.2f,2,1,0,0,&cs_agentmypos);
 
+
+
   // the position of the ball
   double bal_x = w.getBXY(0), bal_y = w.getBXY(1);
   std::stringstream BXYPos;
   BXYPos << "Agent.no" << w.getUnum() << "-BXYposition";
   const string cs_bxypos(BXYPos.str());
   drawSphere(bal_x, bal_y,0, 0.1, 1, 0.5f, 0.5f, &cs_bxypos);
+
+  // the position of the ball(average)
+  double bal_x_AVE = w.getBXY_AVE(0), bal_y_AVE = w.getBXY_AVE(1);
+  std::stringstream BXYPos_AVE;
+  BXYPos_AVE << "Agent.no" << w.getUnum() << "-BXYposition_AVE";
+  const string cs_bxypos_AVE(BXYPos_AVE.str());
+  drawSphere(bal_x_AVE, bal_y_AVE,0, 0.1, 0.5, 0.5f, 0.5f, &cs_bxypos_AVE);
+
+
   // the position of the ball (ballpos true)
   double balpos_x = w.getBALLPOS(0), balpos_y = w.getBALLPOS(1);
   std::stringstream BallPos;
@@ -110,6 +130,9 @@ void Drawing::renderAgentShapes(World& w){
   const string cs_ballpos(BallPos.str());
   drawSphere(balpos_x,balpos_y,0,0.1,1,1,0.5f, &cs_ballpos);
 
+
+  // the position of the ball(sended by server)
+  
 
   string staticSets("Agent");
   swapBuffers(&staticSets);

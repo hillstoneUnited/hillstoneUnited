@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <deque>
+#include <cmath>
 
 #include "util.hpp"
 
@@ -55,6 +56,10 @@ class World{
   double getBXY     (int index) const;
   double getABSANGLE() const;
   double getBANGLE  () const;
+
+  double getXY_AVE(int index) const; // average 100/3
+  double getBXY_AVE(int index) const;
+
 
   // getter for sum of parameter
   double getACC_Sum(int index, int num) const;
@@ -108,7 +113,6 @@ class World{
   // static const double field_length_y = 14.0;
   static const double field_length_x = 30.0;
   static const double field_length_y = 20.0;
-
 
   int         unum;
   std::string teamname;

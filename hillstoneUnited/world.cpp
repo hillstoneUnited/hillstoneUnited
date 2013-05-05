@@ -1638,6 +1638,62 @@ double World::getBANGLE() const{
   return sentinel[0];
 }
 
+double World::getXY_AVE(int index) const{
+  if(index > 2){
+    std::cout << "getXY:: unexpected indexnumber : " << index << std::endl; 
+    return 0.0;
+  }
+
+  //  double seen_bxy[50] = {0.0};
+  int counter = 0;
+  double ave = 0.0;
+  double sum = 0.0;
+
+  int SIZE = deqPerception.size();
+
+  if(SIZE > 100){
+    for(int i=0; i<100; i++){
+      if(!isnan((*(deqPerception[SIZE-i-1])).XY[index])){
+	sum += ((*(deqPerception[SIZE-i-1])).XY[index]);
+	counter++;
+      }
+    }
+  }
+  if(sum!=0.0 && counter!=0){
+    return (sum / counter);
+  }
+
+  return 0.0;
+}
+
+double World::getBXY_AVE(int index) const{
+  if(index > 2){
+    std::cout << "getBXY:: unexpected indexnumber : " << index << std::endl; 
+    return 0.0;
+  }
+
+  //  double seen_bxy[50] = {0.0};
+  int counter = 0;
+  double ave = 0.0;
+  double sum = 0.0;
+
+  int SIZE = deqPerception.size();
+
+  if(SIZE > 100){
+    for(int i=0; i<100; i++){
+      if(!isnan((*(deqPerception[SIZE-i-1])).BXY[index])){
+	sum += ((*(deqPerception[SIZE-i-1])).BXY[index]);
+	counter++;
+      }
+    }
+  }
+  if(sum!=0.0 && counter!=0){
+    return (sum / counter);
+  }
+
+  return 0.0;
+}
+
 double World::getACC_Sum(int index, int num) const{
 
   if(index > 3){
