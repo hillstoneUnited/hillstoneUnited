@@ -1,13 +1,11 @@
 #include "odenswalk.hpp"
-#include <fstream>
-#include <vector>
-#include <boost/algorithm/string.hpp>
-#include <boost/lexical_cast.hpp>
 
 // x: distance to ball (zengo soutai)
 // y: distance to ball (sayu soutai)
 
-OdensWalk::OdensWalk(double _dest[], int _uptime){
+OdensWalk::OdensWalk(std::string _name, double _dest[], int _uptime){
+
+    name = _name;
 
     finish_flag = false;
     dest[0] = _dest[0]; // x axis(goal to goal)
@@ -96,13 +94,6 @@ std::string OdensWalk::getNextAngle(World& w){
             step_y = -MAX_STEP_Y;
         } 
     }
-
-    // std::cout << "step_x: " << step_x <<
-    // "\tstep_y: " << step_y <<
-    // "\tdestangle: " << destangle <<
-    // "\tmyangle: " << myangle <<
-    // "\tdistance: " << distance <<
-    // "\tt: " << t << std::endl;
     
     //現在の関節角度の取得
     //左脚第一関節から順番に定義されている
@@ -120,68 +111,6 @@ std::string OdensWalk::getNextAngle(World& w){
     joint[10] = w.getAngle("rlj5") * DEGTORAD;
     joint[11] = w.getAngle("rlj6") * DEGTORAD;
 
-    /**==========================================**/
-    // for debagging
-    // std::string filename = "../checkOdens/mwoutput2.txt";
-    // std::ifstream ifs(filename.c_str());
-    // std::string str;
-
-
-    // bool isInput = true;
-    // static bool once = true;
-
-    // if(once) {
-    //     once = false;
-
-    //     while(std::getline(ifs, str)) {
-
-    //         if(isInput){
-    //             std::vector<std::string> splitLine;
-    //             boost::algorithm::split(splitLine, str,
-    //                                     boost::is_any_of(","));
-    //             std::vector<std::string>::iterator it = splitLine.begin();
-
-    //             double tmpjoint[12];
-    //             for (int i = 0; i < 12; i++)
-    //             {
-    //                 tmpjoint[i] = atof((*it).c_str());
-    //                 it++;
-    //             }
-    //             double tmpstep_x = atof((*it).c_str());
-    //             it++;
-    //             double tmpstep_y = atof((*it).c_str());
-    //             it++;
-    //             double tmprotation = atof((*it).c_str());
-    //             it++;
-    //             bool tmpact = true;
-    //             double tmpvelocity[12];
-
-    // // print for debagging
-    // // for (int i = 0; i < 12; i++)
-    // // {
-    // //  printf("%f,", tmpjoint[i]);
-    // // }
-    // // printf("%f,%f,%f\n", tmpstep_x, tmpstep_y, tmprotation);
-
-    //             mw.WalkControl(tmpjoint, tmpvelocity, tmpstep_x, tmpstep_y, rotation, tmpact);
-    // // print for debagging
-    // // for (int i = 0; i < 12; i++)
-    // // {
-    // //  printf("%f,", tmpvelocity[i]);
-    // // }
-
-    // // printf("\n");
-
-    //         }
-
-    //         isInput = !isInput;
-    //     }
-    // } else {
-    //     printf("finish file reading\n");
-    // }
-    /**==========================================**/
-
-
     double velocity[12] = {};
     //MakeWalkを用いて、関節動作を決定する
     //計算結果はvelocityに代入される
@@ -193,23 +122,7 @@ std::string OdensWalk::getNextAngle(World& w){
         finish_flag = true;
     }
 
-    // for (int i = 0; i < 12; i++)
-    // {
-    //     printf("%f,", velocity[i]);
-    // }
-    // printf("\n");
-
-    // for (int i = 0; i < 12; i++)
-    // {
-    //     velocity[i] = velocity[i] * RADTODEG;
-    // }
-
     setAngle(w, joint, velocity);
-    // setAngle(w, joint);
-
-    /**for debagging**/
-    // std::cout << "runto:" << dest[0] << "," << dest[1] << std::endl;
-    // std::cout << "mypos:" << mypos[0] << "," << mypos[1] << std::endl;
 
     return angleToString();
 
@@ -223,81 +136,6 @@ bool OdensWalk::set(jointID id, double velocity){
   angleMap[id] = velocity * RADTODEG;
   return true;
 }
-
-// bool OdensWalk::set(World& w, jointID id, 
-//     double angle, double gain){
-//   const double EPS = 0.2; // just like margin of error
-//   double current = 0.0;
-
-//   switch(id){
-//     case hj1: current = w.getAngle("hj1");break;
-//     case hj2: current = w.getAngle("hj2");break;
-//     case laj1: current = w.getAngle("laj1");break;
-//     case raj1: current = w.getAngle("raj1");break;
-//     case laj2: current = w.getAngle("laj2");break;
-//     case raj2: current = w.getAngle("raj2");break;
-//     case laj3: current = w.getAngle("laj3");break;
-//     case raj3: current = w.getAngle("raj3");break;
-//     case laj4: current = w.getAngle("laj4");break;
-//     case raj4: current = w.getAngle("raj4");break;
-//     case llj1: current = w.getAngle("llj1");break;
-//     case rlj1: current = w.getAngle("rlj1");break;
-//     case llj2: current = w.getAngle("llj2");break;
-//     case rlj2: current = w.getAngle("rlj2");break;
-//     case llj3: current = w.getAngle("llj3");break;
-//     case rlj3: current = w.getAngle("rlj3");break;
-//     case llj4: current = w.getAngle("llj4");break;
-//     case rlj4: current = w.getAngle("rlj4");break;
-//     case llj5: current = w.getAngle("llj5");break;
-//     case rlj5: current = w.getAngle("rlj5");break;
-//     case llj6: current = w.getAngle("llj6");break;
-//     case rlj6: current = w.getAngle("rlj6");break;
-//     default:
-//       std::cout << "Cannot find ID : " << id << std::endl;
-//       break;
-//   }
-
-//   if(fabs(current - angle) > EPS){
-//     angleMap[id] = gain * (angle - current);
-//     return true;
-//   }
-
-//   angleMap[id] = 0.0;
-//   return false;
-// }
-
-
-// void OdensWalk::setAngle(World& w, double joint[]){
-
-//     double joint_set[12] = {};
-
-//     for (int i = 0; i < 12; i++)
-//     {
-//         joint_set[i] = joint[i];
-//     }
-
-//     double gain = 0.5;
-    
-//     // Left
-//     // Legs
-//     set(w, llj1, joint_set[0], gain);
-//     set(w, llj2, joint_set[1], gain);
-//     set(w, llj3, joint_set[2], gain);
-//     set(w, llj4, joint_set[3], gain);
-//     set(w, llj5, joint_set[4], gain);
-//     set(w, llj6, joint_set[5], gain);
-
-//     // Right
-//     // Legs
-//     set(w, rlj1, joint_set[6], gain);
-//     set(w, rlj2, joint_set[7], gain);
-//     set(w, rlj3, joint_set[8], gain);
-//     set(w, rlj4, joint_set[9], gain);
-//     set(w, rlj5, joint_set[10], gain);
-//     set(w, rlj6, joint_set[11], gain);
-
-// }
-
 
 void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
 

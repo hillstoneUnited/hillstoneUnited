@@ -4,7 +4,6 @@
 // Date:   2012/09/07
 
 #include "makewalk.hpp"
-#include <stdio.h>
 
 
 //歩行の更新
@@ -112,9 +111,6 @@ void MakeWalk::update(double joint[], double velocity[], double walkx, double wa
 	//ゴミをなくすための丸め込み
 	nextstatetime = round(nextstatetime*100)*0.01;
 	nextsuptime = round(nextsuptime*100)*0.01;
-
-	// for debugging
-	printf("%f,%f\n", nextstatetime, nextsuptime);
 	
 	//重心位置の計算
 	switch(state){

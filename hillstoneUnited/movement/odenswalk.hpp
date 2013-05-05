@@ -7,7 +7,7 @@
 class OdensWalk : public MovementBase
 {
 public:
-    OdensWalk(double _dest[], int _uptime=1000);
+    OdensWalk(std::string _name, double _dest[], int _uptime=1000);
     ~OdensWalk();
 
     bool set(jointID id, double velocity);
@@ -23,6 +23,7 @@ private:
     MakeWalk mw;
     double dest[2];
     double joint[12];
+    std::string name;
 
     int t;
     int uptime;
