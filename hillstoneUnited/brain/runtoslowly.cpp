@@ -9,8 +9,8 @@ RunToSlowly::RunToSlowly(World& w, double _point[]){
     point[0] = _point[0];
     point[1] = _point[1];
     
-    x = w.getXY(0);
-    y = w.getXY(1);
+    x = w.getXY_AVE(0);
+    y = w.getXY_AVE(1);
     conf_XY = w.confXY();
     dist = sqrt(((point[0] - x)*(point[0] - x))
 		+((point[1] - y)*(point[1] - y)));
@@ -25,13 +25,13 @@ RunToSlowly::RunToSlowly(World& w, double _point[]){
 
     t_count = int(6*fabs(angle)/90);
 
-    elementList.push_back(new SequenceMovement("LAROUND"));
+    //elementList.push_back(new SequenceMovement("LAROUND"));
     updateFinishFlag(w);
 }
 
 void RunToSlowly::judgement(World& w){
-    x = w.getXY(0);
-    y = w.getXY(1);
+    x = w.getXY_AVE(0);
+    y = w.getXY_AVE(1);
     conf_XY = w.confXY();
     dist = sqrt(((point[0] - x)*(point[0] - x))
 		 +((point[1] - y)*(point[1] - y)));
@@ -49,7 +49,7 @@ void RunToSlowly::judgement(World& w){
       t_count = 1;
     }
     double dis = sqrt((point[0] - x)*(point[0] - x) + (point[1] - y)*(point[1] - y));
-    int dcount = int(dis*6);
+    int dcount = int(dis*4);
 		int dcount_limit = 30;
 		if(w.getBAL(0)<3){
 			dcount_limit = 6;
@@ -60,10 +60,11 @@ void RunToSlowly::judgement(World& w){
 		else if(dcount > dcount_limit){
 			dcount = dcount;
 		}
+		//dcount = 2;
 
     if(conf_XY > 200 || w.confBXY()>200 || w.confBXY()==0){
+      //elementList.push_back(new SequenceMovement("LAROUND"));
       elementList.push_back(new TicktackBase("TLEFT", 3));
-      elementList.push_back(new SequenceMovement("LAROUND"));
       return;
     }
     else{
@@ -97,8 +98,8 @@ void RunToSlowly::judgement(World& w){
 
 void RunToSlowly::updateFinishFlag(World& w)
 {
-    if(abs(point[0] - w.getXY(0)) < 0.2 &&
-       abs(point[1] - w.getXY(1)) < 0.2)
+    if(abs(point[0] - w.getXY_AVE(0)) < 0.2 &&
+       abs(point[1] - w.getXY_AVE(1)) < 0.2)
     {
       finish_flag = true;
     } else {

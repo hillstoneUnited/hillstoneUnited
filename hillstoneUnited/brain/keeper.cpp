@@ -46,10 +46,10 @@ void Keeper::judgement(World& w){
       bal[0] = w.getBAL(0);
       bal[1] = w.getBAL(1);
       conf_bal = w.confBAL();
-      ballpos[0] = w.getBXY(0);
-      ballpos[1] = w.getBXY(1);
-      x = w.getXY(0);
-      y = w.getXY(1);
+      ballpos[0] = w.getBXY_AVE(0);
+      ballpos[1] = w.getBXY_AVE(1);
+      x = w.getXY_AVE(0);
+      y = w.getXY_AVE(1);
       conf_XY = w.confXY();
       
       judgeStandup(w);
@@ -125,7 +125,7 @@ void Keeper::judgement(World& w){
 				elementList.push_back( new TicktackBase("SLEFT",2));
 				elementList.push_back( new TicktackBase("SRIGHT",2));
 		}
-		else if((dis <= 0.8 && dis != 0) || w.getXY(0)>w.getBXY(0)){
+		else if((dis <= 0.8 && dis != 0) || w.getXY_AVE(0)>w.getBXY_AVE(0)){
 				std::cout << "patari..." << std::endl;
 			  if(angle>0){
 			  		elementList.push_back(new SequenceMovement("FLEFT"));

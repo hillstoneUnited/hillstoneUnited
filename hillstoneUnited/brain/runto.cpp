@@ -9,8 +9,8 @@ RunTo::RunTo(World& w, double _point[]){
     point[0] = _point[0];
     point[1] = _point[1];
     
-    x = w.getXY(0);
-    y = w.getXY(1);
+    x = w.getXY_AVE(0);
+    y = w.getXY_AVE(1);
     conf_XY = w.confXY();
     dist = sqrt(((point[0] - x)*(point[0] - x))
 		+((point[1] - y)*(point[1] - y)));
@@ -30,8 +30,8 @@ RunTo::RunTo(World& w, double _point[]){
 }
 
 void RunTo::judgement(World& w){
-    x = w.getXY(0);
-    y = w.getXY(1);
+    x = w.getXY_AVE(0);
+    y = w.getXY_AVE(1);
     conf_XY = w.confXY();
     dist = sqrt(((point[0] - x)*(point[0] - x))
 		 +((point[1] - y)*(point[1] - y)));
@@ -92,8 +92,8 @@ void RunTo::judgement(World& w){
 
 void RunTo::updateFinishFlag(World& w)
 {
-    if(abs(point[0] - w.getXY(0)) < 0.8 &&
-       abs(point[1] - w.getXY(1)) < 0.8)
+    if(abs(point[0] - w.getXY_AVE(0)) < 0.8 &&
+       abs(point[1] - w.getXY_AVE(1)) < 0.8)
     {
       finish_flag = true;
     } else {
