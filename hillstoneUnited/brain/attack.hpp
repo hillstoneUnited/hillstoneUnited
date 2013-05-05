@@ -17,6 +17,7 @@
 #include "kicktofront.hpp"
 #include "runto.hpp"
 #include "runtoenemy.hpp"
+#include "../drawing.hpp"
 
 
 class Attack : public BrainBase
@@ -67,6 +68,8 @@ private:
     bool close2Goal();
     bool ableToPass();
     int getInvader();
+
+    //Drawing* d;
 };
 
 #endif
