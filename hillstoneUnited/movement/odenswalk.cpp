@@ -13,7 +13,6 @@ OdensWalk::OdensWalk(double _dest[]) {
 
     offset[0] = 0.0;
     offset[1] = 0.0;
-    offset[2] = 0.0;
 
     enemEnum = -1;
 
@@ -28,7 +27,7 @@ OdensWalk::OdensWalk(double _dest[]) {
 
 }
 
-OdensWalk::OdensWalk(std::string _name, double _offsetdist, double _offsetangle){
+OdensWalk::OdensWalk(std::string _name, double _offsetx, double _offsety){
 
     name = _name;
 
@@ -37,9 +36,8 @@ OdensWalk::OdensWalk(std::string _name, double _offsetdist, double _offsetangle)
     dest[0] = 0.0;
     dest[1] = 0.0;
 
-    offset[0] = _offsetdist;
-    offset[1] = _offsetangle;
-    offset[2] = 0.0;
+    offset[0] = _offsetx;
+    offset[1] = _offsety;
 
     enemEnum = -1;
 
@@ -54,7 +52,7 @@ OdensWalk::OdensWalk(std::string _name, double _offsetdist, double _offsetangle)
 
 }
 
-OdensWalk::OdensWalk(int _enemEnum, double _offsetdist, double _offsetangle){
+OdensWalk::OdensWalk(int _enemEnum, double _offsetx, double _offsety){
 
     name = "ENEMY";
 
@@ -63,9 +61,8 @@ OdensWalk::OdensWalk(int _enemEnum, double _offsetdist, double _offsetangle){
     dest[0] = 0.0;
     dest[1] = 0.0;
 
-    offset[0] = _offsetdist;
-    offset[1] = _offsetangle;
-    offset[2] = 0.0;
+    offset[0] = _offsetx;
+    offset[1] = _offsety;
 
     enemEnum = _enemEnum;
 
@@ -208,13 +205,15 @@ void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
 void OdensWalk::paramChangeByName(World& w) {
 
     double myangle = w.getABSANGLE()*DEGTORAD;
+    double offsetdist = sqrt(pow(offset[0], 2.0) + pow(offset[1], 2.0));
+    double offsetangle = atan2(offset[1],offset[0]);
 
     if (name == "BALL" || name == "FIXED")
     {
         if (name == "BALL")
         {
-            dest[0] = w.getBXY(0);
-            dest[1] = w.getBXY(1);
+            dest[0] = w.getBXY(0) + offset[0];
+            dest[1] = w.getBXY(1) + offset[1];
             conf = w.confBXY();
         } else {
             conf++;
@@ -247,14 +246,16 @@ void OdensWalk::paramChangeByName(World& w) {
         name << "can't understand." << std::endl;
     }
 
-    double relativeoffset = offset[1]*DEGTORAD - myangle;
-    double tmpdistance = sqrt(pow(distance * cos(rotation) + offset[0] * cos(relativeoffset), 2.0) + pow(distance * sin(rotation) + offset[0] * sin(relativeoffset), 2.0));
+    // double theta = rotation + myangle;
+    // double phi = offset[1];
+    // double ita = 180 * DEGTORAD - phi + theta;
+    // double tmpdistance = sqrt(pow(distance * cos(theta) + offset[0] * cos(phi), 2.0) + pow(distance * sin(theta) + offset[0] * sin(phi), 2.0));
 
-    // calculate rotation by yogen teiri
-    double alpha = sqrt(pow(distance, 2.0)+pow(offset[0], 2.0) - 2 * distance * offset[0] * cos(rotation + (180*DEGTORAD - relativeoffset)));
-    double phi = (pow(distance, 2.0), + pow(alpha, 2.0) - pow(offset[0], 2.0)) / (2 * distance * alpha);
-    distance = tmpdistance;
-    rotation = phi + rotation;
+    // // calculate rotation by yogen teiri
+    // double alpha = sqrt(pow(distance, 2.0)+pow(offset[0], 2.0) - 2 * distance * offset[0] * cos(rotation+myangle + (180*DEGTORAD - offset[1])));
+    // double cosx = (pow(distance, 2.0), + pow(alpha, 2.0) - pow(offset[0], 2.0)) / (2 * distance * alpha);
+    // distance = tmpdistance;
+    // rotation = acos(cosx) + rotation - myangle;
 }
 
 bool OdensWalk::wannaWalk(World& w) {
