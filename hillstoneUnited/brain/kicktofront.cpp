@@ -25,7 +25,7 @@ void KickToFront::judgement(World& w){
 
 
 		if(w.confBAL()>100 || w.getBXY_AVE(0)==0){
-				//std::cout << "LAROUND" << std::endl;
+				std::cout << "LAROUND" << std::endl;
 				//elementList.push_back(new SequenceMovement("READY"));
 				elementList.push_back(new SequenceMovement("LAROUND"));
 				not_seeBALLcount +=1;
@@ -55,7 +55,7 @@ void KickToFront::judgement(World& w){
 				}
 
 
-				//std::cout << "mod angle" << count << std::endl;
+				std::cout << "mod angle" << count << std::endl;
 					if(ballangle>0){
 						//elementList.push_back(new SequenceMovement("READY"));
 						elementList.push_back(new TicktackBase("TLEFT",count));
@@ -66,14 +66,14 @@ void KickToFront::judgement(World& w){
 					}
 
 				if(modanglecount > 5){
-					//std::cout << "kick" <<" dcount" <<dcount << std::endl;
+					std::cout << "kick" <<" dcount" <<dcount << std::endl;
 					modanglecount = 0;
 					elementList.push_back(new SequenceMovement("DUMMY"));
 					elementList.push_back(new TicktackBase("FORWARD",dcount));
 					isKicked = true;
 				}
 				if(fabs(ballangle)<5 && w.getBAL(0)<0.8){
-					//std::cout << "cho kick" <<ballangle  << "dcount"<< dcount<<  std::endl;
+					std::cout << "cho kick" <<ballangle  << "dcount"<< dcount<<  std::endl;
 					modanglecount = 0;
 					elementList.push_back(new SequenceMovement("DUMMY"));
 					elementList.push_back(new TicktackBase("FORWARD",dcount));
@@ -85,7 +85,7 @@ void KickToFront::judgement(World& w){
 				if(modmyposcount > 10){
 						elementList.push_back(new TicktackBase("FORWARD",5));
 				}
-				//std::cout << "modify position" << std::endl;
+				std::cout << "modify position" << std::endl;
 				//ball no kage ni irutoki
 				if(w.getXY_AVE(0) > w.getBXY_AVE(0) && fabs( w.getXY_AVE(1)-w.getBXY_AVE(1) ) <0.1){
 						double tpos[2];
@@ -96,7 +96,7 @@ void KickToFront::judgement(World& w){
 						else{
 								tpos[1] = w.getBXY_AVE(1)-1;
 						}
-						//std::cout << "hosei" << std::endl;
+						std::cout << "hosei" << std::endl;
 						elementList.push_back(new RunToSlowly(w,tpos));
 						return;
 				}
@@ -106,8 +106,9 @@ void KickToFront::judgement(World& w){
 }
 
 
-void KickToFront::updateFinishFlag(World& w)
-{
+void KickToFront::updateFinishFlag(World& w){
+		std::cout << "KickToFront::updateFinishFlag" << std::endl;
+
 		if(isKicked and w.getBAL(0)>3){
 			finish_flag = true;
 		}
