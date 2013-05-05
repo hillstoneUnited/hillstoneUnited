@@ -182,6 +182,12 @@ std::string OdensWalk::getNextAngle(World& w){
         finish_flag = true;
     }
 
+    for (int i = 0; i < 12; i++)
+    {
+        printf("%f,", velocity[i]);
+    }
+    printf("\n");
+
     // for (int i = 0; i < 12; i++)
     // {
     //     velocity[i] = velocity[i] * RADTODEG;
