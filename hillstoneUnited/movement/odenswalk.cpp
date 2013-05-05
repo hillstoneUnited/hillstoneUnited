@@ -15,6 +15,11 @@ OdensWalk::OdensWalk(double _dest[], int _uptime){
 
     t = 0;
     uptime = _uptime;
+
+    mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
+    mw.setdblflag(false);//両脚支持期間の有無。基本falseで
+    mw.setupleg(0.05);//足をあげる高さ
+
 }
 
 OdensWalk::~OdensWalk(){}
@@ -115,61 +120,67 @@ std::string OdensWalk::getNextAngle(World& w){
     joint[10] = w.getAngle("rlj5") * DEGTORAD;
     joint[11] = w.getAngle("rlj6") * DEGTORAD;
 
+    /**==========================================**/
     // for debagging
-    std::string filename = "../mwoutput.txt";
-    std::ifstream ifs(filename.c_str());
-    std::string str;
+    // std::string filename = "../checkOdens/mwoutput2.txt";
+    // std::ifstream ifs(filename.c_str());
+    // std::string str;
 
 
-    bool isInput = true;
-    bool once = true;
+    // bool isInput = true;
+    // static bool once = true;
 
-    if(once) {
-        once = false;
+    // if(once) {
+    //     once = false;
 
-        while(std::getline(ifs, str)) {
-            if(isInput){
-                std::vector<std::string> splitLine;
-                boost::algorithm::split(splitLine, str,
-                                        boost::is_any_of(","));
-                std::vector<std::string>::iterator it = splitLine.begin();
+    //     while(std::getline(ifs, str)) {
 
-                double tmpjoint[12];
-                for (int i = 0; i < 12; i++)
-                {
-                    tmpjoint[i] = atof((*it).c_str());
-                    it++;
-                }
-                double tmpstep_x = atof((*it).c_str());
-                it++;
-                double tmpstep_y = atof((*it).c_str());
-                it++;
-                double tmprotation = atof((*it).c_str());
-                it++;
-                bool tmpact = true;
-                double tmpvelocity[12];
+    //         if(isInput){
+    //             std::vector<std::string> splitLine;
+    //             boost::algorithm::split(splitLine, str,
+    //                                     boost::is_any_of(","));
+    //             std::vector<std::string>::iterator it = splitLine.begin();
 
-    // print for debagging
-    for (int i = 0; i < 12; i++)
-    {
-     printf("%f,", tmpjoint[i]);
-    }
-    printf("%f,%f,%f\n", tmpstep_x, tmpstep_y, tmprotation);
+    //             double tmpjoint[12];
+    //             for (int i = 0; i < 12; i++)
+    //             {
+    //                 tmpjoint[i] = atof((*it).c_str());
+    //                 it++;
+    //             }
+    //             double tmpstep_x = atof((*it).c_str());
+    //             it++;
+    //             double tmpstep_y = atof((*it).c_str());
+    //             it++;
+    //             double tmprotation = atof((*it).c_str());
+    //             it++;
+    //             bool tmpact = true;
+    //             double tmpvelocity[12];
 
-                mw.WalkControl(tmpjoint, tmpvelocity, tmpstep_x, tmpstep_y, rotation, tmpact);
-    // print for debagging
-    for (int i = 0; i < 12; i++)
-    {
-     printf("%f,", tmpvelocity[i]);
-    }
+    // // print for debagging
+    // // for (int i = 0; i < 12; i++)
+    // // {
+    // //  printf("%f,", tmpjoint[i]);
+    // // }
+    // // printf("%f,%f,%f\n", tmpstep_x, tmpstep_y, tmprotation);
 
-    printf("\n");
+    //             mw.WalkControl(tmpjoint, tmpvelocity, tmpstep_x, tmpstep_y, rotation, tmpact);
+    // // print for debagging
+    // // for (int i = 0; i < 12; i++)
+    // // {
+    // //  printf("%f,", tmpvelocity[i]);
+    // // }
 
-            }
+    // // printf("\n");
 
-            isInput = !isInput;
-        }
-    }
+    //         }
+
+    //         isInput = !isInput;
+    //     }
+    // } else {
+    //     printf("finish file reading\n");
+    // }
+    /**==========================================**/
+
 
     double velocity[12] = {};
     //MakeWalkを用いて、関節動作を決定する
@@ -182,11 +193,11 @@ std::string OdensWalk::getNextAngle(World& w){
         finish_flag = true;
     }
 
-    for (int i = 0; i < 12; i++)
-    {
-        printf("%f,", velocity[i]);
-    }
-    printf("\n");
+    // for (int i = 0; i < 12; i++)
+    // {
+    //     printf("%f,", velocity[i]);
+    // }
+    // printf("\n");
 
     // for (int i = 0; i < 12; i++)
     // {
