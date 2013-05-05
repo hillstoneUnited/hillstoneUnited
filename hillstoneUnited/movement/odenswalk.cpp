@@ -1,4 +1,8 @@
 #include "odenswalk.hpp"
+#include <fstream>
+#include <vector>
+#include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 
 // x: distance to ball (zengo soutai)
 // y: distance to ball (sayu soutai)
@@ -50,10 +54,10 @@ std::string OdensWalk::getNextAngle(World& w){
     double distance = sqrt(pow(dest[0]-mypos[0], 2.0) +
                            pow(dest[1]-mypos[1], 2.0));
 
-    if (distance <= 0.5 || w.confXY() == 300 || t>uptime)
-    {
-        act = false;
-    }
+    // if (distance <= 0.5 || w.confXY() == 300 || t>uptime)
+    // {
+    //     act = false;
+    // }
     t+=1;
 
     // compute rotation from abs point
@@ -111,6 +115,61 @@ std::string OdensWalk::getNextAngle(World& w){
     joint[10] = w.getAngle("rlj5") * DEGTORAD;
     joint[11] = w.getAngle("rlj6") * DEGTORAD;
 
+    // for debagging
+    std::string filename = "../mwoutput.txt";
+    std::ifstream ifs(filename.c_str());
+    std::string str;
+
+
+    bool isInput = true;
+    bool once = true;
+
+    if(once) {
+        once = false;
+
+        while(std::getline(ifs, str)) {
+            if(isInput){
+                std::vector<std::string> splitLine;
+                boost::algorithm::split(splitLine, str,
+                                        boost::is_any_of(","));
+                std::vector<std::string>::iterator it = splitLine.begin();
+
+                double tmpjoint[12];
+                for (int i = 0; i < 12; i++)
+                {
+                    tmpjoint[i] = atof((*it).c_str());
+                    it++;
+                }
+                double tmpstep_x = atof((*it).c_str());
+                it++;
+                double tmpstep_y = atof((*it).c_str());
+                it++;
+                double tmprotation = atof((*it).c_str());
+                it++;
+                bool tmpact = true;
+                double tmpvelocity[12];
+
+    // print for debagging
+    for (int i = 0; i < 12; i++)
+    {
+     printf("%f,", tmpjoint[i]);
+    }
+    printf("%f,%f,%f\n", tmpstep_x, tmpstep_y, tmprotation);
+
+                mw.WalkControl(tmpjoint, tmpvelocity, tmpstep_x, tmpstep_y, rotation, tmpact);
+    // print for debagging
+    for (int i = 0; i < 12; i++)
+    {
+     printf("%f,", tmpvelocity[i]);
+    }
+
+    printf("\n");
+
+            }
+
+            isInput = !isInput;
+        }
+    }
 
     double velocity[12] = {};
     //MakeWalkを用いて、関節動作を決定する
@@ -144,7 +203,7 @@ bool OdensWalk::set(jointID id, double velocity){
   const double EPS = 0.2; // just like margin of error
   double current = 0.0;
 
-  angleMap[id] = velocity;
+  angleMap[id] = velocity * RADTODEG;
   return true;
 }
 
@@ -225,7 +284,7 @@ bool OdensWalk::set(jointID id, double velocity){
 
 void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
 
-    double gain = 100;
+    double gain = 1;
     double joint_set[12] = {};
 
     for (int i = 0; i < 12; i++)
