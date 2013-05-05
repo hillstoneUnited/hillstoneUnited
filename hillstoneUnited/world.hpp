@@ -109,8 +109,6 @@ class World{
  private:
 
   static const double goal_length    =  2.1;
-  // static const double field_length_x = 21.0;
-  // static const double field_length_y = 14.0;
   static const double field_length_x = 30.0;
   static const double field_length_y = 20.0;
 
@@ -119,6 +117,33 @@ class World{
   std::string playmode;
   bool        isMatch;
   enum Side   side;
+
+
+  void setSentinel();
+  double BAL_sentinel[3];
+  double MGL_sentinel[3];
+  double MGR_sentinel[3];
+  double MFL_sentinel[3];
+  double MFR_sentinel[3];
+  double EGL_sentinel[3];
+  double EGR_sentinel[3];
+  double EFL_sentinel[3];
+  double EFR_sentinel[3];
+  double FRP_RC_sentinel[3];
+  double FRP_RF_sentinel[3];
+  double FRP_LC_sentinel[3];
+  double FRP_LF_sentinel[3];
+  double GYR_sentinel[3];
+  double ACC_sentinel[3];
+  double MYPOS_sentinel[3];
+  double BALLPOS_sentinel[3];
+  double FRIEND_sentinel[11][4];
+  double ENEMY_sentinel[11][4];
+
+  double BXY_sentinel[2];
+  double XY_sentinel[2];
+  double ABSANGLE_sentinel;
+  double BANGLE_sentinel;
 
 
   typedef std::map<std::string, jointID> tempJointMap;
