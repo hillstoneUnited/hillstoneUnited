@@ -153,9 +153,14 @@ void Attack::judgement(World& w) {
 
     if (ROLE=="TOP")
     {
-        elementList.push_back(new AdjustToBall(w));
-        elementList.push_back(new TicktackBase("FORWARD", 3));
-        elementList.push_back(new GABase("GA_FORWARD", 100));   
+        if (hasBal())
+        {
+            elementList.push_back(new TicktackBase("FORWARD", 3));
+            elementList.push_back(new GABase("GA_FORWARD", 100));
+        } else {
+            elementList.push_back(new AdjustToBall(w));
+        }
+
     } else if (ROLE=="FOLLOW") {
         double send[2] = {ballpos[0]+offset[0], ballpos[1]+offset[1]};
         elementList.push_back(new OdensWalk(offset));
