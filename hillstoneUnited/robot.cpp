@@ -23,16 +23,16 @@ std::string Robot::getNextAngle(std::string &msg){
 
   static double initpos0[3] = {-13.5,0.0, 0.0}; // keeper
 
-  static double initpos1[3] = {-10.5,6.0, 0.0};
+  static double initpos1[3] = {-10.5,3.5, 0.0};
   static double initpos2[3] = {-10.5,0.0, 0.0};
-  static double initpos3[3] = {-10.5,-6.0, 0.0};
-  static double initpos4[3] = {-7.0,2.5, 0.0};
-  static double initpos5[3] = {-7.0,-2.5, 0.0};
+  static double initpos3[3] = {-10.5,-3.5, 0.0};
+  static double initpos4[3] = {-7.0,1.5, 0.0};
+  static double initpos5[3] = {-7.0,-1.5, 0.0};
 
   static double initpos6[3] = {-3.0,2.5, 0.0};
   static double initpos7[3] = {-3.0,-2.5, 0.0};
   static double initpos8[3] = {-1.0,5.0, 0.0};
-  static double initpos9[3] = {-0.5,0.0, 0.0};
+  static double initpos9[3] = {-0.2,0.03, -10.0};
   static double initpos10[3] = {-1.0,-5.0, 0.0};
 
   double tmpinit[11][3] = {0.0,0.0,0.0};

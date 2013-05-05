@@ -66,6 +66,12 @@ void Defend::judgement(World& w){
   }
 
   judgeStandup(w);
+  if(w.getPlaymode()=="BeforeKickOff" ||
+      w.getPlaymode()=="Goal_Left" ||
+      w.getPlaymode()=="Goal_Right"){
+    elementList.push_back(new SequenceMovement("DUMMY"));
+  }
+  else{
 
 #ifdef LAB
 
@@ -218,7 +224,7 @@ void Defend::judgement(World& w){
   }
 
 #endif
-
+  }
 }
 
 bool Defend::inTerritory(){
