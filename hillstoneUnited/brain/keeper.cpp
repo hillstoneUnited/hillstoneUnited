@@ -41,12 +41,53 @@ void Keeper::restore_position(World& w){
 }
 
 void Keeper::judgement(World& w){
-		restore_position(w);
-		double dis = w.getBAL(0);
-		double angle = w.getBAL(1);
-
-        judgeStandup(w);
-
+      judge_stand = true;
+      restore_position(w);
+      bal[0] = w.getBAL(0);
+      bal[1] = w.getBAL(1);
+      conf_bal = w.confBAL();
+      ballpos[0] = w.getBXY(0);
+      ballpos[1] = w.getBXY(1);
+      x = w.getXY(0);
+      y = w.getXY(1);
+      conf_XY = w.confXY();
+      
+      judgeStandup(w);
+      
+      if(conf_bal >= 300){
+	elementList.push_back(new SequenceMovement("LAROUND"));
+      }
+      else{		 
+	if((bal[0] > 10) && ((fabs(x + 13.5) > 4 || fabs(y - 0) > 4))){
+	  double runto_pos[2] = {-13.5,0};
+	  elementList.push_back(new RunTo(w,runto_pos));
+	}
+	else if(bal[0] < 5.0 && bal[0] > 1.5){
+	  if(bal[1] > 0){
+	    elementList.push_back( new TicktackBase("SLEFT",2));
+	  }
+	  else{
+	    elementList.push_back( new TicktackBase("SRIGHT",2));
+	  }
+	}
+	else if(bal[0] <= 1.5){
+	  
+	  if(bal[1] > 20){
+	    elementList.push_back(new TicktackBase("SLEFT",2));
+	  }
+	  else if(bal[1] > -20){
+	    elementList.push_back(new SequenceMovement("LSPREAD"));
+	    judge_stand = false;
+	  }
+	  else{
+	    elementList.push_back(new TicktackBase("SRIGHT",2));
+	  }
+	}
+	else{
+	  elementList.push_back(new SequenceMovement("DUMMY"));
+	}
+      }
+      /*
 		if(dis < 1.5 && dis > 0.8){
 				elementList.push_back( new TicktackBase("SLEFT",2));
 				elementList.push_back( new TicktackBase("SRIGHT",2));
@@ -63,13 +104,13 @@ void Keeper::judgement(World& w){
 		else{
 				elementList.push_back(new SequenceMovement("DUMMY"));
 		}
-
+      */
 }
 
 
 void Keeper::updateFinishFlag(World& w)
 {
-		finish_flag = false;
+        finish_flag = false;
         judgement(w);
 }
 
@@ -91,7 +132,7 @@ std::string Keeper::getNextAngle(World& w) {
         if (pushStand)
         {
             /* code */
-        } else {
+        } else if(judge_stand == true) {
             elementList.clear();
             elementList.push_front(new Standup());
             pushStand = true;
