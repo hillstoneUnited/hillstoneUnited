@@ -45,7 +45,7 @@ void AdjustToBall::judgement(World& w){
     } else {
 
         elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new OdensWalk("BALL", 0.5, 180.0));
+        elementList.push_back(new OdensWalk("BALL", 0.5, 0));
         elementList.push_back(new SequenceMovement("DUMMY"));
 
 

@@ -66,7 +66,7 @@ std::string Robot::getNextAngle(std::string &msg){
 
       switch(world.getUnum()){
       case 1:
-        mainbrain = new Keeper(world, initpos8);
+        mainbrain = new TestBrain(world, initpos8);
         break;
       case 2:
         mainbrain = new Defend(world, initpos1);

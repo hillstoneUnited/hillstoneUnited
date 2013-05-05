@@ -258,7 +258,7 @@ void OdensWalk::paramChangeByName(World& w) {
 }
 
 bool OdensWalk::wannaWalk(World& w) {
-    if (conf >= 250 || distance <= 0.5)
+    if (conf >= 250 || distance <= 0.5 || w.confXY() >= 250 || w.isFalling())
     {
         return false;
     } else {

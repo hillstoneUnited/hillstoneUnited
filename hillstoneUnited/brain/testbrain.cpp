@@ -61,7 +61,9 @@ void TestBrain::judgement(World& w) {
 
     if (true)
     {
-        elementList.push_back(new OdensWalk("BALL"));
+        elementList.push_back(new SequenceMovement("LAROUND"));
+        elementList.push_back(new OdensWalk("BALL", 2.0, 360));
+        elementList.push_back(new SequenceMovement("DUMMY"));
     } else {
         elementList.push_back(new SequenceMovement("LAROUND"));
         elementList.push_back(new RunToBall(w));
