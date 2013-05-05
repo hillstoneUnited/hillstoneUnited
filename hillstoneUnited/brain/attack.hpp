@@ -53,6 +53,7 @@ private:
 
     double kickAngle;
     int passTo;
+    std::string ROLE;
 
     bool beam_flag;
     //kickoff_kick

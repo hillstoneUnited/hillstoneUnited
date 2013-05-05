@@ -11,11 +11,13 @@
 #include "../movement/gabase.hpp"
 #include "../movement/ticktackbase.hpp"
 #include "../movement/sequencemovement.hpp"
+#include "../movement/kick.hpp"
 #include "runtoball.hpp"
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
 #include "runto.hpp"
 #include "runtoenemy.hpp"
+#include "follow.hpp"
 
 class TestBrain : public BrainBase
 {
@@ -49,6 +51,7 @@ private:
 
     double kickAngle;
     int passTo;
+    std::string ROLE;
 
     bool beam_flag;
 
