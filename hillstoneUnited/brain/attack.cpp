@@ -5,7 +5,6 @@ Attack::Attack(World& w, double _initpos[]) {
 		//d = new Drawing();
     finish_flag = false;
     beam_flag = false;
-    kick_flag = false;
 
     ballpos[0] = 0.0;
     ballpos[1] = 0.0;
@@ -67,69 +66,63 @@ void Attack::judgement(World& w) {
     // std::cout << egr[0] << std::endl;
     // std::cout << egr[1] << std::endl;
 
-    if(w.getPlaymode()=="BeforeKickOff" ||
-       w.getPlaymode()=="Goal_Left" ||
-       w.getPlaymode()=="Goal_Right"){
-      elementList.push_back(new SequenceMovement("DUMMY"));
-    }
-    else{
 
-      if (hasBal())
-	{
-	  if (close2Goal())
-	    {
-	      // shoot
-	      kickAngle = (egr[1]+egl[1])/2 + angle;
-	      // std::cout << "shoot!! to " << kickAngle <<std::endl;
-	      
-	    } else {
+    if (hasBal())
+    {
+        if (close2Goal())
+        {
+            // shoot
+            kickAngle = (egr[1]+egl[1])/2 + angle;
+            // std::cout << "shoot!! to " << kickAngle <<std::endl;
+
+        } else {
             // std::cout << "pass?" << ableToPass() << std::endl;
             if (ableToPass())
-	      {
+            {
                 // pass
                 kickAngle = friends[passTo][1] + angle; // hogehoge
                 // std::cout << "pass to " << kickAngle <<std::endl;
-	      } else {
-	      
-	      // dribble
-	      kickAngle = 0; // hogehoge
-	      // std::cout << "dribble to " << kickAngle << std::endl;
+            } else {
+
+                // dribble
+                kickAngle = 0; // hogehoge
+                // std::cout << "dribble to " << kickAngle << std::endl;
             }
-	  }
-	  
-	  //elementList.push_back(new AdjustToBall(w));
-	  elementList.push_back(new KickToFront(w));
-	} else {
+        }
+
+        //elementList.push_back(new AdjustToBall(w));
+        elementList.push_back(new KickToFront(w));
+    } else {
         if (farHome())
-	  {
+        {
             elementList.push_back(new RunToSlowly(w, initpos));
             // std::cout << "go home" << std::endl;
-	  } else {
-	  int invader = getInvader();
-	  if (invader != -1)
+        } else {
+            int invader = getInvader();
+            if (invader != -1)
             {
                 elementList.push_back(new RunToEnemy(w, invader));
                 // std::cout << "tuckle" << std::endl;
             } else {
-	    if (close2Bal() || inTerritory())
-	      {
-		if (bal[0] < 1.5)
-		  {
-		    elementList.push_back(new KickToFront(w));
-		    // std::cout << "#attack: adjusting" << std::endl;
-		  } else {
-		  elementList.push_back(new KickToFront(w));
-		  // std::cout << "ball!!" << std::endl;
-		}
-	      } else {
-	      elementList.push_back(new RunToSlowly(w, initpos));
-	      // std::cout << "go home(nothing)" << std::endl;
-	    }
-	  }
+                if (close2Bal() || inTerritory())
+                {
+                    if (bal[0] < 1.5)
+                    {
+                        elementList.push_back(new KickToFront(w));
+                        // std::cout << "#attack: adjusting" << std::endl;
+                    } else {
+                        elementList.push_back(new KickToFront(w));
+                        // std::cout << "ball!!" << std::endl;
+                    }
+                } else {
+                    elementList.push_back(new RunToSlowly(w, initpos));
+                    // std::cout << "go home(nothing)" << std::endl;
+                }
+            }
         }
-      }
     }
 }
+
 
 void Attack::updateFinishFlag(World& w) {
     judgement(w);
@@ -259,16 +252,6 @@ std::string Attack::getNextAngle(World& w) {
                 << ")";
         // std::cout << ss.str() << std::endl;
     }
-
-    ///kickoff_kick////////////////////
-    if(w.getPlaymode()=="BeforeKickOff" && w.getUnum() == 10){
-      kick_flag = true;
-    }
-    if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
-      elementList.push_front(new Kick());
-      kick_flag = false;
-    }
-    ///////////////////////////////////
 
     if (w.isFalling())
     {

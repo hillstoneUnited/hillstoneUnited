@@ -53,77 +53,72 @@ void Keeper::judgement(World& w){
       conf_XY = w.confXY();
       
       judgeStandup(w);
-      if(w.getPlaymode()=="BeforeKickOff" ||
-	  w.getPlaymode()=="Goal_Left" ||
-	  w.getPlaymode()=="Goal_Right"){
+      
+      if(conf_bal >= 300 || conf_ballpos >= 300){
 	elementList.push_back(new SequenceMovement("DUMMY"));
+	elementList.push_back(new SequenceMovement("LAROUND"));
       }
-      else{
-	if(conf_bal >= 300 || conf_ballpos >= 300){
-	  elementList.push_back(new SequenceMovement("DUMMY"));
-	  elementList.push_back(new SequenceMovement("LAROUND"));
+      else{		 
+	if((bal[0] > 10) && ((fabs(x + 13.5) > 4 || fabs(y - 0) > 4))){
+	  double runto_pos[2] = {-13.5,0};
+	  elementList.push_back(new RunTo(w,runto_pos));
 	}
-	else{		 
-	  if((bal[0] > 10) && ((fabs(x + 13.5) > 4 || fabs(y - 0) > 4))){
-	    double runto_pos[2] = {-13.5,0};
-	    elementList.push_back(new RunTo(w,runto_pos));
-	  }
-	  else if(fabs(ballpos[1]) - 0.5 < w.getGoalLength()/2){
-	    if(bal[0] < 5.0 && bal[0] > 1.5){
-	      if(bal[1] > 0){
-		elementList.push_back( new TicktackBase("SLEFT",2));
-	      }
-	      else{
-		elementList.push_back( new TicktackBase("SRIGHT",2));
-	      }
-	    }
-	    else if(bal[0] <= 1.5){	    
-	      if(bal[1] > 20){
-		elementList.push_back(new TicktackBase("SLEFT",2));
-	      }
-	      else if(bal[1] > -20){
-		elementList.push_back(new SequenceMovement("LSPREAD"));
-		judge_stand = false;
-	      }
-	      else{
-		elementList.push_back(new TicktackBase("SRIGHT",2));
-	      }
+	else if(fabs(ballpos[1]) - 0.5 < w.getGoalLength()/2){
+	  if(bal[0] < 5.0 && bal[0] > 1.5){
+	    if(bal[1] > 0){
+	      elementList.push_back( new TicktackBase("SLEFT",2));
 	    }
 	    else{
-	      elementList.push_back(new SequenceMovement("DUMMY"));
+	      elementList.push_back( new TicktackBase("SRIGHT",2));
 	    }
 	  }
-	  
+	  else if(bal[0] <= 1.5){	    
+	    if(bal[1] > 20){
+	      elementList.push_back(new TicktackBase("SLEFT",2));
+	    }
+	    else if(bal[1] > -20){
+	      elementList.push_back(new SequenceMovement("LSPREAD"));
+	      judge_stand = false;
+	    }
+	    else{
+	      elementList.push_back(new TicktackBase("SRIGHT",2));
+	    }
+	  }
 	  else{
-	    if(bal[0] < 5.0 && bal[0] > 1.5){
-	      if(bal[1] > 40){
-		elementList.push_back( new TicktackBase("SLEFT",2));
-	      }
-	      else if(bal[1] < -40){
-		elementList.push_back( new TicktackBase("SRIGHT",2));
-	      }
-	      else{
-		elementList.push_back(new SequenceMovement("DUMMY"));
-	      }
+	    elementList.push_back(new SequenceMovement("DUMMY"));
+	  }
+	}
+
+	else{
+	  if(bal[0] < 5.0 && bal[0] > 1.5){
+	    if(bal[1] > 40){
+	      elementList.push_back( new TicktackBase("SLEFT",2));
 	    }
-	    else if(bal[0] <= 1.5){
-	      
-	      if(bal[1] > 40){
-		elementList.push_back(new TicktackBase("SLEFT",2));
-	      }
-	      else if(bal[1] > -40){
-		elementList.push_back(new SequenceMovement("LSPREAD"));
-		judge_stand = false;
-	      }
-	      else{
-		elementList.push_back(new TicktackBase("SRIGHT",2));
-	      }
+	    else if(bal[1] < -40){
+	      elementList.push_back( new TicktackBase("SRIGHT",2));
 	    }
 	    else{
 	      elementList.push_back(new SequenceMovement("DUMMY"));
 	    }
 	  }
+	  else if(bal[0] <= 1.5){
+	    
+	    if(bal[1] > 40){
+	      elementList.push_back(new TicktackBase("SLEFT",2));
+	    }
+	    else if(bal[1] > -40){
+	      elementList.push_back(new SequenceMovement("LSPREAD"));
+	      judge_stand = false;
+	    }
+	    else{
+	      elementList.push_back(new TicktackBase("SRIGHT",2));
+	    }
+	  }
+	  else{
+	    elementList.push_back(new SequenceMovement("DUMMY"));
+	  }
 	}
+      }
       
       /*
 		if(dis < 1.5 && dis > 0.8){
@@ -143,8 +138,8 @@ void Keeper::judgement(World& w){
 				elementList.push_back(new SequenceMovement("DUMMY"));
 		}
       */
-      }
 }
+
 
 void Keeper::updateFinishFlag(World& w)
 {

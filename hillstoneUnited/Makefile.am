@@ -34,7 +34,6 @@ movement = movement/movementbase.hpp movement/movementbase.cpp \
 					 movement/sequence.hpp movement/sequence.cpp \
 					 movement/sequencemovement.hpp movement/sequencemovement.cpp \
 					 movement/standup.hpp movement/standup.cpp \
-					 movement/kick.hpp movement/kick.cpp \
 					 movement/odenswalk.hpp movement/odenswalk.cpp
 
 MakeWalk = MakeWalk/makewalk.hpp MakeWalk/makewalk.cpp MakeWalk/update.cpp \

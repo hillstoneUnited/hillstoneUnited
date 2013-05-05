@@ -26,7 +26,6 @@ RunToSlowly::RunToSlowly(World& w, double _point[]){
     t_count = int(6*fabs(angle)/90);
 
     //elementList.push_back(new SequenceMovement("LAROUND"));
-    judgement(w);
     updateFinishFlag(w);
 }
 
