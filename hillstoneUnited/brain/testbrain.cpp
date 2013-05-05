@@ -101,26 +101,28 @@ void TestBrain::judgement(World& w) {
             // elementList.push_back(new GABase("GA_FORWARD", 100));
             break;
         case 2:
-            if (bal[1] >= 20)
-            {
-                elementList.push_back(new TicktackBase("TLEFT", 2));
-            } else if (bal[1] <= -20) {
-                elementList.push_back(new TicktackBase("TRIGHT", 2));
-            } else {
-            elementList.push_back(new OdensWalk("BALL", -2.0, 1.3));
-            elementList.push_back(new SequenceMovement("DUMMY"));
-            }
+            // if (bal[1] >= 20)
+            // {
+            //     elementList.push_back(new TicktackBase("TLEFT", 2));
+            // } else if (bal[1] <= -20) {
+            //     elementList.push_back(new TicktackBase("TRIGHT", 2));
+            // } else {
+            // elementList.push_back(new OdensWalk("BALL", -2.0, 1.3));
+            // elementList.push_back(new SequenceMovement("DUMMY"));
+            // }
+            elementList.push_back(new Follow(w, 2.0, 1.3));
             break;
         case 3:
-            if (bal[1] >= 20)
-            {
-                elementList.push_back(new TicktackBase("TLEFT", 2));
-            } else if (bal[1] <= -20) {
-                elementList.push_back(new TicktackBase("TRIGHT", 2));
-            } else {
-            elementList.push_back(new OdensWalk("BALL", -2.0, -1.3));
-            elementList.push_back(new SequenceMovement("DUMMY"));
-            }
+            // if (bal[1] >= 20)
+            // {
+            //     elementList.push_back(new TicktackBase("TLEFT", 2));
+            // } else if (bal[1] <= -20) {
+            //     elementList.push_back(new TicktackBase("TRIGHT", 2));
+            // } else {
+            // elementList.push_back(new OdensWalk("BALL", -2.0, -1.3));
+            // elementList.push_back(new SequenceMovement("DUMMY"));
+            // }
+            elementList.push_back(new Follow(w, 2.0, -1.3));
             break;
         default:
             elementList.push_back(new GABase("GA_FORWARD", 1000));

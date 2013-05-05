@@ -17,6 +17,7 @@
 #include "kickto.hpp"
 #include "runto.hpp"
 #include "runtoenemy.hpp"
+#include "follow.hpp"
 
 class TestBrain : public BrainBase
 {
