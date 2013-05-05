@@ -19,12 +19,12 @@ KickToFront::KickToFront(World& w){
 
 
 void KickToFront::judgement(World& w){
-		std::cout << "mypos" << w.getXY(0) << "," << w.getXY(1) << std::endl;
-		std::cout << "ballpos" << w.getBXY(0) << "," << w.getBXY(1) << std::endl;
+		//std::cout << "mypos" << w.getXY(0) << "," << w.getXY(1) << std::endl;
+		//std::cout << "ballpos" << w.getBXY(0) << "," << w.getBXY(1) << std::endl;
 
 
 		if(w.confBAL()>200 || w.getBXY(0)==0){
-				std::cout << "LAROUND" << std::endl;
+				//std::cout << "LAROUND" << std::endl;
 				//elementList.push_back(new SequenceMovement("READY"));
 				elementList.push_back(new SequenceMovement("LAROUND"));
 				not_seeBALLcount +=1;
@@ -49,7 +49,7 @@ void KickToFront::judgement(World& w){
 				}
 
 
-				std::cout << "mod angle" << count << std::endl;
+				//std::cout << "mod angle" << count << std::endl;
 					if(ballangle>0){
 						//elementList.push_back(new SequenceMovement("READY"));
 						elementList.push_back(new TicktackBase("TLEFT",count));
@@ -60,14 +60,14 @@ void KickToFront::judgement(World& w){
 					}
 
 				if(modanglecount > 5){
-					std::cout << "kick" <<" dcount" <<dcount << std::endl;
+					//std::cout << "kick" <<" dcount" <<dcount << std::endl;
 					modanglecount = 0;
 					elementList.push_back(new SequenceMovement("READY"));
 					elementList.push_back(new TicktackBase("FORWARD",6));
 					isKicked = true;
 				}
 				if(fabs(ballangle)<5 && w.getBAL(0)<0.8){
-					std::cout << "cho kick" <<ballangle  << "dcount"<< dcount<<  std::endl;
+					//std::cout << "cho kick" <<ballangle  << "dcount"<< dcount<<  std::endl;
 					modanglecount = 0;
 					elementList.push_back(new SequenceMovement("READY"));
 					elementList.push_back(new TicktackBase("FORWARD",dcount));
@@ -75,7 +75,7 @@ void KickToFront::judgement(World& w){
 				}
 		}
 		else{
-				std::cout << "modify position" << std::endl;
+				//std::cout << "modify position" << std::endl;
 				//ball no kage ni irutoki
 				if(w.getXY(0) > w.getBXY(0) && fabs( w.getXY(1)-w.getBXY(1) ) <0.1){
 						double tpos[2];
@@ -86,7 +86,7 @@ void KickToFront::judgement(World& w){
 						else{
 								tpos[1] = w.getBXY(1)-0.5;
 						}
-						std::cout << "hosei" << std::endl;
+						//std::cout << "hosei" << std::endl;
 						elementList.push_back(new RunToSlowly(w,tpos));
 				}
 				double kpos[2] = {w.getBXY(0)-0.8,w.getBXY(1)};
