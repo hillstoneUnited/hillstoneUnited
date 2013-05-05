@@ -7,7 +7,9 @@
 class OdensWalk : public MovementBase
 {
 public:
-    OdensWalk(std::string _name, double _dest[], int _uptime=1000);
+    OdensWalk(double _dest[]);
+    OdensWalk(std::string _name, double _offsetdist=0.0, double _offsetangle=0.0);
+    OdensWalk(int _enemEnum, double _offsetdist=0.0, double _offsetangle=0.0);
     ~OdensWalk();
 
     bool set(jointID id, double velocity);
@@ -22,11 +24,19 @@ private:
     static const double RADTODEG = 180.0/M_PI;
     MakeWalk mw;
     double dest[2];
+    double offset[3]; // kyokuzahyo, degree
     double joint[12];
     std::string name;
+    int enemEnum;
 
-    int t;
-    int uptime;
+    double distance;
+    double rotation; //目標の向きとの角度差[rad]
+
+    int conf;
+
+    void paramChangeByName(World& w);
+    bool wannaWalk(World& w);
+
 };
 
 #endif

@@ -3,16 +3,76 @@
 // x: distance to ball (zengo soutai)
 // y: distance to ball (sayu soutai)
 
-OdensWalk::OdensWalk(std::string _name, double _dest[], int _uptime){
+OdensWalk::OdensWalk(double _dest[]) {
 
-    name = _name;
+    name = "FIXED";
 
     finish_flag = false;
     dest[0] = _dest[0]; // x axis(goal to goal)
     dest[1] = _dest[1]; // y axis(side by side)
 
-    t = 0;
-    uptime = _uptime;
+    offset[0] = 0.0;
+    offset[1] = 0.0;
+    offset[2] = 0.0;
+
+    enemEnum = -1;
+
+    distance = 0.0;
+    rotation = 0.0;
+
+    conf = 0;
+
+    mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
+    mw.setdblflag(false);//両脚支持期間の有無。基本falseで
+    mw.setupleg(0.05);//足をあげる高さ
+
+}
+
+OdensWalk::OdensWalk(std::string _name, double _offsetdist, double _offsetangle){
+
+    name = _name;
+
+    finish_flag = false;
+
+    dest[0] = 0.0;
+    dest[1] = 0.0;
+
+    offset[0] = _offsetdist;
+    offset[1] = _offsetangle;
+    offset[2] = 0.0;
+
+    enemEnum = -1;
+
+    distance = 0.0;
+    rotation = 0.0;
+
+    conf = 300;
+
+    mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
+    mw.setdblflag(false);//両脚支持期間の有無。基本falseで
+    mw.setupleg(0.05);//足をあげる高さ
+
+}
+
+OdensWalk::OdensWalk(int _enemEnum, double _offsetdist, double _offsetangle){
+
+    name = "ENEMY";
+
+    finish_flag = false;
+
+    dest[0] = 0.0;
+    dest[1] = 0.0;
+
+    offset[0] = _offsetdist;
+    offset[1] = _offsetangle;
+    offset[2] = 0.0;
+
+    enemEnum = _enemEnum;
+
+    distance = 0.0;
+    rotation = 0.0;
+
+    conf = 300;
 
     mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
     mw.setdblflag(false);//両脚支持期間の有無。基本falseで
@@ -25,6 +85,7 @@ OdensWalk::~OdensWalk(){}
 std::string OdensWalk::getNextAngle(World& w){
     resetAngleMap();
 
+    paramChangeByName(w);
 
     //MakeWalkの戻り値を受け取る
     bool isWalking;
@@ -32,39 +93,16 @@ std::string OdensWalk::getNextAngle(World& w){
     double step_x = 0;
     //左右方向の歩幅(左が正)
     double step_y = 0;
-    //目標の向きとの角度差[rad]
-    double rotation = 0;
+
     //歩行信号
     //trueの場合のみ歩行する
     //falseになると、両足が着いたタイミングで停止する
-    bool act = true;
+    bool act = wannaWalk(w);
     
     //ボールの情報から、歩幅を決定する
     const double MAX_STEP_X = 0.09;//前後の最大歩幅
     const double MAX_STEP_Y = 0.03;//左右の最大歩幅
     const double MAX_STEP_R = 30*M_PI/180;//旋回の最大角度
-    
-    //TODO: check which x or y is infront and behind
-    //now set x as zengo
-    //calculate rotation from mypos and goal
-    double mypos[2] = {};
-    mypos[0] = w.getXY(0);
-    mypos[1] = w.getXY(1);
-
-    double myangle = w.getABSANGLE()*M_PI/180;
-    double destangle = -atan2(dest[1]-mypos[1], dest[0]-mypos[0]);
-
-    double distance = sqrt(pow(dest[0]-mypos[0], 2.0) +
-                           pow(dest[1]-mypos[1], 2.0));
-
-    // if (distance <= 0.5 || w.confXY() == 300 || t>uptime)
-    // {
-    //     act = false;
-    // }
-    t+=1;
-
-    // compute rotation from abs point
-    rotation = - (destangle + myangle);
     
     //最大値を超えないようにする
     if(rotation > MAX_STEP_R){
@@ -163,6 +201,67 @@ void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
     set(rlj3, -velocity[8] * gain);
     set(rlj4, -velocity[9] * gain);
     set(rlj5, -velocity[10] * gain);
-    set(rlj6, velocity[11] * gain); 
+    set(rlj6, velocity[11] * gain);
     
+}
+
+void OdensWalk::paramChangeByName(World& w) {
+
+    double myangle = w.getABSANGLE()*DEGTORAD;
+
+    if (name == "BALL" || name == "FIXED")
+    {
+        if (name == "BALL")
+        {
+            dest[0] = w.getBXY(0);
+            dest[1] = w.getBXY(1);
+            conf = w.confBXY();
+        } else {
+            conf++;
+        }
+
+        double mypos[2] = {};
+        mypos[0] = w.getXY(0);
+        mypos[1] = w.getXY(1);
+
+        double destangle = atan2(dest[1]-mypos[1], dest[0]-mypos[0]);
+
+        distance = sqrt(pow(dest[0]-mypos[0], 2.0) +
+                        pow(dest[1]-mypos[1], 2.0));
+        rotation = destangle - myangle;
+
+    } else if (name == "GOAL") {
+
+        rotation = ((w.getEGR(1)+w.getEGL(1))/2 + w.getABSANGLE()) * DEGTORAD;
+        distance = (w.getEGR(0)+w.getEGL(0))/2;
+        conf = (w.confEGR() + w.confEGL()) / 2;
+
+    } else if (name == "ENEMY") {
+
+        rotation = (w.getENEMY(enemEnum, 1) + w.getABSANGLE()) * DEGTORAD;
+        distance = w.getENEMY(enemEnum, 0);
+        conf = w.confENEMY(enemEnum);
+        
+    } else {
+        std::cout << "BAD argument in OdensWalk. name:" <<
+        name << "can't understand." << std::endl;
+    }
+
+    double relativeoffset = offset[1]*DEGTORAD - myangle;
+    double tmpdistance = sqrt(pow(distance * cos(rotation) + offset[0] * cos(relativeoffset), 2.0) + pow(distance * sin(rotation) + offset[0] * sin(relativeoffset), 2.0));
+
+    // calculate rotation by yogen teiri
+    double alpha = sqrt(pow(distance, 2.0)+pow(offset[0], 2.0) - 2 * distance * offset[0] * cos(rotation + (180*DEGTORAD - relativeoffset)));
+    double phi = (pow(distance, 2.0), + pow(alpha, 2.0) - pow(offset[0], 2.0)) / (2 * distance * alpha);
+    distance = tmpdistance;
+    rotation = phi + rotation;
+}
+
+bool OdensWalk::wannaWalk(World& w) {
+    if (conf >= 250 || distance <= 0.5)
+    {
+        return false;
+    } else {
+        return true;
+    }
 }

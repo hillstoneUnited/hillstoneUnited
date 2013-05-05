@@ -45,8 +45,9 @@ void AdjustToBall::judgement(World& w){
     } else {
 
         elementList.push_back(new SequenceMovement("LAROUND"));
-        elementList.push_back(new OdensWalk(ballpos, 1000));
+        elementList.push_back(new OdensWalk("BALL", 0.5, 180.0));
         elementList.push_back(new SequenceMovement("DUMMY"));
+
 
         // if(bal[1] > 10){
         //     elementList.push_back(new TicktackBase("TLEFT", t_count));
