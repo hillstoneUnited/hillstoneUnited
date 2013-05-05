@@ -18,6 +18,9 @@ RunToEnemy::RunToEnemy(World& w, int _enemy_unum){
 }
 
 void RunToEnemy::judgement(World& w){
+
+    judgeStandup(w);
+
     for(int i=0; i<2; i++){
       enemy[i] = w.getENEMY(enemy_unum, i);
     }

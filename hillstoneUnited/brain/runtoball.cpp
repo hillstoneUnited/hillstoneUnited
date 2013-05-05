@@ -39,6 +39,8 @@ void RunToBall::judgement(World& w){
       t_count = 1;
     }
 
+    judgeStandup(w);
+
     if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
         elementList.push_back(new TicktackBase("TLEFT", 2));
         elementList.push_back(new SequenceMovement("LAROUNDREADY"));

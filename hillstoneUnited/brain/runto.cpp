@@ -49,6 +49,8 @@ void RunTo::judgement(World& w){
       t_count = 1;
     }
 
+    judgeStandup(w);
+
     if(conf_XY == 300){
       elementList.push_back(new TicktackBase("TLEFT", 2));
       elementList.push_back(new SequenceMovement("LAROUND"));

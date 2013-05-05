@@ -1,5 +1,5 @@
-#ifndef ATTACK_H
-#define ATTACK_H
+#ifndef TESTBRAIN_H
+#define TESTBRAIN_H
 
 #include <typeinfo>
 #include <sstream>
@@ -14,16 +14,14 @@
 #include "runtoball.hpp"
 #include "adjusttoball.hpp"
 #include "kickto.hpp"
-#include "kicktofront.hpp"
 #include "runto.hpp"
 #include "runtoenemy.hpp"
 
-
-class Attack : public BrainBase
+class TestBrain : public BrainBase
 {
 public:
-    Attack(World& w, double _initpos[]);
-    ~Attack(){};
+    TestBrain(World& w, double _initpos[]);
+    ~TestBrain(){};
 
     // bool isFinished();
     std::string getNextAngle(World& w);
