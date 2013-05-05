@@ -67,7 +67,7 @@ void RunToSlowly::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-	  elementList.push_back(new SequenceMovement("READY"));
+	  elementList.push_back(new SequenceMovement("DUMMY"));
 	  elementList.push_back(new TicktackBase("FORWARD", dcount));
 	}
       }
@@ -79,7 +79,7 @@ void RunToSlowly::judgement(World& w){
 	  elementList.push_back(new TicktackBase("TRIGHT", t_count));
 	}
 	else{
-		elementList.push_back(new SequenceMovement("READY"));
+		elementList.push_back(new SequenceMovement("DUMMY"));
 	  elementList.push_back(new TicktackBase("FORWARD", dcount));
 	}
       }
