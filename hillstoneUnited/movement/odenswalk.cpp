@@ -21,6 +21,8 @@ OdensWalk::OdensWalk(double _dest[]) {
 
     conf = 0;
 
+    mw.init();
+
     mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
     mw.setdblflag(false);//両脚支持期間の有無。基本falseで
     mw.setupleg(0.05);//足をあげる高さ
@@ -46,6 +48,8 @@ OdensWalk::OdensWalk(std::string _name, double _offsetx, double _offsety){
 
     conf = 300;
 
+    mw.init();
+
     mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
     mw.setdblflag(false);//両脚支持期間の有無。基本falseで
     mw.setupleg(0.05);//足をあげる高さ
@@ -70,6 +74,8 @@ OdensWalk::OdensWalk(int _enemEnum, double _offsetx, double _offsety){
     rotation = 0.0;
 
     conf = 300;
+
+    mw.init();
 
     mw.setTsup(0.24);//歩行周期。設定は0.02[s]間隔
     mw.setdblflag(false);//両脚支持期間の有無。基本falseで

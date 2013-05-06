@@ -198,6 +198,7 @@ std::string Defend::getNextAngle(World& w) {
       w.getPlaymode()=="Goal_Left" ||
       w.getPlaymode()=="Goal_Right") && w.getUnum()>0){
     beam_flag = true;
+    start_flag = true;
     ss << "(beam " << initpos[0] << " "
        << initpos[1] << " " << initpos[2]
        << ")";
@@ -213,24 +214,6 @@ std::string Defend::getNextAngle(World& w) {
   if((w.getPlaymode()=="KickOff_left" || w.getPlaymode()=="KickOff_Right") && start_flag == true){
     elementList.push_back(new SequenceMovement("DUMMY"));
     start_flag = false;
-  }
-  
-  if (w.isFalling())
-    {
-      if (pushStand)
-        {
-	  /* code */
-        } else {
-	for(std::deque<ElementBase*>::iterator it=elementList.begin();
-	    it != elementList.end(); ++it){
-	  delete (*it);
-	}
-	elementList.clear();
-	elementList.push_front(new Standup());
-	pushStand = true;
-      }
-    } else {
-    pushStand = false;
   }
 
   rtn = elementList.front()->getNextAngle(w);
