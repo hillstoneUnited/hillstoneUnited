@@ -72,6 +72,8 @@ private:
     bool ableToPass();
     int getInvader();
 
+    bool isheTOP(World& w, int friendid);
+
     //Drawing* d;
 };
 

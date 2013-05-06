@@ -36,8 +36,8 @@ OdensWalk::OdensWalk(std::string _name, double _offsetx, double _offsety){
     dest[0] = 0.0;
     dest[1] = 0.0;
 
-    offset[0] = _offsetx;
-    offset[1] = _offsety;
+    offset[0] = -_offsetx;
+    offset[1] = -_offsety;
 
     enemEnum = -1;
 
@@ -62,7 +62,7 @@ OdensWalk::OdensWalk(int _enemEnum, double _offsetx, double _offsety){
     dest[1] = 0.0;
 
     offset[0] = _offsetx;
-    offset[1] = _offsety;
+    offset[1] = -_offsety;
 
     enemEnum = _enemEnum;
 
@@ -165,40 +165,41 @@ std::string OdensWalk::getNextAngle(World& w){
 
 
 bool OdensWalk::set(jointID id, double velocity){
-  const double EPS = 0.2; // just like margin of error
-  double current = 0.0;
-
   angleMap[id] = velocity * RADTODEG;
   return true;
 }
 
 void OdensWalk::setAngle(World& w, double joint[], double velocity[]){
 
-    double gain = 1;
-    double joint_set[12] = {};
-
-    for (int i = 0; i < 12; i++)
-    {
-        joint_set[i] = joint[i];
-    }
-
     // Left
     // Legs
-    set(llj1, velocity[0] * gain);
-    set(llj2, velocity[1] * gain);
-    set(llj3, -velocity[2] * gain);
-    set(llj4, -velocity[3] * gain);
-    set(llj5, -velocity[4] * gain);
-    set(llj6, velocity[5] * gain);
+    set(llj1, velocity[0]);
+    set(llj2, velocity[1]);
+    set(llj3, -velocity[2]);
+    set(llj4, -velocity[3]);
+    set(llj5, -velocity[4]);
+    set(llj6, velocity[5]);
 
     // Right
     // Legs
-    set(rlj1, velocity[6] * gain);
-    set(rlj2, velocity[7] * gain);
-    set(rlj3, -velocity[8] * gain);
-    set(rlj4, -velocity[9] * gain);
-    set(rlj5, -velocity[10] * gain);
-    set(rlj6, velocity[11] * gain);
+    set(rlj1, velocity[6]);
+    set(rlj2, velocity[7]);
+    set(rlj3, -velocity[8]);
+    set(rlj4, -velocity[9]);
+    set(rlj5, -velocity[10]);
+    set(rlj6, velocity[11]);
+
+    MovementBase::set(w, hj2, -30);
+
+    MovementBase::set(w, laj1, 0);
+    MovementBase::set(w, laj2, 0);
+    MovementBase::set(w, laj3, 0);
+    MovementBase::set(w, laj4, 0);
+
+    MovementBase::set(w, raj1, 0);
+    MovementBase::set(w, raj2, 0);
+    MovementBase::set(w, raj3, 0);
+    MovementBase::set(w, raj4, 0);
     
 }
 

@@ -83,7 +83,7 @@ void AdjustToBall::judgement(World& w){
                 elementList.push_back(new TicktackBase("TRIGHT", 2));
             } else if ((ballpos[0]-w.getXY_AVE(0)) >= 0.4 ||
                        (ballpos[1]-w.getXY_AVE(1)) >= 0.4){
-                double tmpx = ballpos[0] - 14.0;
+                double tmpx = ballpos[0] - 14.0; // -14
                 double tmpy = ballpos[1];
                 double offx = sqrt(0.3) * tmpx / (pow(tmpx, 2.0)+pow(tmpy, 2.0));
                 double offy = sqrt(0.3) * tmpy / (pow(tmpx, 2.0)+pow(tmpy, 2.0));

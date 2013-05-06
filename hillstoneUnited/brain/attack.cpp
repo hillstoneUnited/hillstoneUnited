@@ -87,14 +87,10 @@ void Attack::judgement(World& w) {
         offset[0] = 3.0;
         offset[1] = 0.0;
 
-        if (fabs(w.getFRIEND(2, 0) - bal[0]) <= bal[0] &&
-            fabs(w.getFRIEND(2, 1) - bal[1]) <= 50 &&
-            w.confFRIEND(2) <= 200)
+        if (isheTOP(w, 9))
         {
             ROLE = "FOLLOW";
-        } else if (fabs(w.getFRIEND(3, 0) - bal[0]) <= bal[0] &&
-            fabs(w.getFRIEND(3, 1) - bal[1]) <= 50 &&
-            w.confFRIEND(3) <= 200) {
+        } else if (isheTOP(w, 11)) {
             ROLE = "FOLLOW";
         } else {
             ROLE = "TOP";
@@ -105,14 +101,10 @@ void Attack::judgement(World& w) {
         offset[0] = 2.0;
         offset[1] = 2.0;
 
-        if (fabs(w.getFRIEND(1, 0) - bal[0]) <= bal[0] &&
-            fabs(w.getFRIEND(1, 1) - bal[1]) <= 50 &&
-            w.confFRIEND(1) <= 200)
+        if (isheTOP(w, 10))
         {
             ROLE = "FOLLOW";
-        } else if (fabs(w.getFRIEND(3, 0) - bal[0]) <= bal[0] &&
-            fabs(w.getFRIEND(3, 1) - bal[1]) <= 50 &&
-            w.confFRIEND(3) <= 200) {
+        } else if (isheTOP(w, 11)) {
             ROLE = "FOLLOW";
         } else {
             ROLE = "TOP";
@@ -123,14 +115,10 @@ void Attack::judgement(World& w) {
         offset[0] = 3.0;
         offset[1] = -1.0;
 
-        if (fabs(w.getFRIEND(2, 0) - bal[0]) <= bal[0] &&
-            fabs(w.getFRIEND(2, 1) - bal[1]) <= 50 &&
-            w.confFRIEND(2) <= 200)
+        if (isheTOP(w, 9))
         {
             ROLE = "FOLLOW";
-        } else if (fabs(w.getFRIEND(1, 0) - bal[0]) <= bal[0] &&
-            fabs(w.getFRIEND(1, 1) - bal[1]) <= 50 &&
-            w.confFRIEND(1) <= 200) {
+        } else if (isheTOP(w, 10)) {
             ROLE = "FOLLOW";
         } else {
             ROLE = "TOP";
@@ -157,13 +145,15 @@ void Attack::judgement(World& w) {
         {
             elementList.push_back(new TicktackBase("FORWARD", 3));
             elementList.push_back(new GABase("GA_FORWARD", 100));
+            // elementList.push_back(new OdensWalk("GOAL"));
         } else {
             elementList.push_back(new AdjustToBall(w));
         }
 
     } else if (ROLE=="FOLLOW") {
         double send[2] = {ballpos[0]+offset[0], ballpos[1]+offset[1]};
-        elementList.push_back(new OdensWalk(offset));
+        // elementList.push_back(new OdensWalk(send));
+        elementList.push_back(new OdensWalk("BALL", offset[0], offset[1]));
     } else if (ROLE=="MF") {
         if (inTerritory() || hasBal() || close2Bal())
         {
@@ -171,8 +161,15 @@ void Attack::judgement(World& w) {
             elementList.push_back(new TicktackBase("FORWARD", 3));
             elementList.push_back(new GABase("GA_FORWARD", 70));
         } else {
-            elementList.push_back(new RunTo(w, initpos));
+            if (atHome())
+            {
+                elementList.push_back(new SequenceMovement("LAROUND"));
+            } else {
+                elementList.push_back(new RunTo(w, initpos));
+            }
         }
+    } else if (ROLE=="TEST") {
+        elementList.push_back(new OdensWalk(ballpos));
     }
 
     // if (hasBal())
@@ -254,8 +251,8 @@ void Attack::updateFandE(World& w) {
 
 
 bool Attack::inTerritory(){
-  if(abs(ballpos[0] - initpos[0]) < 2.0 &&
-     abs(ballpos[1] - initpos[1]) < 2.0 &&
+  if(abs(ballpos[0] - initpos[0]) < 4.0 &&
+     abs(ballpos[1] - initpos[1]) < 4.0 &&
      balposconf <= 250){
     return true;
   }else{
@@ -347,6 +344,18 @@ int Attack::getInvader(){
     }
 
     return -1; // should not to tuckle
+}
+
+bool Attack::isheTOP(World& w, int friendid) {
+    if ((fabs(w.getFRIEND(friendid, 1))<60) &&
+        w.confFRIEND(friendid) <= 150 &&
+        (fabs(bal[1])<60) && balposconf <= 150 &&
+        (bal[0] - w.getFRIEND(friendid, 0) <= 0))
+    {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 std::string Attack::getNextAngle(World& w) {
