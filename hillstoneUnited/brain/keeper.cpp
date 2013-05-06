@@ -158,6 +158,18 @@ std::string Keeper::getNextAngle(World& w) {
                 << initpos[1] << " " << initpos[2]
                 << ")";
         // std::cout << ss.str() << std::endl;
+	
+	while(!elementList.empty()){
+	  ElementBase* tmp = elementList.front();
+	  delete tmp;
+	  elementList.pop_front();
+	}
+	elementList.push_back(new SequenceMovement("DUMMY"));
+    }
+    
+    if((w.getPlaymode()=="KickOff_left" || w.getPlaymode()=="KickOff_Right") && start_flag == true){
+      elementList.push_back(new SequenceMovement("DUMMY"));
+      start_flag = false;
     }
 
     if (w.isFalling())

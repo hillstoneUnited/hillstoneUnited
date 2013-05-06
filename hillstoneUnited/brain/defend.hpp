@@ -45,6 +45,7 @@ private:
   double enemy[11][4];
 
    bool beam_flag;
+  bool start_flag;
   //  std::string beam_msg;
   std::stringstream beam_msg;
 

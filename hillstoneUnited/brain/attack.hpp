@@ -56,8 +56,7 @@ private:
     std::string ROLE;
 
     bool beam_flag;
-    //kickoff_kick
-    bool kick_flag;
+    bool start_flag;
 
     void judgement(World& w);
     void updateFinishFlag(World& w);
