@@ -76,9 +76,9 @@ void Defend::judgement(World& w){
       elementList.push_back(new OdensWalk(invader));
     }
     else{
-      if(getFriendsNearBall() < 3){
+      if(1 < getFriendsNearBall()){
 	elementList.push_back(new AdjustToBall(w));
-	elementList.push_back(new OdensWalk("BALL", 0.0, -5.5));
+	elementList.push_back(new TicktackBase("FORWARD", 10));
       }
       else{
 	elementList.push_back(new OdensWalk("BALL", -0.5, 0.0));
@@ -86,10 +86,6 @@ void Defend::judgement(World& w){
       }
     }
   }else{
-    if(bxy_conf == 300){
-      elementList.push_back(new SequenceMovement("LAROUNDREADY"));
-    }
-
     if(bxy[0] < -9.0 && getFriendsNearBall() < 3){
       elementList.push_back(new OdensWalk("BALL", -0.5, 0.0));
       elementList.push_back(new GABase("GA_FORWARD", 10));
@@ -99,11 +95,10 @@ void Defend::judgement(World& w){
 	double home[2];
 	home[0] = initpos[0];
 	home[1] = initpos[1];
-	elementList.push_back(new SequenceMovement("READY"));
 	elementList.push_back(new OdensWalk(home));
       }
       else{
-	elementList.push_back(new SequenceMovement("LAROUNDREADY"));
+	elementList.push_back(new SequenceMovement("LAROUND"));
       }
     }
   }
@@ -181,7 +176,7 @@ int Defend::getInvader(){
 int Defend::getFriendsNearBall(){
   int num = 0;
   for(int i=0; i<11; i++){
-    if(abs(friends[i][0] - bal[0]) < 1.5 &&
+    if(abs(friends[i][0] - bal[0]) < 2.0 &&
        abs(friends[i][1] - bal[1]) < 30 &&
        friends_conf[i] < 200){
       num++;
@@ -192,7 +187,7 @@ int Defend::getFriendsNearBall(){
 }
 
 void Defend::check(){
-  if(bxy_conf == 300 && xy_conf == 300){
+  if(bxy_conf == 300 || xy_conf == 300){
     elementList.push_back(new SequenceMovement("LAROUND"));
   }
 }
