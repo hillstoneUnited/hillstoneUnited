@@ -8,6 +8,7 @@
 Defend::Defend(World& w, double _initpos[]){
   finish_flag = false;
   beam_flag = false;
+  start_flag = false;
 
   ballpos[0] = 0.0;
   ballpos[1] = 0.0;
@@ -304,8 +305,19 @@ std::string Defend::getNextAngle(World& w) {
        << initpos[1] << " " << initpos[2]
        << ")";
     // std::cout << ss.str() << std::endl;
+    while(!elementList.empty()){
+      ElementBase* tmp = elementList.front();
+      delete tmp;
+      elementList.pop_front();
+    }
+    elementList.push_back(new SequenceMovement("DUMMY"));
   }
-
+  
+  if((w.getPlaymode()=="KickOff_left" || w.getPlaymode()=="KickOff_Right") && start_flag == true){
+    elementList.push_back(new SequenceMovement("DUMMY"));
+    start_flag = false;
+  }
+  
   if (w.isFalling())
     {
       if (pushStand)
