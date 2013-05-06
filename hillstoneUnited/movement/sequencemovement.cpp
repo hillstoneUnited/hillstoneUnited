@@ -132,39 +132,50 @@ void SequenceMovement::setNewSequence(std::string name){
 
   if(name == "LAROUND"){
 
+    Pose laround0;
+    laround0.setTarget(hj1, 0);
+    laround0.setTarget(hj2, -30);
+    laround0.setTarget(laj1, 0); // -90
+    laround0.setTarget(raj1, 0); // -90
+    laround0.setTarget(laj3, 0); // -90
+    laround0.setTarget(raj3, 0); // 90
+    laround0.setTarget(laj4, 0); // -90
+    laround0.setTarget(raj4, 0); // 90
+    laround0.setGain(0.05);
     Pose laround1;
     laround1.setTarget(hj1, -120);
     laround1.setTarget(hj2, -30);
-    laround1.setTarget(laj1, -90);
-    laround1.setTarget(raj1, -90);
-    laround1.setTarget(laj3, -90);
-    laround1.setTarget(raj3, 90);
-    laround1.setTarget(laj4, -90);
-    laround1.setTarget(raj4, 90);
+    laround1.setTarget(laj1, 0); // -90
+    laround1.setTarget(raj1, 0); // -90
+    laround1.setTarget(laj3, 0); // -90
+    laround1.setTarget(raj3, 0); // 90
+    laround1.setTarget(laj4, 0); // -90
+    laround1.setTarget(raj4, 0); // 90
     laround1.setGain(0.2);
     Pose laround2;
     laround2.setTarget(hj1, 120);
     laround2.setTarget(hj2, -30);
-    laround2.setTarget(laj1, -90);
-    laround2.setTarget(raj1, -90);
-    laround2.setTarget(laj3, -90);
-    laround2.setTarget(raj3, 90);
-    laround2.setTarget(laj4, -90);
-    laround2.setTarget(raj4, 90);
+    laround2.setTarget(laj1, 0); // -90
+    laround2.setTarget(raj1, 0); // -90
+    laround2.setTarget(laj3, 0); // -90
+    laround2.setTarget(raj3, 0); // 90
+    laround2.setTarget(laj4, 0); // -90
+    laround2.setTarget(raj4, 0); // 90
     laround2.setGain(0.2);
     Pose laround3;
     laround3.setTarget(hj1, 0);
     laround3.setTarget(hj2, -30);
-    laround3.setTarget(laj1, -90);
-    laround3.setTarget(raj1, -90);
-    laround3.setTarget(laj3, -90);
-    laround3.setTarget(raj3, 90);
-    laround3.setTarget(laj4, -90);
-    laround3.setTarget(raj4, 90);
+    laround3.setTarget(laj1, 0); // -90
+    laround3.setTarget(raj1, 0); // -90
+    laround3.setTarget(laj3, 0); // -90
+    laround3.setTarget(raj3, 0); // 90
+    laround3.setTarget(laj4, 0); // -90
+    laround3.setTarget(raj4, 0); // 90
     laround3.setGain(0.2);
 
     Sequence laround;
     //  laround.addPose(laround0);
+    laround.addPose(laround0);
     laround.addPose(laround1);
     laround.addPose(laround2);
     laround.addPose(laround3);
