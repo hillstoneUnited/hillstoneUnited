@@ -5,7 +5,7 @@ Attack::Attack(World& w, double _initpos[]) {
 		//d = new Drawing();
     finish_flag = false;
     beam_flag = false;
-    kick_flag = false;
+    start_flag = false;
 
     ballpos[0] = 0.0;
     ballpos[1] = 0.0;
@@ -355,22 +355,29 @@ std::string Attack::getNextAngle(World& w) {
        w.getPlaymode()=="Goal_Left" ||
        w.getPlaymode()=="Goal_Right") && w.getUnum()>0){
         beam_flag = true;
+	start_flag = true;
         ss << "(beam " << initpos[0] << " "
                 << initpos[1] << " " << initpos[2]
                 << ")";
         // std::cout << ss.str() << std::endl;
+	
+	while(!elementList.empty()){
+	  ElementBase* tmp = elementList.front();
+	  delete tmp;
+	  elementList.pop_front();
+	}
+	elementList.push_back(new SequenceMovement("DUMMY"));
     }
-
-    ///kickoff_kick////////////////////
-    if(w.getPlaymode()=="BeforeKickOff" && w.getUnum() == 10){
-      kick_flag = true;
-    }
-    if(w.getPlaymode()=="KickOff_Left" && kick_flag == true){
+    if((w.getPlaymode()=="KickOff_Left" || w.getPlaymode()=="KickOff_Right") && w.getUnum() == 10 && start_flag == true){
       elementList.push_front(new Kick());
-      kick_flag = false;
+      start_flag = false;
     }
-    ///////////////////////////////////
-
+    else if((w.getPlaymode()=="KickOff_left" || w.getPlaymode()=="KickOff_Right") && start_flag == true){
+      elementList.push_back(new SequenceMovement("DUMMY"));
+      start_flag = false;
+    }
+    
+    
     rtn = elementList.front()->getNextAngle(w);
     if(beam_flag){
         rtn += ss.str();

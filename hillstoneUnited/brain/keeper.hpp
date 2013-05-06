@@ -31,6 +31,7 @@ private:
     double conf_XY;
     bool beam_flag;
     bool judge_stand;
+    bool start_flag;
 };
 
 #endif
