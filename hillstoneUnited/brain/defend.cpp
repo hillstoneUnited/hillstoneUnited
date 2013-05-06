@@ -1,6 +1,5 @@
 #include "defend.hpp"
 
-#define MATCH
 
 Defend::Defend(World& w, double _initpos[]){
   finish_flag = false;
