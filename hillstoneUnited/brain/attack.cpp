@@ -139,7 +139,7 @@ void Attack::judgement(World& w) {
 
         case 7:
 
-        ROLE = "MF";
+        ROLE = "TEST";
 
         break;
 
@@ -155,15 +155,17 @@ void Attack::judgement(World& w) {
     {
         if (hasBal())
         {
-            elementList.push_back(new TicktackBase("FORWARD", 3));
-            elementList.push_back(new GABase("GA_FORWARD", 100));
+            // elementList.push_back(new TicktackBase("FORWARD", 3));
+            // elementList.push_back(new GABase("GA_FORWARD", 100));
+            elementList.push_back(new OdensWalk("GOAL"));
         } else {
             elementList.push_back(new AdjustToBall(w));
         }
 
     } else if (ROLE=="FOLLOW") {
         double send[2] = {ballpos[0]+offset[0], ballpos[1]+offset[1]};
-        elementList.push_back(new OdensWalk(offset));
+        // elementList.push_back(new OdensWalk(send));
+        elementList.push_back(new OdensWalk("BALL", offset[0], offset[1]));
     } else if (ROLE=="MF") {
         if (inTerritory() || hasBal() || close2Bal())
         {
@@ -171,8 +173,15 @@ void Attack::judgement(World& w) {
             elementList.push_back(new TicktackBase("FORWARD", 3));
             elementList.push_back(new GABase("GA_FORWARD", 70));
         } else {
-            elementList.push_back(new RunTo(w, initpos));
+            if (atHome())
+            {
+                elementList.push_back(new SequenceMovement("LAROUND"));
+            } else {
+                elementList.push_back(new RunTo(w, initpos));
+            }
         }
+    } else if (ROLE=="TEST") {
+        elementList.push_back(new OdensWalk(ballpos));
     }
 
     // if (hasBal())

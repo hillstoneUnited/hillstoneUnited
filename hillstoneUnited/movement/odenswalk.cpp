@@ -36,8 +36,8 @@ OdensWalk::OdensWalk(std::string _name, double _offsetx, double _offsety){
     dest[0] = 0.0;
     dest[1] = 0.0;
 
-    offset[0] = _offsetx;
-    offset[1] = _offsety;
+    offset[0] = -_offsetx;
+    offset[1] = -_offsety;
 
     enemEnum = -1;
 
@@ -61,8 +61,8 @@ OdensWalk::OdensWalk(int _enemEnum, double _offsetx, double _offsety){
     dest[0] = 0.0;
     dest[1] = 0.0;
 
-    offset[0] = _offsetx;
-    offset[1] = _offsety;
+    offset[0] = -_offsetx;
+    offset[1] = -_offsety;
 
     enemEnum = _enemEnum;
 
