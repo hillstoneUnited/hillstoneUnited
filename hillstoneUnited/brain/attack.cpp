@@ -143,8 +143,10 @@ void Attack::judgement(World& w) {
     {
         if (hasBal())
         {
-            elementList.push_back(new TicktackBase("FORWARD", 3));
-            elementList.push_back(new GABase("GA_FORWARD", 100));
+            // elementList.push_back(new TicktackBase("FORWARD", 3));
+            // elementList.push_back(new GABase("GA_FORWARD", 100));
+            elementList.push_back(new SequenceMovement("DUMMY"));
+            elementList.push_back(new OdensWalk("BALL", 2.0, 0));
             // elementList.push_back(new OdensWalk("GOAL"));
         } else {
             elementList.push_back(new AdjustToBall(w));
@@ -153,6 +155,7 @@ void Attack::judgement(World& w) {
     } else if (ROLE=="FOLLOW") {
         double send[2] = {ballpos[0]+offset[0], ballpos[1]+offset[1]};
         // elementList.push_back(new OdensWalk(send));
+        elementList.push_back(new SequenceMovement("DUMMY"));
         elementList.push_back(new OdensWalk("BALL", offset[0], offset[1]));
     } else if (ROLE=="MF") {
         if (inTerritory() || hasBal() || close2Bal())
@@ -169,6 +172,7 @@ void Attack::judgement(World& w) {
             }
         }
     } else if (ROLE=="TEST") {
+        elementList.push_back(new SequenceMovement("DUMMY"));
         elementList.push_back(new OdensWalk(ballpos));
     }
 
@@ -362,7 +366,7 @@ std::string Attack::getNextAngle(World& w) {
     std::stringstream ss;
     if((w.getPlaymode()=="BeforeKickOff" ||
        w.getPlaymode()=="Goal_Left" ||
-       w.getPlaymode()=="Goal_Right") && w.getUnum()>0){
+       w.getPlaymode()=="Goal_Right")){
         beam_flag = true;
 	start_flag = true;
         ss << "(beam " << initpos[0] << " "

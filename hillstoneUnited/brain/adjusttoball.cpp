@@ -40,9 +40,9 @@ void AdjustToBall::judgement(World& w){
     }
 
     if (conf_ballpos == 300 || (ballpos[0] - x) == 0.0 || (ballpos[1] - y) == 0.0 || w.confABSANGLE() >= 200){
-        elementList.push_back(new TicktackBase("TLEFT", 2));
         // elementList.push_back(new SequenceMovement("READY"));
         elementList.push_back(new SequenceMovement("LAROUND"));
+        elementList.push_back(new TicktackBase("TLEFT", 2));
     } else {
 
         if ((x-ballpos[0]) >= 2)
@@ -88,6 +88,7 @@ void AdjustToBall::judgement(World& w){
                 double offx = sqrt(0.3) * tmpx / (pow(tmpx, 2.0)+pow(tmpy, 2.0));
                 double offy = sqrt(0.3) * tmpy / (pow(tmpx, 2.0)+pow(tmpy, 2.0));
                 // elementList.push_back(new SequenceMovement("READY"));
+                elementList.push_back(new SequenceMovement("DUMMY"));
                 elementList.push_back(new OdensWalk("BALL", offx, offy));
             } else {
                 finish_flag = true;
