@@ -68,6 +68,8 @@ void World::update(const std::string& msg){
 
   deqPerception.push_back(perc);
   perc->calcuratePerception(*this);
+  setSentinel();
+
   while(deqPerception.size()>DEQUE_SIZE){
     if(deqPerception.empty()) break;
     //    std::cout << "deqPerception: too much data!" << std::endl;
@@ -1196,14 +1198,16 @@ double World::getMGL(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).G1L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MGL_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).G2R[index])){
 	return ((*(deqPerception[SIZE-i-1])).G2R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MGL_sentinel[index];
   }else{
     std::cout << "World::Perception::getMGL UNKNOWN SIDE!" << std::endl;
     return 0.0;
@@ -1223,14 +1227,16 @@ double World::getMGR(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).G2L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MGR_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).G1R[index])){
 	return ((*(deqPerception[SIZE-i-1])).G1R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MGR_sentinel[index];
   }else{
     std::cout << "World::Perception::getMGR UNKNOWN SIDE!" << std::endl;
 
@@ -1251,14 +1257,16 @@ double World::getEGL(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).G1R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EGL_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).G2L[index])){
 	return ((*(deqPerception[SIZE-i-1])).G2L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EGL_sentinel[index];
   }else{
     std::cout << "World::Perception::getEGL UNKNOWN SIDE!" << std::endl;
     return 0.0;
@@ -1278,14 +1286,16 @@ double World::getEGR(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).G2R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EGR_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).G1L[index])){
 	return ((*(deqPerception[SIZE-i-1])).G1L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EGR_sentinel[index];
   }else{
     std::cout << "World::Perception::getEGR UNKNOWN SIDE!" << std::endl;
     return 0.0;
@@ -1305,14 +1315,16 @@ double World::getMFL(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).F1L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MFL_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).F2R[index])){
 	return ((*(deqPerception[SIZE-i-1])).F2R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MFL_sentinel[index];
   }else{
     std::cout << "World::Perception::getMFL UNKNOWN SIDE!" << std::endl;
 
@@ -1333,14 +1345,16 @@ double World::getMFR(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).F2L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MFR_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).F1R[index])){
 	return ((*(deqPerception[SIZE-i-1])).F1R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return MFR_sentinel[index];
   }else{
     std::cout << "World::Perception::getMFR UNKNOWN SIDE!" << std::endl;
     return 0.0;
@@ -1360,14 +1374,16 @@ double World::getEFL(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).F1R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EFL_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).F2L[index])){
 	return ((*(deqPerception[SIZE-i-1])).F2L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EFL_sentinel[index];
   }else{
     std::cout << "World::Perception::getEFL UNKNOWN SIDE!" << std::endl;
 
@@ -1388,14 +1404,16 @@ double World::getEFR(int index) const{
 	return ((*(deqPerception[SIZE-i-1])).F2R[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EFR_sentinel[index];
   }else if(side == RIGHT){
     for(int i=0; i<SIZE; i++){
       if(!isnan((*(deqPerception[SIZE-i-1])).F1L[index])){
 	return ((*(deqPerception[SIZE-i-1])).F1L[index]);
       }
     }
-    return 0.0;
+    //    return 0.0;
+    return EFR_sentinel[index];
   }else{
     std::cout << "World::Perception::getEFR UNKNOWN SIDE!" << std::endl;
 
@@ -1417,7 +1435,8 @@ double World::getBAL(int index) const{
     }
   }
 
-  return 0.0;
+  //  return 0.0;
+  return BAL_sentinel[index];
 }
 
 double World::getFRP_RC(int index) const{
@@ -1433,7 +1452,8 @@ double World::getFRP_RC(int index) const{
     }
   }
 
-  return 0.0;
+  //  return 0.0;
+  return FRP_RC_sentinel[index];
 }
 
 double World::getFRP_RF(int index) const{
@@ -1449,7 +1469,8 @@ double World::getFRP_RF(int index) const{
     }
   }
 
-  return 0.0;
+  //  return 0.0;
+  return FRP_RF_sentinel[index];
 }
 
 double World::getFRP_LC(int index) const{
@@ -1465,7 +1486,8 @@ double World::getFRP_LC(int index) const{
     }
   }
 
-  return 0.0;
+//  return 0.0;
+  return FRP_LC_sentinel[index];
 }
 
 double World::getFRP_LF(int index) const{
@@ -1481,7 +1503,8 @@ double World::getFRP_LF(int index) const{
     }
   }
 
-  return 0.0;
+  //  return 0.0;
+  return FRP_LF_sentinel[index];
 }
 
 double World::getGYR(int index) const{
@@ -1497,7 +1520,8 @@ double World::getGYR(int index) const{
     }
   }
 
-  return 0.0;
+  //  return 0.0;
+  return GYR_sentinel[index];
 }
 
 double World::getACC(int index) const{
@@ -1608,7 +1632,8 @@ double World::getBXY(int index) const{
     }
   }
 
-  return 0.0;
+  //  return 0.0;
+  return BXY_sentinel[index];
 }
 
 double World::getABSANGLE() const{
@@ -2083,3 +2108,105 @@ bool World::isFalling() {
   }
   return false;
 }
+
+void World::setSentinel(){
+  if(confBAL() != 300 && confBAL() > 296){
+    BAL_sentinel[0] = getBAL(0);
+    BAL_sentinel[1] = getBAL(1);
+    BAL_sentinel[2] = getBAL(2);
+  }
+  if(confMGL() != 300 && confMGL() > 296){
+    MGL_sentinel[0] = getMGL(0);
+    MGL_sentinel[1] = getMGL(1);
+    MGL_sentinel[2] = getMGL(2);
+  }
+  if(confMGR() != 300 && confMGR() > 296){
+    MGR_sentinel[0] = getMGR(0);
+    MGR_sentinel[1] = getMGR(1);
+    MGR_sentinel[2] = getMGR(2);
+  }
+  if(confEGL() != 300 && confEGL() > 296){
+    EGL_sentinel[0] = getEGL(0);
+    EGL_sentinel[1] = getEGL(1);
+    EGL_sentinel[2] = getEGL(2);
+  }
+  if(confEGR() != 300 && confEGR() > 296){
+    EGR_sentinel[0] = getEGR(0);
+    EGR_sentinel[1] = getEGR(1);
+    EGR_sentinel[2] = getEGR(2);
+  }
+
+  if(confFRP_RC() != 300 && confFRP_RC() > 296){
+    FRP_RC_sentinel[0] = getFRP_RC(0);
+    FRP_RC_sentinel[1] = getFRP_RC(1);
+    FRP_RC_sentinel[2] = getFRP_RC(2);
+  }
+  if(confFRP_RF() != 300 && confFRP_RF() > 296){
+    FRP_RF_sentinel[0] = getFRP_RF(0);
+    FRP_RF_sentinel[1] = getFRP_RF(1);
+    FRP_RF_sentinel[2] = getFRP_RF(2);
+  }
+  if(confFRP_LC() != 300 && confFRP_LC() > 296){
+    FRP_LC_sentinel[0] = getFRP_LC(0);
+    FRP_LC_sentinel[1] = getFRP_LC(1);
+    FRP_LC_sentinel[2] = getFRP_LC(2);
+  }
+  if(confFRP_LF() != 300 && confFRP_LF() > 296){
+    FRP_LF_sentinel[0] = getFRP_LF(0);
+    FRP_LF_sentinel[1] = getFRP_LF(1);
+    FRP_LF_sentinel[2] = getFRP_LF(2);
+  }
+  if(confGYR() != 300 && confGYR() > 296){
+    GYR_sentinel[0] = getGYR(0);
+    GYR_sentinel[1] = getGYR(1);
+    GYR_sentinel[2] = getGYR(2);
+  }
+  if(confACC() != 300 && confACC() > 296){
+    ACC_sentinel[0] = getACC(0);
+    ACC_sentinel[1] = getACC(1);
+    ACC_sentinel[2] = getACC(2);
+  }
+  if(confMYPOS() != 300 && confMYPOS() > 296){
+    MYPOS_sentinel[0] = getMYPOS(0);
+    MYPOS_sentinel[1] = getMYPOS(1);
+    MYPOS_sentinel[2] = getMYPOS(2);
+  }
+  if(confBALLPOS() != 300 && confBALLPOS() > 296){
+    BALLPOS_sentinel[0] = getBALLPOS(0);
+    BALLPOS_sentinel[1] = getBALLPOS(1);
+    BALLPOS_sentinel[2] = getBALLPOS(2);
+  }
+  for(int i=0; i<11; i++){
+    if(confFRIEND(i) != 300 && confFRIEND(i) > 296){
+      FRIEND_sentinel[i][0] = getFRIEND(i, 0);
+      FRIEND_sentinel[i][1] = getFRIEND(i, 1);
+      FRIEND_sentinel[i][2] = getFRIEND(i, 2);
+    }
+  }
+  for(int i=0; i<11; i++){
+    if(confENEMY(i) != 300 && confENEMY(i) > 296){
+      ENEMY_sentinel[i][0] = getENEMY(i, 0);
+      ENEMY_sentinel[i][1] = getENEMY(i, 1);
+      ENEMY_sentinel[i][2] = getENEMY(i, 2);
+    }
+  }
+
+
+  if(confBXY() != 300 && confBXY() > 296){
+    BXY_sentinel[0] = getBXY(0);
+    BXY_sentinel[1] = getBXY(1);
+  }
+  if(confXY() != 300 && confXY() > 296){
+    XY_sentinel[0] = getXY(0);
+    XY_sentinel[1] = getXY(1);
+  }
+  if(confABSANGLE() != 300 && confABSANGLE() > 296){
+    ABSANGLE_sentinel = getABSANGLE();
+  }
+  if(confBANGLE() != 300 && confBANGLE() > 296){
+    BANGLE_sentinel = getBANGLE();
+  }
+}
+
+
+

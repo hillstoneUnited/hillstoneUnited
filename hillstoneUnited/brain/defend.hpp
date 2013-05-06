@@ -10,6 +10,7 @@
 #include "runtoball.hpp"
 #include "runtoenemy.hpp"
 #include "adjusttoball.hpp"
+#include "../movement/kick.hpp"
 #include "../movement/gabase.hpp"
 #include "../movement/standup.hpp"
 #include "../movement/odenswalk.hpp"
@@ -28,21 +29,24 @@ public:
 
 private:
   double initpos[3];
-  double ballpos[2];
-  double mypos[2];
   double bal[3];
+  double xy[2];
+  double bxy[2];
   double angle;
   double dist;
 
   int field_x;
   int field_y;
 
-  int balposconf;
-  int myposconf;
+  int bal_conf;
+  int bxy_conf;
+  int xy_conf;
   int t_count;
 
   double friends[11][4];
   double enemy[11][4];
+  int friends_conf[11];
+  int enemy_conf[11];
 
    bool beam_flag;
   bool start_flag;
@@ -55,6 +59,8 @@ private:
   bool towardEnemy();
   bool inDanger();
   int getInvader();
+  int getFriendsNearBall();
+  void check();
 
   void judgement(World& w);
   void updateFinishFlag(World& w);
