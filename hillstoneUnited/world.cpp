@@ -1668,6 +1668,7 @@ double World::getXY_AVE(int index) const{
     std::cout << "getXY:: unexpected indexnumber : " << index << std::endl; 
     return 0.0;
   }
+  static int pxy_ave[2] = {0.0};
 
   //  double seen_bxy[50] = {0.0};
   int counter = 0;
@@ -1685,10 +1686,14 @@ double World::getXY_AVE(int index) const{
     }
   }
   if(sum!=0.0 && counter!=0){
+    if(counter > 10){
+      pxy_ave[index] = (sum/counter);
+    }
     return (sum / counter);
   }
 
-  return 0.0;
+  //  return 0.0;
+  return pxy_ave[index];
 }
 
 double World::getBXY_AVE(int index) const{
@@ -1696,6 +1701,7 @@ double World::getBXY_AVE(int index) const{
     std::cout << "getBXY:: unexpected indexnumber : " << index << std::endl; 
     return 0.0;
   }
+  static int pbxy_ave[2] = {0.0};
 
   //  double seen_bxy[50] = {0.0};
   int counter = 0;
@@ -1713,10 +1719,14 @@ double World::getBXY_AVE(int index) const{
     }
   }
   if(sum!=0.0 && counter!=0){
+    if(counter > 10){
+      pbxy_ave[index] = (sum/counter);
+    }
     return (sum / counter);
   }
 
-  return 0.0;
+  // return 0.0;
+  return pbxy_ave[index];
 }
 
 double World::getACC_Sum(int index, int num) const{
